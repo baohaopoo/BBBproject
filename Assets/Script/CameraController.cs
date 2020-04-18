@@ -12,13 +12,13 @@ public class CameraController : MonoBehaviour
     public float offsetZ = 0f;
     Vector3 cameraPosition;
 
-    //Zoom 관련
-    public Transform ZoomTarget;
-    public float Zoom;
-    private Transform tr;
-       
+    //zoom 관련
+    public float zoomSpeed = 10f;
+
     //회전 관련
     public float rotateSpeed = 10f;
+
+    private Camera mainCamera;
 
 
 
@@ -26,19 +26,20 @@ public class CameraController : MonoBehaviour
     void Start()
     {
 
-        tr = GetComponent<Transform>();
+        mainCamera = GetComponent<Camera>();
 
 
 
 
 
 
-}
+    }
 
     // Update is called once per frame
     void Update()
     {
-        //ZoomInOut(); 
+        ZoomInOut();
+        Rotate();
     }
     private void LateUpdate()
     {
@@ -54,11 +55,30 @@ public class CameraController : MonoBehaviour
     private void ZoomInOut()
     {
 
-        Vector3 TargetDist = tr.position - ZoomTarget.position;
-        TargetDist = Vector3.Normalize(TargetDist);
+        float distance = Input.GetAxis("Mouse ScrollWheel") * -1 * zoomSpeed;
+        if (distance != 0)
+        {
+            mainCamera.fieldOfView += distance;
+        }
+    }
+    void Rotate()
+    {
 
-        tr.position -= (TargetDist * Input.GetAxis("Mouse ScrollWheel") * Zoom);
-    
-    
+        if (Input.GetMouseButton(1))
+        {
+
+            Vector3 rot = transform.rotation.eulerAngles;
+            rot.y += Input.GetAxis("Mouse X") * rotateSpeed;
+            rot.x += -1 * Input.GetAxis("Mouse Y") * rotateSpeed;
+            Quaternion q = Quaternion.Euler(rot);
+            q.z = 0;
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, 2f);
+
+
+        }
+
+
+
     }
 }

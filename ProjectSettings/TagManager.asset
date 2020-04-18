@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - floor
+  - wall
+  - rope
+  - box
+  - desk
+  - door
   layers:
   - Default
   - TransparentFX
