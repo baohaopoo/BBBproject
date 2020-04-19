@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Kidsroom.unity
+    guid: 28d571e5c4d21ae41a53f32f42856b64
+  - enabled: 1
+    path: Assets/Scenes/city.unity
+    guid: 8ea5d8c448630b14498f869528dab9d0
   m_configObjects: {}

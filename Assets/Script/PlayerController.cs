@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
         if (horizontalMove == 0 && verticalMove == 0)
             return;
-
+         
         Quaternion playerRotation = Quaternion.LookRotation(movement);
         rigdbody.rotation = Quaternion.Slerp(rigdbody.rotation, playerRotation, Time.deltaTime);
   
