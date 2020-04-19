@@ -10,6 +10,7 @@ TagManager:
   - box
   - desk
   - door
+  - torus
   layers:
   - Default
   - TransparentFX
