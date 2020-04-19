@@ -4,58 +4,68 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 50f;
-    public float jumpPower = 5f;
+    public float moveSpeed = 5f;// 앞뒤 움직임 걷기속도 
+    public float rotateSpeed = 180f; // 좌우 회전 속도
+    public float jumpPower = 0f;
 
-    Rigidbody rigdbody;
-    Collider col;
+    private PlayerInput playerInput; // 플레이어 입력을 알려주는 컴포넌트
+    private Rigidbody playerRigidbody; // 플레이어 캐릭터의 리지드바디
+    private Animator playerAnimator; // 플레이어 캐릭터의 애니메이터
 
-    Vector3 movement;
-    float horizontalMove;
-    float verticalMove;
-    bool isJumping;
+    bool isJumping=false;
 
-    void Awake()
-    {
-        rigdbody = GetComponent<Rigidbody>();
+    //int jumpcount = 0;
 
-    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerInput = GetComponent<PlayerInput>();
+        playerRigidbody = GetComponent<Rigidbody>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-
-        horizontalMove = Input.GetAxisRaw("Horizontal");
-        verticalMove = Input.GetAxisRaw("Vertical");
-
-
         if (Input.GetButtonDown("Jump"))
+        {
             isJumping = true;
-        
+        }
+
+
+        playerAnimator.SetFloat("Move", playerInput.move);
+        playerAnimator.SetBool("Jump", isJumping);
+
     }
 
     void FixedUpdate()
     {
-      //물리만 다루는 곳.
-        Run();
+      //물리만 다루는 곳.;
         Jump();
-        Turn();
+        Rotate();
+        Move();
+
+
+
     }
 
-    void Run()
+    // 입력값에 따라 캐릭터를 앞뒤로 움직임
+    private void Move()
     {
-        movement.Set(horizontalMove, 0, verticalMove);
-        movement = movement.normalized * speed * Time.deltaTime;
+        Vector3 moveDistance =
+            playerInput.move * transform.forward * moveSpeed * Time.deltaTime;
 
-        rigdbody.MovePosition(transform.position + movement);
+        playerRigidbody.MovePosition(playerRigidbody.position + moveDistance);
+    }
 
-    
+    // 입력값에 따라 캐릭터를 좌우로 회전
+    private void Rotate()
+    {
+        float turn = playerInput.rotate * rotateSpeed * Time.deltaTime;
+        playerRigidbody.rotation =
+            playerRigidbody.rotation * Quaternion.Euler(0, turn, 0f);
+
     }
 
     void Jump()
@@ -63,22 +73,13 @@ public class PlayerController : MonoBehaviour
         if (!isJumping)
             return;
 
-        rigdbody.MovePosition(transform.position + Vector3.up); //단순높이
-        rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+        playerRigidbody.MovePosition(transform.position + Vector3.up); //단순높이
+        playerRigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
 
         isJumping = false;
     
     
     }
 
-    void Turn()
-    {
 
-        if (horizontalMove == 0 && verticalMove == 0)
-            return;
-         
-        Quaternion playerRotation = Quaternion.LookRotation(movement);
-        rigdbody.rotation = Quaternion.Slerp(rigdbody.rotation, playerRotation, Time.deltaTime);
-  
-    }
 }
