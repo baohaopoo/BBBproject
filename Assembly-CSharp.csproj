@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{97E4C70F-F8F8-3D82-9806-BB7D9B3B264A}</ProjectGuid>
+    <ProjectGuid>{73F41C4A-C1E3-9429-FFB1-EC838A495F68}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -69,31 +69,31 @@
     <Compile Include="Assets\Script\ZoomInOut.cs" />
     <None Include="Assets\Model\POLYGON city pack\Read_me.txt" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/2020/졸작/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/문서/BBB 프로젝트/BBBproject/BBBproject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/2020/졸작/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/문서/BBB 프로젝트/BBBproject/BBBproject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/2020/졸작/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/문서/BBB 프로젝트/BBBproject/BBBproject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/2020/졸작/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/문서/BBB 프로젝트/BBBproject/BBBproject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/2020/졸작/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/문서/BBB 프로젝트/BBBproject/BBBproject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/2020/졸작/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/문서/BBB 프로젝트/BBBproject/BBBproject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/2020/졸작/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/문서/BBB 프로젝트/BBBproject/BBBproject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/2020/졸작/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/문서/BBB 프로젝트/BBBproject/BBBproject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/2020/졸작/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/문서/BBB 프로젝트/BBBproject/BBBproject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
