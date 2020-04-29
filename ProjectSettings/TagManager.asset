@@ -10,7 +10,9 @@ TagManager:
   - box
   - desk
   - door
-  - torus
+  - friend
+  - grabPoint
+  - UIImage
   layers:
   - Default
   - TransparentFX
