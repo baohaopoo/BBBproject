@@ -17,7 +17,7 @@ public class Doll_Action : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        playerGrabPoint = GameObject.FindGameObjectWithTag("GrabPoint");
+        //playerGrabPoint = GameObject.FindGameObjectWithTag("GrabPoint");
         UIImage = GameObject.FindGameObjectWithTag("UIImage");
 
 
@@ -31,15 +31,15 @@ public class Doll_Action : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("p") && isPlayerEnter) {
-            transform.SetParent(playerGrabPoint.transform);
-            transform.localPosition = Vector3.zero;
-            transform.rotation = new Quaternion(0, 0, 0, 0);
+        //if (Input.GetButtonDown("p") && isPlayerEnter) {
+        //    transform.SetParent(playerGrabPoint.transform);
+        //    transform.localPosition = Vector3.zero;
+        //    transform.rotation = new Quaternion(0, 0, 0, 0);
 
-            isPlayerEnter = false;
+        //    isPlayerEnter = false;
 
         
-        }
+        //}
         
     }
     public void Pickup(GameObject item)

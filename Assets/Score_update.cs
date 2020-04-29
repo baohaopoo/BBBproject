@@ -13,7 +13,7 @@ public class Score_update : MonoBehaviour
     {
         //savedollsLabel = GetComponent<Text>();
         savedollsImage = GetComponent<Image>();
-        savedollsImage.gameObject.SetActive(false);
+       // savedollsImage.gameObject.SetActive(false);
     }
      
     // Update is called once per frame
