@@ -13,6 +13,7 @@ TagManager:
   - friend
   - grabPoint
   - UIImage
+  - test
   layers:
   - Default
   - TransparentFX
