@@ -17,15 +17,6 @@ public class PlayerController : MonoBehaviour
     bool isPicking;
 
     GameObject PlayerGrabPoint; //플레이어 아이템 잡을 때 쓰는 객체변수 생성
-    //GameObject testCube;
-
-    //void Awake()
-    //{
-    //  
-
-    //}
-
-    //int jumpcount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +25,7 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
         PlayerGrabPoint = GameObject.FindGameObjectWithTag("grabPoint"); //PlayerGrabPoint 객체 소환
-        //testCube = GameObject.FindGameObjectWithTag("test");
+        
     }
 
     // Update is called once per frame
