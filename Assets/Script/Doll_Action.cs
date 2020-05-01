@@ -14,14 +14,14 @@ public class Doll_Action : MonoBehaviour
     Vector3 movement;
     bool isPlayerEnter;
 
-
+    GameObject bo;
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerGrabPoint = GameObject.FindGameObjectWithTag("grabPoint");
         UIImage = GameObject.FindGameObjectWithTag("UIImage");
         audioSource = GetComponent<AudioSource>();
-
+        
     }
     // Start is called before the first frame update
     void Start()
