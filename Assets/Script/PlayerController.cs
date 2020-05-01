@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     bool isPicking;
 
     GameObject PlayerGrabPoint; //플레이어 아이템 잡을 때 쓰는 객체변수 생성
-
+    GameObject test;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
         PlayerGrabPoint = GameObject.FindGameObjectWithTag("grabPoint"); //PlayerGrabPoint 객체 소환
-        
+        test = GameObject.FindGameObjectWithTag("test");
     }
 
     // Update is called once per frame
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     {
         float turn = playerInput.rotate * rotateSpeed * Time.deltaTime;
         playerRigidbody.rotation =
-            playerRigidbody.rotation * Quaternion.Euler(0, turn, 0f);
+         playerRigidbody.rotation * Quaternion.Euler(0, turn, 0f);
 
     }
 
@@ -82,34 +82,7 @@ public class PlayerController : MonoBehaviour
 
         }
     }
-    //public void SetGrab(GameObject item, bool isGrab)
-    //{
-    //    Collider[] itemColliders = item.GetComponents<Collider>();
-    //    Rigidbody itemRigidbody = item.GetComponent<Rigidbody>();
 
-    //    foreach (Collider itemCollider in itemColliders)
-    //    {
-    //        itemCollider.enabled = !isGrab;
-
-    //    }
-    //    itemRigidbody.isKinematic = isGrab;
-
-
-
-   // }
-    //public void Pickup(GameObject item)
-    //{
-    //    SetGrab(item, true);
-    //    isPicking = true;
-
-    //}
-
-    //public void Drop()
-    //{
-    //    GameObject item = PlayerGrabPoint.GetComponentInChildren<Rigidbody>().gameObject;
-    //    SetGrab(item, false);
-
-    //}
 
 
 
