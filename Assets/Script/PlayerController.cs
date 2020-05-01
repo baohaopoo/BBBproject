@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     bool isJumping;
     bool isGrounded;
     bool isPicking;
+ 
 
     GameObject PlayerGrabPoint; //플레이어 아이템 잡을 때 쓰는 객체변수 생성
     GameObject test;
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
         Move();
         
 
-
+       
 
 
     }
