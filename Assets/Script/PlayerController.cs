@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     bool isJumping;
     bool isGrounded;
     bool isPicking;
+    bool upRope;
 
     GameObject PlayerGrabPoint; //플레이어 아이템 잡을 때 쓰는 객체변수 생성
 
@@ -31,7 +32,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
 
 
         playerAnimator.SetFloat("Move", playerInput.move);
@@ -75,12 +75,17 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-       if (Input.GetButtonDown("Jump") && isGrounded == true)
+       if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            playerRigidbody.velocity = Vector3.zero;
+            //playerRigidbody.velocity = Vector3.zero;
             playerRigidbody.AddForce(new Vector3(0, jumpPower, 0), ForceMode.Impulse);
+            isGrounded = false;
 
         }
+    }
+    private void Rope()
+    {
+
     }
     //public void SetGrab(GameObject item, bool isGrab)
     //{
@@ -96,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-   // }
+    // }
     //public void Pickup(GameObject item)
     //{
     //    SetGrab(item, true);
@@ -115,13 +120,20 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        isGrounded = true;
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
+        if (collision.gameObject.tag == "rope")
+        {
+            upRope = true;
+            Rope();
+            //playerAnimator.SetBool("upRope", upRope);
+        }
+
+
     }
-    private void OnCollisionExit(Collision collision)
-    {
-        // 바닥에서 벗어났음을 감지하는 처리
-        isGrounded = false;
-    }
+
 
 }
 
