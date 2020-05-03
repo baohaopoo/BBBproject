@@ -31,7 +31,7 @@ public class Doll_Action : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        audioSource.Play();
+        //audioSource.Play();
 
         
     }
