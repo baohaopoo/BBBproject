@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float rotateSpeed = 180f; // 좌우 회전 속도
     public float jumpPower = 100f;
 
+
     private PlayerInput playerInput; // 플레이어 입력을 알려주는 컴포넌트
     private Rigidbody playerRigidbody; // 플레이어 캐릭터의 리지드바디
     private Animator playerAnimator; // 플레이어 캐릭터의 애니메이터
@@ -16,9 +17,11 @@ public class PlayerController : MonoBehaviour
     bool isGrounded;
     bool isPicking;
     bool upRope;
+    bool noGravity;
 
     GameObject PlayerGrabPoint; //플레이어 아이템 잡을 때 쓰는 객체변수 생성
-
+    GameObject rope; //플레이어 로프와 닿으면 수평이동 제한.
+    GameObject ropeCollision;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +29,11 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
         PlayerGrabPoint = GameObject.FindGameObjectWithTag("grabPoint"); //PlayerGrabPoint 객체 소환
-        
+        rope = GameObject.FindGameObjectWithTag("rope"); //rope객체 소환
+        ropeCollision = GameObject.FindGameObjectWithTag("ropeCollision");
+
+        upRope = false;
+        noGravity = false;
     }
 
     // Update is called once per frame
@@ -48,7 +55,7 @@ public class PlayerController : MonoBehaviour
         Jump();
         Rotate();
         Move();
-        
+        Rope(upRope,noGravity);
 
 
 
@@ -75,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-       if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             //playerRigidbody.velocity = Vector3.zero;
             playerRigidbody.AddForce(new Vector3(0, jumpPower, 0), ForceMode.Impulse);
@@ -83,38 +90,62 @@ public class PlayerController : MonoBehaviour
 
         }
     }
-    private void Rope()
+    public void Rope(bool uprope, bool nogravity)
     {
+        Debug.Log("플레이어rope 들어옴");
+
+
+        if (uprope)
+        {
+            Debug.Log("플레이어1차 충돌");
+
+
+            bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
+            bool downKey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
+
+
+            if (upKey)
+            {
+                this.transform.Translate(0, 5f * Time.deltaTime, 0);
+
+            }
+
+            else if (downKey)
+            {
+
+                this.transform.Translate(0, -5f * Time.deltaTime, 0);
+
+            }
+        }
+
+
+
+        else if (noGravity)
+        {
+
+            Debug.Log("노그래비티존");
+           // playerRigidbody.isKinematic = true;
+            bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
+            bool downKey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
+
+            if (upKey)
+            {
+                this.transform.Translate(0, 0, 3 * Time.deltaTime);
+            }
+            else if (downKey)
+            {
+                this.transform.Translate(0, 0, -3 * Time.deltaTime);
+            }
+        }
+
+
+
+
+
 
     }
-    //public void SetGrab(GameObject item, bool isGrab)
-    //{
-    //    Collider[] itemColliders = item.GetComponents<Collider>();
-    //    Rigidbody itemRigidbody = item.GetComponent<Rigidbody>();
-
-    //    foreach (Collider itemCollider in itemColliders)
-    //    {
-    //        itemCollider.enabled = !isGrab;
-
-    //    }
-    //    itemRigidbody.isKinematic = isGrab;
 
 
-
-    // }
-    //public void Pickup(GameObject item)
-    //{
-    //    SetGrab(item, true);
-    //    isPicking = true;
-
-    //}
-
-    //public void Drop()
-    //{
-    //    GameObject item = PlayerGrabPoint.GetComponentInChildren<Rigidbody>().gameObject;
-    //    SetGrab(item, false);
-
-    //}
 
 
 
@@ -124,17 +155,48 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
         }
-        if (collision.gameObject.tag == "rope")
+        if (collision.gameObject== rope)
         {
-            upRope = true;
-            Rope();
+            //업로프가 false일때만 들어와라
+            if (!upRope)
+            {
+                upRope = true;
+                this.transform.Translate(0, 0.3f, 0);
+            }
+          
             //playerAnimator.SetBool("upRope", upRope);
         }
 
+      
 
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject == rope)
+        {
+            upRope = false;
+        
 
+           
+        }
+
+        //if (collision.gameObject == ropeCollision)
+        //{
+        //    nogravity = false;
+        //}
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("노그래비티존");
+        if (other.gameObject == ropeCollision)
+        {
+            noGravity = true;
+        }
+
+    }
 }
 
 

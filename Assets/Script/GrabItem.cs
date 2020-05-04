@@ -43,8 +43,8 @@ public class GrabItem : MonoBehaviour
 
                 playerGrabPoint.transform.DetachChildren();
                 while (transform.position.y == 0)
-                    transform.position = new Vector3(0, 0+fall, 0);
-               //playerGrabPoint.AddForce(new Vector3(0, 2, 0), ForceMode.Impulse);
+                    transform.position = new Vector3(0, 0 + fall, 0);
+                //playerGrabPoint.AddForce(new Vector3(0, 2, 0), ForceMode.Impulse);
 
 
             }
@@ -54,13 +54,20 @@ public class GrabItem : MonoBehaviour
 
         }
 
-   
+
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision collision)
     {
         isPicking = true;
        
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        isPicking = true;
+      
+    }
+
 
     //private void OnTriggerExit(Collider other)
     //{
