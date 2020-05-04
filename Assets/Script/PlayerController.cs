@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     bool isJumping;
     bool isGrounded;
     bool isPicking;
+    bool isRope;
     bool upRope;
     bool noGravity;
 
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
         upRope = false;
         noGravity = false;
+        isRope = false;
     }
 
     // Update is called once per frame
@@ -44,7 +46,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetFloat("Move", playerInput.move);
         playerAnimator.SetFloat("Rotate", playerInput.rotate);
         playerAnimator.SetBool("Grounded", isGrounded);
-
+        playerAnimator.SetBool("upRope",isRope);
 
 
     }
@@ -90,6 +92,7 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+    //줄을 타자 ~
     public void Rope(bool uprope, bool nogravity)
     {
         Debug.Log("플레이어rope 들어옴");
@@ -98,7 +101,8 @@ public class PlayerController : MonoBehaviour
         if (uprope)
         {
             Debug.Log("플레이어1차 충돌");
-
+            Debug.Log("rope애니");
+            isRope = true;
 
             bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
             bool downKey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
@@ -176,7 +180,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject == rope)
         {
             upRope = false;
-        
+            isRope = false;
 
            
         }
