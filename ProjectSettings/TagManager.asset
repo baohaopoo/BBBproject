@@ -15,6 +15,7 @@ TagManager:
   - test
   - Ground
   - floor
+  - ropeCollision
   layers:
   - Default
   - TransparentFX
