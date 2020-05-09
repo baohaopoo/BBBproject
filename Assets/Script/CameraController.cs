@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
 
     public GameObject player;
-
+   
     public float offsetX = -400f;
     public float offsetY = 400f;
     public float offsetZ = 0f;

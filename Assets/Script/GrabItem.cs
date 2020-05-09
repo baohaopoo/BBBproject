@@ -60,12 +60,12 @@ public class GrabItem : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         isPicking = true;
-       
+
     }
     private void OnTriggerEnter(Collider other)
     {
         isPicking = true;
-      
+
     }
 
 
