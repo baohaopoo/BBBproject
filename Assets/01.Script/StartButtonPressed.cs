@@ -8,8 +8,12 @@ public class StartButtonPressed : MonoBehaviour
 
     void PressedStartButton()
     {
-       
-        SceneManager.LoadScene("Kidsroom");
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("화면전환");
+            SceneManager.LoadScene("Kidsroom");
+        }
+     
     
     }
 
