@@ -31,6 +31,15 @@ public class PlayerController : MonoBehaviour
     Collider col;
     GameObject rope; //플레이어 로프와 닿으면 수평이동 제한.
     GameObject ropeCollision;
+    GameObject friend;
+
+    //사다리
+    GameObject Ladder;
+
+     
+    private bool isLadder;
+    private bool isAir;
+    public float speed = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -40,10 +49,13 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
         PlayerGrabPoint = GameObject.FindGameObjectWithTag("grabPoint"); //PlayerGrabPoint 객체 소환
+        friend = GameObject.FindGameObjectWithTag("friend"); //PlayerGrabPoint 객체 소환
         col = gameObject.GetComponent<Collider>();
 
         rope = GameObject.FindGameObjectWithTag("rope"); //rope객체 소환
         ropeCollision = GameObject.FindGameObjectWithTag("ropeCollision");
+        Ladder = GameObject.FindGameObjectWithTag("Ladder");
+
 
         upRope = false;
         noGravity = false;
@@ -195,6 +207,110 @@ public class PlayerController : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
+        //사다리 관련 코드
+        
+ 
+            //if (collision.transform.tag == "Ladder_bottom")
+            //{
+            //    if (!isLadder)
+            //    {
+            //        Debug.Log("사다리 밑바닥");
+            //        isLadder = true;
+            //        this.transform.Translate(0, 0.5f, 0);
+            //    }
+            //}
+            //else if (collision.transform.tag == "Ladder_Air")
+            //{
+            //    if (isLadder)
+            //    {
+            //        Debug.Log("사다리 공기");
+            //        isLadder = false;
+            //        isAir = true;
+            //    }
+            //}
+            //else if (collision.transform.tag == "Ladder_Top")
+            //{
+            //    if (!isLadder)
+            //    {
+            //        Debug.Log("사다리 위");
+            //        isLadder = true;
+
+            //        this.transform.Translate(0, -0.5f, 0);
+            //    }
+            //}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             
+
+
+
+
+
+        ////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if (collision.contacts[0].normal.y > 0.7)
         {
             jumpcount = 0;
@@ -237,6 +353,12 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject == ropeCollision)
         {
             noGravity = true;
+        }
+
+
+        if (other.gameObject == friend)
+        {
+            Destroy(friend);
         }
 
     }

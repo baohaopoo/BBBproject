@@ -218,7 +218,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749034560371726351}
-  m_LocalRotation: {x: 0.014994949, y: 0.000000029802326, z: 0.0000004637987, w: 0.9998876}
+  m_LocalRotation: {x: 0.014994962, y: 0.000000059604645, z: 0.00000046286732, w: 0.9998876}
   m_LocalPosition: {x: -0.00000071525574, y: 3.3400002, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1627,6 +1627,7 @@ MonoBehaviour:
   jumpPower: 20
   FollowCam: {fileID: 749034560371726351}
   ForwardCam: {fileID: 749034560512966671}
+  Timeline: {fileID: 0}
 --- !u!114 &749034559942600860
 MonoBehaviour:
   m_ObjectHideFlags: 0

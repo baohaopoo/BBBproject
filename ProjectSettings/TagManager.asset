@@ -16,6 +16,11 @@ TagManager:
   - Ground
   - floor
   - ropeCollision
+  - Item
+  - Ladder
+  - Ladder_bottom
+  - Ladder_Top
+  - Ladder_Air
   layers:
   - Default
   - TransparentFX

@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 8824749415313142230}
   - component: {fileID: 6454943662246196768}
   - component: {fileID: 7283056866755042583}
+  - component: {fileID: 1914483554273282087}
   m_Layer: 0
   m_Name: Torus
   m_TagString: Untagged
@@ -211,3 +212,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.38
   m_Center: {x: 0.99, y: 0.81, z: 0}
+--- !u!114 &1914483554273282087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871079044494012942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0941f3ca7f162f4091fcea10adcf92b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}

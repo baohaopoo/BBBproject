@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class Slot : MonoBehaviour
+using UnityEngine.EventSystems;
+public class Slot : MonoBehaviour ,IPointerClickHandler
 {
 
     public Item item; //획득한 아이템
@@ -14,6 +14,8 @@ public class Slot : MonoBehaviour
     private Text text_Count;
     [SerializeField]
     private GameObject go_CountImage; //활성화 이미지
+
+
 
     //이미지 투명도 조절
     private void SetColor(float _alpha)
@@ -74,6 +76,24 @@ public class Slot : MonoBehaviour
         text_Count.text = "0";
         go_CountImage.SetActive(false);
 
+
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+
+            if (item != null)
+            {
+                if (item.itemType == Item.ItemType.Attack) { 
+                
+                    //장착
+
+                }
+            }
+        
+        }
 
     }
 }

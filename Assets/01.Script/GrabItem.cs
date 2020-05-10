@@ -16,6 +16,11 @@ public class GrabItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.P))
+        { 
+           
+        
+        }
         if (isPicking)
         {
             if (Input.GetMouseButtonDown(0))

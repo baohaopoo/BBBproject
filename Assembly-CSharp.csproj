@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\InstanceExample.cs" />
     <Compile Include="Assets\01.Script\ActionControler.cs" />
     <Compile Include="Assets\01.Script\CameraController.cs" />
     <Compile Include="Assets\01.Script\ChangeScene.cs" />
@@ -72,9 +73,12 @@
     <Compile Include="Assets\01.Script\GrabItem.cs" />
     <Compile Include="Assets\01.Script\HumanEnemy.cs" />
     <Compile Include="Assets\01.Script\Inventory.cs" />
+    <Compile Include="Assets\01.Script\iPhinterClickHandler.cs" />
     <Compile Include="Assets\01.Script\Item.cs" />
     <Compile Include="Assets\01.Script\Item_Action_Controller.cs" />
+    <Compile Include="Assets\01.Script\ItemManager.cs" />
     <Compile Include="Assets\01.Script\ItemPickup.cs" />
+    <Compile Include="Assets\01.Script\Ladder_Action.cs" />
     <Compile Include="Assets\01.Script\Openthedoor.cs" />
     <Compile Include="Assets\01.Script\PlayerController.cs" />
     <Compile Include="Assets\01.Script\PlayerInput.cs" />
@@ -82,7 +86,10 @@
     <Compile Include="Assets\01.Script\StartButtonPressed.cs" />
     <Compile Include="Assets\01.Script\Timelinedirector.cs" />
     <Compile Include="Assets\01.Script\TimerDelayS.cs" />
+    <Compile Include="Assets\01.Script\UIScript\ChangeScenePoint.cs" />
+    <Compile Include="Assets\01.Script\UIScript\Particle.cs" />
     <Compile Include="Assets\01.Script\UIScript\StatusController.cs" />
+    <Compile Include="Assets\01.Script\UseItem.cs" />
     <Compile Include="Assets\01.Script\Window_Action.cs" />
     <Compile Include="Assets\01.Script\ZoomInOut.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\OverTheShoulderAim\ActivateOnKeypress.cs" />
@@ -97,6 +104,7 @@
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMove.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMoveOnSphere.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMovePhysics.cs" />
+    <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\Help Readme SOS.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
@@ -110,6 +118,7 @@
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\12.ETC\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\_FAQ - Informations\Help Readme SOS.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

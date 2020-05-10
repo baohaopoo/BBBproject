@@ -77,7 +77,7 @@ public class Doll_Action : MonoBehaviour
         if (other.gameObject == player) {
             isPlayerEnter = true;
 
-   
+            Destroy(transform);
 
         }
         
