@@ -8,8 +8,13 @@ public class StartButtonPressed : MonoBehaviour
 
     void PressedStartButton()
     {
-
-        SceneManager.LoadScene("city");
+       
+        SceneManager.LoadScene("Kidsroom");
     
+    }
+
+    private void Update()
+    {
+        PressedStartButton();
     }
 }

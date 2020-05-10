@@ -1,12 +1,4 @@
 sceneSetups:
-- path: Assets/00.Scenes/StartScene.unity
-  isLoaded: 1
-  isActive: 0
-  isSubScene: 0
-- path: Assets/00.Scenes/Kidsroom.unity
-  isLoaded: 1
-  isActive: 0
-  isSubScene: 0
 - path: Assets/00.Scenes/city3.unity
   isLoaded: 1
   isActive: 1

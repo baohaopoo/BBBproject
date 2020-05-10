@@ -81,6 +81,7 @@
     <Compile Include="Assets\01.Script\Slot.cs" />
     <Compile Include="Assets\01.Script\StartButtonPressed.cs" />
     <Compile Include="Assets\01.Script\Timelinedirector.cs" />
+    <Compile Include="Assets\01.Script\TimerDelayS.cs" />
     <Compile Include="Assets\01.Script\UIScript\StatusController.cs" />
     <Compile Include="Assets\01.Script\Window_Action.cs" />
     <Compile Include="Assets\01.Script\ZoomInOut.cs" />
