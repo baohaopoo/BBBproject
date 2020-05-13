@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-public class Slot : MonoBehaviour ,IPointerClickHandler
+public class Slot : MonoBehaviour, IPointerClickHandler
 {
 
     public Item item; //획득한 아이템
@@ -16,7 +16,15 @@ public class Slot : MonoBehaviour ,IPointerClickHandler
     private GameObject go_CountImage; //활성화 이미지
 
 
+    private Item theItemManager;
 
+     private void start()
+    {
+        //하이라키에 있는 애
+        theItemManager = FindObjectOfType<Item>();
+    
+    
+    }
     //이미지 투명도 조절
     private void SetColor(float _alpha)
     {
@@ -86,14 +94,28 @@ public class Slot : MonoBehaviour ,IPointerClickHandler
 
             if (item != null)
             {
-                if (item.itemType == Item.ItemType.Attack) { 
-                
+                if (item.itemType == Item.ItemType.Attack)
+                {
+
                     //장착
+                   // StartCoroutine(Item.)
 
                 }
+
+                else
+                {
+                    //소모
+                    Debug.Log(item + "을 사용했습니다.");
+
+                    SetSlotCount(-1);
+                  
+                }
             }
+
         
         }
 
     }
+
+    
 }
