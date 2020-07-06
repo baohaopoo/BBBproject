@@ -68,7 +68,16 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
+        //P키를 눌렀을때 공격모드.
+        if (Input.GetKey(KeyCode.P)) {
 
+            Debug.Log("공격모드");
+
+
+            
+        
+        
+        }
         if (isDead)
         {
 
@@ -78,6 +87,9 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetFloat("Rotate", playerInput.rotate);
         playerAnimator.SetBool("Grounded", isGrounded);
         playerAnimator.SetBool("upRope", isRope);
+
+
+        //playerAnimator.SetFloat("Throw",)
         isForwardcam = false;
 
         if (Input.GetKey(KeyCode.F))
@@ -239,73 +251,6 @@ public class PlayerController : MonoBehaviour
             //    }
             //}
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-             
-
-
-
-
-
-        ////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
