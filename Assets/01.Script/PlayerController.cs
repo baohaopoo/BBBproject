@@ -13,13 +13,16 @@ public class PlayerController : MonoBehaviour
     private Animator playerAnimator; // 플레이어 캐릭터의 애니메이터
     public GameObject FollowCam;
     public GameObject ForwardCam;
+    public GameObject FirstPlayerCam;
     public GameObject Timeline;
 
-    bool isJumping;
     bool isGrounded;
     bool isPicking;
     bool isRope;
     bool isForwardcam;
+    bool isGunViewcam;
+    public bool isUseGun;
+
     bool upRope;
     private bool isDead;
     bool noGravity;
@@ -40,7 +43,7 @@ public class PlayerController : MonoBehaviour
     private bool isLadder;
     private bool isAir;
     public float speed = 3f;
-
+    int rightmouseCnt = 0; //오른쪽마우스 두번누르면 1인칭시점 취소시키기위해 만든변수
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +64,9 @@ public class PlayerController : MonoBehaviour
         noGravity = false;
         isRope = false;
         isForwardcam = false;
+        isGunViewcam = false;
+
+                
         
     }
 
@@ -71,48 +77,26 @@ public class PlayerController : MonoBehaviour
 
         if (isDead)
         {
-
             return;
         }
-        playerAnimator.SetFloat("Move", playerInput.move);
-        playerAnimator.SetFloat("Rotate", playerInput.rotate);
-        playerAnimator.SetBool("Grounded", isGrounded);
-        playerAnimator.SetBool("upRope", isRope);
-        isForwardcam = false;
 
-        if (Input.GetKey(KeyCode.F))
-        {
-            isForwardcam = true;
-         }
-        if (isForwardcam)
-        {
-            
-            FollowCam.SetActive(false);
-            ForwardCam.SetActive(true);
-            
-        }
-
-        
-        else if (!isForwardcam)
-        {
-            
-            FollowCam.SetActive(true);
-            ForwardCam.SetActive(false);
-        }
-  
-  
-
+        camSetting();
 
 
     }
 
     void FixedUpdate()
     {
-        //물리만 다루는 곳.;
+        //물리만 다루는 곳
         Jump();
         Rotate();
         Move();
         Rope(upRope, noGravity);
+
+        playerAnimator.SetFloat("Move", playerInput.move);
+        playerAnimator.SetFloat("Rotate", playerInput.rotate);
+        playerAnimator.SetBool("Grounded", isGrounded);
+        playerAnimator.SetBool("upRope", isRope);
 
 
 
@@ -124,7 +108,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 moveDistance =
             playerInput.move * transform.forward * moveSpeed * Time.deltaTime;
-
+        //위치 변경
         playerRigidbody.MovePosition(playerRigidbody.position + moveDistance);
     }
 
@@ -140,7 +124,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         
-       if (Input.GetButtonDown("Jump")&&jumpcount<2 )
+       if (playerInput.jump&&jumpcount<2 )
         {
             jumpcount++;
             playerRigidbody.velocity = Vector3.zero;
@@ -152,6 +136,52 @@ public class PlayerController : MonoBehaviour
 
             isGrounded = false;
 
+        }
+    }
+    private void camSetting()
+    {
+        isForwardcam = false;
+        if (playerInput.rightmouse)
+        {
+            rightmouseCnt += 1;
+            isUseGun = true;
+            if(rightmouseCnt >= 2)//한번 더 누르면
+            {
+                isUseGun = false;
+                rightmouseCnt = 0;
+            }
+        }
+        if (isUseGun) //총화면
+        {
+            isForwardcam = false;
+            isGunViewcam = true;
+            if (playerInput.backMirror) //F누르면 백미러 
+            {
+                isForwardcam = true;
+            }
+        }
+
+
+        if (playerInput.backMirror) //백미러일때 
+        {
+            FollowCam.SetActive(false);
+            ForwardCam.SetActive(true);
+            
+        }
+
+        else if (!playerInput.backMirror) //백미러 아닐때 
+        {
+            if (!isUseGun) //총사용 안할때
+            {
+                FollowCam.SetActive(true);
+                FirstPlayerCam.SetActive(false);
+            }
+            else if (isUseGun) //총사용 할때 
+            {
+                FirstPlayerCam.SetActive(true);
+                FollowCam.SetActive(false);
+            }
+            ForwardCam.SetActive(false);
         }
     }
     private void Rope(bool uprope, bool nogravity)
@@ -349,7 +379,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("노그래비티존");
+        //Debug.Log("노그래비티존");
         if (other.gameObject == ropeCollision)
         {
             noGravity = true;
@@ -362,7 +392,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
+  
     public void Die()
     {
         playerAnimator.SetTrigger("Die");

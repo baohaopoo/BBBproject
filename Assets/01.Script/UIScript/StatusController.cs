@@ -5,48 +5,44 @@ using UnityEngine.UI;
 public class StatusController : MonoBehaviour
 {
 
-    //[SerializeField]
-    //private int hp;
-    //private int currentHp;
-
-    //private Image[] image_Gauge;
-    //private const int Hp = 0;
 
     public static StatusController instance;
+    private GameObject hp100;
+    private GameObject hp80;
+    private GameObject hp60;
+    private GameObject hp40;
+    private GameObject hp20;
 
-    public int hp;
+
+    public int starthp=100;
     public int currentHP;
 
-    public int recover_hp;
-
-    public Slider hpSlider;
-    
-
-    // Start is called before the first frame update
     void Start()
     {
-        //currentHp = hp;
 
         instance = this;
-        currentHP = hp;
-       
-       
-        
+        currentHP = starthp;
+ 
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void getdemage()
     {
-        //GaugeUpdate();
-        hpSlider.maxValue = hp;
-        hpSlider.value = currentHP;
-
+        currentHP -= 20;
+        hearthImage(currentHP);
     }
 
-    //private void GaugeUpdate()
-    //{
-    //    image_Gauge[Hp].fillAmount = (float)currentHp / hp;
-       
-    //}
+    void hearthImage(int HP)
+    {
+        if (HP==100)
+        {
+            hp100.SetActive(true);
+        }
+        else if (HP == 80)
+        {
+            hp100.SetActive(false);
+            hp80.SetActive(true);
+        }
+    }
 
 }

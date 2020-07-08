@@ -173,12 +173,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749034559566218659}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.49987367, y: 0.47028938, z: 0.7218072, w: 0.089155324}
+  m_LocalPosition: {x: 0.008751033, y: 1.0256063, z: 0.08855697}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2481541796677005349}
-  m_RootOrder: 1
+  m_Father: {fileID: 2737186044678073800}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &749034559566218669
 CapsuleCollider:
@@ -863,7 +863,6 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_Children:
   - {fileID: 4214973978268948464}
-  - {fileID: 749034559566218658}
   m_Father: {fileID: 5208176925810786420}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1329,6 +1328,7 @@ Transform:
   m_Children:
   - {fileID: 6176244535371803213}
   - {fileID: 1838759651250760955}
+  - {fileID: 749034559566218658}
   m_Father: {fileID: 5701467210783181733}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1628,6 +1628,7 @@ MonoBehaviour:
   FollowCam: {fileID: 749034560371726351}
   ForwardCam: {fileID: 749034560512966671}
   Timeline: {fileID: 0}
+  speed: 3
 --- !u!114 &749034559942600860
 MonoBehaviour:
   m_ObjectHideFlags: 0
