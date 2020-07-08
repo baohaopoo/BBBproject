@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
         isRope = false;
         isForwardcam = false;
         isGunViewcam = false;
+        isUseGun = false;
 
 
 
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-
+        Debug.Log(isUseGun);
         if (isDead)
         {
             return;
@@ -94,6 +95,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetFloat("Rotate", playerInput.rotate);
         playerAnimator.SetBool("Grounded", isGrounded);
         playerAnimator.SetBool("upRope", isRope);
+        playerAnimator.SetBool("UseGun", isUseGun);
 
 
 
@@ -137,6 +139,7 @@ public class PlayerController : MonoBehaviour
     }
     private void camSetting()
     {
+
         isForwardcam = false;
         if (playerInput.rightmouse)
         {
