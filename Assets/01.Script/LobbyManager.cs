@@ -15,6 +15,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public Text connectionInfoText; //네트워크 정보를 표시할 텍스트
     public Button joinButton; //룸접속버튼
 
+    public GameObject playerPrefab;
+
     //게임 실행과 동시에 마스터 서버 접속 시도
     void Start()
     {
@@ -36,6 +38,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         connectionInfoText.text = "온라인 : 마스터 서버와 연결됨";
         Debug.Log("온라인 : 마스터 서버와 연결됨");
 
+        Connect();
     }
 
     //마스터 서버 접속 실패시 자동 실행
@@ -76,14 +79,49 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     }
 
+
+
     //룸에 참가 완료된 경우 자동 실행
     public override void OnJoinedRoom()
     {
         connectionInfoText.text = "방 참가 성공";
         Debug.Log("Joined room");
         PhotonNetwork.LoadLevel("Kidsroom"); //모든 룸 참가자가 Kidsroom씬을 로드하게 함.
-        
+
+        ////플레이어를 생성한다.
+        //if (playerPrefab == null)
+        //{
+        //    Debug.Log("없습니다");
+        //}
+        //else
+        //{
+        //    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-6.4f, 11.95f, 11.81f),Quaternion.identity,0);
+        //}
+        StartCoroutine(this.CreatePlayer());
     }
+
+    //네트워크상에 연결되어 있는 모든 클라이언트에 플레이어를 생성한다.
+    private IEnumerator CreatePlayer()
+    {
+
+
+        PhotonNetwork.Instantiate("player",
+            new Vector3(-6.4f, 11.95f, 11.81f),
+            Quaternion.identity,
+            0);
+
+        Debug.Log("Player 생성");
+
+        yield return null;
+
+
+
+
+
+
+    }
+
+
 
     void Update()
     {
