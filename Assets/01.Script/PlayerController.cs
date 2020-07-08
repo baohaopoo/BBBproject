@@ -27,24 +27,24 @@ public class PlayerController : MonoBehaviour
     private bool isDead;
     bool noGravity;
     int jumpcount = 0;
-    
-    
+
+
 
     GameObject PlayerGrabPoint; //플레이어 아이템 잡을 때 쓰는 객체변수 생성
     Collider col;
     GameObject rope; //플레이어 로프와 닿으면 수평이동 제한.
     GameObject ropeCollision;
+
     GameObject friend;
 
     //사다리
     GameObject Ladder;
 
-     
+
     private bool isLadder;
     private bool isAir;
     public float speed = 3f;
     int rightmouseCnt = 0; //오른쪽마우스 두번누르면 1인칭시점 취소시키기위해 만든변수
-    // Start is called before the first frame update
     void Start()
     {
 
@@ -52,13 +52,10 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
         PlayerGrabPoint = GameObject.FindGameObjectWithTag("grabPoint"); //PlayerGrabPoint 객체 소환
-        friend = GameObject.FindGameObjectWithTag("friend"); //PlayerGrabPoint 객체 소환
         col = gameObject.GetComponent<Collider>();
 
         rope = GameObject.FindGameObjectWithTag("rope"); //rope객체 소환
         ropeCollision = GameObject.FindGameObjectWithTag("ropeCollision");
-        Ladder = GameObject.FindGameObjectWithTag("Ladder");
-
 
         upRope = false;
         noGravity = false;
@@ -66,8 +63,8 @@ public class PlayerController : MonoBehaviour
         isForwardcam = false;
         isGunViewcam = false;
 
-                
-        
+
+
     }
 
     // Update is called once per frame
@@ -123,14 +120,14 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        
-       if (playerInput.jump&&jumpcount<2 )
+
+        if (playerInput.jump && jumpcount < 2)
         {
             jumpcount++;
             playerRigidbody.velocity = Vector3.zero;
             if (jumpcount == 1)
             {
-                playerRigidbody.AddForce(Vector3.up * jumpPower , ForceMode.Impulse);
+                playerRigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             }
             else { playerRigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse); }
 
@@ -145,7 +142,7 @@ public class PlayerController : MonoBehaviour
         {
             rightmouseCnt += 1;
             isUseGun = true;
-            if(rightmouseCnt >= 2)//한번 더 누르면
+            if (rightmouseCnt >= 2)//한번 더 누르면
             {
                 isUseGun = false;
                 rightmouseCnt = 0;
@@ -166,7 +163,7 @@ public class PlayerController : MonoBehaviour
         {
             FollowCam.SetActive(false);
             ForwardCam.SetActive(true);
-            
+
         }
 
         else if (!playerInput.backMirror) //백미러 아닐때 
@@ -187,7 +184,7 @@ public class PlayerController : MonoBehaviour
     private void Rope(bool uprope, bool nogravity)
     {
         Debug.Log("플레이어rope 들어옴");
-        if(uprope)
+        if (uprope)
         {
             Debug.Log("플레이어1차 충돌");
             Debug.Log("rope애니");
@@ -234,122 +231,18 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    
+
     private void OnCollisionEnter(Collision collision)
     {
-        //사다리 관련 코드
-        
- 
-            //if (collision.transform.tag == "Ladder_bottom")
-            //{
-            //    if (!isLadder)
-            //    {
-            //        Debug.Log("사다리 밑바닥");
-            //        isLadder = true;
-            //        this.transform.Translate(0, 0.5f, 0);
-            //    }
-            //}
-            //else if (collision.transform.tag == "Ladder_Air")
-            //{
-            //    if (isLadder)
-            //    {
-            //        Debug.Log("사다리 공기");
-            //        isLadder = false;
-            //        isAir = true;
-            //    }
-            //}
-            //else if (collision.transform.tag == "Ladder_Top")
-            //{
-            //    if (!isLadder)
-            //    {
-            //        Debug.Log("사다리 위");
-            //        isLadder = true;
-
-            //        this.transform.Translate(0, -0.5f, 0);
-            //    }
-            //}
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-             
-
-
-
-
-
-        ////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         if (collision.contacts[0].normal.y > 0.7)
         {
             jumpcount = 0;
             isGrounded = true;
 
         }
-       
+
         if (collision.gameObject.tag == "rope")
-        { 
+        {
             //업로프가 false일때만 들어와라
             if (!upRope)
             {
@@ -359,7 +252,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        }
+    }
 
     private void OnCollisionExit(Collision collision)
     {
@@ -385,14 +278,8 @@ public class PlayerController : MonoBehaviour
             noGravity = true;
         }
 
-
-        if (other.gameObject == friend)
-        {
-            Destroy(friend);
-        }
-
     }
-  
+
     public void Die()
     {
         playerAnimator.SetTrigger("Die");
