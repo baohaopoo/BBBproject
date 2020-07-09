@@ -86,10 +86,10 @@
     <Compile Include="Assets\01.Script\PlayerScript\PlayerController.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerInput.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerShooter.cs" />
+    <Compile Include="Assets\01.Script\PlayerScript\StatusController.cs" />
     <Compile Include="Assets\01.Script\SceneFadeIn.cs" />
     <Compile Include="Assets\01.Script\Slot.cs" />
     <Compile Include="Assets\01.Script\StartButtonPressed.cs" />
-    <Compile Include="Assets\01.Script\StatusController.cs" />
     <Compile Include="Assets\01.Script\Timelinedirector.cs" />
     <Compile Include="Assets\01.Script\TimerDelayS.cs" />
     <Compile Include="Assets\01.Script\UIScript\ChangeScenePoint.cs" />
