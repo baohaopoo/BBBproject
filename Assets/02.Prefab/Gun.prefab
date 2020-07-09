@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3646414901678658047}
   - component: {fileID: 8637939022194435748}
   - component: {fileID: 8637939022194435744}
-  - component: {fileID: 8637939022194435746}
   - component: {fileID: 8637939022194435747}
   m_Layer: 0
   m_Name: Gun
@@ -146,21 +145,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &8637939022194435746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342822023865148396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 619731f86ae74b040859e1686ced95e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  x: 0
-  y: 0
-  z: 0
 --- !u!114 &8637939022194435747
 MonoBehaviour:
   m_ObjectHideFlags: 0

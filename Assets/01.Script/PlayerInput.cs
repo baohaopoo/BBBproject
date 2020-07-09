@@ -40,7 +40,7 @@ public class PlayerInput : MonoBehaviour
         move = Input.GetAxis(moveAxisName);
         rotate = Input.GetAxis(rotateAxisName);
         jump = Input.GetButtonDown(jumpButtonName);
-        fire = Input.GetButton(fireButtonName);
+        fire = Input.GetButtonDown(fireButtonName);
 
         //카메라 입력감지 
         backMirror = Input.GetKey(KeyCode.F);
