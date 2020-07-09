@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour
 
     private LineRenderer bulletLineRenderer; // 총알 궤적을 그리기 위한 렌더러
 
-    public float damage = 20; // 공격력
+    public int damage = 20; // 공격력
     private float fireDistance = 100f; // 사정거리
 
     public int bulletRemain = 100; // 남은 총알
