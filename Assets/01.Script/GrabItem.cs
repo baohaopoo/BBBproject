@@ -5,37 +5,27 @@ using UnityEngine;
 public class GrabItem : MonoBehaviour
 {
     GameObject playerGrabPoint;
+
+    private PlayerInput playerInput; 
     bool isPicking;
-    // Start is called before the first frame update
+
+
     void Start()
     {
         playerGrabPoint = GameObject.FindGameObjectWithTag("grabPoint"); //플레이어 아이템 잡을 부분 객체 소환
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.P))
-        { 
-           
-        
-        }
         if (isPicking)
         {
             if (Input.GetMouseButtonDown(0))
             {
-
-
                 Debug.Log("enter Player");
-                //isPlayerEnter = false;
-
                 transform.SetParent(playerGrabPoint.transform); //아이템을 GrabPoint에 종속시키는 부분.
-                transform.localPosition = Vector3.zero;
-                transform.rotation = new Quaternion(0, 0, 0, 0);
-
-
-
+                transform.localPosition = new Vector3(-0.53f, -0.82f, 0.22f);
+                transform.rotation = FindObjectOfType<PlayerController>().transform.rotation;
 
             }
         }
@@ -54,29 +44,14 @@ public class GrabItem : MonoBehaviour
 
             }
 
-
-
-
         }
 
-
+        isPicking = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
         isPicking = true;
-
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        isPicking = true;
-
     }
 
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    Debug.Log("나갔어");
-    //    isPicking = false;
-    //}
 }

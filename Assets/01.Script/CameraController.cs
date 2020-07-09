@@ -5,80 +5,46 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-    public GameObject player;
    
-    public float offsetX = -400f;
-    public float offsetY = 400f;
-    public float offsetZ = 0f;
-    Vector3 cameraPosition;
-
     //zoom 관련
-    public float zoomSpeed = 10f;
+    //public float zoomSpeed = 3f;
 
-    //회전 관련
-    public float rotateSpeed = 10f;
+    public float rotateSpeed = 1;//화면이 움직이는 속도
+    private float yaw = 0.0f;
+    private float pitch = 0.0f;
 
-    private Camera mainCamera;
-
-
-
-    // Start is called before the first frame update
+    public Camera cam; 
     void Start()
     {
 
-        mainCamera = GetComponent<Camera>();
-
-
-
-
 
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        ZoomInOut();
+        //ZoomInOut();
         Rotate();
     }
-    private void LateUpdate()
-    {
 
-        cameraPosition.x = player.transform.position.x + offsetX;
-        cameraPosition.y = player.transform.position.y + offsetY;
-        cameraPosition.z = player.transform.position.z + offsetZ;
+    //private void ZoomInOut()
+    //{
 
-        transform.position = cameraPosition;
-
-        ZoomInOut();
-    }
-    private void ZoomInOut()
-    {
-
-        float distance = Input.GetAxis("Mouse ScrollWheel") * -1 * zoomSpeed;
-        if (distance != 0)
-        {
-            mainCamera.fieldOfView += distance;
-        }
-    }
+    //    float distance = Input.GetAxis("Mouse ScrollWheel") * -1 * zoomSpeed;
+    //    if (distance != 0)
+    //    {
+    //        Cam.fieldOfView += distance;
+    //    }
+    //}
     void Rotate()
     {
+        yaw += rotateSpeed * Input.GetAxis("Mouse X");
+        pitch += rotateSpeed * Input.GetAxis("Mouse Y");;
 
-        if (Input.GetMouseButton(1))
-        {
-
-            Vector3 rot = transform.rotation.eulerAngles;
-            rot.y += Input.GetAxis("Mouse X") * rotateSpeed;
-            rot.x += -1 * Input.GetAxis("Mouse Y") * rotateSpeed;
-            Quaternion q = Quaternion.Euler(rot);
-            q.z = 0;
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, 2f);
-
-
-        }
-
-
+        // Mathf.Clamp(x, 최소값, 최댓값) - x값을 최소,최대값 사이에서만 변하게 해줌
+        yaw = Mathf.Clamp(yaw, -50f, 50f);
+        pitch = Mathf.Clamp(pitch, -20f, 10f);
+        cam.transform.localEulerAngles = new Vector3(-pitch, yaw, 0.0f);
 
     }
 }
