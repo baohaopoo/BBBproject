@@ -457,7 +457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectionInfoText: {fileID: 1498854490}
   joinButton: {fileID: 1997101502}
-  playerPrefab: {fileID: 2556826108083530917, guid: faa6f19b428db1e4c8268fc8fd71a472,
+  playerPrefab: {fileID: 3058939778453560278, guid: 232afa9ad597d7148bae039392d42359,
     type: 3}
 --- !u!1 &876523704
 GameObject:
@@ -801,7 +801,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 133.8}
+  m_AnchoredPosition: {x: 0, y: 158}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1467930012

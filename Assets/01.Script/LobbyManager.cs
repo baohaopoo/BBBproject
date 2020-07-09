@@ -7,7 +7,7 @@ using Photon.Realtime; //포톤 서비스관련 라이브러리
 using UnityEngine;
 using UnityEngine.UI;
 
-
+//마스터 매치메이킹 서버와 룸접속 담당
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     private string gameVersion = "Kidsroom 1.0"; //게임 버전
@@ -29,7 +29,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         joinButton.interactable = false; //접속하는 동안에 룸 접속 못하도록 접속 버튼 비활.
         connectionInfoText.text = "마스터 서버에 접속중..";
-        
+
+
+
     }
 
     //마스터 서버 접속 성공시 자동 실행
@@ -88,6 +90,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log("Joined room");
         PhotonNetwork.LoadLevel("Kidsroom"); //모든 룸 참가자가 Kidsroom씬을 로드하게 함.
 
+  
+
+
         ////플레이어를 생성한다.
         //if (playerPrefab == null)
         //{
@@ -97,23 +102,30 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //{
         //    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-6.4f, 11.95f, 11.81f),Quaternion.identity,0);
         //}
-        StartCoroutine(this.CreatePlayer());
+        //StartCoroutine(this.CreatePlayer());
+
+
     }
 
-    //네트워크상에 연결되어 있는 모든 클라이언트에 플레이어를 생성한다.
-    private IEnumerator CreatePlayer()
-    {
+    ////네트워크상에 연결되어 있는 모든 클라이언트에 플레이어를 생성한다.
+    //private IEnumerator CreatePlayer()
+    //{
 
 
-        PhotonNetwork.Instantiate("player",
-            new Vector3(-6.4f, 11.95f, 11.81f),
-            Quaternion.identity,
-            0);
+    //    PhotonNetwork.Instantiate("player",
+    //        new Vector3(-6.4f, 11.95f, 11.81f),
+    //        Quaternion.identity,
+    //        0);
 
-        Debug.Log("Player 생성");
+    //    Debug.Log("Player 생성");
 
-        yield return null;
+    //    yield return null;
 
-    }
+
+
+
+
+
+    //}
 
 }

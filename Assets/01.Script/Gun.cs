@@ -18,11 +18,11 @@ public class Gun : MonoBehaviour
 
     private LineRenderer bulletLineRenderer; // 총알 궤적을 그리기 위한 렌더러
 
-    public float damage = 20; // 공격력
-    private float fireDistance = 50f; // 사정거리
+    public int damage = 20; // 공격력
+    private float fireDistance = 100f; // 사정거리
 
-    public int bulletRemain = 3; // 남은 총알
-    public int bulletCapacity = 3; // 총알 용량
+    public int bulletRemain = 100; // 남은 총알
+    public int bulletCapacity = 100; // 총알 용량
 
     public float timeBetFire = 0.12f; // 총알 발사 사이의 시간간격
     public float lastFireTime = 0; // 총을 마지막으로 발사한 시점 
@@ -43,6 +43,11 @@ public class Gun : MonoBehaviour
         // 총 상태 초기화
         state = State.Ready; //총의 상태 : 준비되어있음
         lastFireTime = 0;
+        
+    }
+
+    private void Update()
+    {
         
     }
 
@@ -89,7 +94,7 @@ public class Gun : MonoBehaviour
         {
             //레이가 다른물체와 충돌하지 않았다면 
             //탄알이 최대 사정거리까지 날아갔을때의 위치를 충돌위치로 두기
-            hitPosition = fireTransform.position + fireTransform.forward * fireDistance;
+            hitPosition = fireTransform.position + fireTransform.forward* fireDistance;
         }
 
         //발사 이펙트 재생
