@@ -2,7 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+<<<<<<< Updated upstream
 public class PlayerController : MonoBehaviour
+=======
+using Photon.Pun; //유니티용 포톤 컴포넌트
+using Photon.Realtime; //포톤 서비스관련 라이브러리
+
+using TMPro;
+public class PlayerController : MonoBehaviourPun
+>>>>>>> Stashed changes
 {
     public float moveSpeed = 5f;// 앞뒤 움직임 걷기속도 
     public float rotateSpeed = 180f; // 좌우 회전 속도
@@ -120,14 +128,34 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+<<<<<<< Updated upstream
         //물리만 다루는 곳.;
+=======
+        //로컬 플레이어만 직접 위치와 회전 변경 가능.
+        if (!photonView.IsMine)
+        {
+            return;
+
+        }
+
+        //물리만 다루는 곳
+>>>>>>> Stashed changes
         Jump();
         Rotate();
         Move();
         Rope(upRope, noGravity);
 
+<<<<<<< Updated upstream
 
 
+=======
+        playerAnimator.SetFloat("Move", playerInput.move);
+        playerAnimator.SetFloat("Rotate", playerInput.rotate);
+        playerAnimator.SetBool("Grounded", isGrounded);
+        playerAnimator.SetBool("upRope", isRope);
+
+ 
+>>>>>>> Stashed changes
 
     }
 

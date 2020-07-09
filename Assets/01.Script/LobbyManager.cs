@@ -17,6 +17,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public GameObject playerPrefab;
 
+    
+    
     //게임 실행과 동시에 마스터 서버 접속 시도
     void Start()
     {
@@ -30,8 +32,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         joinButton.interactable = false; //접속하는 동안에 룸 접속 못하도록 접속 버튼 비활.
         connectionInfoText.text = "마스터 서버에 접속중..";
         
-    }
 
+    }
+    
     //마스터 서버 접속 성공시 자동 실행
     public override void OnConnectedToMaster() {
         joinButton.interactable = true;
@@ -84,9 +87,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     //룸에 참가 완료된 경우 자동 실행
     public override void OnJoinedRoom()
     {
-        connectionInfoText.text = "방 참가 성공";
+        connectionInfoText.text = "방 참가 성공"; 
         Debug.Log("Joined room");
         PhotonNetwork.LoadLevel("Kidsroom"); //모든 룸 참가자가 Kidsroom씬을 로드하게 함.
+
+
+        Vector3 randomSpawnPos = Random.insideUnitSphere * 5f;
+        PhotonNetwork.Instantiate(playerPrefab.name, randomSpawnPos, Quaternion.identity);
+
 
         ////플레이어를 생성한다.
         //if (playerPrefab == null)
@@ -97,29 +105,33 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //{
         //    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-6.4f, 11.95f, 11.81f),Quaternion.identity,0);
         //}
-        StartCoroutine(this.CreatePlayer());
+        //StartCoroutine(this.CreatePlayer());
     }
 
     //네트워크상에 연결되어 있는 모든 클라이언트에 플레이어를 생성한다.
-    private IEnumerator CreatePlayer()
-    {
+    //private IEnumerator CreatePlayer()
+    //{
 
 
-        PhotonNetwork.Instantiate("player",
-            new Vector3(-6.4f, 11.95f, 11.81f),
-            Quaternion.identity,
-            0);
+    //    PhotonNetwork.Instantiate("player",
+    //        new Vector3(-6.4f, 11.95f, 11.81f),
+    //        Quaternion.identity,
+    //        0);
 
-        Debug.Log("Player 생성");
+    //    Debug.Log("Player 생성");
 
-        yield return null;
+    //    yield return null;
 
+<<<<<<< Updated upstream
 
 
 
 
 
     }
+=======
+    //}
+>>>>>>> Stashed changes
 
 
 

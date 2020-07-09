@@ -80,6 +80,7 @@
     <Compile Include="Assets\01.Script\ItemPickup.cs" />
     <Compile Include="Assets\01.Script\Ladder_Action.cs" />
     <Compile Include="Assets\01.Script\LobbyManager.cs" />
+    <Compile Include="Assets\01.Script\Network\CameraSetup.cs" />
     <Compile Include="Assets\01.Script\NPC\dollFriend.cs" />
     <Compile Include="Assets\01.Script\Openthedoor.cs" />
     <Compile Include="Assets\01.Script\PlayerController.cs" />
