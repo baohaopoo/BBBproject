@@ -76,7 +76,6 @@
     <Compile Include="Assets\01.Script\Inventory.cs" />
     <Compile Include="Assets\01.Script\iPhinterClickHandler.cs" />
     <Compile Include="Assets\01.Script\Item.cs" />
-    <Compile Include="Assets\01.Script\Item_Action_Controller.cs" />
     <Compile Include="Assets\01.Script\ItemManager.cs" />
     <Compile Include="Assets\01.Script\ItemPickup.cs" />
     <Compile Include="Assets\01.Script\Ladder_Action.cs" />
@@ -111,6 +110,7 @@
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMoveOnSphere.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMovePhysics.cs" />
     <Compile Include="Assets\CameraSetup.cs" />
+    <Compile Include="Assets\gameMgr.cs" />
     <Compile Include="Assets\NetWorkMgr.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
