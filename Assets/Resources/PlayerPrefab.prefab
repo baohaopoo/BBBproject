@@ -188,6 +188,7 @@ Transform:
   m_Father: {fileID: 5849519847899792774}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &1331731013978998598
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +344,8 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+=======
+>>>>>>> master
 --- !u!1 &1675655109829217666
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,6 +468,7 @@ Transform:
   m_Father: {fileID: 734958660166737909}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &2468004584780324194
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,6 +505,8 @@ RectTransform:
   m_AnchoredPosition: {x: 9.999996, y: 8}
   m_SizeDelta: {x: 10, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
+=======
+>>>>>>> master
 --- !u!1 &2556826108083530917
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,8 +525,11 @@ GameObject:
   - component: {fileID: 5790018174881656054}
   - component: {fileID: 8368534492554003981}
   - component: {fileID: 1254973404341970061}
+<<<<<<< HEAD
   - component: {fileID: -7002360260534821018}
   - component: {fileID: 5059790714071569520}
+=======
+>>>>>>> master
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -546,7 +555,10 @@ Transform:
   - {fileID: 5790018173615197469}
   - {fileID: 5790018174024717597}
   - {fileID: 5790018173374507673}
+<<<<<<< HEAD
   - {fileID: 1291715939216564650}
+=======
+>>>>>>> master
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 106.247, z: 0}
@@ -618,7 +630,10 @@ MonoBehaviour:
   ForwardCam: {fileID: 5790018174024717596}
   FirstPlayerCam: {fileID: 5790018173374507672}
   Timeline: {fileID: 0}
+<<<<<<< HEAD
   nickName: {fileID: 0}
+=======
+>>>>>>> master
   isUseGun: 0
   speed: 3
 --- !u!114 &5790018174595366287
@@ -707,6 +722,7 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+<<<<<<< HEAD
 --- !u!114 &-7002360260534821018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,6 +771,8 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
+=======
+>>>>>>> master
 --- !u!1 &2616927551624522153
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,6 +804,7 @@ Transform:
   m_Father: {fileID: 8669263467559445814}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &2971466566478539665
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,6 +904,8 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+=======
+>>>>>>> master
 --- !u!1 &3042364805008609768
 GameObject:
   m_ObjectHideFlags: 0

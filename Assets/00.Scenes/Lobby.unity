@@ -458,7 +458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectionInfoText: {fileID: 1498854490}
   joinButton: {fileID: 1997101502}
-  playerPrefab: {fileID: 6924813866487600000, guid: 174243aaa401ab544b099bf66e1e602a,
+  playerPrefab: {fileID: 2556826108083530917, guid: faa6f19b428db1e4c8268fc8fd71a472,
     type: 3}
 =======
 >>>>>>> Stashed changes
@@ -804,7 +804,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 158}
+  m_AnchoredPosition: {x: 0, y: 133.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1467930012
