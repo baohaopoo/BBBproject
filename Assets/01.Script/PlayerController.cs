@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+using Photon.Pun; //유니티용 포톤 컴포넌트
+using Photon.Realtime; //포톤 서비스관련 라이브러리
+
+using TMPro;
+public class PlayerController : MonoBehaviourPunCallbacks
 {
     public float moveSpeed = 5f;// 앞뒤 움직임 걷기속도 
     public float rotateSpeed = 180f; // 좌우 회전 속도
@@ -15,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public GameObject ForwardCam;
     public GameObject FirstPlayerCam;
     public GameObject Timeline;
+    public TextMeshPro nickName;
 
     bool isGrounded;
     bool isPicking;
@@ -63,6 +68,7 @@ public class PlayerController : MonoBehaviour
         isForwardcam = false;
         isGunViewcam = false;
 
+        nickName.text = photonView.Owner.NickName;
 
 
     }

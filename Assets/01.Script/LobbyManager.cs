@@ -114,17 +114,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         yield return null;
 
-
-
-
-
-
     }
 
-
-
-    void Update()
-    {
-        
-    }
 }
