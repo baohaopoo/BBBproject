@@ -29,7 +29,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         joinButton.interactable = false; //접속하는 동안에 룸 접속 못하도록 접속 버튼 비활.
         connectionInfoText.text = "마스터 서버에 접속중..";
-        
+
+
     }
 
     //마스터 서버 접속 성공시 자동 실행
@@ -88,6 +89,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log("Joined room");
         PhotonNetwork.LoadLevel("Kidsroom"); //모든 룸 참가자가 Kidsroom씬을 로드하게 함.
 
+
+
+        Vector3 randomPos = Random.insideUnitSphere * 5f;
+        randomPos.y = 0f;
+
+        PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
+
         ////플레이어를 생성한다.
         //if (playerPrefab == null)
         //{
@@ -97,34 +105,30 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //{
         //    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-6.4f, 11.95f, 11.81f),Quaternion.identity,0);
         //}
-        StartCoroutine(this.CreatePlayer());
-    }
-
-    //네트워크상에 연결되어 있는 모든 클라이언트에 플레이어를 생성한다.
-    private IEnumerator CreatePlayer()
-    {
-
-
-        PhotonNetwork.Instantiate("player",
-            new Vector3(-6.4f, 11.95f, 11.81f),
-            Quaternion.identity,
-            0);
-
-        Debug.Log("Player 생성");
-
-        yield return null;
-
-
-
-
+        //StartCoroutine(this.CreatePlayer());
 
 
     }
 
+    ////네트워크상에 연결되어 있는 모든 클라이언트에 플레이어를 생성한다.
+    //private IEnumerator CreatePlayer()
+    //{
 
 
-    void Update()
-    {
-        
-    }
+    //    PhotonNetwork.Instantiate("player",
+    //        new Vector3(-6.4f, 11.95f, 11.81f),
+    //        Quaternion.identity,
+    //        0);
+
+    //    Debug.Log("Player 생성");
+
+    //    yield return null;
+
+
+
+
+
+
+    //}
+
 }
