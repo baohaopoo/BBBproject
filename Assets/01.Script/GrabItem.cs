@@ -5,7 +5,6 @@ using UnityEngine;
 public class GrabItem : MonoBehaviour
 {
     GameObject playerGrabPoint;
-    Camera maincamera;
 
     private PlayerInput playerInput; 
     bool isPicking;

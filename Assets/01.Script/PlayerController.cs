@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float rotateSpeed = 180f; // 좌우 회전 속도
     public float jumpPower = 5f;
 
+    private PlayerShooter playershooter; 
     private PlayerInput playerInput; // 플레이어 입력을 알려주는 컴포넌트
     private Rigidbody playerRigidbody; // 플레이어 캐릭터의 리지드바디
     private Animator playerAnimator; // 플레이어 캐릭터의 애니메이터
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
     int rightmouseCnt = 0; //오른쪽마우스 두번누르면 1인칭시점 취소시키기위해 만든변수
     void Start()
     {
-
+        playershooter = GetComponent<PlayerShooter>();
         playerInput = GetComponent<PlayerInput>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour
         isRope = false;
         isForwardcam = false;
         isGunViewcam = false;
+        isUseGun = false;
 
 
 
@@ -71,7 +73,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-
+        Debug.Log(isUseGun);
         if (isDead)
         {
             return;
@@ -94,6 +96,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetFloat("Rotate", playerInput.rotate);
         playerAnimator.SetBool("Grounded", isGrounded);
         playerAnimator.SetBool("upRope", isRope);
+        playerAnimator.SetBool("UseGun", isUseGun);
 
 
 
@@ -137,21 +140,25 @@ public class PlayerController : MonoBehaviour
     }
     private void camSetting()
     {
+
         isForwardcam = false;
-        if (playerInput.rightmouse)
+        if (playerInput.rightmouse)   
         {
             rightmouseCnt += 1;
             isUseGun = true;
+            playershooter.enabled = true;
             if (rightmouseCnt >= 2)//한번 더 누르면
             {
+                playershooter.enabled = false;
                 isUseGun = false;
                 rightmouseCnt = 0;
             }
         }
-        if (isUseGun) //총화면
+        if (isUseGun) // 오른쪽마우스 누르면 총화면
         {
             isForwardcam = false;
             isGunViewcam = true;
+           
             if (playerInput.backMirror) //F누르면 백미러 
             {
                 isForwardcam = true;
