@@ -30,7 +30,7 @@ public class Friendcontroller : MonoBehaviour
     void AnimationUpdate()
     {
         FriendAnimator.SetBool("Idle", true);
-
+        Debug.Log("idle 모션 나왔음");
     
     }
 }
