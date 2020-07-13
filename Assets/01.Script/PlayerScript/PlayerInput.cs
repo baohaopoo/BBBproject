@@ -50,11 +50,11 @@ public class PlayerInput : MonoBehaviourPun
         rightmouse = Input.GetButtonDown(RightMouseButtonName);
 
 
-        //로컬 플레이어가 아닌 경우 입력을 받지 않음
-        if (!photonView.IsMine)
-        {
-            return;
+        ////로컬 플레이어가 아닌 경우 입력을 받지 않음
+        //if (!photonView.IsMine)
+        //{
+        //    return;
 
-        }
+        //}
     }
 }

@@ -100,11 +100,11 @@ public class PlayerController : MonoBehaviourPun
         playerAnimator.SetBool("UseGun", isUseGun);
 
 
-        //로컬 플레이어만 직접 위치와 회전 변경 가능
-        if (!photonView.IsMine)
-        {
-            return;
-        }
+        ////로컬 플레이어만 직접 위치와 회전 변경 가능
+        //if (!photonView.IsMine)
+        //{
+        //    return;
+        //}
 
     }
 
