@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviourPun
     public bool isUseGun;
 
     bool upRope;
-    private bool isDead;
     bool noGravity;
     int jumpcount = 0;
 
@@ -66,7 +65,10 @@ public class PlayerController : MonoBehaviourPun
         isGunViewcam = false;
         isUseGun = false;
 
+<<<<<<< HEAD
       
+=======
+>>>>>>> Hong
     }
 
     // Update is called once per frame
@@ -74,10 +76,6 @@ public class PlayerController : MonoBehaviourPun
     {
 
         Debug.Log(isUseGun);
-        if (isDead)
-        {
-            return;
-        }
 
         camSetting();
 
@@ -292,10 +290,4 @@ public class PlayerController : MonoBehaviourPun
 
     }
 
-    public void Die()
-    {
-        playerAnimator.SetTrigger("Die");
-        isDead = true;
-        GameManager.instance.OnPlayerDead();
-    }
 }

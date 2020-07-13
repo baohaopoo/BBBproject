@@ -67,6 +67,7 @@
     <Compile Include="Assets\01.Script\CameraController.cs" />
     <Compile Include="Assets\01.Script\ChangeScene.cs" />
     <Compile Include="Assets\01.Script\Damageable.cs" />
+    <Compile Include="Assets\01.Script\Damager.cs" />
     <Compile Include="Assets\01.Script\Doll_Action.cs" />
     <Compile Include="Assets\01.Script\ExitToRoom.cs" />
     <Compile Include="Assets\01.Script\GameManager.cs" />

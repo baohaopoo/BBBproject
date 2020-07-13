@@ -45,7 +45,7 @@ public class HumanEnemy : MonoBehaviour
             PlayerController playerController = other.GetComponent<PlayerController>();
             if (playerController != null)
             {
-                playerController.Die();
+                //playerController.Die();
                 gameObject.SetActive(false);
 
             }
