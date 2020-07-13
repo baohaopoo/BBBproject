@@ -65,10 +65,6 @@ public class PlayerController : MonoBehaviourPun
         isGunViewcam = false;
         isUseGun = false;
 
-<<<<<<< HEAD
-      
-=======
->>>>>>> Hong
     }
 
     // Update is called once per frame
