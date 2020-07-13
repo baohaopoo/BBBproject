@@ -46,9 +46,13 @@ public class Health : StatusController
     {
         base.OnDamage(damage, hitPoint, hitDirection);
 
-        //닿으면 뒤로
-        playerRigidbody.velocity = Vector3.zero;
-        playerRigidbody.AddForce(Vector3.right*-10, ForceMode.Impulse);
+        //죽지않았고 , 닿으면 뒤로
+        if (HP >= 0) {
+            playerAnimator.SetTrigger("Damaged");
+            playerRigidbody.velocity = Vector3.zero;
+            playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);
+        }
+
 
         //갱신된 체력으로 이미지 색깔 변신
         if (HP < 20)
