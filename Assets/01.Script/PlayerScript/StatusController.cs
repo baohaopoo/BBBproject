@@ -11,11 +11,15 @@ public class StatusController : MonoBehaviour, Damageable
 
     //virtual : 가상메서드 ( 자식 클래스가 오버라이드 할 수 있도록 허용된 메서드 )
     // 자식클래스는 override로 부모클래스의 가상메서드를 재정의 가능 
+
+    //활성화될때 실행
     protected virtual void OnEnable()
     {
         dead = false;
         HP = startHP;
     }
+
+    //데미지를 입는다
     public virtual void OnDamage(int damage, Vector3 hitPoint, Vector3 hitNormal)
     {
         // 데미지만큼 체력 감소

@@ -67,6 +67,7 @@
     <Compile Include="Assets\01.Script\CameraController.cs" />
     <Compile Include="Assets\01.Script\ChangeScene.cs" />
     <Compile Include="Assets\01.Script\Damageable.cs" />
+    <Compile Include="Assets\01.Script\Damager.cs" />
     <Compile Include="Assets\01.Script\Doll_Action.cs" />
     <Compile Include="Assets\01.Script\ExitToRoom.cs" />
     <Compile Include="Assets\01.Script\GameManager.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMoveOnSphere.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMovePhysics.cs" />
     <Compile Include="Assets\CameraSetup.cs" />
+    <Compile Include="Assets\Friendcontroller.cs" />
     <Compile Include="Assets\gameMgr.cs" />
     <Compile Include="Assets\NetWorkMgr.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />

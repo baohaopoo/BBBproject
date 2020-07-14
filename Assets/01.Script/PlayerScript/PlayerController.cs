@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviourPun
     public bool isUseGun;
 
     bool upRope;
-    private bool isDead;
     bool noGravity;
     int jumpcount = 0;
 
@@ -66,7 +65,6 @@ public class PlayerController : MonoBehaviourPun
         isGunViewcam = false;
         isUseGun = false;
 
-      
     }
 
     // Update is called once per frame
@@ -74,10 +72,6 @@ public class PlayerController : MonoBehaviourPun
     {
 
         Debug.Log(isUseGun);
-        if (isDead)
-        {
-            return;
-        }
 
         camSetting();
 
@@ -100,11 +94,11 @@ public class PlayerController : MonoBehaviourPun
         playerAnimator.SetBool("UseGun", isUseGun);
 
 
-        //로컬 플레이어만 직접 위치와 회전 변경 가능
-        if (!photonView.IsMine)
-        {
-            return;
-        }
+        ////로컬 플레이어만 직접 위치와 회전 변경 가능
+        //if (!photonView.IsMine)
+        //{
+        //    return;
+        //}
 
     }
 
@@ -292,10 +286,4 @@ public class PlayerController : MonoBehaviourPun
 
     }
 
-    public void Die()
-    {
-        playerAnimator.SetTrigger("Die");
-        isDead = true;
-        GameManager.instance.OnPlayerDead();
-    }
 }

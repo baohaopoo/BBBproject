@@ -5,11 +5,13 @@ public class Health : StatusController
 {
     private AudioSource playerAudioPlayer; // 플레이어 소리 재생기
     private Animator playerAnimator; // 플레이어의 애니메이터
+    private Rigidbody playerRigidbody; // 플레이어 캐릭터의 리지드바디
 
     private PlayerController playercontroller; // 플레이어 움직임 컴포넌트
     private PlayerShooter playerShooter; // 플레이어 슈터 컴포넌트
     public GameObject HPImage;
     int x = 100;
+
 
     public GameObject hp100;
     public GameObject hp80;
@@ -19,9 +21,10 @@ public class Health : StatusController
     public GameObject hp10;
     public GameObject hp0;
 
-    private void Awake()
+    private void Start()
     {
-        // 사용할 컴포넌트를 가져오기
+        playerAnimator = GetComponent<Animator>();
+        playerRigidbody = GetComponent<Rigidbody>();
     }
 
     protected override void OnEnable()
@@ -36,7 +39,6 @@ public class Health : StatusController
         base.RestoreHP(newHP);
 
 
-
     }
 
     // 데미지 처리
@@ -44,36 +46,45 @@ public class Health : StatusController
     {
         base.OnDamage(damage, hitPoint, hitDirection);
 
+        //죽지않았고 , 닿으면 뒤로
+        if (HP >= 0)
+        {
+            playerAnimator.SetTrigger("Damaged");
+            playerRigidbody.velocity = Vector3.zero;
+            playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);
+        }
+
+
         //갱신된 체력으로 이미지 색깔 변신
-        if (damage < 20)
+        if (HP < 20)
         {
             HPImage.GetComponent<Image>().color = new Color(1, 0, 0);
         }
-        if (damage == 100)
+        if (HP == 100)
         {
             hp100.SetActive(true);
         }
-        else if (damage == 80)
+        else if (HP == 80)
         {
             hp100.SetActive(false);
             hp80.SetActive(true);
         }
-        else if (damage == 60)
+        else if (HP == 60)
         {
             hp80.SetActive(false);
             hp60.SetActive(true);
         }
-        else if (damage == 40)
+        else if (HP == 40)
         {
             hp60.SetActive(false);
             hp40.SetActive(true);
         }
-        else if (damage == 20)
+        else if (HP == 20)
         {
             hp40.SetActive(false);
             hp20.SetActive(true);
         }
-        else if (damage == 0)
+        else if (HP == 0)
         {
             hp20.SetActive(false);
             hp10.SetActive(true);
@@ -91,10 +102,10 @@ public class Health : StatusController
     {
         base.Die();
         HPImage.SetActive(false);
-        playercontroller.enabled = false;
-        playerShooter.enabled = false;
+        playerAnimator.SetTrigger("Die");
+        GameManager.instance.OnPlayerDead();
     }
 
 
-  
+
 }
