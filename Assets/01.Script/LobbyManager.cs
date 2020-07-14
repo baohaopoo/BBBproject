@@ -40,6 +40,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         connectionInfoText.text = "온라인 : 마스터 서버와 연결됨";
         Debug.Log("온라인 : 마스터 서버와 연결됨");
 
+        //주석처리
         Connect();
     }
 
@@ -77,7 +78,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message) {
         Debug.Log("No Room");
         connectionInfoText.text = "빈 방이 없음.. 새로운 방 생성..";
-        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 4 });
+        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 4 }); //최대 4명을 수용 가능한 빈방 생성
 
     }
 
@@ -86,6 +87,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     //룸에 참가 완료된 경우 자동 실행
     public override void OnJoinedRoom()
     {
+        //접속 상태 표시
         connectionInfoText.text = "방 참가 성공";
         Debug.Log("Joined room");
         PhotonNetwork.LoadLevel("Kidsroom"); //모든 룸 참가자가 Kidsroom씬을 로드하게 함.

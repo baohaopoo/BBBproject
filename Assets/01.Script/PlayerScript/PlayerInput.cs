@@ -26,7 +26,14 @@ public class PlayerInput : MonoBehaviourPun
     // 매프레임 사용자 입력을 감지
     private void Update()
     {
- 
+
+        //로컬 플레이어가 아닌 경우 입력을 받지 않음
+        if (!photonView.IsMine)
+        {
+            return;
+
+        }
+
 
         //게임오버 상태에서는 사용자 입력 감지 안함
         if (GameManager.instance != null && GameManager.instance.isGameover)
@@ -50,11 +57,5 @@ public class PlayerInput : MonoBehaviourPun
         rightmouse = Input.GetButtonDown(RightMouseButtonName);
 
 
-        ////로컬 플레이어가 아닌 경우 입력을 받지 않음
-        //if (!photonView.IsMine)
-        //{
-        //    return;
-
-        //}
     }
 }

@@ -81,7 +81,13 @@ public class PlayerController : MonoBehaviourPun
     void FixedUpdate()
     {
 
-        //물리만 다루는 곳
+
+        //로컬 플레이어만 직접 위치와 회전 변경 가능
+        if (!photonView.IsMine) //게임 오브젝트가 로컬 게임 오브젝트인 경우에만 이동, 회전, 애니메이션 파라미터 갱신 처리를 실행.
+        {
+            return;
+        }
+       // 물리만 다루는 곳
         Jump();
         Rotate();
         Move();
@@ -94,11 +100,7 @@ public class PlayerController : MonoBehaviourPun
         playerAnimator.SetBool("UseGun", isUseGun);
 
 
-        ////로컬 플레이어만 직접 위치와 회전 변경 가능
-        //if (!photonView.IsMine)
-        //{
-        //    return;
-        //}
+
 
     }
 

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+using Photon.Pun;
+//player health script
 public class Health : StatusController
 {
     private AudioSource playerAudioPlayer; // 플레이어 소리 재생기
@@ -16,7 +18,7 @@ public class Health : StatusController
     public GameObject hp100;
     public GameObject hp80;
     public GameObject hp60;
-    public GameObject hp40;
+    public GameObject hp40; 
     public GameObject hp20;
     public GameObject hp10;
     public GameObject hp0;
@@ -34,13 +36,15 @@ public class Health : StatusController
     }
 
     // 체력 회복
+
+    [PunRPC]
     public override void RestoreHP(int newHP)
     {
         base.RestoreHP(newHP);
 
 
     }
-
+    [PunRPC]
     // 데미지 처리
     public override void OnDamage(int damage, Vector3 hitPoint, Vector3 hitDirection)
     {
@@ -101,11 +105,75 @@ public class Health : StatusController
     public override void Die()
     {
         base.Die();
+        //체력 이미지 비활성화
         HPImage.SetActive(false);
+        //애니메이터의 die 트리거를 발동시켜 사망 애니메이션 재생 
         playerAnimator.SetTrigger("Die");
+
+        
         GameManager.instance.OnPlayerDead();
+
+        //5초 뒤에 리스폰
+        Invoke("Respawn", 5f);
     }
 
 
+    //아이템 스크립트 오면 쓰자
+    /*
+    private void OnTriggerEnter(Collider other)
+    {
+        //아이템과 충돌한 경우 해당  아이템을 사용하는 처리
+        //사망하지 않은 경우에만 아이템 사용 가능
 
+        if (!dead)
+        {
+
+            //충돌한 상대방으로부터 Item 컴포넌트 가져오기 시도
+            Item item = other.GetComponent<Item>();
+
+            //충돌한 상대방으로부터 item 컴포넌트 가져오는 데 성공하였다면
+            if (item != null)
+            {
+                //호스트 아이템 직접 사용 가능
+                //호스트에서는 아이템 사용 후 사용된 아이템의 효과를 모든 클라이언트에 동기화 시킴
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    //use 메서드를 실행시켜 아이템 사용
+                    
+                }
+            }
+        }
+    
+
+    }
+        */
+
+     //부활 처리
+
+    public void Respawn()
+    {
+        //로컬 플레이어만 직접 위치 변경 가능
+        if (photonView.IsMine)
+        {
+            //원점에서 반경 5유닛 내부의 랜덤 위치 지정
+            Vector3 randomSpawnPos = Random.insideUnitSphere * 5f;
+            //랜덤 위치의 y값을 0으로 변경
+            randomSpawnPos.y = 0f;
+
+            //지정된 랜덤 위치로 이동
+            transform.position = randomSpawnPos;
+
+        
+        }
+
+
+        //컴포넌트를 리셋하기 위해 게임 오브젝트를 잠시 껐다고 다시 켜기
+        //컴포넌트의 ondisable(), onEnable()메서드가 실행됨
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
+        
+    
+    
+    
+    }
 }
