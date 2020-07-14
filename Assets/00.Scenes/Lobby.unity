@@ -457,7 +457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectionInfoText: {fileID: 1498854490}
   joinButton: {fileID: 1997101502}
-  playerPrefab: {fileID: 6924813866487600000, guid: 174243aaa401ab544b099bf66e1e602a,
+  playerPrefab: {fileID: 3058939778453560278, guid: 232afa9ad597d7148bae039392d42359,
     type: 3}
 --- !u!1 &876523704
 GameObject:

@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPun
 {
     public float moveSpeed = 5f;// 앞뒤 움직임 걷기속도 
     public float rotateSpeed = 180f; // 좌우 회전 속도
@@ -25,7 +26,6 @@ public class PlayerController : MonoBehaviour
     public bool isUseGun;
 
     bool upRope;
-    private bool isDead;
     bool noGravity;
     int jumpcount = 0;
 
@@ -65,8 +65,6 @@ public class PlayerController : MonoBehaviour
         isGunViewcam = false;
         isUseGun = false;
 
-
-
     }
 
     // Update is called once per frame
@@ -74,10 +72,6 @@ public class PlayerController : MonoBehaviour
     {
 
         Debug.Log(isUseGun);
-        if (isDead)
-        {
-            return;
-        }
 
         camSetting();
 
@@ -86,6 +80,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+
         //물리만 다루는 곳
         Jump();
         Rotate();
@@ -99,7 +94,11 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("UseGun", isUseGun);
 
 
-
+        ////로컬 플레이어만 직접 위치와 회전 변경 가능
+        //if (!photonView.IsMine)
+        //{
+        //    return;
+        //}
 
     }
 
@@ -287,10 +286,4 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void Die()
-    {
-        playerAnimator.SetTrigger("Die");
-        isDead = true;
-        GameManager.instance.OnPlayerDead();
-    }
 }
