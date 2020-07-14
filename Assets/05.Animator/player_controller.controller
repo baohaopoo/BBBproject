@@ -28,6 +28,63 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!206 &-8461567777958252712
+BlendTree:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Horizontal
+  m_Childs:
+  - serializedVersion: 2
+    m_Motion: {fileID: 1827226128182048838, guid: 439a2aa324f9b3549903cedbc4783484,
+      type: 3}
+    m_Threshold: -1
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: -1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: VerticalMove
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 1827226128182048838, guid: 9693845174ca1b0459ff13e94fa893fa,
+      type: 3}
+    m_Threshold: 0
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: VerticalMove
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 1827226128182048838, guid: 439a2aa324f9b3549903cedbc4783484,
+      type: 3}
+    m_Threshold: 1
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: VerticalMove
+    m_Mirror: 0
+  m_BlendParameter: HorizontalMove
+  m_BlendParameterY: VerticalMove
+  m_MinThreshold: -1
+  m_MaxThreshold: 1
+  m_UseAutomaticThresholds: 0
+  m_NormalizedBlendValues: 0
+  m_BlendType: 0
+--- !u!206 &-6747132413083398581
+BlendTree:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BlendTree
+  m_Childs: []
+  m_BlendParameter: Rotate
+  m_BlendParameterY: Move
+  m_MinThreshold: 0
+  m_MaxThreshold: 1
+  m_UseAutomaticThresholds: 1
+  m_NormalizedBlendValues: 0
+  m_BlendType: 0
 --- !u!1102 &-6509353449753458406
 AnimatorState:
   serializedVersion: 5
@@ -201,7 +258,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -8666288662456939401}
-    m_Position: {x: 120, y: 130, z: 0}
+    m_Position: {x: 140, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -978594449626626627}
     m_Position: {x: 150, y: 220, z: 0}
@@ -210,7 +267,7 @@ AnimatorStateMachine:
     m_Position: {x: 240, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1097515313486779774}
-    m_Position: {x: 350, y: 160, z: 0}
+    m_Position: {x: 430, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2802165178424750781}
     m_Position: {x: 120, y: -50, z: 0}
@@ -288,18 +345,6 @@ AnimatorController:
   m_Name: player_controller
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Move
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: Rotate
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: Grounded
     m_Type: 4
     m_DefaultFloat: 0
@@ -332,6 +377,18 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: Damaged
     m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: VerticalMove
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: HorizontalMove
+    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -376,6 +433,48 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!206 &1286827731966374288
+BlendTree:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BlendTree
+  m_Childs:
+  - serializedVersion: 2
+    m_Motion: {fileID: 1827226128182048838, guid: 439a2aa324f9b3549903cedbc4783484,
+      type: 3}
+    m_Threshold: -1
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: -1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: VerticalMove
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 1827226128182048838, guid: 9693845174ca1b0459ff13e94fa893fa,
+      type: 3}
+    m_Threshold: 0
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 0.01
+    m_CycleOffset: 0
+    m_DirectBlendParameter: VerticalMove
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 1827226128182048838, guid: 439a2aa324f9b3549903cedbc4783484,
+      type: 3}
+    m_Threshold: 1
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: VerticalMove
+    m_Mirror: 0
+  m_BlendParameter: HorizontalMove
+  m_BlendParameterY: VerticalMove
+  m_MinThreshold: -1
+  m_MaxThreshold: 1
+  m_UseAutomaticThresholds: 0
+  m_NormalizedBlendValues: 0
+  m_BlendType: 0
 --- !u!1101 &1500038869178562061
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -463,15 +562,15 @@ BlendTree:
     m_Position: {x: 0, y: 0}
     m_TimeScale: -1
     m_CycleOffset: 0
-    m_DirectBlendParameter: Move
+    m_DirectBlendParameter: VerticalMove
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -5346263777285741040}
+    m_Motion: {fileID: -8461567777958252712}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
-    m_DirectBlendParameter: Move
+    m_DirectBlendParameter: VerticalMove
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 1827226128182048838, guid: 0706d9f13bee9274c98ff1857fcf4982,
@@ -480,9 +579,9 @@ BlendTree:
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
-    m_DirectBlendParameter: Move
+    m_DirectBlendParameter: VerticalMove
     m_Mirror: 0
-  m_BlendParameter: Move
+  m_BlendParameter: VerticalMove
   m_BlendParameterY: Move
   m_MinThreshold: -1
   m_MaxThreshold: 1
@@ -548,7 +647,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Move
     m_Mirror: 0
-  m_BlendParameter: Move
+  m_BlendParameter: VerticalMove
   m_BlendParameterY: Move
   m_MinThreshold: -1
   m_MaxThreshold: 1
@@ -590,7 +689,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Move
     m_Mirror: 0
-  m_BlendParameter: Move
+  m_BlendParameter: HorizontalMove
   m_BlendParameterY: Blend
   m_MinThreshold: -1
   m_MaxThreshold: 1
