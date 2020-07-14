@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-
+using Photon.Pun;
 // 주어진 Gun 오브젝트를 쏘거나 재장전
-public class PlayerShooter : MonoBehaviour
+public class PlayerShooter : MonoBehaviourPun
 {
     GameObject playerGrabPoint;
     public Gun gun; // 사용할 총
@@ -43,7 +43,10 @@ public class PlayerShooter : MonoBehaviour
     private void Update()
     {
 
+
         rotateGun();
+
+       
         //총발사 
         if (playerInput.fire)
         {
@@ -52,7 +55,12 @@ public class PlayerShooter : MonoBehaviour
 
 
         //UpdateUI(); //남은 탄알 업데이트
+        //로컬 플레이어만 총을 직접 사격. 탄알UI 갱신가능
+        //if (!photonView.IsMine)
+        //{
+        //    return;
 
+        //}
 
     }
 

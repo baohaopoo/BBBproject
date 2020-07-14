@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+
 
 // 플레이어 캐릭터를 조작하기 위한 사용자 입력을 감지
 // 감지된 입력값을 다른 컴포넌트들이 사용할 수 있도록 제공
-public class PlayerInput : MonoBehaviour
+public class PlayerInput : MonoBehaviourPun
 {
     public string moveAxisName = "Vertical"; 
     public string rotateAxisName = "Horizontal";
@@ -24,6 +26,7 @@ public class PlayerInput : MonoBehaviour
     // 매프레임 사용자 입력을 감지
     private void Update()
     {
+ 
 
         //게임오버 상태에서는 사용자 입력 감지 안함
         if (GameManager.instance != null && GameManager.instance.isGameover)
@@ -45,5 +48,13 @@ public class PlayerInput : MonoBehaviour
         //카메라 입력감지 
         backMirror = Input.GetKey(KeyCode.F);
         rightmouse = Input.GetButtonDown(RightMouseButtonName);
+
+
+        ////로컬 플레이어가 아닌 경우 입력을 받지 않음
+        //if (!photonView.IsMine)
+        //{
+        //    return;
+
+        //}
     }
 }

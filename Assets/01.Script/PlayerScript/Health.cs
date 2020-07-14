@@ -47,7 +47,8 @@ public class Health : StatusController
         base.OnDamage(damage, hitPoint, hitDirection);
 
         //죽지않았고 , 닿으면 뒤로
-        if (HP >= 0) {
+        if (HP >= 0)
+        {
             playerAnimator.SetTrigger("Damaged");
             playerRigidbody.velocity = Vector3.zero;
             playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);
@@ -106,5 +107,5 @@ public class Health : StatusController
     }
 
 
-  
+
 }
