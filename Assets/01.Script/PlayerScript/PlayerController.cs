@@ -6,6 +6,7 @@ using Photon.Pun;
 public class PlayerController : MonoBehaviourPun
 {
     public float startmoveSpeed = 7f;
+    public float rotateSpeed = 1f;
     float moveSpeed;
 
     public float lookSensitivity = 3f;//마우스 민감도
@@ -44,8 +45,13 @@ public class PlayerController : MonoBehaviourPun
     GameObject Ladder;
 
 
+    float cm_X_Value = 0.0f;
+    Cinemachine.CinemachineFreeLook cm_X; 
+
     private bool isLadder;
     private bool isAir;
+    //private float yaw = 0.0f;
+    //private float pitch = 0.0f;
 
     int rightmouseCnt = 0; //오른쪽마우스 두번누르면 1인칭시점 취소시키기위해 만든변수
     void Start()
@@ -60,6 +66,8 @@ public class PlayerController : MonoBehaviourPun
         rope = GameObject.FindGameObjectWithTag("rope"); //rope객체 소환
         ropeCollision = GameObject.FindGameObjectWithTag("ropeCollision");
 
+        cm_X = FollowCam.GetComponent<Cinemachine.CinemachineFreeLook>();
+
         upRope = false;
         noGravity = false;
         isRope = false;
@@ -73,12 +81,9 @@ public class PlayerController : MonoBehaviourPun
     void Update()
     {
 
-        Debug.Log(isUseGun);
 
         camSetting();
-
-
-
+       
     }
 
     void FixedUpdate()
@@ -88,6 +93,7 @@ public class PlayerController : MonoBehaviourPun
         Jump();
 
         Move();
+
         Rope(upRope, noGravity);
 
         playerAnimator.SetFloat("VerticalMove", playerInput.Verticalmove);
@@ -108,15 +114,12 @@ public class PlayerController : MonoBehaviourPun
     // 입력값에 따라 캐릭터를 앞뒤로 움직임
     private void Move()
     {
-        Debug.Log("h=" + playerInput.Verticalmove.ToString());
-        Debug.Log("v=" + playerInput.Horizontalmove.ToString());
 
         if (playerInput.Verticalmove != 0)
         {
             if (playerInput.Verticalmove == 1f)
             {
                 moveSpeed = startmoveSpeed + 5;
-                Rotate();
             }
             else
             {
@@ -135,9 +138,45 @@ public class PlayerController : MonoBehaviourPun
 
     private void Rotate()
     {
-        float yaw = lookSensitivity * playerInput.mouseX;
-        Vector3 Rotation = new Vector3(0, yaw, 0);
-        playerRigidbody.MoveRotation(playerRigidbody.rotation * Quaternion.Euler(Rotation));
+        cm_X_Value = cm_X.m_XAxis.Value;
+
+        //if (cm_X_Value < -5f)
+        //{
+        //    yaw += rotateSpeed * Input.GetAxisRaw("Mouse X");
+        //    cm_X_Value = 0f;
+
+        //    // Mathf.Clamp(x, 최소값, 최댓값) - x값을 최소,최대값 사이에서만 변하게 해줌
+        //    //yaw = Mathf.Clamp(yaw, -100f, 100f);
+        //    //pitch = Mathf.Clamp(pitch, -20f, 10f);
+        //    transform.localEulerAngles = new Vector3(0, yaw, 0.0f);
+
+        //}
+        //else if (cm_X_Value > 5f)
+        //{
+        //    yaw += rotateSpeed * Input.GetAxisRaw("Mouse X");
+        //    cm_X_Value = 0f;
+
+        //    // Mathf.Clamp(x, 최소값, 최댓값) - x값을 최소,최대값 사이에서만 변하게 해줌
+        //    //yaw = Mathf.Clamp(yaw, -100f, 100f);
+        //    // pitch = Mathf.Clamp(pitch, -20f, 10f);
+        //    transform.localEulerAngles = new Vector3(0, yaw, 0.0f);
+        //}
+        if (cm_X_Value < -5f)
+        {
+            Debug.Log("-CM_X:" + cm_X_Value);
+            float Mturn = -2f;//-rotateSpeed * Time.deltaTime;
+            playerRigidbody.rotation =
+                playerRigidbody.rotation * Quaternion.Euler(0, Mturn, 0f);
+        }
+        else if (cm_X_Value > 5f)
+        {
+            Debug.Log("+CM_X:" + cm_X_Value);
+            float Pturn = 2f;//rotateSpeed * Time.deltaTime;
+            playerRigidbody.rotation =
+                playerRigidbody.rotation * Quaternion.Euler(0, Pturn, 0f);
+        }
+
+
     }
 
     private void Jump()
@@ -209,50 +248,50 @@ public class PlayerController : MonoBehaviourPun
     }
     private void Rope(bool uprope, bool nogravity)
     {
-        Debug.Log("플레이어rope 들어옴");
-        if (uprope)
-        {
-            Debug.Log("플레이어1차 충돌");
-            Debug.Log("rope애니");
-            isRope = true;
+        //Debug.Log("플레이어rope 들어옴");
+        //if (uprope)
+        //{
+        //    Debug.Log("플레이어1차 충돌");
+        //    Debug.Log("rope애니");
+        //    isRope = true;
 
-            bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
-            bool downKey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
-
-
-            if (upKey)
-            {
-                this.transform.Translate(0, 5f * Time.deltaTime, 0);
-
-            }
-
-            else if (downKey)
-            {
-
-                this.transform.Translate(0, -5f * Time.deltaTime, 0);
-
-            }
-        }
+        //    bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
+        //    bool downKey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
 
 
+        //    if (upKey)
+        //    {
+        //        this.transform.Translate(0, 5f * Time.deltaTime, 0);
 
-        else if (noGravity)
-        {
+        //    }
 
-            Debug.Log("노그래비티존");
-            // playerRigidbody.isKinematic = true;
-            bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
-            bool downKey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
+        //    else if (downKey)
+        //    {
 
-            if (upKey)
-            {
-                this.transform.Translate(0, 0, 3 * Time.deltaTime);
-            }
-            else if (downKey)
-            {
-                this.transform.Translate(0, 0, -3 * Time.deltaTime);
-            }
-        }
+        //        this.transform.Translate(0, -5f * Time.deltaTime, 0);
+
+        //    }
+        //}
+
+
+
+        //else if (noGravity)
+        //{
+
+        //    Debug.Log("노그래비티존");
+        //    // playerRigidbody.isKinematic = true;
+        //    bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
+        //    bool downKey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
+
+        //    if (upKey)
+        //    {
+        //        this.transform.Translate(0, 0, 3 * Time.deltaTime);
+        //    }
+        //    else if (downKey)
+        //    {
+        //        this.transform.Translate(0, 0, -3 * Time.deltaTime);
+        //    }
+        //}
 
 
 
