@@ -54,8 +54,8 @@ public class PlayerInput : MonoBehaviourPun
         rightmouse = Input.GetButtonDown(RightMouseButtonName);
 
         //마우스 입력감지
-        mouseX = Input.GetAxisRaw("Mouse X");
-        mouseY = Input.GetAxisRaw("Mouse Y");
+        mouseX = Input.GetAxis("Mouse X");
+        mouseY = Input.GetAxis("Mouse Y");
 
         ////로컬 플레이어가 아닌 경우 입력을 받지 않음
         //if (!photonView.IsMine)

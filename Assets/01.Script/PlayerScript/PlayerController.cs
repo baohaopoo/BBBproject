@@ -6,7 +6,7 @@ using Photon.Pun;
 public class PlayerController : MonoBehaviourPun
 {
     public float startmoveSpeed = 7f;
-    public float rotateSpeed = 1f;
+    public float rotateSpeed = 80f;
     float moveSpeed;
 
     public float lookSensitivity = 3f;//마우스 민감도
@@ -53,9 +53,14 @@ public class PlayerController : MonoBehaviourPun
     //private float yaw = 0.0f;
     //private float pitch = 0.0f;
 
+
+    [SerializeField] private Transform tr;
+
     int rightmouseCnt = 0; //오른쪽마우스 두번누르면 1인칭시점 취소시키기위해 만든변수
     void Start()
     {
+        tr = GetComponent<Transform>();
+
         playershooter = GetComponent<PlayerShooter>();
         playerInput = GetComponent<PlayerInput>();
         playerRigidbody = GetComponent<Rigidbody>();
@@ -125,7 +130,7 @@ public class PlayerController : MonoBehaviourPun
             {
                 moveSpeed = startmoveSpeed;
             }
-            Rotate();
+            //Rotate();
         }
             
         Vector3 VertiacalmoveDistance =
@@ -134,6 +139,8 @@ public class PlayerController : MonoBehaviourPun
             playerInput.Horizontalmove * transform.right * moveSpeed * Time.deltaTime;
         //위치 변경
         playerRigidbody.MovePosition(playerRigidbody.position + VertiacalmoveDistance + HorizontalmoveDistance);
+        // Vector3.up 축을 기준으로 rotSpeed만큼의 속도로 회전
+        tr.Rotate(Vector3.up * rotateSpeed * Time.deltaTime * playerInput.mouseX);
     }
 
     private void Rotate()
