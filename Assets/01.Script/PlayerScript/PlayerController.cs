@@ -50,8 +50,6 @@ public class PlayerController : MonoBehaviourPun
 
     private bool isLadder;
     private bool isAir;
-    //private float yaw = 0.0f;
-    //private float pitch = 0.0f;
 
 
     [SerializeField] private Transform tr;
@@ -85,8 +83,6 @@ public class PlayerController : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-
-
         camSetting();
        
     }
@@ -130,7 +126,6 @@ public class PlayerController : MonoBehaviourPun
             {
                 moveSpeed = startmoveSpeed;
             }
-            //Rotate();
         }
             
         Vector3 VertiacalmoveDistance =
@@ -143,48 +138,7 @@ public class PlayerController : MonoBehaviourPun
         tr.Rotate(Vector3.up * rotateSpeed * Time.deltaTime * playerInput.mouseX);
     }
 
-    private void Rotate()
-    {
-        cm_X_Value = cm_X.m_XAxis.Value;
-
-        //if (cm_X_Value < -5f)
-        //{
-        //    yaw += rotateSpeed * Input.GetAxisRaw("Mouse X");
-        //    cm_X_Value = 0f;
-
-        //    // Mathf.Clamp(x, 최소값, 최댓값) - x값을 최소,최대값 사이에서만 변하게 해줌
-        //    //yaw = Mathf.Clamp(yaw, -100f, 100f);
-        //    //pitch = Mathf.Clamp(pitch, -20f, 10f);
-        //    transform.localEulerAngles = new Vector3(0, yaw, 0.0f);
-
-        //}
-        //else if (cm_X_Value > 5f)
-        //{
-        //    yaw += rotateSpeed * Input.GetAxisRaw("Mouse X");
-        //    cm_X_Value = 0f;
-
-        //    // Mathf.Clamp(x, 최소값, 최댓값) - x값을 최소,최대값 사이에서만 변하게 해줌
-        //    //yaw = Mathf.Clamp(yaw, -100f, 100f);
-        //    // pitch = Mathf.Clamp(pitch, -20f, 10f);
-        //    transform.localEulerAngles = new Vector3(0, yaw, 0.0f);
-        //}
-        if (cm_X_Value < -5f)
-        {
-            Debug.Log("-CM_X:" + cm_X_Value);
-            float Mturn = -2f;//-rotateSpeed * Time.deltaTime;
-            playerRigidbody.rotation =
-                playerRigidbody.rotation * Quaternion.Euler(0, Mturn, 0f);
-        }
-        else if (cm_X_Value > 5f)
-        {
-            Debug.Log("+CM_X:" + cm_X_Value);
-            float Pturn = 2f;//rotateSpeed * Time.deltaTime;
-            playerRigidbody.rotation =
-                playerRigidbody.rotation * Quaternion.Euler(0, Pturn, 0f);
-        }
-
-
-    }
+ 
 
     private void Jump()
     {
