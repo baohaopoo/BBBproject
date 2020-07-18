@@ -10,12 +10,12 @@ using UnityEngine.UI;
 //마스터 매치메이킹 서버와 룸접속 담당
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-    private string gameVersion = "Kidsroom 1.0"; //게임 버전
+    private string gameVersion = "1.0"; //게임 버전
 
     public Text connectionInfoText; //네트워크 정보를 표시할 텍스트
     public Button joinButton; //룸접속버튼
 
-    public GameObject playerPrefab;
+   // public GameObject playerPrefab;
 
     //게임 실행과 동시에 마스터 서버 접속 시도
     void Start()
@@ -41,7 +41,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log("온라인 : 마스터 서버와 연결됨");
 
         //주석처리
-        Connect();
+       // Connect();
     }
 
     //마스터 서버 접속 실패시 자동 실행
@@ -78,7 +78,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message) {
         Debug.Log("No Room");
         connectionInfoText.text = "빈 방이 없음.. 새로운 방 생성..";
-        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 4 }); //최대 4명을 수용 가능한 빈방 생성
+        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 2 }); //최대 4명을 수용 가능한 빈방 생성
 
     }
 
@@ -95,39 +95,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
   
 
 
-        ////플레이어를 생성한다.
-        //if (playerPrefab == null)
-        //{
-        //    Debug.Log("없습니다");
-        //}
-        //else
-        //{
-        //    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-6.4f, 11.95f, 11.81f),Quaternion.identity,0);
-        //}
-        //StartCoroutine(this.CreatePlayer());
-
+    
 
     }
 
-    ////네트워크상에 연결되어 있는 모든 클라이언트에 플레이어를 생성한다.
-    //private IEnumerator CreatePlayer()
-    //{
 
-
-    //    PhotonNetwork.Instantiate("player",
-    //        new Vector3(-6.4f, 11.95f, 11.81f),
-    //        Quaternion.identity,
-    //        0);
-
-    //    Debug.Log("Player 생성");
-
-    //    yield return null;
-
-
-
-
-
-
-    //}
 
 }

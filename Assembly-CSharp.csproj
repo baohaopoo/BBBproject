@@ -83,6 +83,7 @@
     <Compile Include="Assets\01.Script\LobbyManager.cs" />
     <Compile Include="Assets\01.Script\NPC\dollFriend.cs" />
     <Compile Include="Assets\01.Script\Openthedoor.cs" />
+    <Compile Include="Assets\01.Script\PlayerNameInput.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\Health.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerController.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerInput.cs" />

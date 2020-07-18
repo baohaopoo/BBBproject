@@ -35,16 +35,16 @@ public class PlayerInput : MonoBehaviourPun
         }
 
 
-        //게임오버 상태에서는 사용자 입력 감지 안함
-        if (GameManager.instance != null && GameManager.instance.isGameover)
-        {
-            move = 0;
-            rotate = 0;
-            rightmouse = false;
-            jump = false;
-            fire = false;
-            return;
-        }
+        ////게임오버 상태에서는 사용자 입력 감지 안함
+        //if (GameManager.instance != null && GameManager.instance.isGameover)
+        //{
+        //    move = 0;
+        //    rotate = 0;
+        //    rightmouse = false;
+        //    jump = false;
+        //    fire = false;
+        //    return;
+        //}
 
         //  입력 감지
         move = Input.GetAxis(moveAxisName);

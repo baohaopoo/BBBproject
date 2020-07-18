@@ -111,7 +111,7 @@ public class Health : StatusController
         playerAnimator.SetTrigger("Die");
 
         
-        GameManager.instance.OnPlayerDead();
+      //  GameManager.instance.OnPlayerDead();
 
         //5초 뒤에 리스폰
         Invoke("Respawn", 5f);
