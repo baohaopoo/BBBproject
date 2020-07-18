@@ -52,8 +52,13 @@ public class GameManager : MonoBehaviour
     {
         if (isGameover && Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene("Kidsroom");
+            Restart();
         }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("Kidsroom");
     }
     public void OnPlayerDead()
     {
