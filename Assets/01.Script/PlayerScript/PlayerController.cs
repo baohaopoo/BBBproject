@@ -14,9 +14,10 @@ public class PlayerController : MonoBehaviourPun
     public float jumpPower = 5f;
 
     private PlayerShooter playershooter;
-    private PlayerInput playerInput; // 플레이어 입력을 알려주는 컴포넌트
-    private Rigidbody playerRigidbody; // 플레이어 캐릭터의 리지드바디
-    private Animator playerAnimator; // 플레이어 캐릭터의 애니메이터
+    private PlayerInput playerInput; 
+    private Rigidbody playerRigidbody;
+    private Transform playerTranform;
+    private Animator playerAnimator; 
     public GameObject FollowCam;
     public GameObject ForwardCam;
     public GameObject FirstPlayerCam;
@@ -44,21 +45,14 @@ public class PlayerController : MonoBehaviourPun
     //사다리
     GameObject Ladder;
 
-
-    float cm_X_Value = 0.0f;
-    Cinemachine.CinemachineFreeLook cm_X; 
-
     private bool isLadder;
     private bool isAir;
 
 
-    [SerializeField] private Transform tr;
-
     int rightmouseCnt = 0; //오른쪽마우스 두번누르면 1인칭시점 취소시키기위해 만든변수
     void Start()
     {
-        tr = GetComponent<Transform>();
-
+        playerTranform = GetComponent<Transform>();
         playershooter = GetComponent<PlayerShooter>();
         playerInput = GetComponent<PlayerInput>();
         playerRigidbody = GetComponent<Rigidbody>();
@@ -69,7 +63,6 @@ public class PlayerController : MonoBehaviourPun
         rope = GameObject.FindGameObjectWithTag("rope"); //rope객체 소환
         ropeCollision = GameObject.FindGameObjectWithTag("ropeCollision");
 
-        cm_X = FollowCam.GetComponent<Cinemachine.CinemachineFreeLook>();
 
         upRope = false;
         noGravity = false;
@@ -83,8 +76,7 @@ public class PlayerController : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        camSetting();
-       
+        camSetting();     
     }
 
     void FixedUpdate()
@@ -135,7 +127,7 @@ public class PlayerController : MonoBehaviourPun
         //위치 변경
         playerRigidbody.MovePosition(playerRigidbody.position + VertiacalmoveDistance + HorizontalmoveDistance);
         // Vector3.up 축을 기준으로 rotSpeed만큼의 속도로 회전
-        tr.Rotate(Vector3.up * rotateSpeed * Time.deltaTime * playerInput.mouseX);
+        playerTranform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime * playerInput.mouseX);
     }
 
  
