@@ -60,7 +60,14 @@ public class PlayerShooter : MonoBehaviourPun
 
 
         //UpdateUI(); //남은 탄알 업데이트
-       
+
+        //로컬 플레이어만 총을 직접 사격. 탄알UI 갱신가능
+        //if (!photonView.IsMine)
+        //{
+        //    return;
+
+        //}
+
 
     }
 

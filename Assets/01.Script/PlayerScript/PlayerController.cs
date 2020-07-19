@@ -5,14 +5,19 @@ using Photon.Pun;
 
 public class PlayerController : MonoBehaviourPun
 {
-    public float moveSpeed = 5f;// 앞뒤 움직임 걷기속도 
-    public float rotateSpeed = 180f; // 좌우 회전 속도
+    public float startmoveSpeed = 7f;
+    public float rotateSpeed = 80f;
+    float moveSpeed;
+
+    public float lookSensitivity = 3f;//마우스 민감도
+
     public float jumpPower = 5f;
 
-    private PlayerShooter playershooter; 
-    private PlayerInput playerInput; // 플레이어 입력을 알려주는 컴포넌트
-    private Rigidbody playerRigidbody; // 플레이어 캐릭터의 리지드바디
-    private Animator playerAnimator; // 플레이어 캐릭터의 애니메이터
+    private PlayerShooter playershooter;
+    private PlayerInput playerInput; 
+    private Rigidbody playerRigidbody;
+    private Transform playerTranform;
+    private Animator playerAnimator; 
     public GameObject FollowCam;
     public GameObject ForwardCam;
     public GameObject FirstPlayerCam;
@@ -30,7 +35,6 @@ public class PlayerController : MonoBehaviourPun
     int jumpcount = 0;
 
 
-
     GameObject PlayerGrabPoint; //플레이어 아이템 잡을 때 쓰는 객체변수 생성
     Collider col;
     GameObject rope; //플레이어 로프와 닿으면 수평이동 제한.
@@ -41,13 +45,14 @@ public class PlayerController : MonoBehaviourPun
     //사다리
     GameObject Ladder;
 
-
     private bool isLadder;
     private bool isAir;
-    public float speed = 3f;
+
+
     int rightmouseCnt = 0; //오른쪽마우스 두번누르면 1인칭시점 취소시키기위해 만든변수
     void Start()
     {
+        playerTranform = GetComponent<Transform>();
         playershooter = GetComponent<PlayerShooter>();
         playerInput = GetComponent<PlayerInput>();
         playerRigidbody = GetComponent<Rigidbody>();
@@ -57,6 +62,7 @@ public class PlayerController : MonoBehaviourPun
 
         rope = GameObject.FindGameObjectWithTag("rope"); //rope객체 소환
         ropeCollision = GameObject.FindGameObjectWithTag("ropeCollision");
+
 
         upRope = false;
         noGravity = false;
@@ -70,12 +76,7 @@ public class PlayerController : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-
-        Debug.Log(isUseGun);
-
-        camSetting();
-
-
+        camSetting();     
     }
 
     void FixedUpdate()
@@ -89,12 +90,13 @@ public class PlayerController : MonoBehaviourPun
         }
        // 물리만 다루는 곳
         Jump();
-        Rotate();
+
         Move();
+
         Rope(upRope, noGravity);
 
-        playerAnimator.SetFloat("Move", playerInput.move);
-        playerAnimator.SetFloat("Rotate", playerInput.rotate);
+        playerAnimator.SetFloat("VerticalMove", playerInput.Verticalmove);
+        playerAnimator.SetFloat("HorizontalMove", playerInput.Horizontalmove);
         playerAnimator.SetBool("Grounded", isGrounded);
         playerAnimator.SetBool("upRope", isRope);
         playerAnimator.SetBool("UseGun", isUseGun);
@@ -107,20 +109,30 @@ public class PlayerController : MonoBehaviourPun
     // 입력값에 따라 캐릭터를 앞뒤로 움직임
     private void Move()
     {
-        Vector3 moveDistance =
-            playerInput.move * transform.forward * moveSpeed * Time.deltaTime;
+
+        if (playerInput.Verticalmove != 0)
+        {
+            if (playerInput.Verticalmove == 1f)
+            {
+                moveSpeed = startmoveSpeed + 5;
+            }
+            else
+            {
+                moveSpeed = startmoveSpeed;
+            }
+        }
+            
+        Vector3 VertiacalmoveDistance =
+            playerInput.Verticalmove * transform.forward * moveSpeed * Time.deltaTime;
+        Vector3 HorizontalmoveDistance =
+            playerInput.Horizontalmove * transform.right * moveSpeed * Time.deltaTime;
         //위치 변경
-        playerRigidbody.MovePosition(playerRigidbody.position + moveDistance);
+        playerRigidbody.MovePosition(playerRigidbody.position + VertiacalmoveDistance + HorizontalmoveDistance);
+        // Vector3.up 축을 기준으로 rotSpeed만큼의 속도로 회전
+        playerTranform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime * playerInput.mouseX);
     }
 
-    // 입력값에 따라 캐릭터를 좌우로 회전
-    private void Rotate()
-    {
-        float turn = playerInput.rotate * rotateSpeed * Time.deltaTime;
-        playerRigidbody.rotation =
-            playerRigidbody.rotation * Quaternion.Euler(0, turn, 0f);
-
-    }
+ 
 
     private void Jump()
     {
@@ -143,7 +155,7 @@ public class PlayerController : MonoBehaviourPun
     {
 
         isForwardcam = false;
-        if (playerInput.rightmouse)   
+        if (playerInput.rightmouse)
         {
             rightmouseCnt += 1;
             isUseGun = true;
@@ -159,7 +171,7 @@ public class PlayerController : MonoBehaviourPun
         {
             isForwardcam = false;
             isGunViewcam = true;
-           
+
             if (playerInput.backMirror) //F누르면 백미러 
             {
                 isForwardcam = true;
@@ -191,50 +203,50 @@ public class PlayerController : MonoBehaviourPun
     }
     private void Rope(bool uprope, bool nogravity)
     {
-        Debug.Log("플레이어rope 들어옴");
-        if (uprope)
-        {
-            Debug.Log("플레이어1차 충돌");
-            Debug.Log("rope애니");
-            isRope = true;
+        //Debug.Log("플레이어rope 들어옴");
+        //if (uprope)
+        //{
+        //    Debug.Log("플레이어1차 충돌");
+        //    Debug.Log("rope애니");
+        //    isRope = true;
 
-            bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
-            bool downKey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
-
-
-            if (upKey)
-            {
-                this.transform.Translate(0, 5f * Time.deltaTime, 0);
-
-            }
-
-            else if (downKey)
-            {
-
-                this.transform.Translate(0, -5f * Time.deltaTime, 0);
-
-            }
-        }
+        //    bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
+        //    bool downKey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
 
 
+        //    if (upKey)
+        //    {
+        //        this.transform.Translate(0, 5f * Time.deltaTime, 0);
 
-        else if (noGravity)
-        {
+        //    }
 
-            Debug.Log("노그래비티존");
-            // playerRigidbody.isKinematic = true;
-            bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
-            bool downKey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
+        //    else if (downKey)
+        //    {
 
-            if (upKey)
-            {
-                this.transform.Translate(0, 0, 3 * Time.deltaTime);
-            }
-            else if (downKey)
-            {
-                this.transform.Translate(0, 0, -3 * Time.deltaTime);
-            }
-        }
+        //        this.transform.Translate(0, -5f * Time.deltaTime, 0);
+
+        //    }
+        //}
+
+
+
+        //else if (noGravity)
+        //{
+
+        //    Debug.Log("노그래비티존");
+        //    // playerRigidbody.isKinematic = true;
+        //    bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
+        //    bool downKey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
+
+        //    if (upKey)
+        //    {
+        //        this.transform.Translate(0, 0, 3 * Time.deltaTime);
+        //    }
+        //    else if (downKey)
+        //    {
+        //        this.transform.Translate(0, 0, -3 * Time.deltaTime);
+        //    }
+        //}
 
 
 
