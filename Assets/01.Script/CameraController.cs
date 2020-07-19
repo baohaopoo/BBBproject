@@ -13,7 +13,8 @@ public class CameraController : MonoBehaviour
     private float yaw = 0.0f;
     private float pitch = 0.0f;
 
-    public Camera cam; 
+    public Camera cam;
+    public GameObject player;
     void Start()
     {
 
@@ -42,9 +43,10 @@ public class CameraController : MonoBehaviour
         pitch += rotateSpeed * Input.GetAxis("Mouse Y");;
 
         // Mathf.Clamp(x, 최소값, 최댓값) - x값을 최소,최대값 사이에서만 변하게 해줌
-        yaw = Mathf.Clamp(yaw, -50f, 50f);
         pitch = Mathf.Clamp(pitch, -20f, 10f);
-        cam.transform.localEulerAngles = new Vector3(-pitch, yaw, 0.0f);
+        cam.transform.localEulerAngles = new Vector3(-pitch, 0, 0.0f);
+        player.transform.localEulerAngles = new Vector3(0, yaw, 0.0f);
+
 
     }
 }
