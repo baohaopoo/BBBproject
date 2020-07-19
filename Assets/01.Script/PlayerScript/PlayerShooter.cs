@@ -11,6 +11,11 @@ public class PlayerShooter : MonoBehaviourPun
     private Animator playerAnimator; 
     private CameraController cameraController;
 
+
+    public Animator CrossHairAnimator;
+
+    public GameObject CrossHairUI;
+
     private void Start()
     {
         // 사용할 컴포넌트들을 가져오기
@@ -31,13 +36,20 @@ public class PlayerShooter : MonoBehaviourPun
         // 슈터가 활성화될 때 총도 함께 활성화
         gun.gameObject.SetActive(true);
 
+        //에임 UI도 활성화
+        CrossHairUI.SetActive(true);
+        //CrossHairAnimator = GetComponent<Animator>();
+
 
     }
 
     private void OnDisable()
     {
+        //에임 비활성화
+        CrossHairUI.SetActive(false);
         // 슈터가 비활성화될 때 총도 함께 비활성화
         gun.gameObject.SetActive(false);
+
     }
 
     private void Update()
@@ -45,13 +57,7 @@ public class PlayerShooter : MonoBehaviourPun
 
 
         rotateGun();
-
-       
-        //총발사 
-        if (playerInput.fire)
-        {
-            gun.Fire();
-        }
+        animations();
 
 
         //UpdateUI(); //남은 탄알 업데이트
@@ -64,6 +70,29 @@ public class PlayerShooter : MonoBehaviourPun
 
     }
 
+    private void animations()
+    {
+        if (playerInput.Verticalmove >= 1f)
+        {
+            CrossHairAnimator.SetBool("Walking", true);
+    
+            if (playerInput.fire&&gun.bulletRemain!=0)
+            {
+                CrossHairAnimator.SetTrigger("walk_Fire");
+                gun.Fire();
+            }
+        }
+        else
+        {
+            CrossHairAnimator.SetBool("Walking", false);
+            if (playerInput.fire && gun.bulletRemain != 0)
+            {
+                CrossHairAnimator.SetTrigger("Idle_Fire");
+                gun.Fire();
+            }
+        }
+
+    }
     private void rotateGun()
     {
         gun.transform.rotation = FindObjectOfType<CameraController>().transform.rotation;
