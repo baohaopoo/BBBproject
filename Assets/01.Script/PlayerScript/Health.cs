@@ -110,11 +110,13 @@ public class Health : StatusController
         //애니메이터의 die 트리거를 발동시켜 사망 애니메이션 재생 
         playerAnimator.SetTrigger("Die");
 
-        
+        playerShooter.enabled = false;
+        playercontroller.enabled = false;
       //  GameManager.instance.OnPlayerDead();
 
         //5초 뒤에 리스폰
-        Invoke("Respawn", 5f);
+        Invoke("Respawn", 10);
+        Debug.Log("부활");
     }
 
 
@@ -156,7 +158,7 @@ public class Health : StatusController
         if (photonView.IsMine)
         {
             //원점에서 반경 5유닛 내부의 랜덤 위치 지정
-            Vector3 randomSpawnPos = Random.insideUnitSphere * 5f;
+            Vector3 randomSpawnPos = Random.insideUnitSphere * 9f;
             //랜덤 위치의 y값을 0으로 변경
             randomSpawnPos.y = 0f;
 

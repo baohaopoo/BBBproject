@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Gun : MonoBehaviour
 {
     public enum State
@@ -48,6 +49,7 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
+
         
     }
 

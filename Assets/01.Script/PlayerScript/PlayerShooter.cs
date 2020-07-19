@@ -21,8 +21,8 @@ public class PlayerShooter : MonoBehaviourPun
         cameraController = GetComponent<CameraController>();
 
         //총을 자식으로 두고 위치갱신 
-        gun.transform.SetParent(playerGrabPoint.transform); 
-        gun.transform.localPosition = new Vector3(-0.53f, -0.82f, 0.22f);
+       // gun.transform.SetParent(playerGrabPoint.transform); 
+       // gun.transform.localPosition = new Vector3(-0.53f, -0.82f, 0.22f);
         gun.transform.rotation = FindObjectOfType<PlayerController>().transform.rotation;
     }
 

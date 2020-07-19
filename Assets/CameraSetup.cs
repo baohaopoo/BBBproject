@@ -4,7 +4,7 @@ using UnityEngine;
 using Cinemachine; //시네머신 코드
 
 using Photon.Pun; //Pun관련 코드
-public class CameraSetup : MonoBehaviourPun
+public class CameraSetup : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
     void Start()

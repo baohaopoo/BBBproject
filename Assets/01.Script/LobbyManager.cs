@@ -14,13 +14,16 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public Text connectionInfoText; //네트워크 정보를 표시할 텍스트
     public Button joinButton; //룸접속버튼
+    public string nickname = "baohao";
 
-   // public GameObject playerPrefab;
+    // public GameObject playerPrefab;
 
     //게임 실행과 동시에 마스터 서버 접속 시도
     void Start()
     {
         PhotonNetwork.GameVersion = gameVersion; //접속에 필요한 정보설정
+
+        PhotonNetwork.NickName = this.nickname;
         PhotonNetwork.ConnectUsingSettings(); //설정한 정보로 마스터 서버 접속 시도
 
 
