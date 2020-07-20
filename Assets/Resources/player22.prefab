@@ -2236,6 +2236,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8637939022194435747, guid: 8d81b117cb6151f4dbb341062552b046,
+        type: 3}
+      propertyPath: muzzleFlashEffect
+      value: 
+      objectReference: {fileID: 198000012944515248, guid: 74d744994bc414c37bfda957f1d57118,
+        type: 3}
+    - target: {fileID: 8637939022194435747, guid: 8d81b117cb6151f4dbb341062552b046,
+        type: 3}
+      propertyPath: HitEffect
+      value: 
+      objectReference: {fileID: 5076288410672110734, guid: 540b41b550850e54d8316923466badf5,
+        type: 3}
     - target: {fileID: 3646414901678658047, guid: 8d81b117cb6151f4dbb341062552b046,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2311,18 +2323,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8637939022194435747, guid: 8d81b117cb6151f4dbb341062552b046,
-        type: 3}
-      propertyPath: muzzleFlashEffect
-      value: 
-      objectReference: {fileID: 198000012944515248, guid: 74d744994bc414c37bfda957f1d57118,
-        type: 3}
-    - target: {fileID: 8637939022194435747, guid: 8d81b117cb6151f4dbb341062552b046,
-        type: 3}
-      propertyPath: HitEffect
-      value: 
-      objectReference: {fileID: 5076288410672110734, guid: 540b41b550850e54d8316923466badf5,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d81b117cb6151f4dbb341062552b046, type: 3}
 --- !u!4 &5651248087161655455 stripped

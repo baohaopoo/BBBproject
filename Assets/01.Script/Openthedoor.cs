@@ -20,7 +20,7 @@ public class Openthedoor : MonoBehaviour
     {
        
   
-         DoorAnimator.SetBool("Open", ActionControler.IsOpen);
+        // DoorAnimator.SetBool("Open", ActionControler.IsOpen);
       
 
 

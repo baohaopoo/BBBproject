@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class GunviewCameraController : MonoBehaviour
 {
 
    
@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
     void Rotate()
     {
         yaw += rotateSpeed * Input.GetAxis("Mouse X");
-        pitch += rotateSpeed * Input.GetAxis("Mouse Y");;
+        pitch += rotateSpeed * Input.GetAxis("Mouse Y");
 
         // Mathf.Clamp(x, 최소값, 최댓값) - x값을 최소,최대값 사이에서만 변하게 해줌
         pitch = Mathf.Clamp(pitch, -20f, 10f);
