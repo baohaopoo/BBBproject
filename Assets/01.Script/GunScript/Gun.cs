@@ -1,9 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Gun : MonoBehaviour
+public class Gun : MonoBehaviourPun, IPunObservable
 {
+    //주기적으로 자동 실행
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+
+
+        if (stream.IsWriting)
+        {
+            stream.SendNext(state);
+
+
+        }
+        else
+        {
+            state = (State)stream.ReceiveNext();
+
+        
+        
+        }
+
+    
+    
+    
+    }
     public enum State
     {
         Ready, // 발사 준비
@@ -65,7 +89,12 @@ public class Gun : MonoBehaviour
         BulletUI();
     }
 
+    private void preshot()
+    {
+        // photonView.RPC("Shot", RpcTarget.MasterClient);
+        photonView.RPC("Shot", RpcTarget.All);
 
+    }
     // 발사 시도
     public void Fire()
     {
@@ -75,10 +104,11 @@ public class Gun : MonoBehaviour
             //마지막 총 발사 시점 갱신
             lastFireTime = Time.time;
 
-            Shot(); //쏴라!
+            preshot(); //쏴라!
         }
     }
 
+    [PunRPC]
     // 실제 발사 처리
     private void Shot()
     {

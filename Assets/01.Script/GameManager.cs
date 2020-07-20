@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+using TMPro;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPun
 {
+
+    public GameObject playerPrefab;
+    public Camera mainCamera;
     //싱글톤 접근용 프로퍼티
     public static GameManager instance
     {
@@ -28,7 +33,7 @@ public class GameManager : MonoBehaviour
     public bool isGameover { get; private set; } // 게임 오버 상태
 
     public GameObject gameoverUI;
-    public GameObject Player;
+
 
    
     
@@ -44,7 +49,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isGameover = false;
-        Player.SetActive(true);
+        //playerPrefab.SetActive(true);
+
+        Vector3 randomPos = Random.insideUnitSphere * 5f;
+        randomPos.y = 0f;
+
+        PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
+      
+        Debug.Log(playerPrefab.name+"생성이다 이놈아ㅏ아앙");
     }
 
     // Update is called once per frame
