@@ -76,6 +76,7 @@ public class StatusController : MonoBehaviourPun, Damageable
         }
     }
 
+    
     // 사망 처리
     public virtual void Die()
     {

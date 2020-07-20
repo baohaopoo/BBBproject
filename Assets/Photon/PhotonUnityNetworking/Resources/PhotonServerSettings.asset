@@ -44,6 +44,7 @@ MonoBehaviour:
   - OnDamage
   - RestoreHP
   - preshot
+  - gunoff_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -64,6 +64,9 @@ public class Gun : MonoBehaviourPun, IPunObservable
     public GameObject bulletImage4;
     public GameObject bulletImage5;
 
+
+   // public static Gun instance= null;  //실험
+
     private void Awake()
     {
         // 사용할 컴포넌트들의 참조를 가져오기
@@ -73,6 +76,10 @@ public class Gun : MonoBehaviourPun, IPunObservable
         bulletLineRenderer.enabled = false;
 
 
+    
+       
+
+           
     }
 
     private void OnEnable()
@@ -86,13 +93,14 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
     private void Update()
     {
-        BulletUI();
+        //BulletUI();
     }
 
     private void preshot()
     {
         // photonView.RPC("Shot", RpcTarget.MasterClient);
         photonView.RPC("Shot", RpcTarget.All);
+        BulletUI();
 
     }
     // 발사 시도
@@ -108,10 +116,12 @@ public class Gun : MonoBehaviourPun, IPunObservable
         }
     }
 
-    [PunRPC]
     // 실제 발사 처리
+
+    [PunRPC]
     private void Shot()
     {
+       
         //레이캐스트에 의한 충돌 정보 저장
         RaycastHit hit;
         //탄알이 맞은곳
@@ -151,13 +161,16 @@ public class Gun : MonoBehaviourPun, IPunObservable
         StartCoroutine(ShotEffect(hitPosition));
 
         //탄알의 수 -1 
+      //  bulletminus();
         bulletRemain -= 1;
+        Debug.Log("남은 탄알의 수" );
         if (bulletRemain <= 0)
         {
             //총알이 남은게 없다면 현재상태 Empty
             state = State.Empty;
         }
     }
+
 
     
     // 발사 이펙트와 총알 궤적을 그린다    //코루틴사용
@@ -181,8 +194,9 @@ public class Gun : MonoBehaviourPun, IPunObservable
         bulletLineRenderer.enabled = false;
     }
 
-    private void BulletUI()
+    public void BulletUI()
     {
+        Debug.Log("총알이 들어올까 말까 들어올까 말까");
         if (bulletRemain == 5)
         {
             bulletImage1.SetActive(true);

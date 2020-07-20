@@ -167,7 +167,7 @@ MonoBehaviour:
   HitEffect: {fileID: 0}
   isFineSightMode: 0
   damage: 20
-  bulletRemain: 100
+  bulletRemain: 5
   bulletCapacity: 3
   timeBetFire: 0.12
   lastFireTime: 0

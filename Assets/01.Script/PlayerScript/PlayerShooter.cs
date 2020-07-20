@@ -4,6 +4,9 @@ using Photon.Pun;
 public class PlayerShooter : MonoBehaviourPun
 {
     GameObject playerGrabPoint;
+
+    //public Gun gunscript; //실험
+
     public Gun gun; // 사용할 총
 
     private PlayerController playerController;
@@ -43,6 +46,7 @@ public class PlayerShooter : MonoBehaviourPun
         {
             //에임 UI도 활성화
             this.CrossHairUI.SetActive(true);
+            Debug.Log("aim 활성화한다~");
         }
 
     }
@@ -52,6 +56,11 @@ public class PlayerShooter : MonoBehaviourPun
 
         // 슈터가 활성화될 때 총도 함께 활성화
         this.gun.gameObject.SetActive(true);
+
+        //if (gunscript.bulletRemain == 5)
+        //{
+        //    gunscript.BulletUI();
+        //}
         
 
     }
@@ -67,7 +76,7 @@ public class PlayerShooter : MonoBehaviourPun
             Debug.Log("에임 활성화 되고있냐");
         }
     }
-
+    [PunRPC]
     void gunoff_RPC()
     {
 
@@ -87,7 +96,7 @@ public class PlayerShooter : MonoBehaviourPun
 
 
         //UpdateUI(); //남은 탄알 업데이트
-        //로컬 플레이어만 총을 직접 사격. 탄알UI 갱신가능
+        //로컬 플레이어만 총을 직접 사격.탄알UI 갱신가능
         //if (!photonView.IsMine)
         //{
         //    return;
