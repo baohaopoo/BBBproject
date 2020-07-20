@@ -10,7 +10,10 @@ public class GameManager : MonoBehaviourPun
 {
 
     public GameObject playerPrefab;
-    public Camera mainCamera;
+
+    
+    
+    
     //싱글톤 접근용 프로퍼티
     public static GameManager instance
     {
@@ -52,14 +55,13 @@ public class GameManager : MonoBehaviourPun
         //playerPrefab.SetActive(true);
 
         Vector3 randomPos = Random.insideUnitSphere * 5f;
-        randomPos.y = 0f;
 
+        
         PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
-      
+
         Debug.Log(playerPrefab.name+"생성이다 이놈아ㅏ아앙");
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (isGameover && Input.GetMouseButtonDown(0))

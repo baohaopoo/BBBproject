@@ -11,15 +11,18 @@ public class PlayerShooter : MonoBehaviourPun
     private Animator playerAnimator;
     private CameraController cameraController;
 
-
+    //에임 
     public Animator CrossHairAnimator;
 
+    
+    //에임 유아이
     public GameObject CrossHairUI;
 
     private void Start()
     {
         // 사용할 컴포넌트들을 가져오기
         playerGrabPoint = GameObject.FindGameObjectWithTag("grabPoint"); //플레이어 총잡을 부분 객체 소환
+        //CrossHairUI = GameObject.FindGameObjectWithTag("Crosshair"); 
         playerController = GetComponent<PlayerController>();
         playerInput = GetComponent<PlayerInput>();
         playerAnimator = GetComponent<Animator>();
@@ -35,9 +38,12 @@ public class PlayerShooter : MonoBehaviourPun
     {
         photonView.RPC("gunon_RPC", RpcTarget.All);
 
-        //에임 UI도 활성화
-        CrossHairUI.SetActive(true);
 
+        if (!photonView.IsMine)
+        {
+            //에임 UI도 활성화
+            this.CrossHairUI.SetActive(true);
+        }
 
     }
     [PunRPC]
@@ -46,7 +52,7 @@ public class PlayerShooter : MonoBehaviourPun
 
         // 슈터가 활성화될 때 총도 함께 활성화
         this.gun.gameObject.SetActive(true);
-
+        
 
     }
 
@@ -54,9 +60,12 @@ public class PlayerShooter : MonoBehaviourPun
     {
         photonView.RPC("gunoff_RPC", RpcTarget.All);
         //에임 비활성화
-        CrossHairUI.gameObject.SetActive(false);
-        Debug.Log("에임 활성화 되고있냐");
 
+        if (!photonView.IsMine) //포톤이 로컬일떄
+        {
+           CrossHairUI.gameObject.SetActive(false);
+            Debug.Log("에임 활성화 되고있냐");
+        }
     }
 
     void gunoff_RPC()
@@ -87,6 +96,7 @@ public class PlayerShooter : MonoBehaviourPun
 
     }
 
+    //ao,
     private void animations()
     {
         if (playerInput.Verticalmove >= 1f)
