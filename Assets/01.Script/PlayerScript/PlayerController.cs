@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityStandardAssets.Utility;
 
 public class PlayerController : MonoBehaviourPun
 {
@@ -12,33 +13,37 @@ public class PlayerController : MonoBehaviourPun
     public float lookSensitivity = 3f;//마우스 민감도
 
     public float jumpPower = 5f;
-
+    
     private PlayerShooter playershooter;
     private PlayerInput playerInput; 
     private Rigidbody playerRigidbody;
     private Transform playerTranform;
     private Animator playerAnimator; 
-    public GameObject FollowCam;
-    public GameObject ForwardCam;
+    public GameObject FollowCam; //maincam
+    public GameObject ForwardCam; //F키 눌를떄
     public GameObject FirstPlayerCam;
-    public GameObject Timeline;
+
+   
+   // public GameObject Timeline;
 
     bool isGrounded;
     bool isPicking;
     bool isRope;
     bool isForwardcam;
     bool isGunViewcam;
-    public bool isUseGun;
+    private bool isUseGun;
 
     bool upRope;
     bool noGravity;
-    int jumpcount = 0;
+    int jumpcount;
 
 
     GameObject PlayerGrabPoint; //플레이어 아이템 잡을 때 쓰는 객체변수 생성
     Collider col;
     GameObject rope; //플레이어 로프와 닿으면 수평이동 제한.
     GameObject ropeCollision;
+
+
 
     GameObject friend;
 
@@ -49,9 +54,34 @@ public class PlayerController : MonoBehaviourPun
     private bool isAir;
 
 
-    int rightmouseCnt = 0; //오른쪽마우스 두번누르면 1인칭시점 취소시키기위해 만든변수
+    int rightmouseCnt=0; //오른쪽마우스 두번누르면 1인칭시점 취소시키기위해 만든변수
     void Start()
     {
+       
+        FollowCam = GameObject.Find("MainCamera");
+        FollowCam.GetComponent<SmoothFollow>().target = this.transform;
+        //if (!photonView.IsMine)
+        //{
+        //    FollowCam.SetActive(true);
+        
+        //}
+        
+        Debug.Log("maincamera 얻어오니");
+        //FollowCam.GetComponent<SmoothFollow>().target = playerTranform.Find("playerpivot").transform;
+   
+        
+        //if (!photonView.IsMine) //게임 오브젝트가 로컬 게임 오브젝트인 경우에만 이동, 회전, 애니메이션 파라미터 갱신 처리를 실행.
+        //{
+        //  
+
+        //}
+
+
+        if  (Camera.main.GetComponent<SmoothFollow>().target)
+        {
+
+            Debug.Log("잘들어오고 있니?");
+        }
         playerTranform = GetComponent<Transform>();
         playershooter = GetComponent<PlayerShooter>();
         playerInput = GetComponent<PlayerInput>();
@@ -80,15 +110,13 @@ public class PlayerController : MonoBehaviourPun
     }
 
     void FixedUpdate()
-    {
-
-
-        //로컬 플레이어만 직접 위치와 회전 변경 가능
+    {   //로컬 플레이어만 직접 위치와 회전 변경 가능
         if (!photonView.IsMine) //게임 오브젝트가 로컬 게임 오브젝트인 경우에만 이동, 회전, 애니메이션 파라미터 갱신 처리를 실행.
         {
             return;
         }
-       // 물리만 다루는 곳
+
+        //물리만 다루는 곳
         Jump();
 
         Move();
@@ -102,7 +130,11 @@ public class PlayerController : MonoBehaviourPun
         playerAnimator.SetBool("UseGun", isUseGun);
 
 
-
+        ////로컬 플레이어만 직접 위치와 회전 변경 가능
+        //if (!photonView.IsMine)
+        //{
+        //    return;
+        //}
 
     }
 

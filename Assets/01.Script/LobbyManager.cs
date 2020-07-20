@@ -1,29 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-using Photon.Pun; //유니티용 포톤 컴포넌트
-using Photon.Realtime; //포톤 서비스관련 라이브러리
+using Photon.Pun; 
+using Photon.Realtime; 
 
 using UnityEngine;
 using UnityEngine.UI;
 
-//마스터 매치메이킹 서버와 룸접속 담당
+
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-    private string gameVersion = "1.0"; //게임 버전
+    private string gameVersion = "Kidsroom 1.0"; //게임 버전
 
-    public Text connectionInfoText; //네트워크 정보를 표시할 텍스트
-    public Button joinButton; //룸접속버튼
-    public string nickname = "baohao";
+    public Text connectionInfoText; 
+    public Button joinButton; 
 
-    // public GameObject playerPrefab;
+
 
     //게임 실행과 동시에 마스터 서버 접속 시도
     void Start()
     {
         PhotonNetwork.GameVersion = gameVersion; //접속에 필요한 정보설정
-
-        PhotonNetwork.NickName = this.nickname;
         PhotonNetwork.ConnectUsingSettings(); //설정한 정보로 마스터 서버 접속 시도
 
 
@@ -43,8 +40,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         connectionInfoText.text = "온라인 : 마스터 서버와 연결됨";
         Debug.Log("온라인 : 마스터 서버와 연결됨");
 
-        //주석처리
-       // Connect();
+
     }
 
     //마스터 서버 접속 실패시 자동 실행
@@ -81,7 +77,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message) {
         Debug.Log("No Room");
         connectionInfoText.text = "빈 방이 없음.. 새로운 방 생성..";
-        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 2 }); //최대 4명을 수용 가능한 빈방 생성
+        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 4 });
 
     }
 
@@ -90,7 +86,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     //룸에 참가 완료된 경우 자동 실행
     public override void OnJoinedRoom()
     {
-        //접속 상태 표시
         connectionInfoText.text = "방 참가 성공";
         Debug.Log("Joined room");
         PhotonNetwork.LoadLevel("Kidsroom"); //모든 룸 참가자가 Kidsroom씬을 로드하게 함.
@@ -98,10 +93,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
   
 
 
-    
+
 
     }
 
-
-
+  
 }

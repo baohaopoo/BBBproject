@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
 using Photon.Pun;
-//player health script
 public class Health : StatusController
 {
     private AudioSource playerAudioPlayer; // 플레이어 소리 재생기
@@ -18,7 +16,7 @@ public class Health : StatusController
     public GameObject hp100;
     public GameObject hp80;
     public GameObject hp60;
-    public GameObject hp40; 
+    public GameObject hp40;
     public GameObject hp20;
     public GameObject hp10;
     public GameObject hp0;
@@ -36,7 +34,6 @@ public class Health : StatusController
     }
 
     // 체력 회복
-
     [PunRPC]
     public override void RestoreHP(int newHP)
     {
@@ -105,21 +102,14 @@ public class Health : StatusController
     public override void Die()
     {
         base.Die();
-        //체력 이미지 비활성화
         HPImage.SetActive(false);
-        //애니메이터의 die 트리거를 발동시켜 사망 애니메이션 재생 
         playerAnimator.SetTrigger("Die");
+        GameManager.instance.OnPlayerDead();
 
-        playerShooter.enabled = false;
-        playercontroller.enabled = false;
-      //  GameManager.instance.OnPlayerDead();
-
-        //5초 뒤에 리스폰
-        Invoke("Respawn", 10);
+        //3초 뒤에 리스폰
+        Invoke("Respawn", 3);
         Debug.Log("부활");
     }
-
-
     //아이템 스크립트 오면 쓰자
     /*
     private void OnTriggerEnter(Collider other)
@@ -150,7 +140,7 @@ public class Health : StatusController
     }
         */
 
-     //부활 처리
+    //부활 처리
 
     public void Respawn()
     {
@@ -165,7 +155,7 @@ public class Health : StatusController
             //지정된 랜덤 위치로 이동
             transform.position = randomSpawnPos;
 
-        
+
         }
 
 
@@ -173,9 +163,9 @@ public class Health : StatusController
         //컴포넌트의 ondisable(), onEnable()메서드가 실행됨
         gameObject.SetActive(false);
         gameObject.SetActive(true);
-        
-    
-    
-    
+
+
+
+
     }
 }

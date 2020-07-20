@@ -38,9 +38,12 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - Shot
+  - gunon_RPC
   - ApplyUpdateHealth
   - OnDamage
   - RestoreHP
+  - preshot
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

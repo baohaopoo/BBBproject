@@ -8,8 +8,13 @@ public class PlayerShooter : MonoBehaviourPun
 
     private PlayerController playerController;
     private PlayerInput playerInput;
-    private Animator playerAnimator; 
+    private Animator playerAnimator;
     private CameraController cameraController;
+
+
+    public Animator CrossHairAnimator;
+
+    public GameObject CrossHairUI;
 
     private void Start()
     {
@@ -21,46 +26,58 @@ public class PlayerShooter : MonoBehaviourPun
         cameraController = GetComponent<CameraController>();
 
         //총을 자식으로 두고 위치갱신 
-       // gun.transform.SetParent(playerGrabPoint.transform); 
-       // gun.transform.localPosition = new Vector3(-0.53f, -0.82f, 0.22f);
+        gun.transform.SetParent(playerGrabPoint.transform);
+        gun.transform.localPosition = new Vector3(-0.53f, -0.82f, 0.22f);
         gun.transform.rotation = FindObjectOfType<PlayerController>().transform.rotation;
     }
 
     private void OnEnable()
     {
+        photonView.RPC("gunon_RPC", RpcTarget.All);
+
+        //에임 UI도 활성화
+        CrossHairUI.SetActive(true);
+
+
+    }
+    [PunRPC]
+    void gunon_RPC()
+    {
+
         // 슈터가 활성화될 때 총도 함께 활성화
-        gun.gameObject.SetActive(true);
+        this.gun.gameObject.SetActive(true);
 
 
     }
 
     private void OnDisable()
     {
-        // 슈터가 비활성화될 때 총도 함께 비활성화
-        gun.gameObject.SetActive(false);
+        photonView.RPC("gunoff_RPC", RpcTarget.All);
+        //에임 비활성화
+        CrossHairUI.gameObject.SetActive(false);
+        Debug.Log("에임 활성화 되고있냐");
+
     }
+
+    void gunoff_RPC()
+    {
+
+        // 슈터가 비활성화될 때 총도 함께 비활성화
+        this.gun.gameObject.SetActive(false);
+
+
+    }
+
 
     private void Update()
     {
-        //로컬 플레이어만 총을 직접 사격. 탄알UI 갱신가능
-        if (!photonView.IsMine)
-        {
-            return;
 
-        }
 
         rotateGun();
-
-       
-        //총발사 
-        if (playerInput.fire)
-        {
-            gun.Fire();
-        }
+        animations();
 
 
         //UpdateUI(); //남은 탄알 업데이트
-
         //로컬 플레이어만 총을 직접 사격. 탄알UI 갱신가능
         //if (!photonView.IsMine)
         //{
@@ -68,9 +85,31 @@ public class PlayerShooter : MonoBehaviourPun
 
         //}
 
-
     }
 
+    private void animations()
+    {
+        if (playerInput.Verticalmove >= 1f)
+        {
+            CrossHairAnimator.SetBool("Walking", true);
+    
+            if (playerInput.fire&&gun.bulletRemain!=0)
+            {
+                CrossHairAnimator.SetTrigger("walk_Fire");
+                gun.Fire();
+            }
+        }
+        else
+        {
+            CrossHairAnimator.SetBool("Walking", false);
+            if (playerInput.fire && gun.bulletRemain != 0)
+            {
+                CrossHairAnimator.SetTrigger("Idle_Fire");
+                gun.Fire();
+            }
+        }
+
+    }
     private void rotateGun()
     {
         gun.transform.rotation = FindObjectOfType<CameraController>().transform.rotation;

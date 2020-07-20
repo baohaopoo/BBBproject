@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Photon.Pun;
 
 #pragma warning disable 649
 namespace UnityStandardAssets.Utility
@@ -6,9 +7,10 @@ namespace UnityStandardAssets.Utility
 	public class SmoothFollow : MonoBehaviour
 	{
 
+
 		// The target we are following
 		[SerializeField]
-		private Transform target;
+		public Transform target;
 		// The distance in the x-z plane to the target
 		[SerializeField]
 		private float distance = 10.0f;

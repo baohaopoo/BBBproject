@@ -27,11 +27,16 @@ public class PlayerInput : MonoBehaviourPun
     // 매프레임 사용자 입력을 감지
     private void Update()
     {
-
         //로컬 플레이어가 아닌 경우 입력을 받지 않음
         if (!photonView.IsMine)
         {
+            return;
 
+        }
+
+        //게임오버 상태에서는 사용자 입력 감지 안함
+        if (GameManager.instance != null && GameManager.instance.isGameover)
+        {
             Verticalmove = 0;
             Horizontalmove = 0;
             rightmouse = false;
@@ -40,22 +45,8 @@ public class PlayerInput : MonoBehaviourPun
             backMirror = false;
             mouseX = 0;
             mouseY = 0;
-
             return;
-
         }
-
-
-        ////게임오버 상태에서는 사용자 입력 감지 안함
-        //if (GameManager.instance != null && GameManager.instance.isGameover)
-        //{
-        //    move = 0;
-        //    rotate = 0;
-        //    rightmouse = false;
-        //    jump = false;
-        //    fire = false;
-        //    return;
-        //}
 
         //  입력 감지
         Verticalmove = Input.GetAxis(VerticalAxisName);
@@ -71,5 +62,11 @@ public class PlayerInput : MonoBehaviourPun
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
 
+        ////로컬 플레이어가 아닌 경우 입력을 받지 않음
+        //if (!photonView.IsMine)
+        //{
+        //    return;
+
+        //}
     }
 }
