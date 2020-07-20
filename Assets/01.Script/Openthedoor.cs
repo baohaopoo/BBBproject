@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Openthedoor : MonoBehaviour
+public class Open : MonoBehaviour
 {
     private Animator DoorAnimator;
    
@@ -20,7 +20,7 @@ public class Openthedoor : MonoBehaviour
     {
        
   
-         DoorAnimator.SetBool("Open", ActionControler.IsOpen);
+         //DoorAnimator.SetBool("Open", ActionControler.IsOpen);
       
 
 

@@ -159,11 +159,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireTransform: {fileID: 8637939021815209691}
   shellEjectEffect: {fileID: 8457601992056519347}
+  muzzleFlashEffect: {fileID: 0}
+  HitEffect: {fileID: 0}
+  isFineSightMode: 0
   damage: 20
   bulletRemain: 3
   bulletCapacity: 3
   timeBetFire: 0.12
   lastFireTime: 0
+  bulletImage1: {fileID: 0}
+  bulletImage2: {fileID: 0}
+  bulletImage3: {fileID: 0}
+  bulletImage4: {fileID: 0}
+  bulletImage5: {fileID: 0}
 --- !u!1 &4433506279657548901
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class PlayerShooter : MonoBehaviourPun
     private PlayerController playerController;
     private PlayerInput playerInput;
     private Animator playerAnimator; 
-    private CameraController cameraController;
+    private GunviewCameraController cameraController;
 
 
     public Animator CrossHairAnimator;
@@ -23,7 +23,7 @@ public class PlayerShooter : MonoBehaviourPun
         playerController = GetComponent<PlayerController>();
         playerInput = GetComponent<PlayerInput>();
         playerAnimator = GetComponent<Animator>();
-        cameraController = GetComponent<CameraController>();
+        cameraController = GetComponent<GunviewCameraController>();
 
         //총을 자식으로 두고 위치갱신 
         gun.transform.SetParent(playerGrabPoint.transform); 
@@ -95,7 +95,7 @@ public class PlayerShooter : MonoBehaviourPun
     }
     private void rotateGun()
     {
-        gun.transform.rotation = FindObjectOfType<CameraController>().transform.rotation;
+        gun.transform.rotation = FindObjectOfType<GunviewCameraController>().transform.rotation;
     }
 
 

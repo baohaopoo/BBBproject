@@ -128,9 +128,11 @@ public class PlayerController : MonoBehaviourPun
         playerRigidbody.MovePosition(playerRigidbody.position + VertiacalmoveDistance + HorizontalmoveDistance);
         // Vector3.up 축을 기준으로 rotSpeed만큼의 속도로 회전
         playerTranform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime * playerInput.mouseX);
+       
+
     }
 
- 
+
 
     private void Jump()
     {

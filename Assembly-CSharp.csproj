@@ -62,8 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\01.Script\ActionControler.cs" />
-    <Compile Include="Assets\01.Script\CameraController.cs" />
+    <Compile Include="Assets\01.Script\CameraScript\GunviewCameraController.cs" />
+    <Compile Include="Assets\01.Script\CameraScript\MainCameraController.cs" />
     <Compile Include="Assets\01.Script\ChangeScene.cs" />
     <Compile Include="Assets\01.Script\Damageable.cs" />
     <Compile Include="Assets\01.Script\Damager.cs" />
@@ -71,18 +71,20 @@
     <Compile Include="Assets\01.Script\ExitToRoom.cs" />
     <Compile Include="Assets\01.Script\GameManager.cs" />
     <Compile Include="Assets\01.Script\GunScript\Gun.cs" />
-    <Compile Include="Assets\01.Script\HumanEnemy.cs" />
     <Compile Include="Assets\01.Script\Inventory.cs" />
     <Compile Include="Assets\01.Script\iPhinterClickHandler.cs" />
+    <Compile Include="Assets\01.Script\Item Script\ActionControler.cs" />
     <Compile Include="Assets\01.Script\Item Script\GrabItem.cs" />
     <Compile Include="Assets\01.Script\Item Script\Item.cs" />
     <Compile Include="Assets\01.Script\Item Script\Item_Action_Controller.cs" />
+    <Compile Include="Assets\01.Script\Item Script\ItemBox.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemManager.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemPickup.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemSpawner.cs" />
     <Compile Include="Assets\01.Script\Ladder_Action.cs" />
     <Compile Include="Assets\01.Script\LobbyManager.cs" />
     <Compile Include="Assets\01.Script\NPC\dollFriend.cs" />
+    <Compile Include="Assets\01.Script\NPC\HumanEnemy.cs" />
     <Compile Include="Assets\01.Script\Openthedoor.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\Health.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerController.cs" />

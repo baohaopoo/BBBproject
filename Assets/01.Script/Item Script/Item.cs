@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewItem", menuName = "New Item/item")]
-public class Item : ScriptableObject
+[CreateAssetMenu(fileName = "NewItem", menuName = "New Item/item")] 
+// 프로젝트창에 우클릭하면 이제 NewItem 나옴
+
+public class Item : ScriptableObject //게임오브젝트에 붙일필요없는 오브젝트 
 {
     public string itemName; //아이템이름
     public ItemType itemType; //아이템 유형
@@ -14,22 +16,12 @@ public class Item : ScriptableObject
 
     public enum ItemType { 
     
+        Gun,
         Attack,
-        Equipment,
-        Etc
-    
-    
+        Heal,
+        CanOpen,
+        Etx
+   
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
