@@ -65,8 +65,13 @@ public class Gun : MonoBehaviourPun, IPunObservable
     public GameObject bulletImage5;
 
 
-   // public static Gun instance= null;  //실험
-
+    private PlayerInput playerInput;
+    private PlayerShooter playershooter;
+    public GameObject Aim;
+    public Animator AimAnimator;
+    // public static Gun instance= null;  //실험
+  
+   
     private void Awake()
     {
         // 사용할 컴포넌트들의 참조를 가져오기
@@ -76,10 +81,11 @@ public class Gun : MonoBehaviourPun, IPunObservable
         bulletLineRenderer.enabled = false;
 
 
-    
-       
+        playerInput = GetComponent<PlayerInput>();
+        playershooter = GetComponent<PlayerShooter>();
 
-           
+
+
     }
 
     private void OnEnable()
@@ -121,6 +127,8 @@ public class Gun : MonoBehaviourPun, IPunObservable
     [PunRPC]
     private void Shot()
     {
+        Debug.Log("Aim 이 들어와라");
+        Aim.SetActive(true);
        
         //레이캐스트에 의한 충돌 정보 저장
         RaycastHit hit;
@@ -246,4 +254,8 @@ public class Gun : MonoBehaviourPun, IPunObservable
             bulletImage5.SetActive(false);
         }
     }
+
+
+
+    
 }

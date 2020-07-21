@@ -12,7 +12,6 @@ public class Health : StatusController
     public GameObject HPImage;
     int x = 100;
 
-
     public GameObject hp100;
     public GameObject hp80;
     public GameObject hp60;
@@ -64,36 +63,43 @@ public class Health : StatusController
         if (HP == 100)
         {
             hp100.SetActive(true);
+            Debug.Log("100이다.임마");
         }
         else if (HP == 80)
         {
             hp100.SetActive(false);
             hp80.SetActive(true);
+            Debug.Log("80이다.임마");
         }
         else if (HP == 60)
         {
             hp80.SetActive(false);
             hp60.SetActive(true);
+            Debug.Log("60이다.임마");
         }
         else if (HP == 40)
         {
             hp60.SetActive(false);
             hp40.SetActive(true);
+            Debug.Log("40이다.임마");
         }
         else if (HP == 20)
         {
             hp40.SetActive(false);
             hp20.SetActive(true);
+            Debug.Log("20이다.임마");
         }
         else if (HP == 0)
         {
             hp20.SetActive(false);
             hp10.SetActive(true);
+            Debug.Log("10이다.임마");
         }
         else
         {
             hp10.SetActive(false);
             hp0.SetActive(true);
+            Debug.Log("0이다.임마");
             Die();
         }
     }
