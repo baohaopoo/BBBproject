@@ -59,8 +59,6 @@ public class PlayerShooter : MonoBehaviourPun
         rotateGun();
         animations();
 
-
-        //UpdateUI(); //남은 탄알 업데이트
         //로컬 플레이어만 총을 직접 사격. 탄알UI 갱신가능
         //if (!photonView.IsMine)
         //{
@@ -99,14 +97,5 @@ public class PlayerShooter : MonoBehaviourPun
     }
 
 
-    // 탄약 UI 갱신
-    //private void UpdateUI()
-    //{
-    //    //if (gun != null && UIManager.instance != null)
-    //    //{
-    //    //    // UI 매니저의 탄약 텍스트에 탄창의 탄약과 남은 전체 탄약을 표시
-    //    //    UIManager.instance.UpdateAmmoText(gun.magAmmo, gun.ammoRemain);
-    //    //}
-    //}
 
 }
