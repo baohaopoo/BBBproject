@@ -6,12 +6,10 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using TMPro;
 
-public class GameManager : MonoBehaviourPun
+public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
 {
 
-    public GameObject playerPrefab;
 
-    
     
     
     //싱글톤 접근용 프로퍼티
@@ -36,10 +34,30 @@ public class GameManager : MonoBehaviourPun
     public bool isGameover { get; private set; } // 게임 오버 상태
 
     public GameObject gameoverUI;
+    public GameObject playerPrefab; //생성할 게임플레이어 
 
 
-   
-    
+
+    //주기적으로 자동 실행되는 동기화 메서드
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+
+        //로컬 부분이라면 쓰기 부분이 실행
+        if (stream.IsWriting)
+        {
+            //네트워크를 통해 score값 보내기
+            //stream.SendNext(score);
+
+        }
+        else
+        {
+            //리모트 오브젝트라면 읽기 부분이 실행됨
+            //네트워크를 통해 score값 받기
+           //score = (int)stream.ReceiveNext();
+        
+        }
+      // UIManager.instance.UpdateScoreText(score);
+    }
+
     void Awake()
     {
         // 씬에 싱글톤 오브젝트가 된 다른 GameManager 오브젝트가 있다면
@@ -78,5 +96,9 @@ public class GameManager : MonoBehaviourPun
     {
         isGameover = true;
         gameoverUI.SetActive(true);
+    }
+    public override void OnLeftRoom()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 }

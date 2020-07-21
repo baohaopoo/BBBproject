@@ -57,16 +57,34 @@ public class PlayerController : MonoBehaviourPun
     int rightmouseCnt=0; //오른쪽마우스 두번누르면 1인칭시점 취소시키기위해 만든변수
     void Start()
     {
-       
-        //maincamera가 플레이어만 보고 달려오는 부분 구현
-        FollowCam = GameObject.Find("MainCamera");
-        FollowCam.GetComponent<SmoothFollow>().target = this.transform;
+
+        ////maincamera가 플레이어만 보고 달려오는 부분 구현
+        ///
+        if (photonView.IsMine)
+        {
+            FollowCam = GameObject.Find("MainCamera");
+            FollowCam.GetComponent<SmoothFollow>().target = this.transform;
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
         //if (!photonView.IsMine)
         //{
         //    FollowCam.SetActive(true);
-        
+
         //}
-        
+
         Debug.Log("maincamera 얻어오니");
         //FollowCam.GetComponent<SmoothFollow>().target = playerTranform.Find("playerpivot").transform;
    
@@ -80,7 +98,6 @@ public class PlayerController : MonoBehaviourPun
 
         if  (Camera.main.GetComponent<SmoothFollow>().target)
         {
-
             Debug.Log("잘들어오고 있니?");
         }
         playerTranform = GetComponent<Transform>();
