@@ -11,10 +11,6 @@ public class ActionControler : MonoBehaviour
     [SerializeField]
     private Text openText;
 
-    private bool IsOpen = false;
-
-    private Animator BoxAnimator;
-
     [SerializeField]
     private Inventory theInventory;
 
@@ -45,22 +41,11 @@ public class ActionControler : MonoBehaviour
         {
             openText.gameObject.SetActive(true);
             openText.text = other.transform.GetComponent<ItemPickup>().item.itemName + " 열기/닫기 " + "<color=yellow>" + "(Q)" + "</color>";
-            BoxAnimator = other.GetComponent<Animator>();
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 if (other.transform != null) //정보를 가져왔을때
                 {
-                    if (IsOpen == false)
-                    {
-                        BoxAnimator.SetBool("BoxOpen", true);
-                        IsOpen = true;
-                    }
-                    else if (IsOpen == true)
-                    {
-                        BoxAnimator.SetBool("BoxOpen", false);
-                        IsOpen = false;
-                    }
-
+                    other.GetComponent<ItemBox>().BoxAnimation();//아이템박스 열기닫기
                 }
             }
         }
