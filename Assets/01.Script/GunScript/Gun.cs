@@ -62,7 +62,7 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
-        BulletUI();
+        BulletUI(bulletRemain);
     }
 
 
@@ -151,9 +151,9 @@ public class Gun : MonoBehaviour
         bulletLineRenderer.enabled = false;
     }
 
-    private void BulletUI()
+    public void BulletUI(int br)
     {
-        if (bulletRemain == 5)
+        if (br == 5)
         {
             bulletImage1.SetActive(true);
             bulletImage2.SetActive(true);
@@ -161,7 +161,7 @@ public class Gun : MonoBehaviour
             bulletImage4.SetActive(true);
             bulletImage5.SetActive(true);
         }
-        else if (bulletRemain == 4)
+        else if (br == 4)
         {
             bulletImage1.SetActive(true);
             bulletImage2.SetActive(true);
@@ -169,7 +169,7 @@ public class Gun : MonoBehaviour
             bulletImage4.SetActive(true);
             bulletImage5.SetActive(false);
         }
-        else if (bulletRemain == 3)
+        else if (br == 3)
         {
             bulletImage1.SetActive(true);
             bulletImage2.SetActive(true);
@@ -177,7 +177,7 @@ public class Gun : MonoBehaviour
             bulletImage4.SetActive(false);
             bulletImage5.SetActive(false);
         }
-        else if (bulletRemain == 2)
+        else if (br == 2)
         {
             bulletImage1.SetActive(true);
             bulletImage2.SetActive(true);
@@ -185,7 +185,7 @@ public class Gun : MonoBehaviour
             bulletImage4.SetActive(false);
             bulletImage5.SetActive(false);
         }
-        else if (bulletRemain == 1)
+        else if (br == 1)
         {
             bulletImage1.SetActive(true);
             bulletImage2.SetActive(false);
@@ -193,7 +193,7 @@ public class Gun : MonoBehaviour
             bulletImage4.SetActive(false);
             bulletImage5.SetActive(false);
         }
-        else
+        else if (br == 0)
         {
             bulletImage1.SetActive(false);
             bulletImage2.SetActive(false);

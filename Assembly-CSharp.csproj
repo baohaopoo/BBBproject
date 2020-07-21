@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{73F41C4A-C1E3-9429-FFB1-EC838A495F68}</ProjectGuid>
+    <ProjectGuid>{C750D036-2814-F885-1A69-CAAC77189F99}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -71,13 +71,11 @@
     <Compile Include="Assets\01.Script\ExitToRoom.cs" />
     <Compile Include="Assets\01.Script\GameManager.cs" />
     <Compile Include="Assets\01.Script\GunScript\Gun.cs" />
-    <Compile Include="Assets\01.Script\Inventory.cs" />
     <Compile Include="Assets\01.Script\iPhinterClickHandler.cs" />
     <Compile Include="Assets\01.Script\Item Script\ActionControler.cs" />
     <Compile Include="Assets\01.Script\Item Script\GrabItem.cs" />
+    <Compile Include="Assets\01.Script\Item Script\Inventory.cs" />
     <Compile Include="Assets\01.Script\Item Script\Item.cs" />
-    <Compile Include="Assets\01.Script\Item Script\Item_Action_Controller.cs" />
-    <Compile Include="Assets\01.Script\Item Script\ItemBox.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemManager.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemPickup.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemSpawner.cs" />
@@ -167,37 +165,37 @@
     <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/저장소/BBBproject복사본/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/저장소/BBBproject복사본/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/저장소/BBBproject복사본/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/저장소/BBBproject복사본/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/저장소/BBBproject복사본/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/저장소/BBBproject복사본/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/저장소/BBBproject복사본/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/저장소/BBBproject복사본/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/저장소/BBBproject복사본/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/저장소/BBBproject복사본/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/저장소/BBBproject복사본/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -377,10 +375,10 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/저장소/BBBproject복사본/Assets/Plugins/Photon3Unity3D.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/저장소/BBBproject복사본/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.9f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -736,51 +734,51 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{D7E527C4-F765-2C64-5434-87E995A7E3A3}</Project>
+      <Project>{9084FA77-C7A3-F9A8-6DF4-6B12538A2ED9}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj">
-      <Project>{A116772F-2473-EF55-18CE-41783DEC937D}</Project>
+      <Project>{4A388DCF-D785-D1E7-4D10-4567064EFCE2}</Project>
       <Name>PhotonUnityNetworking.Utilities.PhotonPlayer.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PunDemos.DemoHubEditor.csproj">
-      <Project>{5C481F59-B2E8-3B0B-E4BF-471E133E34DB}</Project>
+      <Project>{5D767E09-C832-D67D-1D7E-1F0D911F494B}</Project>
       <Name>PunDemos.DemoHubEditor</Name>
     </ProjectReference>
     <ProjectReference Include="PunDemos.DemoSlotcarEditor.csproj">
-      <Project>{B8DA9436-6329-EBCA-53E9-2F487134C5D7}</Project>
+      <Project>{80AF718D-366C-46E3-6CE5-5E9A2742D4CF}</Project>
       <Name>PunDemos.DemoSlotcarEditor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Demos.csproj">
-      <Project>{497CD6AF-404E-D4A6-2EF0-B2C1BBC42837}</Project>
+      <Project>{313A4E5E-D22D-B04C-41BA-0F832B9B7CC1}</Project>
       <Name>PhotonUnityNetworking.Demos</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.csproj">
-      <Project>{A26DC5F1-FCAD-C863-2599-82A27157115B}</Project>
+      <Project>{1A373CA9-D83A-D9AB-0B44-7D2A412E365E}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonWebSocket.csproj">
-      <Project>{38A39429-2ECC-5D81-F636-DE1B56E704B9}</Project>
+      <Project>{2D40CAE3-7EE5-0465-5644-CC854352DC14}</Project>
       <Name>PhotonWebSocket</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonRealtime.csproj">
-      <Project>{F4C972FB-5D7C-F8D8-2656-035A799D2C09}</Project>
+      <Project>{93761975-6C7C-9ED6-AB1E-30E18C4DFD9D}</Project>
       <Name>PhotonRealtime</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.csproj">
-      <Project>{B0647CCF-FCD9-489D-1EC6-313C749F706D}</Project>
+      <Project>{59FC4FD8-D236-B18E-89F2-7F9B07B267B9}</Project>
       <Name>PhotonUnityNetworking</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonChat.csproj">
-      <Project>{A9B32F2C-1C09-061D-7AA7-6372CA7AF4B5}</Project>
+      <Project>{F19DEDDD-407D-15AF-3050-59F29A9335F5}</Project>
       <Name>PhotonChat</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
-      <Project>{49AD4EAB-999D-336B-7574-4210E1BEE3AA}</Project>
+      <Project>{8A8AFFC2-B83D-CDF4-B984-AA4B385B8C94}</Project>
       <Name>PhotonUnityNetworking.Utilities.Culling.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Editor.csproj">
-      <Project>{6F595D4E-3373-B745-935A-847BCBC9A119}</Project>
+      <Project>{0B74DDE1-19B8-0D04-265E-33BB3ED6598C}</Project>
       <Name>PhotonUnityNetworking.Editor</Name>
     </ProjectReference>
   </ItemGroup>

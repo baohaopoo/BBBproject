@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviourPun
     public GameObject FollowCam;
     public GameObject ForwardCam;
     public GameObject FirstPlayerCam;
-    public GameObject Timeline;
 
     bool isGrounded;
     bool isPicking;
