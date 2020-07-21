@@ -36,17 +36,22 @@ public class PlayerShooter : MonoBehaviourPun
         gun.transform.localPosition = new Vector3(-0.53f, -0.82f, 0.22f);
         gun.transform.rotation = FindObjectOfType<PlayerController>().transform.rotation;
     }
-
+    public Gun guninstance;
     private void OnEnable()
     {
         photonView.RPC("gunon_RPC", RpcTarget.All);
 
 
-        if (!photonView.IsMine)
+        if (photonView.IsMine)
         {
             //에임 UI도 활성화
-            this.CrossHairUI.SetActive(true);
-            Debug.Log("aim 활성화한다~");
+            guninstance.Aimon();
+
+     
+          
+           // Aim.SetActive(false);
+
+        
         }
 
     }
@@ -70,10 +75,9 @@ public class PlayerShooter : MonoBehaviourPun
         photonView.RPC("gunoff_RPC", RpcTarget.All);
         //에임 비활성화
 
-        if (!photonView.IsMine) //포톤이 로컬일떄
+        if (photonView.IsMine) //포톤이 로컬일떄
         {
-           CrossHairUI.gameObject.SetActive(false);
-            Debug.Log("에임 활성화 되고있냐");
+            guninstance.Aimoff();
         }
     }
     [PunRPC]
@@ -105,14 +109,15 @@ public class PlayerShooter : MonoBehaviourPun
 
     }
 
-    //ao,
+    //에임 애니메이션 
+
     private void animations()
     {
         if (playerInput.Verticalmove >= 1f)
         {
             CrossHairAnimator.SetBool("Walking", true);
     
-            if (playerInput.fire&&gun.bulletRemain!=0)
+            if (playerInput.fire)//&&gun.bulletRemain!=0)
             {
                 CrossHairAnimator.SetTrigger("walk_Fire");
                 gun.Fire();
@@ -121,7 +126,7 @@ public class PlayerShooter : MonoBehaviourPun
         else
         {
             CrossHairAnimator.SetBool("Walking", false);
-            if (playerInput.fire && gun.bulletRemain != 0)
+            if (playerInput.fire)// && gun.bulletRemain != 0)
             {
                 CrossHairAnimator.SetTrigger("Idle_Fire");
                 gun.Fire();

@@ -5,6 +5,9 @@ using Photon.Pun;
 
 public class Gun : MonoBehaviourPun, IPunObservable
 {
+
+    public static Gun instance = null;
+
     //주기적으로 자동 실행
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -67,8 +70,8 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
     private PlayerInput playerInput;
     private PlayerShooter playershooter;
-    public GameObject Aim;
-    public Animator AimAnimator;
+     public GameObject Aim;
+     public Animator AimAnimator;
     // public static Gun instance= null;  //실험
   
    
@@ -102,12 +105,26 @@ public class Gun : MonoBehaviourPun, IPunObservable
         //BulletUI();
     }
 
-    private void preshot()
+    public void preshot()
     {
         // photonView.RPC("Shot", RpcTarget.MasterClient);
         photonView.RPC("Shot", RpcTarget.All);
         BulletUI();
+        //Debug.Log("Aim 이 들어와라");
+        //Aim.SetActive(true);
 
+
+    }
+    public void Aimon()
+    {
+        Aim.SetActive(true);
+        Debug.Log("aim이 들어오래");
+    
+    }
+    public void Aimoff()
+    {
+        Aim.SetActive(false);
+        Debug.Log("aim 이 나가래");
     }
     // 발사 시도
     public void Fire()
@@ -127,8 +144,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
     [PunRPC]
     private void Shot()
     {
-        Debug.Log("Aim 이 들어와라");
-        Aim.SetActive(true);
+    
        
         //레이캐스트에 의한 충돌 정보 저장
         RaycastHit hit;
@@ -176,6 +192,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
         {
             //총알이 남은게 없다면 현재상태 Empty
             state = State.Empty;
+
         }
     }
 
@@ -204,7 +221,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
     public void BulletUI()
     {
-        Debug.Log("총알이 들어올까 말까 들어올까 말까");
+       
         if (bulletRemain == 5)
         {
             bulletImage1.SetActive(true);
