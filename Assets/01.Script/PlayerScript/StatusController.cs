@@ -52,8 +52,9 @@ public class StatusController : MonoBehaviourPun, Damageable
             Die();
         }
     }
-    [PunRPC]
+
     // 체력을 회복
+    [PunRPC]
     public virtual void RestoreHP(int newHP)
     {
         if (dead)

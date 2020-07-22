@@ -26,6 +26,15 @@ public class Health : StatusController
         playerRigidbody = GetComponent<Rigidbody>();
     }
 
+    //요거 츄ㅜ가ㅓ햄
+    private void Update()
+    {
+        if (photonView.IsMine == false)
+        {
+            return;
+        }
+    
+    }
     protected override void OnEnable()
     {
         // StatusController의 OnEnable() 실행 (상태 초기화)
@@ -40,8 +49,9 @@ public class Health : StatusController
 
 
     }
-    [PunRPC]
+
     // 데미지 처리
+    [PunRPC]
     public override void OnDamage(int damage, Vector3 hitPoint, Vector3 hitDirection)
     {
         base.OnDamage(damage, hitPoint, hitDirection);

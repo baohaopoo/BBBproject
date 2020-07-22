@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class Gun : MonoBehaviourPun, IPunObservable
 {
-
+    //GameObject
     public static Gun instance = null;
 
     //주기적으로 자동 실행
@@ -16,20 +16,19 @@ public class Gun : MonoBehaviourPun, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(state);
-
+            stream.SendNext(bulletRemain);
 
         }
         else
         {
             state = (State)stream.ReceiveNext();
+            bulletRemain = (int)stream.ReceiveNext();
 
-        
-        
         }
 
-    
-    
-    
+
+
+
     }
     public enum State
     {
@@ -70,11 +69,11 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
     private PlayerInput playerInput;
     private PlayerShooter playershooter;
-     public GameObject Aim;
-     public Animator AimAnimator;
+    public GameObject Aim;
+    public Animator AimAnimator;
     // public static Gun instance= null;  //실험
-  
-   
+
+
     private void Awake()
     {
         // 사용할 컴포넌트들의 참조를 가져오기
@@ -102,14 +101,14 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
     private void Update()
     {
-        //BulletUI();
+
     }
 
     public void preshot()
     {
         // photonView.RPC("Shot", RpcTarget.MasterClient);
         photonView.RPC("Shot", RpcTarget.All);
-        BulletUI();
+
         //Debug.Log("Aim 이 들어와라");
         //Aim.SetActive(true);
 
@@ -119,7 +118,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
     {
         Aim.SetActive(true);
         Debug.Log("aim이 들어오래");
-    
+
     }
     public void Aimoff()
     {
@@ -128,14 +127,18 @@ public class Gun : MonoBehaviourPun, IPunObservable
     }
     // 발사 시도
     public void Fire()
-    {
+   {
         //마지막 발사 했을때에서 timeBetfire이상의 시간이 났을때 
-        if( state == State.Ready && Time.time >= lastFireTime + timeBetFire)
+        if (state == State.Ready && Time.time >= lastFireTime + timeBetFire)
         {
             //마지막 총 발사 시점 갱신
             lastFireTime = Time.time;
 
             preshot(); //쏴라!
+
+            if (photonView.IsMine)
+                BulletUI(bulletRemain); //호스트의 것을 따라간다.
+
         }
     }
 
@@ -144,19 +147,23 @@ public class Gun : MonoBehaviourPun, IPunObservable
     [PunRPC]
     private void Shot()
     {
-    
-       
+
+
         //레이캐스트에 의한 충돌 정보 저장
         RaycastHit hit;
         //탄알이 맞은곳
         Vector3 hitPosition = Vector3.zero;
 
         //레이캐스트(시작지점, 방향 ,충돌정보, 거리)
-        if (Physics.Raycast(fireTransform.position,fireTransform.forward,out hit, fireDistance))
+        if (Physics.Raycast(fireTransform.position, fireTransform.forward, out hit, fireDistance))
         {
             //피격 이벤트 생성
             //Instantiate(생성할 오브젝트, 생성될 위치, 어느 방향으로?)
             Instantiate(HitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+
+
+            //UI를 바꾼다.
+            //BulletUI();
 
 
             //레이가 물체에 닿은경우에는 True, 아님 Fasle 
@@ -178,16 +185,18 @@ public class Gun : MonoBehaviourPun, IPunObservable
         {
             //레이가 다른물체와 충돌하지 않았다면 
             //탄알이 최대 사정거리까지 날아갔을때의 위치를 충돌위치로 두기
-            hitPosition = fireTransform.position + fireTransform.forward* fireDistance;
+            hitPosition = fireTransform.position + fireTransform.forward * fireDistance;
         }
 
         //발사 이펙트 재생
         StartCoroutine(ShotEffect(hitPosition));
 
         //탄알의 수 -1 
-      //  bulletminus();
+        //  bulletminus();
         bulletRemain -= 1;
-        Debug.Log("남은 탄알의 수" );
+
+
+        Debug.Log("남은 탄알의 수");
         if (bulletRemain <= 0)
         {
             //총알이 남은게 없다면 현재상태 Empty
@@ -196,8 +205,21 @@ public class Gun : MonoBehaviourPun, IPunObservable
         }
     }
 
-
+    //private void UpdateUI()
+    //{
+    //    //호스트는 직접 갱신
+    //    if (PhotonNetwork.IsMasterClient)
+    //    {
+    //        BulletUI(bulletRemain);
+    //    }
+    //    else
+    //    {
+    //        //클라는 바아온거
+    //        BulletUI(bulletRemain);
+        
+    //    }
     
+    //}
     // 발사 이펙트와 총알 궤적을 그린다    //코루틴사용
     private IEnumerator ShotEffect(Vector3 hitPosition)
     {
@@ -217,12 +239,14 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
         // 라인 렌더러를 비활성화하여 총알 궤적을 지운다
         bulletLineRenderer.enabled = false;
+
+    
     }
 
-    public void BulletUI()
+    public void BulletUI(int sb)
     {
        
-        if (bulletRemain == 5)
+        if (sb == 5)
         {
             bulletImage1.SetActive(true);
             bulletImage2.SetActive(true);
@@ -230,7 +254,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
             bulletImage4.SetActive(true);
             bulletImage5.SetActive(true);
         }
-        else if (bulletRemain == 4)
+        else if (sb == 4)
         {
             bulletImage1.SetActive(true);
             bulletImage2.SetActive(true);
@@ -238,7 +262,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
             bulletImage4.SetActive(true);
             bulletImage5.SetActive(false);
         }
-        else if (bulletRemain == 3)
+        else if (sb == 3)
         {
             bulletImage1.SetActive(true);
             bulletImage2.SetActive(true);
@@ -246,7 +270,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
             bulletImage4.SetActive(false);
             bulletImage5.SetActive(false);
         }
-        else if (bulletRemain == 2)
+        else if (sb == 2)
         {
             bulletImage1.SetActive(true);
             bulletImage2.SetActive(true);
@@ -254,7 +278,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
             bulletImage4.SetActive(false);
             bulletImage5.SetActive(false);
         }
-        else if (bulletRemain == 1)
+        else if (sb == 1)
         {
             bulletImage1.SetActive(true);
             bulletImage2.SetActive(false);
@@ -262,7 +286,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
             bulletImage4.SetActive(false);
             bulletImage5.SetActive(false);
         }
-        else
+        else if( sb == 0)
         {
             bulletImage1.SetActive(false);
             bulletImage2.SetActive(false);

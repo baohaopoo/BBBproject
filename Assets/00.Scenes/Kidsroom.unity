@@ -2882,7 +2882,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458309500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.22, y: 12.14, z: 11.28}
+  m_LocalPosition: {x: 6.26, y: 0.55, z: 1.08}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -14626,9 +14626,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b944c50f1400c6c48876e3dbcb702c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameoverUI: {fileID: 1372504101}
   playerPrefab: {fileID: 4233478493770235770, guid: ef7bf84ce6c5c3f44b7545eb9651483b,
     type: 3}
-  gameoverUI: {fileID: 1372504101}
 --- !u!4 &1602873130
 Transform:
   m_ObjectHideFlags: 0
@@ -17255,6 +17255,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2205417017535935442, guid: 7a3ebdf560d60d1438cd56df7f5ec525,
+        type: 3}
+      propertyPath: actionText
+      value: 
+      objectReference: {fileID: 1353394205}
     - target: {fileID: 2205417017535935440, guid: 7a3ebdf560d60d1438cd56df7f5ec525,
         type: 3}
       propertyPath: target
@@ -17281,11 +17286,6 @@ PrefabInstance:
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2205417017535935442, guid: 7a3ebdf560d60d1438cd56df7f5ec525,
-        type: 3}
-      propertyPath: actionText
-      value: 
-      objectReference: {fileID: 1353394205}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a3ebdf560d60d1438cd56df7f5ec525, type: 3}
 --- !u!1001 &2490867070176614395

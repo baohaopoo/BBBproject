@@ -8,8 +8,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
 {
-
-
+    public Gun guninstance;
+   
     
     
     //싱글톤 접근용 프로퍼티
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
     public GameObject gameoverUI;
     public GameObject playerPrefab; //생성할 게임플레이어 
 
-
+   
 
     //주기적으로 자동 실행되는 동기화 메서드
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
@@ -46,14 +46,14 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
         {
             //네트워크를 통해 score값 보내기
             //stream.SendNext(score);
-
+            stream.SendNext(guninstance.bulletRemain);
         }
         else
         {
             //리모트 오브젝트라면 읽기 부분이 실행됨
             //네트워크를 통해 score값 받기
-           //score = (int)stream.ReceiveNext();
-        
+            //score = (int)stream.ReceiveNext();
+            guninstance.bulletRemain = (int)stream.ReceiveNext();
         }
       // UIManager.instance.UpdateScoreText(score);
     }
