@@ -14,6 +14,8 @@ public class ItemBox : MonoBehaviour
     private GameObject Itembox_prefab;
     [SerializeField]
     private GameObject bullet_item_prefab; //총알 아이템
+    [SerializeField]
+    private GameObject trap_item_prefab; //덫 아이템
 
     private void Start()
     {
@@ -38,12 +40,18 @@ public class ItemBox : MonoBehaviour
     //박스안에 아이템 랜덤 생성 
     private void WhatItemIntheBox()
     {
-        int ItemNum = Random.Range(0, 1);//랜덤
+        int ItemNum = Random.Range(0, 2);//랜덤
 
         if (ItemNum == 0)
         {
             //총알 아이템 생성 Instantiate(생성아이템,아이템위치,기본회전값)
             Instantiate(bullet_item_prefab, Itembox_prefab.transform.position, Quaternion.identity);
+
+        }
+        if (ItemNum == 1)
+        {
+            //덫 아이템 생성
+            Instantiate(trap_item_prefab, Itembox_prefab.transform.position, Quaternion.identity);
 
         }
     }

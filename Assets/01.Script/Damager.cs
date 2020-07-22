@@ -29,7 +29,6 @@ public class Damager : StatusController
     // 사망 처리
     public override void Die()
     {
-        // LivingEntity의 Die()를 실행하여 기본 사망 처리 실행
         base.Die();
         gameObject.SetActive(false);
 

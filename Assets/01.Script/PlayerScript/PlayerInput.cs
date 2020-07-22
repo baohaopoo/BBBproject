@@ -27,8 +27,6 @@ public class PlayerInput : MonoBehaviourPun
     // 매프레임 사용자 입력을 감지
     private void Update()
     {
- 
-
         //게임오버 상태에서는 사용자 입력 감지 안함
         if (GameManager.instance != null && GameManager.instance.isGameover)
         {
@@ -63,5 +61,6 @@ public class PlayerInput : MonoBehaviourPun
         //    return;
 
         //}
+
     }
 }

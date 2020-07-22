@@ -23,6 +23,7 @@ TagManager:
   - Ladder_Air
   - bullet
   - CanOpen
+  - trap
   layers:
   - Default
   - TransparentFX

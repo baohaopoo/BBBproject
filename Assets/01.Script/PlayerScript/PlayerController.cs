@@ -260,28 +260,28 @@ public class PlayerController : MonoBehaviourPun
 
         }
 
-        if (collision.gameObject.tag == "rope")
-        {
-            //업로프가 false일때만 들어와라
-            if (!upRope)
-            {
-                upRope = true;
-                this.transform.Translate(0, 0.3f, 0);
-            }
-        }
+        //if (collision.gameObject.tag == "rope")
+        //{
+        //    //업로프가 false일때만 들어와라
+        //    if (!upRope)
+        //    {
+        //        upRope = true;
+        //        this.transform.Translate(0, 0.3f, 0);
+        //    }
+        //}
 
 
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject == rope)
-        {
-            upRope = false;
-            isRope = false;
+        //if (collision.gameObject == rope)
+        //{
+        //    upRope = false;
+        //    isRope = false;
 
 
-        }
+        //}
 
         //if (collision.gameObject == ropeCollision)
         //{
@@ -292,10 +292,10 @@ public class PlayerController : MonoBehaviourPun
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("노그래비티존");
-        if (other.gameObject == ropeCollision)
-        {
-            noGravity = true;
-        }
+        //if (other.gameObject == ropeCollision)
+        //{
+        //    noGravity = true;
+        //}
 
     }
 

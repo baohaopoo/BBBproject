@@ -81,6 +81,7 @@
     <Compile Include="Assets\01.Script\Item Script\ItemPickup.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemSpawner.cs" />
     <Compile Include="Assets\01.Script\Item Script\Slot.cs" />
+    <Compile Include="Assets\01.Script\Item Script\Trap.cs" />
     <Compile Include="Assets\01.Script\Ladder_Action.cs" />
     <Compile Include="Assets\01.Script\LobbyManager.cs" />
     <Compile Include="Assets\01.Script\NPC\dollFriend.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Assets\01.Script\PlayerScript\PlayerController.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerInput.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerShooter.cs" />
+    <Compile Include="Assets\01.Script\PlayerScript\PlayerTied.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\StatusController.cs" />
     <Compile Include="Assets\01.Script\SceneFadeIn.cs" />
     <Compile Include="Assets\01.Script\StartButtonPressed.cs" />

@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: "\uC544\uC774\uD15C\uBC15\uC2A4"
   itemType: 3
   itemImage: {fileID: 0}
-  itemPrefab: {fileID: 228165121616961232, guid: 264c5aea08049644183601ab10766a32,
+  itemPrefab: {fileID: 4047935066074279598, guid: 264c5aea08049644183601ab10766a32,
     type: 3}
+  realPrefab: {fileID: 0}
   weaponType: 

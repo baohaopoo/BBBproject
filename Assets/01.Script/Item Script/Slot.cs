@@ -37,14 +37,6 @@ public class Slot : MonoBehaviour
         SetColor(1); //아이템 보여준다.
     }
 
-    //슬롯 비우기
-    private void ClearSlot()
-    {
-        item = null;
-        itemImage.sprite = null;
-        SetColor(0);
-    }
-
     public void UseItem()
     {
         item = null;

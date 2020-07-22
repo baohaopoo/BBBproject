@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Health : StatusController
 {
@@ -7,11 +8,8 @@ public class Health : StatusController
     private Animator playerAnimator; // 플레이어의 애니메이터
     private Rigidbody playerRigidbody; // 플레이어 캐릭터의 리지드바디
 
-    private PlayerController playercontroller; // 플레이어 움직임 컴포넌트
-    private PlayerShooter playerShooter; // 플레이어 슈터 컴포넌트
     public GameObject HPImage;
     int x = 100;
-
 
     public GameObject hp100;
     public GameObject hp80;
@@ -25,6 +23,7 @@ public class Health : StatusController
     {
         playerAnimator = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
+
     }
 
     protected override void OnEnable()
@@ -37,8 +36,6 @@ public class Health : StatusController
     public override void RestoreHP(int newHP)
     {
         base.RestoreHP(newHP);
-
-
     }
 
     // 데미지 처리
@@ -50,8 +47,9 @@ public class Health : StatusController
         if (HP >= 0)
         {
             playerAnimator.SetTrigger("Damaged");
-            playerRigidbody.velocity = Vector3.zero;
-            playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);
+            
+            playerRigidbody.velocity = Vector3.zero; //속도 0으로하고
+            playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);//뒤로
         }
 
 
