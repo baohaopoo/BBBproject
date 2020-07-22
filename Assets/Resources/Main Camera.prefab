@@ -100,11 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9411b73b6926aa4aac93d64f5639600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 100
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 256
   actionText: {fileID: 0}
+  openText: {fileID: 0}
+  theInventory: {fileID: 0}
 --- !u!82 &2205417017535935441
 AudioSource:
   m_ObjectHideFlags: 0

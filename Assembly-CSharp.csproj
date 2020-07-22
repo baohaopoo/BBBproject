@@ -63,8 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\01.Script\ActionControler.cs" />
     <Compile Include="Assets\01.Script\CameraController.cs" />
+    <Compile Include="Assets\01.Script\CameraScript\GunviewCameraController.cs" />
+    <Compile Include="Assets\01.Script\CameraScript\MainCameraController.cs" />
     <Compile Include="Assets\01.Script\ChangeScene.cs" />
     <Compile Include="Assets\01.Script\Damageable.cs" />
     <Compile Include="Assets\01.Script\Damager.cs" />
@@ -72,33 +73,35 @@
     <Compile Include="Assets\01.Script\ExitToRoom.cs" />
     <Compile Include="Assets\01.Script\GameManager.cs" />
     <Compile Include="Assets\01.Script\GunScript\Gun.cs" />
-    <Compile Include="Assets\01.Script\HumanEnemy.cs" />
-    <Compile Include="Assets\01.Script\Inventory.cs" />
     <Compile Include="Assets\01.Script\iPhinterClickHandler.cs" />
+    <Compile Include="Assets\01.Script\Item Script\ActionControler.cs" />
     <Compile Include="Assets\01.Script\Item Script\GrabItem.cs" />
+    <Compile Include="Assets\01.Script\Item Script\Inventory.cs" />
     <Compile Include="Assets\01.Script\Item Script\Item.cs" />
-    <Compile Include="Assets\01.Script\Item Script\Item_Action_Controller.cs" />
+    <Compile Include="Assets\01.Script\Item Script\ItemBox.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemManager.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemPickup.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemSpawner.cs" />
+    <Compile Include="Assets\01.Script\Item Script\Slot.cs" />
+    <Compile Include="Assets\01.Script\Item Script\Trap.cs" />
     <Compile Include="Assets\01.Script\Ladder_Action.cs" />
     <Compile Include="Assets\01.Script\LobbyManager.cs" />
     <Compile Include="Assets\01.Script\NPC\dollFriend.cs" />
+    <Compile Include="Assets\01.Script\NPC\HumanEnemy.cs" />
     <Compile Include="Assets\01.Script\Openthedoor.cs" />
     <Compile Include="Assets\01.Script\PlayerNameInput.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\Health.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerController.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerInput.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerShooter.cs" />
+    <Compile Include="Assets\01.Script\PlayerScript\PlayerTied.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\StatusController.cs" />
     <Compile Include="Assets\01.Script\SceneFadeIn.cs" />
-    <Compile Include="Assets\01.Script\Slot.cs" />
     <Compile Include="Assets\01.Script\StartButtonPressed.cs" />
     <Compile Include="Assets\01.Script\Timelinedirector.cs" />
     <Compile Include="Assets\01.Script\TimerDelayS.cs" />
     <Compile Include="Assets\01.Script\UIScript\ChangeScenePoint.cs" />
     <Compile Include="Assets\01.Script\UIScript\Particle.cs" />
-    <Compile Include="Assets\01.Script\UseItem.cs" />
     <Compile Include="Assets\01.Script\Window_Action.cs" />
     <Compile Include="Assets\01.Script\ZoomInOut.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\OverTheShoulderAim\ActivateOnKeypress.cs" />
