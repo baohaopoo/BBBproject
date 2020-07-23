@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 5407919804534714699}
   - component: {fileID: 5407919804534714701}
   - component: {fileID: 5407919804534714698}
+  - component: {fileID: 3892722784942626028}
   m_Layer: 0
   m_Name: ItemBox
   m_TagString: CanOpen
@@ -158,6 +159,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 41a8a16a24b8f544fa02804f6a6d8170, type: 2}
+--- !u!114 &3892722784942626028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4047935066074279598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69300efa6be0a14681d0c3600db4cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet_item_prefab: {fileID: 1389849304228063467, guid: 8d8aa3e78ddaec7489f18a25e622e02f,
+    type: 3}
+  trap_item_prefab: {fileID: 7333122569276371788, guid: b345b2429c2dee741bb09947a65ff9f5,
+    type: 3}
+  obstacle_item_prefab: {fileID: 7128666437137567071, guid: 2945230dd190633489691ecb693a5881,
+    type: 3}
+  ham_item_prefab: {fileID: 2847269939483991875, guid: 9a37630c98a63194fada0c426584b88c,
+    type: 3}
+  SpawnTime: 1
 --- !u!1 &4192767198538217663
 GameObject:
   m_ObjectHideFlags: 0

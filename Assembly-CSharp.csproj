@@ -74,6 +74,7 @@
     <Compile Include="Assets\01.Script\iPhinterClickHandler.cs" />
     <Compile Include="Assets\01.Script\Item Script\ActionControler.cs" />
     <Compile Include="Assets\01.Script\Item Script\GrabItem.cs" />
+    <Compile Include="Assets\01.Script\Item Script\HealthRecovery.cs" />
     <Compile Include="Assets\01.Script\Item Script\Inventory.cs" />
     <Compile Include="Assets\01.Script\Item Script\Item.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemBox.cs" />
@@ -142,6 +143,8 @@
     <Compile Include="Assets\PhotonChatApi\ChatState.cs" />
     <Compile Include="Assets\PhotonChatApi\ChatUserStatus.cs" />
     <Compile Include="Assets\PhotonChatApi\IChatClientListener.cs" />
+    <Compile Include="Assets\RPG Food &amp; Drinks Pack\Assets\Scripts\Consumer.cs" />
+    <Compile Include="Assets\RPG Food &amp; Drinks Pack\Assets\Scripts\Rotator.cs" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

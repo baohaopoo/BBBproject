@@ -15,6 +15,8 @@ public class Inventory : MonoBehaviour
     private GameObject realTrap_item_prefab; //진짜덫 아이템
 
     [SerializeField]
+    private GameObject realObstacle_item_prefab;// 송곳아이템
+    [SerializeField]
     private GameObject player; 
 
     private void Update()
@@ -43,27 +45,46 @@ public class Inventory : MonoBehaviour
         {
             UsetrapItem();
         }
+        else if (slot1.item.name == "ObstacleItem")
+        {
+            UseObstacleItem();
+        }
+        else if (slot1.item.name == "HamItem")
+        {
+            UseHamItem();
+        }
     }
 
     private void UsebulletItem()
-    {
-        
+    {        
         gun.bulletRemain += 3;
         if (gun.bulletRemain > 5)
         {
             gun.bulletRemain = 5;
         }
-        Debug.Log("@@@@bullet:" + gun.bulletRemain);
         gun.BulletUI(gun.bulletRemain);
     }
 
     private void UsetrapItem()
     {
         //플레이어를 기준으로 조금 위, 조금 앞에 덫을 위치하게 한다.
-        Vector3 pos = player.transform.position+ Vector3.up*0.4f+Vector3.forward;
+        Vector3 pos = player.transform.position+ Vector3.up*0.4f+Vector3.forward*2f;
         //바닥에 덫 생성
         Instantiate(realTrap_item_prefab, pos, Quaternion.identity);
 
+    }
+
+    private void UseObstacleItem()
+    {
+        //플레이어를 기준으로 조금 위, 조금 앞에 덫을 위치하게 한다.
+        Vector3 pos = player.transform.position + Vector3.up * 0.4f + Vector3.forward*2f;
+        //바닥에 덫 생성
+        Instantiate(realObstacle_item_prefab, pos, Quaternion.identity);
+    }
+
+    private void UseHamItem()
+    {
+        Debug.Log("냠냠");
     }
     public void AcquireItem(Item _item)
     {

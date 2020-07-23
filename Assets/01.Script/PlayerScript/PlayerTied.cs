@@ -7,12 +7,12 @@ public class PlayerTied : MonoBehaviour
 
     private GameObject player;
     public GameObject trap;
-
+    private Trap trapAnimation;
     private bool tied = false;
 
     private void Start()
     {
-        
+        trapAnimation = GetComponent<Trap>();
     }
     private void Update()
     {
@@ -29,6 +29,8 @@ public class PlayerTied : MonoBehaviour
         {
             player =other.gameObject;
             StartCoroutine(playerOnTrap());
+            StartCoroutine(trapAnimation.TrapAnimation());
+            
         }
     }
 

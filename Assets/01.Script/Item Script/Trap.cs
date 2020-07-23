@@ -11,17 +11,13 @@ public class Trap : MonoBehaviour
     {
         TrapAnimator = GetComponent<Animator>();
     }
-
-    void Update()
-    {
-
-    }
-
-    private IEnumerator TrapAnimation()
+ 
+    public IEnumerator TrapAnimation()
     {
         TrapAnimator.SetBool("trap_bite", true);
         yield return new WaitForSeconds(3f);//3초동안 기다린다 
         TrapAnimator.SetBool("trap_bite", false);
+        Destroy(gameObject, 3);
     }
 
         
