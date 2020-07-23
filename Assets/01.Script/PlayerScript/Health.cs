@@ -26,7 +26,7 @@ public class Health : StatusController
         playerRigidbody = GetComponent<Rigidbody>();
     }
 
-    //요거 츄ㅜ가ㅓ햄
+    //요거  추가햄
     private void Update()
     {
         if (photonView.IsMine == false)

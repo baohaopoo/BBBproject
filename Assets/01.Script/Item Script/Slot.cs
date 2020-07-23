@@ -42,6 +42,7 @@ public class Slot : MonoBehaviour
         item = null;
         itemImage.sprite = null;
         SetColor(0);
+        Debug.Log("useItem 되고있냐????????????");
     }
 
 

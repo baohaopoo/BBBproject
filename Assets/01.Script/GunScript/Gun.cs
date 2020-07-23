@@ -111,8 +111,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
         //Debug.Log("Aim 이 들어와라");
         //Aim.SetActive(true);
-
-
+  
     }
     public void Aimon()
     {
@@ -147,6 +146,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
     [PunRPC]
     private void Shot()
     {
+        
 
 
         //레이캐스트에 의한 충돌 정보 저장
@@ -193,8 +193,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
         //탄알의 수 -1 
         //  bulletminus();
-        bulletRemain -= 1;
-
+        photonView.RPC("bulletRemainmanage", RpcTarget.All);
 
         Debug.Log("남은 탄알의 수");
         if (bulletRemain <= 0)
@@ -243,11 +242,19 @@ public class Gun : MonoBehaviourPun, IPunObservable
     
     }
 
+    [PunRPC]
+    public void bulletRemainmanage()
+    {
+       
+        bulletRemain -= 1;
+
+    }
+
     public void BulletUI(int sb)
     {
        
         if (sb == 5)
-        {
+        { 
             bulletImage1.SetActive(true);
             bulletImage2.SetActive(true);
             bulletImage3.SetActive(true);

@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviourPun
     public GameObject FollowCam; //maincam
     public GameObject ForwardCam; //F키 눌를떄
     public GameObject FirstPlayerCam;
-
+    public GameObject PlayerPibot; //플레이어의 피봇
    
    // public GameObject Timeline;
 
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviourPun
         if (photonView.IsMine)
         {
             FollowCam = GameObject.Find("MainCamera");
-            FollowCam.GetComponent<SmoothFollow>().target = this.transform;
+            FollowCam.GetComponent<SmoothFollow>().target = this.PlayerPibot.transform;
 
 
 

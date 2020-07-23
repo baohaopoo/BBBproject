@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Trap : MonoBehaviour
+public class Trap : MonoBehaviourPun
 {
     private Animator TrapAnimator;
 
@@ -17,7 +18,7 @@ public class Trap : MonoBehaviour
 
     }
 
-    private IEnumerator TrapAnimation()
+    public IEnumerator TrapAnimation()
     {
         TrapAnimator.SetBool("trap_bite", true);
         yield return new WaitForSeconds(3f);//3초동안 기다린다 
