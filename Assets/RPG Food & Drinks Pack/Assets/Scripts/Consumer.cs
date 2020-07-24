@@ -8,7 +8,7 @@ public class Consumer : MonoBehaviour
     GameObject[] portions;
     int currentIndex;
     float lastChange;
-    float interval = 1f;
+    public float interval = 0.5f;
 
     void Start()
     {
@@ -39,7 +39,8 @@ public class Consumer : MonoBehaviour
         if (currentIndex > portions.Length)
         {
             currentIndex = 0;
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
 
         }
             

@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 2468121416096853515}
   m_Layer: 0
   m_Name: Ham
-  m_TagString: Untagged
+  m_TagString: Ham
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

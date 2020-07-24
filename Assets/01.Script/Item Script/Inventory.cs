@@ -21,10 +21,16 @@ public class Inventory : MonoBehaviour
     private GameObject realHam_item_prefab;//햄아이템
 
     [SerializeField]
-    private GameObject player; 
+    private GameObject player;
+
+    private GameObject ham;
+
+
 
     private void Update()
     {
+
+           
         if (slot1.item != null && Input.GetButtonDown("UseItem")) //아이템 있고 쉬프트키 누르면 사용 
         {
             checkItem();
@@ -35,6 +41,10 @@ public class Inventory : MonoBehaviour
                 slot2.UseItem();
             }
 
+        }
+        if (Input.GetKey(KeyCode.Z))
+        {
+            UseHamItem();
         }
 
     }
@@ -88,7 +98,9 @@ public class Inventory : MonoBehaviour
 
     private void UseHamItem()
     {
-        Debug.Log("냠냠");
+        player.GetComponent<Animator>().SetTrigger("isEat");
+        player.transform.FindChild("Ham").gameObject.SetActive(true);
+        player.GetComponent<Health>().RestoreHP(40);
     }
 
     public void AcquireItem(Item _item)

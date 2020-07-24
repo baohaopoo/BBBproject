@@ -90,6 +90,7 @@ public class Gun : MonoBehaviour
         //레이캐스트(시작지점, 방향 ,충돌정보, 거리)
         if (Physics.Raycast(fireTransform.position,fireTransform.forward,out hit, fireDistance))
         {
+
             //피격 이벤트 생성
             //Instantiate(생성할 오브젝트, 생성될 위치, 어느 방향으로?)
             Instantiate(HitEffect, hit.point, Quaternion.LookRotation(hit.normal));

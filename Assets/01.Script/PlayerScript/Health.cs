@@ -8,21 +8,16 @@ public class Health : StatusController
     private Animator playerAnimator; // 플레이어의 애니메이터
     private Rigidbody playerRigidbody; // 플레이어 캐릭터의 리지드바디
 
-    public GameObject HPImage;
+
+    //public Slider HPSlider; //체력 슬라이더 
     int x = 100;
 
-    public GameObject hp100;
-    public GameObject hp80;
-    public GameObject hp60;
-    public GameObject hp40;
-    public GameObject hp20;
-    public GameObject hp10;
-    public GameObject hp0;
 
     private void Start()
     {
         playerAnimator = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
+
 
     }
 
@@ -30,6 +25,15 @@ public class Health : StatusController
     {
         // StatusController의 OnEnable() 실행 (상태 초기화)
         base.OnEnable();
+
+        //체력 슬라이더 활성화
+        //HPSlider.gameObject.SetActive(true);
+        // 체력 슬라이더의 최대값을 기본 체력값으로 변경
+        //HPSlider.maxValue = startHP;
+        // 체력 슬라이더의 값을 현재 체력값으로 변경
+        //HPSlider.value = HP;
+        UpdateUI();
+
     }
 
     // 체력 회복
@@ -38,9 +42,8 @@ public class Health : StatusController
         //StatusController의 RestoreHP 실행 (체력증가)
         base.RestoreHP(newHP);
         //체력 갱신 
-        //
-        Debug.Log("체력은:"+HP);
-        //
+        UpdateUI();
+        //HPSlider.value = HP;
     }
 
     // 데미지 처리
@@ -49,7 +52,7 @@ public class Health : StatusController
         base.OnDamage(damage, hitPoint, hitDirection);
 
         //죽지않았고 , 닿으면 뒤로
-        if (HP >= 0)
+        if (!dead)
         {
             playerAnimator.SetTrigger("Damaged");
             
@@ -57,46 +60,18 @@ public class Health : StatusController
             playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);//뒤로
         }
 
+        UpdateUI();
+        //갱신된 체력 슬라이더에 반영
+        //HPSlider.value = HP;
 
-        //갱신된 체력으로 이미지 색깔 변신
-        if (HP < 20)
+    }
+
+    //ui갱신 
+    private void UpdateUI()
+    {
+        if (playerRigidbody != null && UIManager.instance != null)
         {
-            HPImage.GetComponent<Image>().color = new Color(1, 0, 0);
-        }
-        if (HP == 100)
-        {
-            hp100.SetActive(true);
-        }
-        else if (HP == 80)
-        {
-            hp100.SetActive(false);
-            hp80.SetActive(true);
-        }
-        else if (HP == 60)
-        {
-            hp80.SetActive(false);
-            hp60.SetActive(true);
-        }
-        else if (HP == 40)
-        {
-            hp60.SetActive(false);
-            hp40.SetActive(true);
-        }
-        else if (HP == 20)
-        {
-            hp40.SetActive(false);
-            hp20.SetActive(true);
-        }
-        else if (HP == 0)
-        {
-            hp20.SetActive(false);
-            hp10.SetActive(true);
-        }
-        else
-        {
-            hp10.SetActive(false);
-            hp0.SetActive(true);
-            Die();
+            UIManager.instance.UpdateHPSlider(HP);
         }
     }
 
@@ -104,9 +79,13 @@ public class Health : StatusController
     public override void Die()
     {
         base.Die();
-        HPImage.SetActive(false);
+        //체력 슬라이더 비활성화
+        //HPSlider.gameObject.SetActive(false);
+        //사망애니메이션
         playerAnimator.SetTrigger("Die");
+
         GameManager.instance.OnPlayerDead();
+
     }
 
 

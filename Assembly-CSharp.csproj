@@ -100,7 +100,7 @@
     <Compile Include="Assets\01.Script\TimerDelayS.cs" />
     <Compile Include="Assets\01.Script\UIScript\ChangeScenePoint.cs" />
     <Compile Include="Assets\01.Script\UIScript\Particle.cs" />
-    <Compile Include="Assets\01.Script\UseItem.cs" />
+    <Compile Include="Assets\01.Script\UIScript\UIManager.cs" />
     <Compile Include="Assets\01.Script\Window_Action.cs" />
     <Compile Include="Assets\01.Script\ZoomInOut.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\OverTheShoulderAim\ActivateOnKeypress.cs" />

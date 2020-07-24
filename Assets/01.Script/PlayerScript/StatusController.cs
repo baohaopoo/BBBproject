@@ -25,7 +25,7 @@ public class StatusController : MonoBehaviour, Damageable
         // 데미지만큼 체력 감소
         HP -= damage;
 
-        if (HP < 0 && !dead)
+        if (HP <= 0 && !dead)
         {
             Die();
         }
@@ -41,6 +41,10 @@ public class StatusController : MonoBehaviour, Damageable
 
         // 체력 추가
         HP += newHP;
+        if (HP > 100)
+        {
+            HP = 100;
+        }
     }
 
     // 사망 처리

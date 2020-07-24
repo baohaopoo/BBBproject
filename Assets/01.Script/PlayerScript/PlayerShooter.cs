@@ -8,7 +8,7 @@ public class PlayerShooter : MonoBehaviourPun
 
     private PlayerController playerController;
     private PlayerInput playerInput;
-    private Animator playerAnimator; 
+    private Animator playerAnimator;
     private GunviewCameraController cameraController;
 
 
@@ -26,7 +26,7 @@ public class PlayerShooter : MonoBehaviourPun
         cameraController = GetComponent<GunviewCameraController>();
 
         //총을 자식으로 두고 위치갱신 
-        gun.transform.SetParent(playerGrabPoint.transform); 
+        gun.transform.SetParent(playerGrabPoint.transform);
         gun.transform.localPosition = new Vector3(-0.53f, -0.82f, 0.22f);
         gun.transform.rotation = FindObjectOfType<PlayerController>().transform.rotation;
     }
@@ -73,8 +73,8 @@ public class PlayerShooter : MonoBehaviourPun
         if (playerInput.Verticalmove >= 1f)
         {
             CrossHairAnimator.SetBool("Walking", true);
-    
-            if (playerInput.fire&&gun.bulletRemain!=0)
+
+            if (playerInput.fire && gun.bulletRemain != 0)
             {
                 CrossHairAnimator.SetTrigger("walk_Fire");
                 gun.Fire();
