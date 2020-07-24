@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 
-public class ItemBox : MonoBehaviour
+public class ItemBox : MonoBehaviourPun
 {
 
     private bool IsOpen = false;
@@ -32,7 +33,19 @@ public class ItemBox : MonoBehaviour
         lastSpawnTime = 0;
         isFirstOpen = true;
     }
+
+
+    public void goani()
+    {
+
+        photonView.RPC("BoxAnimation", RpcTarget.All);
+
+
+
+
+    }
     //박스 애니메이션 
+    [PunRPC]
     public void BoxAnimation()
     {
         if (IsOpen == false)

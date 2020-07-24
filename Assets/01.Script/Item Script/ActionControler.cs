@@ -45,7 +45,8 @@ public class ActionControler : MonoBehaviour
             {
                 if (other.transform != null) //정보를 가져왔을때
                 {
-                    other.GetComponent<ItemBox>().BoxAnimation();//아이템박스 열기닫기
+                    other.GetComponent<ItemBox>().goani();//아이템박스 열기닫기
+
                 }
             }
         }

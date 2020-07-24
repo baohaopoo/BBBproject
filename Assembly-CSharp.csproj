@@ -116,6 +116,7 @@
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMove.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMoveOnSphere.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMovePhysics.cs" />
+    <Compile Include="Assets\bulletUI.cs" />
     <Compile Include="Assets\CameraSetup.cs" />
     <Compile Include="Assets\crosshair.cs" />
     <Compile Include="Assets\Friendcontroller.cs" />
