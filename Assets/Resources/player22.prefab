@@ -1249,7 +1249,7 @@ Transform:
   - {fileID: 5323742208252606790}
   - {fileID: 5323742207770592320}
   - {fileID: 5323742206812629374}
-  - {fileID: 5651248087161655455}
+  - {fileID: 9004929008090940003}
   - {fileID: 4892497226632863165}
   - {fileID: 3469763151472967023}
   m_Father: {fileID: 0}
@@ -1367,10 +1367,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a367e1fc0d3a691419ae299669658e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 799372438562236355}
-  CrossHairAnimator: {fileID: 4901244582818612201}
-  CrossHairUI: {fileID: 4901244582818612203}
-  guninstance: {fileID: 799372438562236355}
+  gun: {fileID: 9004929008090940450}
+  CrossHairAnimator: {fileID: 1857416465809434870}
+  CrossHairUI: {fileID: 1857416465809435928}
+  guninstance: {fileID: 9004929008090940450}
 --- !u!114 &-7303149785579330727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3250,7 +3250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot1: {fileID: 3123869355427255467}
   slot2: {fileID: 8244572857588577098}
-  gun: {fileID: 799372438562236355}
+  gun: {fileID: 9004929008090940450}
   realTrap_item_prefab: {fileID: 7684279746883713009, guid: c9a9b6227d563a348bd7beeb81fd64bd,
     type: 3}
   realObstacle_item_prefab: {fileID: 8028783700710154434, guid: 7fbe5cf481d29b44a94a2a3b8852f719,
@@ -3431,7 +3431,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7696896779946476899}
-  - {fileID: 4901244582818612202}
+  - {fileID: 1857416465809434690}
   - {fileID: 6544026945293780944}
   - {fileID: 7184049014829430758}
   m_Father: {fileID: 8717625262024593757}
@@ -3633,19 +3633,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2186688537394ce4b9c042d62637e748, type: 3}
---- !u!1 &4901244582818612203 stripped
+--- !u!1 &1857416465809435928 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6756078482511261441, guid: 2186688537394ce4b9c042d62637e748,
     type: 3}
   m_PrefabInstance: {fileID: 1857416465809435882}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &4901244582818612202 stripped
+--- !u!224 &1857416465809434690 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6756078482511261440, guid: 2186688537394ce4b9c042d62637e748,
     type: 3}
   m_PrefabInstance: {fileID: 1857416465809435882}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &4901244582818612201 stripped
+--- !u!95 &1857416465809434870 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6756078482511261443, guid: 2186688537394ce4b9c042d62637e748,
     type: 3}
@@ -3784,15 +3784,15 @@ PrefabInstance:
         type: 3}
       propertyPath: Aim
       value: 
-      objectReference: {fileID: 4901244582818612203}
+      objectReference: {fileID: 1857416465809435928}
     - target: {fileID: 8637939022194435747, guid: 8d81b117cb6151f4dbb341062552b046,
         type: 3}
       propertyPath: AimAnimator
       value: 
-      objectReference: {fileID: 4901244582818612201}
+      objectReference: {fileID: 1857416465809434870}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d81b117cb6151f4dbb341062552b046, type: 3}
---- !u!114 &799372438562236355 stripped
+--- !u!114 &9004929008090940450 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8637939022194435747, guid: 8d81b117cb6151f4dbb341062552b046,
     type: 3}
@@ -3804,7 +3804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20c46f253ee2f834f946c65db32cdc26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &5651248087161655455 stripped
+--- !u!4 &9004929008090940003 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3646414901678658047, guid: 8d81b117cb6151f4dbb341062552b046,
     type: 3}

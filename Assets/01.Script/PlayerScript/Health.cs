@@ -26,6 +26,8 @@ public class Health : StatusController, IPunObservable
         }
         else
         {
+
+
             HP = (int)stream.ReceiveNext();
         
         }
@@ -68,8 +70,8 @@ public class Health : StatusController, IPunObservable
     public override void OnDamage(int damage, Vector3 hitPoint, Vector3 hitDirection)
     {
 
-            base.OnDamage(damage, hitPoint, hitDirection);
-   
+        base.OnDamage(damage, hitPoint, hitDirection);
+
         //죽지않았고 , 닿으면 뒤로
         if (!dead)
         {
@@ -79,8 +81,16 @@ public class Health : StatusController, IPunObservable
             playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);//뒤로
         }
 
-        //갱신된 체력 슬라이더에 반영
-        UpdateUI();
+        if (photonView.IsMine)
+        {
+
+            Debug.Log("현재 체력은?????????");
+            Debug.Log(HP);
+            //갱신된 체력 슬라이더에 반영
+            UpdateUI();
+
+
+        }
 
 
 

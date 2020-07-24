@@ -60,8 +60,6 @@ public class StatusController : MonoBehaviourPun, Damageable
 
            
 
-            Debug.Log("현재 체력은?????????");
-            Debug.Log(HP);
 
             //호스트에서 클라이언트로 동기화
             this.photonView.RPC("ApplyUpdateHealth", RpcTarget.Others, HP, dead);
