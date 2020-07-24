@@ -14,7 +14,7 @@ public class StatusController : MonoBehaviourPun, Damageable
     // 자식클래스는 override로 부모클래스의 가상메서드를 재정의 가능 
 
     public int startHP = 100;
-
+ 
 
 
     //호스트 -> 모든 클라이언트 방향으로 체력과 사망 상태를 동기화하는 메서
@@ -34,7 +34,10 @@ public class StatusController : MonoBehaviourPun, Damageable
     {
         dead = false;
         HP = startHP;
-      
+
+
+
+
     }
     //public void applayHP()
     //{

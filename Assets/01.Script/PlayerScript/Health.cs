@@ -1,19 +1,36 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
-public class Health : StatusController
+public class Health : StatusController, IPunObservable
 {
     private AudioSource playerAudioPlayer; // 플레이어 소리 재생기
     private Animator playerAnimator; // 플레이어의 애니메이터
     private Rigidbody playerRigidbody; // 플레이어 캐릭터의 리지드바디
 
-    public Slider HPSlider; //체력 슬라이더 
     private PlayerController playercontroller; // 플레이어 움직임 컴포넌트
     private PlayerShooter playerShooter; // 플레이어 슈터 컴포넌트
 
     int x = 100;
 
     public static Health h_instance = null;
+
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+
+        if (stream.IsWriting)
+        {
+
+            stream.SendNext(HP);
+
+        }
+        else
+        {
+            HP = (int)stream.ReceiveNext();
+        
+        }
+    
+    }
     private void Start()
     {
         playerAnimator = GetComponent<Animator>();
@@ -33,14 +50,7 @@ public class Health : StatusController
     {
         // StatusController의 OnEnable() 실행 (상태 초기화)
         base.OnEnable();
-        //
-        //체력 슬라이더 활성화
-        //HPSlider.gameObject.SetActive(true);
-        // 체력 슬라이더의 최대값을 기본 체력값으로 변경
-        HPSlider.maxValue = startHP;
-        // 체력 슬라이더의 값을 현재 체력값으로 변경
-        HPSlider.value = HP;
-        //
+ 
     }
 
     // 체력 회복
@@ -49,7 +59,7 @@ public class Health : StatusController
     {
         base.RestoreHP(newHP);
         //체력 갱신 
-        HPSlider.value = HP;
+       // HPSlider.value = HP;
 
     }
 
@@ -57,11 +67,9 @@ public class Health : StatusController
     [PunRPC]
     public override void OnDamage(int damage, Vector3 hitPoint, Vector3 hitDirection)
     {
-        if (photonView.IsMine)
-        {
+
             base.OnDamage(damage, hitPoint, hitDirection);
-        }
-     
+   
         //죽지않았고 , 닿으면 뒤로
         if (!dead)
         {
@@ -72,18 +80,25 @@ public class Health : StatusController
         }
 
         //갱신된 체력 슬라이더에 반영
-        HPSlider.value = HP;
+        UpdateUI();
 
 
 
+    }
+    //ui갱신 
+    private void UpdateUI()
+    {
+         if (playerRigidbody != null && UIManager.instance != null)
+        {
+            UIManager.instance.UpdateHPSlider(HP);
+        }
     }
 
     // 사망 처리
     public override void Die()
     {
         base.Die();
-        //체력 슬라이더 비활성화
-        HPSlider.gameObject.SetActive(false);
+
         //사망애니메이션
         playerAnimator.SetTrigger("Die");
 

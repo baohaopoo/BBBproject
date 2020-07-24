@@ -1355,7 +1355,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHP: 100
-  HPSlider: {fileID: 0}
 --- !u!114 &5323742206149607211
 MonoBehaviour:
   m_ObjectHideFlags: 0
