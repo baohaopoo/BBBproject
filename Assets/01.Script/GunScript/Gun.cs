@@ -226,7 +226,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
     }
     private void UpdateUI()
     {
-        if (bulletRemain!=0 && UIManager.instance != null)
+        if (/*bulletRemain!=0 &&*/ UIManager.instance != null)
         {
             UIManager.instance.updateBullet(bulletRemain);
         }
