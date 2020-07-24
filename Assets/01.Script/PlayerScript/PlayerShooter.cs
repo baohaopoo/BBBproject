@@ -39,6 +39,7 @@ public class PlayerShooter : MonoBehaviourPun
     public Gun guninstance;
     private void OnEnable()
     {
+        //총이 쏴질때.
         photonView.RPC("gunon_RPC", RpcTarget.All);
 
 
@@ -47,7 +48,13 @@ public class PlayerShooter : MonoBehaviourPun
             //에임 UI도 활성화
             guninstance.Aimon();
 
-     
+            if (guninstance.bulletRemain <= 0)
+            {
+                guninstance.Stateoff();
+            }else if (guninstance.bulletRemain > 0)
+            {
+                guninstance.Stateon();
+            }
           
            // Aim.SetActive(false);
 
@@ -78,6 +85,7 @@ public class PlayerShooter : MonoBehaviourPun
         if (photonView.IsMine) //포톤이 로컬일떄
         {
             guninstance.Aimoff();
+           
         }
     }
     [PunRPC]

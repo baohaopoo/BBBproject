@@ -7,19 +7,13 @@ public class Health : StatusController
     private Animator playerAnimator; // 플레이어의 애니메이터
     private Rigidbody playerRigidbody; // 플레이어 캐릭터의 리지드바디
 
+    public Slider HPSlider; //체력 슬라이더 
     private PlayerController playercontroller; // 플레이어 움직임 컴포넌트
     private PlayerShooter playerShooter; // 플레이어 슈터 컴포넌트
-    public GameObject HPImage;
+
     int x = 100;
 
-    public GameObject hp100;
-    public GameObject hp80;
-    public GameObject hp60;
-    public GameObject hp40;
-    public GameObject hp20;
-    public GameObject hp10;
-    public GameObject hp0;
-
+    public static Health h_instance = null;
     private void Start()
     {
         playerAnimator = GetComponent<Animator>();
@@ -35,10 +29,18 @@ public class Health : StatusController
         }
     
     }
-    protected override void OnEnable()
+    public void OnEnable()
     {
         // StatusController의 OnEnable() 실행 (상태 초기화)
         base.OnEnable();
+        //
+        //체력 슬라이더 활성화
+        //HPSlider.gameObject.SetActive(true);
+        // 체력 슬라이더의 최대값을 기본 체력값으로 변경
+        HPSlider.maxValue = startHP;
+        // 체력 슬라이더의 값을 현재 체력값으로 변경
+        HPSlider.value = HP;
+        //
     }
 
     // 체력 회복
@@ -46,7 +48,8 @@ public class Health : StatusController
     public override void RestoreHP(int newHP)
     {
         base.RestoreHP(newHP);
-
+        //체력 갱신 
+        HPSlider.value = HP;
 
     }
 
@@ -54,77 +57,39 @@ public class Health : StatusController
     [PunRPC]
     public override void OnDamage(int damage, Vector3 hitPoint, Vector3 hitDirection)
     {
-        base.OnDamage(damage, hitPoint, hitDirection);
-
+        if (photonView.IsMine)
+        {
+            base.OnDamage(damage, hitPoint, hitDirection);
+        }
+     
         //죽지않았고 , 닿으면 뒤로
-        if (HP >= 0)
+        if (!dead)
         {
             playerAnimator.SetTrigger("Damaged");
-            playerRigidbody.velocity = Vector3.zero;
-            playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);
+
+            playerRigidbody.velocity = Vector3.zero; //속도 0으로하고
+            playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);//뒤로
         }
 
+        //갱신된 체력 슬라이더에 반영
+        HPSlider.value = HP;
 
-        //갱신된 체력으로 이미지 색깔 변신
-        if (HP < 20)
-        {
-            HPImage.GetComponent<Image>().color = new Color(1, 0, 0);
-        }
-        if (HP == 100)
-        {
-            hp100.SetActive(true);
-            Debug.Log("100이다.임마");
-        }
-        else if (HP == 80)
-        {
-            hp100.SetActive(false);
-            hp80.SetActive(true);
-            Debug.Log("80이다.임마");
-        }
-        else if (HP == 60)
-        {
-            hp80.SetActive(false);
-            hp60.SetActive(true);
-            Debug.Log("60이다.임마");
-        }
-        else if (HP == 40)
-        {
-            hp60.SetActive(false);
-            hp40.SetActive(true);
-            Debug.Log("40이다.임마");
-        }
-        else if (HP == 20)
-        {
-            hp40.SetActive(false);
-            hp20.SetActive(true);
-            Debug.Log("20이다.임마");
-        }
-        else if (HP == 0)
-        {
-            hp20.SetActive(false);
-            hp10.SetActive(true);
-            Debug.Log("10이다.임마");
-        }
-        else
-        {
-            hp10.SetActive(false);
-            hp0.SetActive(true);
-            Debug.Log("0이다.임마");
-            Die();
-        }
+
+
     }
 
     // 사망 처리
     public override void Die()
     {
         base.Die();
-        HPImage.SetActive(false);
+        //체력 슬라이더 비활성화
+        HPSlider.gameObject.SetActive(false);
+        //사망애니메이션
         playerAnimator.SetTrigger("Die");
+
         GameManager.instance.OnPlayerDead();
 
-        //3초 뒤에 리스폰
-        Invoke("Respawn", 3);
-        Debug.Log("부활");
+
     }
     //아이템 스크립트 오면 쓰자
     /*
@@ -177,8 +142,8 @@ public class Health : StatusController
 
         //컴포넌트를 리셋하기 위해 게임 오브젝트를 잠시 껐다고 다시 켜기
         //컴포넌트의 ondisable(), onEnable()메서드가 실행됨
-        gameObject.SetActive(false);
-        gameObject.SetActive(true);
+        //gameObject.SetActive(false);
+        //gameObject.SetActive(true);
 
 
 

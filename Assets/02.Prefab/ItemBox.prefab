@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 5407919804534714701}
   - component: {fileID: 5407919804534714698}
   - component: {fileID: 3892722784942626028}
+  - component: {fileID: 1311579358897386774}
   m_Layer: 0
   m_Name: ItemBox
   m_TagString: CanOpen
@@ -178,6 +179,27 @@ MonoBehaviour:
   obstacle_item_prefab: {fileID: 7716741760537391175, guid: 2945230dd190633489691ecb693a5881,
     type: 3}
   SpawnTime: 1
+--- !u!114 &1311579358897386774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4047935066074279598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4192767198538217663
 GameObject:
   m_ObjectHideFlags: 0

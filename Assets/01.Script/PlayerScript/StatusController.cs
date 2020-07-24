@@ -5,6 +5,7 @@ using Photon.Pun;
 public class StatusController : MonoBehaviourPun, Damageable
 {
 
+
     public int HP { get; protected set; }
     public bool dead { get; protected set; }
     public event Action onDeath; //사망했을때 발동하는이벤트 
@@ -22,7 +23,10 @@ public class StatusController : MonoBehaviourPun, Damageable
     {
 
         HP = newHealth;
+     
         dead = newDead;
+
+
 
     }
     //활성화될때 실행
@@ -30,9 +34,19 @@ public class StatusController : MonoBehaviourPun, Damageable
     {
         dead = false;
         HP = startHP;
+      
     }
-    [PunRPC]
+    //public void applayHP()
+    //{
+
+    //    Debug.Log("체력바의 수치는????????");
+    //    hpslider.value ;
+    //    Debug.Log(hpslider.value);
+
+
+    //}
     //데미지를 입는다
+    [PunRPC]
     public virtual void OnDamage(int damage, Vector3 hitPoint, Vector3 hitNormal)
     {
         //호스트에서만 실행됨
@@ -41,12 +55,18 @@ public class StatusController : MonoBehaviourPun, Damageable
             // 데미지만큼 체력 감소
             HP -= damage;
 
+           
+
+            Debug.Log("현재 체력은?????????");
+            Debug.Log(HP);
+
             //호스트에서 클라이언트로 동기화
             this.photonView.RPC("ApplyUpdateHealth", RpcTarget.Others, HP, dead);
             //다른 클라이언트도 onDamage를 실행하도록 함
-           this.photonView.RPC("OnDamage", RpcTarget.Others, damage, hitPoint, hitNormal);
-        }
+            this.photonView.RPC("OnDamage", RpcTarget.Others, damage, hitPoint, hitNormal);
 
+        }
+       // applayHP();
         //체력 0 이하 && 아직 죽지 않았다면 실행하도록 함
         if (HP < 0 && !dead)
         {
