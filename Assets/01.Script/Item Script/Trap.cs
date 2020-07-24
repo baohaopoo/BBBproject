@@ -17,7 +17,13 @@ public class Trap : MonoBehaviour
         TrapAnimator.SetBool("trap_bite", true);
         yield return new WaitForSeconds(3f);//3초동안 기다린다 
         TrapAnimator.SetBool("trap_bite", false);
-        Destroy(gameObject, 3);
+
+        //물리면 파괴되게 함
+        //if (TrapAnimator.GetBool("trap_bite") == false)
+        //{
+        //    Destroy(gameObject);
+        //}
+        
     }
 
         

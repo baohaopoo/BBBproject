@@ -16,6 +16,10 @@ public class Inventory : MonoBehaviour
 
     [SerializeField]
     private GameObject realObstacle_item_prefab;// 송곳아이템
+
+    [SerializeField]
+    private GameObject realHam_item_prefab;//햄아이템
+
     [SerializeField]
     private GameObject player; 
 
@@ -86,6 +90,7 @@ public class Inventory : MonoBehaviour
     {
         Debug.Log("냠냠");
     }
+
     public void AcquireItem(Item _item)
     {
         if (slot1.item == null) //슬롯 비어있으면 넣어줌

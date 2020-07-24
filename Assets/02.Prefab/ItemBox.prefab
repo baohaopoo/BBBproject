@@ -177,7 +177,7 @@ MonoBehaviour:
     type: 3}
   obstacle_item_prefab: {fileID: 7128666437137567071, guid: 2945230dd190633489691ecb693a5881,
     type: 3}
-  ham_item_prefab: {fileID: 2847269939483991875, guid: 9a37630c98a63194fada0c426584b88c,
+  ham_item_prefab: {fileID: 5641866657380016023, guid: 9a37630c98a63194fada0c426584b88c,
     type: 3}
   SpawnTime: 1
 --- !u!1 &4192767198538217663

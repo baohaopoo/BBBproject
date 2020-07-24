@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthRecovery : MonoBehaviour
 {
-    //public float health = 50; // 체력을 회복할 수치
+    public float health = 20; // 체력을 회복할 수치
 
     //public void Use(GameObject target)
     //{
@@ -20,4 +20,5 @@ public class HealthRecovery : MonoBehaviour
 
     //    // 사용되었으므로, 자신을 파괴
     //    Destroy(gameObject);
-    }
+
+}

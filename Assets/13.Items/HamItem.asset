@@ -15,8 +15,7 @@ MonoBehaviour:
   itemName: "\uD584"
   itemType: 2
   itemImage: {fileID: 21300000, guid: ea2a3f4915bfa8e4b8af9d8d8df0f212, type: 3}
-  itemPrefab: {fileID: 6833566662524782730, guid: e69e231d28491ec4ea966715d3db58ec,
+  itemPrefab: {fileID: 5641866657380016023, guid: 9a37630c98a63194fada0c426584b88c,
     type: 3}
-  realPrefab: {fileID: 6833566662524782730, guid: e69e231d28491ec4ea966715d3db58ec,
-    type: 3}
+  realPrefab: {fileID: 0}
   weaponType: 

@@ -35,7 +35,12 @@ public class Health : StatusController
     // 체력 회복
     public override void RestoreHP(int newHP)
     {
+        //StatusController의 RestoreHP 실행 (체력증가)
         base.RestoreHP(newHP);
+        //체력 갱신 
+        //
+        Debug.Log("체력은:"+HP);
+        //
     }
 
     // 데미지 처리
