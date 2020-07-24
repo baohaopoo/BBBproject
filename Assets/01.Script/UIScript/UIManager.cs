@@ -24,7 +24,68 @@ public class UIManager : MonoBehaviour
     public Slider hpslider; //hp슬라이더 
     [SerializeField]
     public GameObject gameoverUI; // 게임 오버시 활성화할 UI 
+    [SerializeField]
+    public GameObject BulletUI; //bulletUI 
+    public GameObject bulletImage1;
+    public GameObject bulletImage2;
+    public GameObject bulletImage3;
+    public GameObject bulletImage4;
+    public GameObject bulletImage5;
 
+
+
+    public void updateBullet(int sb)
+    {
+
+
+
+        if (sb == 5)
+        {
+
+        }
+        else if (sb == 4)
+        {
+            bulletImage1.SetActive(true);
+            bulletImage2.SetActive(true);
+            bulletImage3.SetActive(true);
+            bulletImage4.SetActive(true);
+            bulletImage5.SetActive(false);
+        }
+        else if (sb == 3)
+        {
+            bulletImage1.SetActive(true);
+            bulletImage2.SetActive(true);
+            bulletImage3.SetActive(true);
+            bulletImage4.SetActive(false);
+            bulletImage5.SetActive(false);
+        }
+        else if (sb == 2)
+        {
+            bulletImage1.SetActive(true);
+            bulletImage2.SetActive(true);
+            bulletImage3.SetActive(false);
+            bulletImage4.SetActive(false);
+            bulletImage5.SetActive(false);
+        }
+        else if (sb == 1)
+        {
+            bulletImage1.SetActive(true);
+            bulletImage2.SetActive(false);
+            bulletImage3.SetActive(false);
+            bulletImage4.SetActive(false);
+            bulletImage5.SetActive(false);
+        }
+        else if (sb == 0)
+        {
+            bulletImage1.SetActive(false);
+            bulletImage2.SetActive(false);
+            bulletImage3.SetActive(false);
+            bulletImage4.SetActive(false);
+            bulletImage5.SetActive(false);
+        }
+
+
+    }
     public void UpdateHPSlider(int hp)
     {
         hpslider.value = hp;

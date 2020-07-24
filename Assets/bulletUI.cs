@@ -25,11 +25,7 @@ public class bulletUI : MonoBehaviour
        
         if (sb == 5)
         { 
-            bulletImage1.SetActive(true);
-            bulletImage2.SetActive(true);
-            bulletImage3.SetActive(true);
-            bulletImage4.SetActive(true);
-            bulletImage5.SetActive(true);
+            
         }
         else if (sb == 4)
         {

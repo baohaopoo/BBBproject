@@ -120,13 +120,6 @@ public class Gun : MonoBehaviourPun, IPunObservable
         photonView.RPC("Shot", RpcTarget.All);
 
 
-        if (photonView.IsMine)
-        {
-            
-
-    
-
-        }
 
     }
 
@@ -211,8 +204,17 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
         bulletRemain -= 1;
 
-        photonView.RPC("BulletUI", RpcTarget.Others, bulletRemain);
-       
+        if (photonView.IsMine)
+        {
+
+
+            Debug.Log("현재 탄알은??????");
+            Debug.Log(bulletRemain);
+            UpdateUI();
+
+        }
+
+
         Debug.Log("남은 탄알의 수");
         if (bulletRemain <= 0)
         {
@@ -224,11 +226,12 @@ public class Gun : MonoBehaviourPun, IPunObservable
     }
     private void UpdateUI()
     {
-
-
-        BulletUI(bulletRemain);
-
+        if (bulletRemain!=0 && UIManager.instance != null)
+        {
+            UIManager.instance.updateBullet(bulletRemain);
+        }
     }
+
     //private void UpdateUI()
     //{
     //    //호스트는 직접 갱신
@@ -240,9 +243,9 @@ public class Gun : MonoBehaviourPun, IPunObservable
     //    {
     //        //클라는 바아온거
     //        BulletUI(bulletRemain);
-        
+
     //    }
-    
+
     //}
     // 발사 이펙트와 총알 궤적을 그린다    //코루틴사용
     private IEnumerator ShotEffect(Vector3 hitPosition)
