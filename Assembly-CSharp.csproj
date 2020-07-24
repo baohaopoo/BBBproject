@@ -75,6 +75,7 @@
     <Compile Include="Assets\01.Script\GunScript\Gun.cs" />
     <Compile Include="Assets\01.Script\iPhinterClickHandler.cs" />
     <Compile Include="Assets\01.Script\Item Script\ActionControler.cs" />
+    <Compile Include="Assets\01.Script\Item Script\Consumer.cs" />
     <Compile Include="Assets\01.Script\Item Script\GrabItem.cs" />
     <Compile Include="Assets\01.Script\Item Script\Inventory.cs" />
     <Compile Include="Assets\01.Script\Item Script\Item.cs" />

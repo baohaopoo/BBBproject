@@ -95,7 +95,9 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
     public void OnPlayerDead()
     {
         isGameover = true;
-        gameoverUI.SetActive(true);
+
+        //UI
+        //gameoverUI.SetActive(true);
     }
     public override void OnLeftRoom()
     {

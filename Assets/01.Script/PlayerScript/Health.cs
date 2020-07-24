@@ -61,7 +61,7 @@ public class Health : StatusController, IPunObservable
     {
         base.RestoreHP(newHP);
         //체력 갱신 
-       // HPSlider.value = HP;
+        UpdateUI();
 
     }
 
@@ -114,7 +114,25 @@ public class Health : StatusController, IPunObservable
 
         GameManager.instance.OnPlayerDead();
 
+        if (photonView.IsMine)
+        {
 
+            Debug.Log("현재 죽었냐?????????");
+
+            //갱신된 체력 슬라이더에 반영
+            UpdategameoverUI();
+
+
+        }
+
+    }
+
+    private void UpdategameoverUI()
+    {
+        if (playerRigidbody != null && UIManager.instance != null)
+        {
+            UIManager.instance.SetActiveGameoverUI(true);
+        }
     }
     //아이템 스크립트 오면 쓰자
     /*

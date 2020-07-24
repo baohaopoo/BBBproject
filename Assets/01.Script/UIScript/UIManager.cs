@@ -37,8 +37,6 @@ public class UIManager : MonoBehaviour
     public void updateBullet(int sb)
     {
 
-
-
         if (sb == 5)
         {
 

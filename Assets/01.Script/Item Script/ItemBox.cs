@@ -19,6 +19,8 @@ public class ItemBox : MonoBehaviourPun
     private GameObject trap_item_prefab; //덫 아이템
     [SerializeField]
     private GameObject obstacle_item_prefab; //가시 아이템
+    [SerializeField]
+    private GameObject ham_item_prefab; //햄 아이템
 
     public float SpawnTime = 300f; //아이템 스폰 시간 
 
@@ -81,8 +83,8 @@ public class ItemBox : MonoBehaviourPun
     private void WhatItemIntheBox()
     {
         Debug.Log("무얼까요무얼까요");
-        int ItemNum = Random.Range(0, 3);//랜덤
-
+        int ItemNum = Random.Range(0, 4);//랜덤
+        
         if (ItemNum == 0)
         {
             //총알 아이템 생성 Instantiate(생성아이템,아이템위치,기본회전값)
@@ -100,6 +102,11 @@ public class ItemBox : MonoBehaviourPun
         {
             //가시아이템생성
             Instantiate(obstacle_item_prefab, ItemboxTransform.position, Quaternion.identity);
+        }
+        else if (ItemNum == 3)
+        {
+            //햄아이템생성
+            Instantiate(ham_item_prefab, ItemboxTransform.position, Quaternion.identity);
         }
     }
 }

@@ -116,7 +116,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
     public void preshot()
     {
-        // photonView.RPC("Shot", RpcTarget.MasterClient);
+      
         photonView.RPC("Shot", RpcTarget.All);
 
 
@@ -146,7 +146,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
             lastFireTime = Time.time;
 
             preshot(); //쏴라!
-           // UpdateUI();
+       
   
         }
     }
@@ -226,27 +226,13 @@ public class Gun : MonoBehaviourPun, IPunObservable
     }
     private void UpdateUI()
     {
-        if (/*bulletRemain!=0 &&*/ UIManager.instance != null)
+        if ( UIManager.instance != null)
         {
             UIManager.instance.updateBullet(bulletRemain);
         }
     }
 
-    //private void UpdateUI()
-    //{
-    //    //호스트는 직접 갱신
-    //    if (PhotonNetwork.IsMasterClient)
-    //    {
-    //        BulletUI(bulletRemain);
-    //    }
-    //    else
-    //    {
-    //        //클라는 바아온거
-    //        BulletUI(bulletRemain);
 
-    //    }
-
-    //}
     // 발사 이펙트와 총알 궤적을 그린다    //코루틴사용
     private IEnumerator ShotEffect(Vector3 hitPosition)
     {
@@ -269,19 +255,12 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
     
     }
-
-    [PunRPC]
     public void BulletUI(int sb)
     {
-       
+
         if (sb == 5)
-        { 
-            bulletImage1.SetActive(true);
-            bulletImage2.SetActive(true);
-            bulletImage3.SetActive(true);
-            bulletImage4.SetActive(true);
-            bulletImage5.SetActive(true);
-            Debug.Log("555555555555555혹시 여기서 들어오는가?");
+        {
+
         }
         else if (sb == 4)
         {
@@ -290,7 +269,6 @@ public class Gun : MonoBehaviourPun, IPunObservable
             bulletImage3.SetActive(true);
             bulletImage4.SetActive(true);
             bulletImage5.SetActive(false);
-            Debug.Log("444444444444444444444444");
         }
         else if (sb == 3)
         {
@@ -299,7 +277,6 @@ public class Gun : MonoBehaviourPun, IPunObservable
             bulletImage3.SetActive(true);
             bulletImage4.SetActive(false);
             bulletImage5.SetActive(false);
-            Debug.Log("3333333333333333333");
         }
         else if (sb == 2)
         {
@@ -308,7 +285,6 @@ public class Gun : MonoBehaviourPun, IPunObservable
             bulletImage3.SetActive(false);
             bulletImage4.SetActive(false);
             bulletImage5.SetActive(false);
-            Debug.Log("2222222222222222");
         }
         else if (sb == 1)
         {
@@ -317,20 +293,14 @@ public class Gun : MonoBehaviourPun, IPunObservable
             bulletImage3.SetActive(false);
             bulletImage4.SetActive(false);
             bulletImage5.SetActive(false);
-            Debug.Log("11111111111111111");
         }
-        else if( sb == 0)
+        else if (sb == 0)
         {
             bulletImage1.SetActive(false);
             bulletImage2.SetActive(false);
             bulletImage3.SetActive(false);
             bulletImage4.SetActive(false);
             bulletImage5.SetActive(false);
-            Debug.Log("000000000000");
         }
     }
-
-
-
-    
 }
