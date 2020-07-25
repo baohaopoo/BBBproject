@@ -17,16 +17,19 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private GameObject realObstacle_item_prefab;// 송곳아이템
 
-    [SerializeField]
-    private GameObject realHam_item_prefab;//햄아이템
 
     [SerializeField]
     private GameObject player;
 
     private GameObject ham;
+    private GameObject bread;
 
 
-
+    private void Start()
+    {
+        ham = player.transform.FindChild("Ham").gameObject;
+        bread= player.transform.FindChild("Bread").gameObject;
+    }
     private void Update()
     {
 
@@ -42,9 +45,11 @@ public class Inventory : MonoBehaviour
             }
 
         }
+        //치트키//
+
         if (Input.GetKey(KeyCode.Z))
         {
-            UseHamItem();
+            UseBreadItem();
         }
 
     }
@@ -66,6 +71,10 @@ public class Inventory : MonoBehaviour
         else if (slot1.item.name == "HamItem")
         {
             UseHamItem();
+        }
+        else if (slot1.item.name == "BreadItem")
+        {
+            UseBreadItem();
         }
     }
 
@@ -98,11 +107,19 @@ public class Inventory : MonoBehaviour
 
     private void UseHamItem()
     {
+
         player.GetComponent<Animator>().SetTrigger("isEat");
-        player.transform.FindChild("Ham").gameObject.SetActive(true);
-        player.GetComponent<Health>().RestoreHP(40);
+        ham.SetActive(true);
+        player.GetComponent<Health>().RestoreHP(80);
     }
 
+    private void UseBreadItem()
+    {
+
+        player.GetComponent<Animator>().SetTrigger("isEat");
+        bread.SetActive(true);
+        player.GetComponent<Health>().RestoreHP(40);
+    }
     public void AcquireItem(Item _item)
     {
         if (slot1.item == null) //슬롯 비어있으면 넣어줌
