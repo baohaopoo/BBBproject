@@ -129,7 +129,7 @@ public class Inventory : MonoBehaviourPun,IPunObservable
     private void UseHamItem()
     {
         player.GetComponent<Animator>().SetTrigger("isEat");
-        player.transform.FindChild("Ham").gameObject.SetActive(true);
+        player.transform.Find("Ham").gameObject.SetActive(true);
         player.GetComponent<Health>().RestoreHP(40);
     }
     public void AcquireItem(Item _item)

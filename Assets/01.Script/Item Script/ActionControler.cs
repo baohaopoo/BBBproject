@@ -2,14 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class ActionControler : MonoBehaviour
+public class ActionControler : MonoBehaviourPun
 {
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting)
+    //    {
 
-    [SerializeField]
-    private Text actionText;
-    [SerializeField]
-    private Text openText;
+    //        stream.SendNext();
+
+    //    }
+    //    else
+    //    {
+
+
+    //         = (int)stream.ReceiveNext();
+
+    //    }
+
+
+
+
+    //}
+    //[SerializeField]
+    //private Text actionText;
+    //[SerializeField]
+    //private Text openText;
 
     [SerializeField]
     private Inventory theInventory;
@@ -22,8 +42,9 @@ public class ActionControler : MonoBehaviour
     {
         if (other.tag == "Item")
         {
-            actionText.gameObject.SetActive(true);
-            actionText.text = other.transform.GetComponent<ItemPickup>().item.itemName + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
+            UIManager.instance.onactiontxt();
+            // actionText.text = other.transform.GetComponent<ItemPickup>().item.itemName + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
+            UIManager.instance.getitem(other.transform.GetComponent<ItemPickup>().item.itemName);
 
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -32,15 +53,16 @@ public class ActionControler : MonoBehaviour
                     Debug.Log(other.transform.GetComponent<ItemPickup>().item.itemName + " 획득했습니다");
                     theInventory.AcquireItem(other.transform.GetComponent<ItemPickup>().item);
                     Destroy(other.transform.gameObject);
-                    actionText.gameObject.SetActive(false);
+                    UIManager.instance.offactiontxt();
                 }
             }
         }
 
         if (other.tag == "CanOpen")
         {
-            openText.gameObject.SetActive(true);
-            openText.text = other.transform.GetComponent<ItemPickup>().item.itemName + " 열기/닫기 " + "<color=yellow>" + "(Q)" + "</color>";
+            UIManager.instance.onopentxt();
+            UIManager.instance.openitem(other.transform.GetComponent<ItemPickup>().item.itemName);
+            // openText.text = other.transform.GetComponent<ItemPickup>().item.itemName + " 열기/닫기 " + "<color=yellow>" + "(Q)" + "</color>";
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 if (other.transform != null) //정보를 가져왔을때
@@ -54,8 +76,9 @@ public class ActionControler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        actionText.gameObject.SetActive(false);
-        openText.gameObject.SetActive(false);
+        UIManager.instance.offactiontxt();
+        UIManager.instance.offopentxt();
+
     }
 
 

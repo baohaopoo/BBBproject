@@ -32,6 +32,40 @@ public class UIManager : MonoBehaviour
     public GameObject bulletImage4;
     public GameObject bulletImage5;
 
+    [SerializeField]
+    public Text actionText;
+    [SerializeField]
+    public Text openText;
+
+    private Inventory theInventory;
+
+    public void getitem(string name)
+    { 
+     actionText.text = name + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
+
+
+    }
+    public void openitem(string name)
+    { 
+        openText.text = name + " 열기/닫기 " + "<color=yellow>" + "(Q)" + "</color>";
+
+    }
+    public void onactiontxt()
+    {
+        actionText.gameObject.SetActive(true);    
+    }
+    public void offactiontxt()
+    {
+        actionText.gameObject.SetActive(false);
+    }
+    public void onopentxt()
+    {
+        openText.gameObject.SetActive(true);
+    }
+    public void offopentxt()
+    {
+        openText.gameObject.SetActive(false);
+    }
 
 
     public void updateBullet(int sb)
