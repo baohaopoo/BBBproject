@@ -91,6 +91,7 @@
     <Compile Include="Assets\01.Script\NPC\HumanEnemy.cs" />
     <Compile Include="Assets\01.Script\Openthedoor.cs" />
     <Compile Include="Assets\01.Script\PlayerNameInput.cs" />
+    <Compile Include="Assets\01.Script\playerpivotinfo.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\Health.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerController.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerInput.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Assets\PhotonChatApi\ChatState.cs" />
     <Compile Include="Assets\PhotonChatApi\ChatUserStatus.cs" />
     <Compile Include="Assets\PhotonChatApi\IChatClientListener.cs" />
+    <Compile Include="Assets\playerpivot.cs" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

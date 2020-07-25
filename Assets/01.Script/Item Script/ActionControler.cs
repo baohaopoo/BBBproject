@@ -42,42 +42,56 @@ public class ActionControler : MonoBehaviourPun
     {
         if (other.tag == "Item")
         {
-            UIManager.instance.onactiontxt();
-            // actionText.text = other.transform.GetComponent<ItemPickup>().item.itemName + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
-            UIManager.instance.getitem(other.transform.GetComponent<ItemPickup>().item.itemName);
-
-            if (Input.GetKeyDown(KeyCode.E))
+            if (photonView.IsMine)
             {
-                if (other.transform != null) //정보를 가져왔을때
+                UIManager.instance.onactiontxt();
+                // actionText.text = other.transform.GetComponent<ItemPickup>().item.itemName + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
+                UIManager.instance.getitem(other.transform.GetComponent<ItemPickup>().item.itemName);
+
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log(other.transform.GetComponent<ItemPickup>().item.itemName + " 획득했습니다");
-                    theInventory.AcquireItem(other.transform.GetComponent<ItemPickup>().item);
-                    Destroy(other.transform.gameObject);
-                    UIManager.instance.offactiontxt();
+                    if (other.transform != null) //정보를 가져왔을때
+                    {
+                        Debug.Log(other.transform.GetComponent<ItemPickup>().item.itemName + " 획득했습니다");
+                        theInventory.AcquireItem(other.transform.GetComponent<ItemPickup>().item);
+                        Destroy(other.transform.gameObject);
+                        UIManager.instance.offactiontxt();
+                    }
                 }
+
             }
+         
         }
 
         if (other.tag == "CanOpen")
         {
-            UIManager.instance.onopentxt();
-            UIManager.instance.openitem(other.transform.GetComponent<ItemPickup>().item.itemName);
-            // openText.text = other.transform.GetComponent<ItemPickup>().item.itemName + " 열기/닫기 " + "<color=yellow>" + "(Q)" + "</color>";
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                if (other.transform != null) //정보를 가져왔을때
-                {
-                    other.GetComponent<ItemBox>().goani();//아이템박스 열기닫기
 
+            if (photonView.IsMine)
+            {
+                UIManager.instance.onopentxt();
+                UIManager.instance.openitem(other.transform.GetComponent<ItemPickup>().item.itemName);
+                // openText.text = other.transform.GetComponent<ItemPickup>().item.itemName + " 열기/닫기 " + "<color=yellow>" + "(Q)" + "</color>";
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    if (other.transform != null) //정보를 가져왔을때
+                    {
+                        other.GetComponent<ItemBox>().goani();//아이템박스 열기닫기
+
+                    }
                 }
             }
+          
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        UIManager.instance.offactiontxt();
-        UIManager.instance.offopentxt();
+
+        if (photonView.IsMine)
+        {
+            UIManager.instance.offactiontxt();
+            UIManager.instance.offopentxt();
+        }
 
     }
 
