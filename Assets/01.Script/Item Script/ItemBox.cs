@@ -47,11 +47,12 @@ public class ItemBox : MonoBehaviourPun
     //public void WhatItem()
     //{
     //    photonView.RPC("WhatItemIntheBox", RpcTarget.All);
-    
+
     //}
     //박스 애니메이션 
-    [PunRPC]
+
     //RPC All 로 모든 peer에게 작업지시로 내 플레이어의 작업(애니메이션)을 시키면 될것 같은데요.
+    [PunRPC]
     public void BoxAnimation()
     {
         if (IsOpen == false)
@@ -93,33 +94,33 @@ public class ItemBox : MonoBehaviourPun
         if (ItemNum == 0)
         {
             //총알 아이템 생성 Instantiate(생성아이템,아이템위치,기본회전값)
-            Instantiate(bullet_item_prefab, ItemboxTransform.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(bullet_item_prefab.name, ItemboxTransform.position, Quaternion.identity);
             Debug.Log("총알 아이템 생성");
 
         }
         else if (ItemNum == 1)
         {
             //덫 아이템 생성
-            Instantiate(trap_item_prefab, ItemboxTransform.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(trap_item_prefab.name, ItemboxTransform.position, Quaternion.identity);
             Debug.Log("덫 아이템 생성");
         }
 
         else if (ItemNum == 2)
         {
             //가시아이템생성
-            Instantiate(obstacle_item_prefab, ItemboxTransform.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(obstacle_item_prefab.name, ItemboxTransform.position, Quaternion.identity);
             Debug.Log("가시 아이템 생성");
         }
         else if (ItemNum == 3)
         {
             //햄아이템생성
-            Instantiate(ham_item_prefab, ItemboxTransform.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(ham_item_prefab.name, ItemboxTransform.position, Quaternion.identity);
             Debug.Log("햄 아이템 생성");
         }
         else if (ItemNum == 4)
         {
             //햄아이템생성
-            Instantiate(bread_item_prefab, ItemboxTransform.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(bread_item_prefab.name, ItemboxTransform.position, Quaternion.identity);
         }
     }
 }

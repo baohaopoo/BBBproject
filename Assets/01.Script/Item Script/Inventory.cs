@@ -43,7 +43,7 @@ public class Inventory : MonoBehaviourPun,IPunObservable
     {
         if (slot1.item != null && Input.GetButtonDown("UseItem")) //아이템 있고 쉬프트키 누르면 사용 
         {
-            Debug.Log("먹은거 말해라~~~~~~~~~~~~~~~~~~~~~");
+          
             Debug.Log(slot1.item.name);
             checkItem();
             slot1.UseItem();
