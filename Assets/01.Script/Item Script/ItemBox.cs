@@ -44,14 +44,12 @@ public class ItemBox : MonoBehaviour
             BoxAnimator.SetBool("BoxOpen", true);
             if (isFirstOpen) //처음으로 여는거면
             {
-                Debug.Log("처음암");
                 WhatItemIntheBox();
                 isFirstOpen = false;
                 lastSpawnTime = Time.time;
             }
             else //처음으로 여는게 아니면 
             {
-                Debug.Log("처음아님");
                 if (Time.time >= lastSpawnTime + SpawnTime) //쿨타임 돌고나서 가능 
                 {
                     lastSpawnTime = Time.time;
@@ -71,7 +69,7 @@ public class ItemBox : MonoBehaviour
     //박스안에 아이템 랜덤 생성 
     private void WhatItemIntheBox()
     {
-        Debug.Log("무얼까요무얼까요");
+
         int ItemNum = Random.Range(0, 5);//랜덤
 
         if (ItemNum == 0)

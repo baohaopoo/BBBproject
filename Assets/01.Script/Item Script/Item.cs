@@ -12,7 +12,6 @@ public class Item : ScriptableObject //게임오브젝트에 붙일필요없는 
     public Sprite itemImage; //아이템 이미지
     public GameObject itemPrefab; //아이템 프리팹
     public GameObject realPrefab; //실제 장치하게되는 프리팹 
-    public string weaponType; //무기 유형
 
     public enum ItemType { 
     

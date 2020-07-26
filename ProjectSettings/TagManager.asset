@@ -21,10 +21,11 @@ TagManager:
   - Ladder_bottom
   - Ladder_Top
   - Ladder_Air
-  - bullet
   - CanOpen
   - trap
   - Ham
+  - ItemBox
+  - Closet
   layers:
   - Default
   - TransparentFX
@@ -34,7 +35,7 @@ TagManager:
   - UI
   - 
   - 
-  - Door
+  - 
   - Player
   - Item
   - 

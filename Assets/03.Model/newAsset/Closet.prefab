@@ -459,10 +459,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5957493543293072246}
   - component: {fileID: 4334511307152563724}
-  - component: {fileID: 1718105797695838322}
+  - component: {fileID: 8437485364826828778}
   m_Layer: 0
   m_Name: Closet
-  m_TagString: Untagged
+  m_TagString: CanOpen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -503,7 +503,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1718105797695838322
+--- !u!114 &8437485364826828778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

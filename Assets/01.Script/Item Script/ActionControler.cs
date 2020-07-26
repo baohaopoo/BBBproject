@@ -44,9 +44,18 @@ public class ActionControler : MonoBehaviour
             openText.text = other.transform.GetComponent<ItemPickup>().item.itemName + " 열기/닫기 " + "<color=yellow>" + "(Q)" + "</color>";
             if (Input.GetKeyDown(KeyCode.Q))
             {
+                Debug.Log("2");
                 if (other.transform != null) //정보를 가져왔을때
                 {
-                    other.GetComponent<ItemBox>().BoxAnimation();//아이템박스 열기닫기
+                    if (other.transform.GetComponent<ItemPickup>().item.itemName == "아이템박스")
+                    {
+                        other.GetComponent<ItemBox>().BoxAnimation();//아이템박스 열기닫기
+                    }
+                    else if (other.transform.GetComponent<ItemPickup>().item.itemName == "옷장")
+                    {
+                        Debug.Log("들어오고있나여?");
+                       other.GetComponent<Open_Closet>().ClosetAnimation();//옷장 열기닫기 
+                    }
                 }
             }
         }
