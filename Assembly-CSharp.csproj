@@ -123,6 +123,7 @@
     <Compile Include="Assets\bulletUI.cs" />
     <Compile Include="Assets\CameraSetup.cs" />
     <Compile Include="Assets\crosshair.cs" />
+    <Compile Include="Assets\damager.cs" />
     <Compile Include="Assets\Friendcontroller.cs" />
     <Compile Include="Assets\gameMgr.cs" />
     <Compile Include="Assets\gethp.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Assets\PhotonChatApi\ChatUserStatus.cs" />
     <Compile Include="Assets\PhotonChatApi\IChatClientListener.cs" />
     <Compile Include="Assets\playerpivot.cs" />
+    <Compile Include="Assets\playerpunch.cs" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
