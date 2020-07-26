@@ -30,6 +30,7 @@ namespace UnityStandardAssets.Utility
 		void LateUpdate()
 		{
 			// Early out if we don't have a target
+           
 			if (!target)
 				return;
 

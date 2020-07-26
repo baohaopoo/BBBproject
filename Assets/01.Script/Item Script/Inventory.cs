@@ -114,6 +114,7 @@ public class Inventory : MonoBehaviourPun,IPunObservable
             {
                 gun.bulletRemain = 5;
             }
+
             Debug.Log("지금 아이템 불렛을 추가했다! bullet:" + gun.bulletRemain);
             //추가하자마자 bulletUI가 갱신되어야함.
 

@@ -31,7 +31,10 @@ public class ActionControler : MonoBehaviourPun
                     {
                         Debug.Log(other.transform.GetComponent<ItemPickup>().item.itemName + " 획득했습니다");
                         theInventory.AcquireItem(other.transform.GetComponent<ItemPickup>().item);
-                        Destroy(other.transform.gameObject);
+
+
+                        //삭제해랏
+                        PhotonNetwork.Destroy(other.transform.gameObject);
                         UIManager.instance.offactiontxt();
                     }
                 }

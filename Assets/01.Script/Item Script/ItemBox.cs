@@ -88,6 +88,12 @@ public class ItemBox : MonoBehaviourPun
 
     private void WhatItemIntheBox()
     {
+        //호스트에서만 아이템 직접 생성 가능.
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         Debug.Log("무얼까요무얼까요");
         int ItemNum = Random.Range(0, 5);//랜덤
         
@@ -121,6 +127,7 @@ public class ItemBox : MonoBehaviourPun
         {
             //햄아이템생성
             PhotonNetwork.Instantiate(bread_item_prefab.name, ItemboxTransform.position, Quaternion.identity);
+            Debug.Log("빵 아이템 생성");
         }
     }
 }

@@ -59,17 +59,16 @@ public class PlayerController : MonoBehaviourPun
     void Start()
     {
 
-        ////maincamera가 플레이어만 보고 달려오는 부분 구현
+        //////maincamera가 플레이어만 보고 달려오는 부분 구현
         
-        if (photonView.IsMine)
-        {
+        //if (photonView.IsMine)
+        //{
 
-            FollowCam = GameObject.Find("MainCamera");
-            FollowCam.GetComponent<SmoothFollow>().target = this.PlayerPibot.transform;
-            Debug.Log("플레이어의 pibot을 알려드리겠습니다");
-            Debug.Log(this.PlayerPibot.transform);
+        //    FollowCam = GameObject.Find("MainCamera");
+        //    FollowCam.GetComponent<SmoothFollow>().target = this.PlayerPibot.transform;
+      
 
-        }
+        //}
 
         //if (!photonView.IsMine)
         //{
@@ -152,6 +151,10 @@ public class PlayerController : MonoBehaviourPun
     // 입력값에 따라 캐릭터를 앞뒤로 움직임
     private void Move()
     {
+        if (!photonView.IsMine) //게임 오브젝트가 로컬 게임 오브젝트인 경우에만 이동, 회전, 애니메이션 파라미터 갱신 처리를 실행.
+        {
+            return;
+        }
 
         if (playerInput.Verticalmove != 0)
         {
