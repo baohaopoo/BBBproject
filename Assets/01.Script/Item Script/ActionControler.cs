@@ -6,30 +6,7 @@ using Photon.Pun;
 
 public class ActionControler : MonoBehaviourPun
 {
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    if (stream.IsWriting)
-    //    {
-
-    //        stream.SendNext();
-
-    //    }
-    //    else
-    //    {
-
-
-    //         = (int)stream.ReceiveNext();
-
-    //    }
-
-
-
-
-    //}
-    //[SerializeField]
-    //private Text actionText;
-    //[SerializeField]
-    //private Text openText;
+    
 
     [SerializeField]
     private Inventory theInventory;

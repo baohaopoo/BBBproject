@@ -44,11 +44,11 @@ public class ItemBox : MonoBehaviourPun
         photonView.RPC("BoxAnimation", RpcTarget.All);
     }
 
-    public void WhatItem()
-    {
-        photonView.RPC("WhatItemIntheBox", RpcTarget.All);
+    //public void WhatItem()
+    //{
+    //    photonView.RPC("WhatItemIntheBox", RpcTarget.All);
     
-    }
+    //}
     //박스 애니메이션 
     [PunRPC]
     //RPC All 로 모든 peer에게 작업지시로 내 플레이어의 작업(애니메이션)을 시키면 될것 같은데요.
@@ -60,7 +60,7 @@ public class ItemBox : MonoBehaviourPun
             if (isFirstOpen) //처음으로 여는거면
             {
                 Debug.Log("처음아이템 박스를 연다");
-                WhatItem();
+                WhatItemIntheBox();
                 isFirstOpen = false;
                 lastSpawnTime = Time.time;
             }
@@ -70,7 +70,7 @@ public class ItemBox : MonoBehaviourPun
                 if (Time.time >= lastSpawnTime + SpawnTime) //쿨타임 돌고나서 가능 
                 {
                     lastSpawnTime = Time.time;
-                    WhatItem();
+                    WhatItemIntheBox();
                 }
             }
 
@@ -83,8 +83,8 @@ public class ItemBox : MonoBehaviourPun
         }
     }
 
-    //박스안에 아이템 랜덤 생성 
-    [PunRPC]
+    //박스안에 아이템 랜덤 생성은 RPC 
+
     private void WhatItemIntheBox()
     {
         Debug.Log("무얼까요무얼까요");

@@ -2146,13 +2146,28 @@ PrefabInstance:
     - target: {fileID: 1311579358897386774, guid: 264c5aea08049644183601ab10766a32,
         type: 3}
       propertyPath: ObservedComponents.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1311579358897386774, guid: 264c5aea08049644183601ab10766a32,
         type: 3}
       propertyPath: viewIdField
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1311579358897386774, guid: 264c5aea08049644183601ab10766a32,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 972898222}
+    - target: {fileID: 1311579358897386774, guid: 264c5aea08049644183601ab10766a32,
+        type: 3}
+      propertyPath: Synchronization
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311579358897386774, guid: 264c5aea08049644183601ab10766a32,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 972898223}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 264c5aea08049644183601ab10766a32, type: 3}
 --- !u!1 &348576359
@@ -9535,19 +9550,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 972898221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 0
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  viewIdField: 2
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!1001 &976250700
 PrefabInstance:
   m_ObjectHideFlags: 0
