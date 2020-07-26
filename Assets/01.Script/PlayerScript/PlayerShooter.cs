@@ -50,12 +50,13 @@ public class PlayerShooter : MonoBehaviourPun
 
             if (guninstance.bulletRemain <= 0)
             {
+                //총알상태를 off
                 guninstance.Stateoff();
             }else if (guninstance.bulletRemain > 0)
             {
                 guninstance.Stateon();
             }
-          
+
            // Aim.SetActive(false);
 
         
@@ -85,7 +86,7 @@ public class PlayerShooter : MonoBehaviourPun
         if (photonView.IsMine) //포톤이 로컬일떄
         {
             guninstance.Aimoff();
-           
+
         }
     }
     [PunRPC]

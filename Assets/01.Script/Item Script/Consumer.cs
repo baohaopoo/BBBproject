@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//아이템 먹으면, 고기..햄 관련 스크립트
 public class Consumer : MonoBehaviour
 {
 

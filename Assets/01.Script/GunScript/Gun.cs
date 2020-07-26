@@ -109,10 +109,16 @@ public class Gun : MonoBehaviourPun, IPunObservable
     }
 
 
-    private void Update()
-    {
+    public void cheetkey()
+    { 
+        if (Input.GetKey(KeyCode.X))
+        {
+            Debug.Log("치트키가 써졌다!~");
+            bulletRemain += 1;
 
+        }
     }
+
 
     public void preshot()
     {
@@ -153,6 +159,13 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
     // 실제 발사 처리
 
+
+    private void Update()
+    {
+        /////치트키
+        cheetkey();
+        
+    }
     [PunRPC]
     private void Shot()
     {
@@ -211,6 +224,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
             Debug.Log("현재 탄알은??????");
             Debug.Log(bulletRemain);
             UpdateUI();
+           
 
         }
 
@@ -224,10 +238,11 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
         }
     }
-    private void UpdateUI()
+    public void UpdateUI()
     {
         if ( UIManager.instance != null)
         {
+           
             UIManager.instance.updateBullet(bulletRemain);
         }
     }
@@ -255,12 +270,18 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
     
     }
+
+    
     public void BulletUI(int sb)
     {
 
         if (sb == 5)
         {
-
+            bulletImage1.SetActive(true);
+            bulletImage2.SetActive(true);
+            bulletImage3.SetActive(true);
+            bulletImage4.SetActive(true);
+            bulletImage5.SetActive(true);
         }
         else if (sb == 4)
         {

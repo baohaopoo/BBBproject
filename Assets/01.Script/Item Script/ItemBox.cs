@@ -39,15 +39,17 @@ public class ItemBox : MonoBehaviourPun
 
     public void goani()
     {
-
         photonView.RPC("BoxAnimation", RpcTarget.All);
+    }
 
-
-
-
+    public void WhatItem()
+    {
+        photonView.RPC("WhatItemIntheBox", RpcTarget.All);
+    
     }
     //박스 애니메이션 
     [PunRPC]
+    //RPC All 로 모든 peer에게 작업지시로 내 플레이어의 작업(애니메이션)을 시키면 될것 같은데요.
     public void BoxAnimation()
     {
         if (IsOpen == false)
@@ -55,18 +57,18 @@ public class ItemBox : MonoBehaviourPun
             BoxAnimator.SetBool("BoxOpen", true);
             if (isFirstOpen) //처음으로 여는거면
             {
-                Debug.Log("처음암");
-                WhatItemIntheBox();
+                Debug.Log("처음아이템 박스를 연다");
+                WhatItem();
                 isFirstOpen = false;
                 lastSpawnTime = Time.time;
             }
             else //처음으로 여는게 아니면 
             {
-                Debug.Log("처음아님");
+                Debug.Log("처음아이템 박스를 여는것이 아님");
                 if (Time.time >= lastSpawnTime + SpawnTime) //쿨타임 돌고나서 가능 
                 {
                     lastSpawnTime = Time.time;
-                    WhatItemIntheBox();
+                    WhatItem();
                 }
             }
 
@@ -80,6 +82,7 @@ public class ItemBox : MonoBehaviourPun
     }
 
     //박스안에 아이템 랜덤 생성 
+    [PunRPC]
     private void WhatItemIntheBox()
     {
         Debug.Log("무얼까요무얼까요");
@@ -89,24 +92,27 @@ public class ItemBox : MonoBehaviourPun
         {
             //총알 아이템 생성 Instantiate(생성아이템,아이템위치,기본회전값)
             Instantiate(bullet_item_prefab, ItemboxTransform.position, Quaternion.identity);
+            Debug.Log("총알 아이템 생성");
 
         }
         else if (ItemNum == 1)
         {
             //덫 아이템 생성
             Instantiate(trap_item_prefab, ItemboxTransform.position, Quaternion.identity);
-
+            Debug.Log("덫 아이템 생성");
         }
 
         else if (ItemNum == 2)
         {
             //가시아이템생성
             Instantiate(obstacle_item_prefab, ItemboxTransform.position, Quaternion.identity);
+            Debug.Log("가시 아이템 생성");
         }
         else if (ItemNum == 3)
         {
             //햄아이템생성
             Instantiate(ham_item_prefab, ItemboxTransform.position, Quaternion.identity);
+            Debug.Log("햄 아이템 생성");
         }
     }
 }

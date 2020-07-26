@@ -37,10 +37,11 @@ public class Inventory : MonoBehaviourPun,IPunObservable
     {
         if (slot1.item != null && Input.GetButtonDown("UseItem")) //아이템 있고 쉬프트키 누르면 사용 
         {
-            
+            Debug.Log("먹은거 말해라~~~~~~~~~~~~~~~~~~~~~");
+            Debug.Log(slot1.item.name);
             checkItem();
             slot1.UseItem();
-           
+
             if (slot2.item != null) //만약 두번째 슬롯 비어있지 않으면 , 첫번째 슬롯으로 아이템 이동 
             {
                 AcquireItem(slot2.item);
@@ -92,9 +93,11 @@ public class Inventory : MonoBehaviourPun,IPunObservable
             {
                 gun.bulletRemain = 5;
             }
-            Debug.Log("@@@@bullet:" + gun.bulletRemain);
-            gun.BulletUI(gun.bulletRemain);
+            Debug.Log("지금 아이템 불렛을 추가했다! bullet:" + gun.bulletRemain);
+            //추가하자마자 bulletUI가 갱신되어야함.
 
+            gun.BulletUI(gun.bulletRemain);
+            gun.UpdateUI();
         }
      
     }
