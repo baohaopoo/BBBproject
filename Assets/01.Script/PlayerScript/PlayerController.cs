@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviourPun
     public GameObject FollowCam;
     public GameObject ForwardCam;
     public GameObject FirstPlayerCam;
+    private PlayerPunch playerpunch;
 
     bool isGrounded;
     bool isPicking;
@@ -56,8 +57,9 @@ public class PlayerController : MonoBehaviourPun
         playerInput = GetComponent<PlayerInput>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
-        PlayerGrabPoint = GameObject.FindGameObjectWithTag("grabPoint"); //PlayerGrabPoint 객체 소환
+        //PlayerGrabPoint = GameObject.FindGameObjectWithTag("grabPoint"); //PlayerGrabPoint 객체 소환
         col = gameObject.GetComponent<Collider>();
+        playerpunch = GetComponent<PlayerPunch>();
 
         rope = GameObject.FindGameObjectWithTag("rope"); //rope객체 소환
         ropeCollision = GameObject.FindGameObjectWithTag("ropeCollision");
@@ -158,10 +160,12 @@ public class PlayerController : MonoBehaviourPun
         {
             rightmouseCnt += 1;
             isUseGun = true;
-            playershooter.enabled = true;
+            playershooter.enabled = true; 
+            playerpunch.enabled = false; //펀치 불가
             if (rightmouseCnt >= 2)//한번 더 누르면
             {
-                playershooter.enabled = false;
+                playerpunch.enabled = true; //펀치 가능 
+                playershooter.enabled = false; 
                 isUseGun = false;
                 rightmouseCnt = 0;
             }

@@ -23,12 +23,12 @@ public class Inventory : MonoBehaviour
 
     private GameObject ham;
     private GameObject bread;
-
+   
 
     private void Start()
-    {
-        ham = player.transform.FindChild("Ham").gameObject;
-        bread= player.transform.FindChild("Bread").gameObject;
+    {   
+        ham = player.transform.Find("Ham").gameObject;
+        bread= player.transform.Find("Bread").gameObject;
     }
     private void Update()
     {
@@ -53,6 +53,7 @@ public class Inventory : MonoBehaviour
         }
 
     }
+
     private void checkItem()
     {
 
@@ -120,6 +121,7 @@ public class Inventory : MonoBehaviour
         bread.SetActive(true);
         player.GetComponent<Health>().RestoreHP(40);
     }
+
     public void AcquireItem(Item _item)
     {
         if (slot1.item == null) //슬롯 비어있으면 넣어줌

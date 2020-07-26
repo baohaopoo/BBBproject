@@ -50,7 +50,7 @@ public class Health : StatusController
     public override void OnDamage(int damage, Vector3 hitPoint, Vector3 hitDirection)
     {
         base.OnDamage(damage, hitPoint, hitDirection);
-
+        
         //죽지않았고 , 닿으면 뒤로
         if (!dead)
         {

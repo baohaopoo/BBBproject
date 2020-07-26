@@ -24,7 +24,7 @@ public class StatusController : MonoBehaviour, Damageable
     {
         // 데미지만큼 체력 감소
         HP -= damage;
-
+        Debug.Log("Hp:" + HP);
         if (HP <= 0 && !dead)
         {
             Die();

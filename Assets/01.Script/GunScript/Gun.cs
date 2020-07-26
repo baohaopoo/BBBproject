@@ -62,7 +62,12 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.X))
+        {
+            bulletRemain = 5;
+        }
         BulletUI(bulletRemain);
+      
     }
 
 
