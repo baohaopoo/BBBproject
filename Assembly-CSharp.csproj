@@ -95,6 +95,7 @@
     <Compile Include="Assets\01.Script\PlayerScript\Health.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerController.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerInput.cs" />
+    <Compile Include="Assets\01.Script\PlayerScript\PlayerPunch.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerShooter.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerTied.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\StatusController.cs" />

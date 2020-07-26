@@ -21,6 +21,8 @@ public class ItemBox : MonoBehaviourPun
     private GameObject obstacle_item_prefab; //가시 아이템
     [SerializeField]
     private GameObject ham_item_prefab; //햄 아이템
+    [SerializeField]
+    private GameObject bread_item_prefab; //빵 아이템
 
     public float SpawnTime = 300f; //아이템 스폰 시간 
 
@@ -86,7 +88,7 @@ public class ItemBox : MonoBehaviourPun
     private void WhatItemIntheBox()
     {
         Debug.Log("무얼까요무얼까요");
-        int ItemNum = Random.Range(0, 4);//랜덤
+        int ItemNum = Random.Range(0, 5);//랜덤
         
         if (ItemNum == 0)
         {
@@ -113,6 +115,11 @@ public class ItemBox : MonoBehaviourPun
             //햄아이템생성
             Instantiate(ham_item_prefab, ItemboxTransform.position, Quaternion.identity);
             Debug.Log("햄 아이템 생성");
+        }
+        else if (ItemNum == 4)
+        {
+            //햄아이템생성
+            Instantiate(bread_item_prefab, ItemboxTransform.position, Quaternion.identity);
         }
     }
 }

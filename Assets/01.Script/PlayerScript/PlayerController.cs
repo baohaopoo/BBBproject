@@ -18,12 +18,13 @@ public class PlayerController : MonoBehaviourPun
     private PlayerInput playerInput; 
     private Rigidbody playerRigidbody;
     private Transform playerTranform;
-    private Animator playerAnimator; 
+    private Animator playerAnimator;
+    private PlayerPunch playerpunch;
     public GameObject FollowCam; //maincam
     public GameObject ForwardCam; //F키 눌를떄
     public GameObject FirstPlayerCam;
     public GameObject PlayerPibot; //플레이어의 피봇
-   
+    
    // public GameObject Timeline;
 
     bool isGrounded;
@@ -105,6 +106,7 @@ public class PlayerController : MonoBehaviourPun
         playerInput = GetComponent<PlayerInput>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
+        playerpunch = GetComponent<PlayerPunch>();
         PlayerGrabPoint = GameObject.FindGameObjectWithTag("grabPoint"); //PlayerGrabPoint 객체 소환
         col = gameObject.GetComponent<Collider>();
 
@@ -210,9 +212,11 @@ public class PlayerController : MonoBehaviourPun
             rightmouseCnt += 1;
             isUseGun = true;
             playershooter.enabled = true;
+            playerpunch.enabled = false;//펀치 불가
             if (rightmouseCnt >= 2)//한번 더 누르면
             {
                 playershooter.enabled = false;
+                playerpunch.enabled = true; //펀치가능
                 isUseGun = false;
                 rightmouseCnt = 0;
             }
