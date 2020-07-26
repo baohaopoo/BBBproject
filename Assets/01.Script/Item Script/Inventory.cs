@@ -30,8 +30,9 @@ public class Inventory : MonoBehaviourPun,IPunObservable
     [SerializeField]
     private GameObject player;
 
-    private GameObject ham;
-    private GameObject bread;
+    //얘네는 내부적으로 다 들어와있어
+    private GameObject ham; //햄 아이템
+    private GameObject bread; //빵아이템
 
     private void Start()
     {
@@ -91,11 +92,14 @@ public class Inventory : MonoBehaviourPun,IPunObservable
         //
         else if (slot1.item.name == "HamItem")
         {
-            UseHamItem();
+            photonView.RPC("UseHamItem", RpcTarget.All);
+            Debug.Log("햄 아이템 사용되고 있나?");
+   
         }
         else if (slot1.item.name == "BreadItem")
         {
-            UseBreadItem();
+            photonView.RPC("UseBreadItem", RpcTarget.All);
+            Debug.Log("빵 아이템 사용되고 있나?");
         }
     }
 
@@ -140,45 +144,74 @@ public class Inventory : MonoBehaviourPun,IPunObservable
     [PunRPC]
     private void UseObstacleItem()
     {
-        //플레이어를 기준으로 조금 위, 조금 앞에 덫을 위치하게 한다.
-        Vector3 pos = player.transform.position + Vector3.up * 0.4f + Vector3.forward * 2f;
-        //바닥에 덫 생성
-        Instantiate(realObstacle_item_prefab, pos, Quaternion.identity);
+
+        if (photonView.IsMine)
+        {
+            //플레이어를 기준으로 조금 위, 조금 앞에 obstacle을 위치하게 한다.
+            Vector3 pos = player.transform.position + Vector3.up * 0.4f + Vector3.forward * 2f;
+         
+            Instantiate(realObstacle_item_prefab, pos, Quaternion.identity);
+
+        }
+       
     }
 
+    [PunRPC]
     private void UseHamItem()
     {
-        player.GetComponent<Animator>().SetTrigger("isEat");
-        ham.SetActive(true);
-        player.GetComponent<Health>().RestoreHP(80);
+
+        if (photonView.IsMine)
+        {
+
+            player.GetComponent<Animator>().SetTrigger("isEat");
+            ham.SetActive(true);
+            player.GetComponent<Health>().RestoreHP(80);
+
+
+        }
+       
     }
+    [PunRPC]
     private void UseBreadItem()
     {
+        if (photonView.IsMine)
+        {
 
-        player.GetComponent<Animator>().SetTrigger("isEat");
-        bread.SetActive(true);
-        player.GetComponent<Health>().RestoreHP(40);
+            player.GetComponent<Animator>().SetTrigger("isEat");
+            bread.SetActive(true);
+            player.GetComponent<Health>().RestoreHP(40);
+
+
+        }
+      
     }
+    [PunRPC]
     public void AcquireItem(Item _item)
     {
-        if (slot1.item == null) //슬롯 비어있으면 넣어줌
+
+        if (photonView.IsMine)
         {
-            slot1.AddItem(_item);
-        }
-        else if (slot1.item != null) //슬롯 비어있으면 넣어줌
-        {
-            if (slot2.item == null)
+            if (slot1.item == null) //슬롯 비어있으면 넣어줌
             {
-                slot2.AddItem(_item);
+                slot1.AddItem(_item);
+            }
+            else if (slot1.item != null) //슬롯 비어있으면 넣어줌
+            {
+                if (slot2.item == null)
+                {
+                    slot2.AddItem(_item);
+                }
+
+                else if (slot2.item != null)
+                {
+                    Debug.Log("슬롯이 꽉 찼습니다.");
+                }
             }
 
-            else if (slot2.item != null)
-            {
-                Debug.Log("슬롯이 꽉 찼습니다.");
-            }
+
         }
 
-   
     }
+     
 
 }

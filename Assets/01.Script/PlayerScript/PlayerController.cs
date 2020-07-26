@@ -60,25 +60,16 @@ public class PlayerController : MonoBehaviourPun
     {
 
         ////maincamera가 플레이어만 보고 달려오는 부분 구현
-        ///
+        
         if (photonView.IsMine)
         {
+
             FollowCam = GameObject.Find("MainCamera");
             FollowCam.GetComponent<SmoothFollow>().target = this.PlayerPibot.transform;
-
-
-
+            Debug.Log("플레이어의 pibot을 알려드리겠습니다");
+            Debug.Log(this.PlayerPibot.transform);
 
         }
-
-
-
-
-
-
-
-
-
 
         //if (!photonView.IsMine)
         //{

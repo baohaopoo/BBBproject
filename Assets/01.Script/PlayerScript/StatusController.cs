@@ -87,10 +87,16 @@ public class StatusController : MonoBehaviourPun, Damageable
 
         if (PhotonNetwork.IsMasterClient)
         {
-
+            
             // 체력 추가
             HP += newHP;
 
+            if (HP >= 100)
+            {
+
+                HP = 100;
+            
+            }
             //서버에서 클라이언트로 동기화
             photonView.RPC("ApplyUpdateHealth", RpcTarget.Others, HP, dead);
             //다른 클라이언트도 RestoreHealth 를 실행하도록 함
