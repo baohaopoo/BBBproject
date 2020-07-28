@@ -6,41 +6,76 @@ public class PlayerPunch : MonoBehaviourPun
 {
     private Animator playerAnimator;
     public GameObject punchCollider;
+   // bool punchseton = false;
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
+        //punchCollider.SetActive(punchseton);
     }
 
     void Update()
     {
-
+        // 로컬일때
         if (photonView.IsMine)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0)) //키를 누르면
             {
-                // Punching();
-                gopunch();
+                onpunch();
+             
+
             }
+
             if (Input.GetMouseButtonUp(0))
             {
-                punchCollider.SetActive(false);
+                offpunching();
+
+
             }
         }
-    }
+            
+     }
 
 
-    public void gopunch()
+
+
+    private void onpunch()
     {
 
-        photonView.RPC("Punching", RpcTarget.All);
-    
+        photonView.RPC("Punchging", RpcTarget.All);
+
     }
+
+    private void offpunching()
+    {
+
+        photonView.RPC("Punchgingoff", RpcTarget.All);
+
+    }
+
+
     [PunRPC]
-    private void Punching()
+    public void Punchging()
     {
+
+      
         punchCollider.SetActive(true);
         playerAnimator.SetTrigger("isPunch");
-        Debug.Log("펀찌");
-        
+
+
+
     }
+
+
+    [PunRPC]
+    public void Punchgingoff()
+    {
+
+
+        punchCollider.SetActive(false);
+
+
+
+    }
+
+
 }

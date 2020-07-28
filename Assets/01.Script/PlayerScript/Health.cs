@@ -168,7 +168,7 @@ public class Health : StatusController, IPunObservable
 
     public void Respawn()
     {
-        //로컬 플레이어만 직접 위치 변경 가능
+        //로컬 플레이어만 직접 위치 변경 가능   n  
         if (photonView.IsMine)
         {
             //원점에서 반경 5유닛 내부의 랜덤 위치 지정

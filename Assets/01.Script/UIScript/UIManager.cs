@@ -39,6 +39,11 @@ public class UIManager : MonoBehaviour
 
     private Inventory theInventory;
 
+    [SerializeField]
+    public Image itemImage1; //아이템 1 이미지
+    [SerializeField]
+    public Image itemImage2; //아이템 2 이미지
+
     public void getitem(string name)
     { 
      actionText.text = name + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
@@ -138,4 +143,36 @@ public class UIManager : MonoBehaviour
     //{
     //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     //}
+
+
+    //이미지 투명도 조절 (이미지 비어있을땐 투명하게 한다)
+    public void SetColor(float _alpha, Image _image)
+    {
+        Color color = _image.color;
+        color.a = _alpha;
+        _image.color = color;
+    }
+
+    public void AddItem1(Item _item)
+    {
+        itemImage1.sprite = _item.itemImage;
+        SetColor(1, itemImage1); //아이템 보여준다.
+    }
+
+    public void AddItem2(Item _item)
+    {
+        itemImage2.sprite = _item.itemImage;
+        SetColor(1, itemImage2); //아이템 보여준다.
+    }
+    public void UseItem1()
+    {
+        itemImage1.sprite = null;
+        SetColor(0, itemImage1);
+    }
+
+    public void MoveItem2()
+    {
+        itemImage2.sprite = null;
+        SetColor(0, itemImage2);
+    }
 }

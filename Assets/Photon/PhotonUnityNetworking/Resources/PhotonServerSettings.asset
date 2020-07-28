@@ -57,6 +57,21 @@ MonoBehaviour:
   - AcquireItem
   - UseBreadItem
   - UseHamItem
+  - Makebullet
+  - Makebread
+  - Makeham
+  - Makeobstacle
+  - Maketrap
+  - AddItem1
+  - AddItem2
+  - UseItem
+  - PunchgingAni
+  - offPunching
+  - onPunchging
+  - Punchging
+  - Punchgingoff
+  - PunChingani
+  - Punchingani
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

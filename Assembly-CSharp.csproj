@@ -83,7 +83,6 @@
     <Compile Include="Assets\01.Script\Item Script\ItemManager.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemPickup.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemSpawner.cs" />
-    <Compile Include="Assets\01.Script\Item Script\Slot.cs" />
     <Compile Include="Assets\01.Script\Item Script\Trap.cs" />
     <Compile Include="Assets\01.Script\Ladder_Action.cs" />
     <Compile Include="Assets\01.Script\LobbyManager.cs" />
@@ -94,6 +93,7 @@
     <Compile Include="Assets\01.Script\playerpivotinfo.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\Health.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerController.cs" />
+    <Compile Include="Assets\01.Script\PlayerScript\PlayerHaveItem.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerInput.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerPunch.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerShooter.cs" />
@@ -153,7 +153,6 @@
     <Compile Include="Assets\PhotonChatApi\ChatUserStatus.cs" />
     <Compile Include="Assets\PhotonChatApi\IChatClientListener.cs" />
     <Compile Include="Assets\playerpivot.cs" />
-    <Compile Include="Assets\playerpunch.cs" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
