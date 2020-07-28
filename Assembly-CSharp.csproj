@@ -74,14 +74,12 @@
     <Compile Include="Assets\01.Script\iPhinterClickHandler.cs" />
     <Compile Include="Assets\01.Script\Item Script\ActionControler.cs" />
     <Compile Include="Assets\01.Script\Item Script\GrabItem.cs" />
-    <Compile Include="Assets\01.Script\Item Script\HealthRecovery.cs" />
     <Compile Include="Assets\01.Script\Item Script\Inventory.cs" />
     <Compile Include="Assets\01.Script\Item Script\Item.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemBox.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemManager.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemPickup.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemSpawner.cs" />
-    <Compile Include="Assets\01.Script\Item Script\Slot.cs" />
     <Compile Include="Assets\01.Script\Item Script\Trap.cs" />
     <Compile Include="Assets\01.Script\Ladder_Action.cs" />
     <Compile Include="Assets\01.Script\LobbyManager.cs" />
@@ -90,6 +88,7 @@
     <Compile Include="Assets\01.Script\Open_Closet.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\Health.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerController.cs" />
+    <Compile Include="Assets\01.Script\PlayerScript\PlayerHaveItem.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerInput.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerPunch.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\PlayerShooter.cs" />

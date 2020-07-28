@@ -12,7 +12,7 @@ public class ActionControler : MonoBehaviour
     private Text openText;
 
     [SerializeField]
-    private Inventory theInventory;
+    private PlayerHaveItem playerhaveitem;
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class ActionControler : MonoBehaviour
                 if (other.transform != null) //정보를 가져왔을때
                 {
                     Debug.Log(other.transform.GetComponent<ItemPickup>().item.itemName + " 획득했습니다");
-                    theInventory.AcquireItem(other.transform.GetComponent<ItemPickup>().item); //아이템 장착
+                    playerhaveitem.AcquireItem(other.transform.GetComponent<ItemPickup>().item); //아이템 장착
                     Destroy(other.transform.gameObject); //아이템 파괴
                     actionText.gameObject.SetActive(false); 
                 }

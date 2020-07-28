@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField]
-    private Slot slot1;
-    [SerializeField]
-    private Slot slot2;
+
     [SerializeField]
     private Gun gun;
 
@@ -23,57 +20,56 @@ public class Inventory : MonoBehaviour
 
     private GameObject ham;
     private GameObject bread;
-   
+
+    private PlayerHaveItem playeritem;
+
 
     private void Start()
     {   
         ham = player.transform.Find("Ham").gameObject;
         bread= player.transform.Find("Bread").gameObject;
+        playeritem = GetComponent<PlayerHaveItem>();
     }
     private void Update()
     {
 
            
-        if (slot1.item != null && Input.GetButtonDown("UseItem")) //아이템 있고 쉬프트키 누르면 사용 
+        if (playeritem.Iitem1 != null && Input.GetButtonDown("UseItem")) //아이템 있고 쉬프트키 누르면 사용 
         {
-            checkItem();
-            slot1.UseItem();
-            if (slot2.item != null) //만약 두번째 슬롯 비어있지 않으면 , 첫번째 슬롯으로 아이템 이동 
-            {
-                AcquireItem(slot2.item);
-                slot2.UseItem();
-            }
+            checkItem(); //아이템 뭔지 체크
+            playeritem.UseItem(); //아이템 지워주기 
 
         }
-        //치트키//
 
+        //치트키********//
         if (Input.GetKey(KeyCode.Z))
         {
             UseBreadItem();
         }
+        //*****************//
 
     }
 
     private void checkItem()
     {
 
-        if (slot1.item.name == "BulletItem")
+        if (playeritem.Iitem1.name == "BulletItem")
         {
             UsebulletItem();
         }
-        else if (slot1.item.name == "TrapItem")
+        else if (playeritem.Iitem1.name == "TrapItem")
         {
             UsetrapItem();
         }
-        else if (slot1.item.name == "ObstacleItem")
+        else if (playeritem.Iitem1.name == "ObstacleItem")
         {
             UseObstacleItem();
         }
-        else if (slot1.item.name == "HamItem")
+        else if (playeritem.Iitem1.name == "HamItem")
         {
             UseHamItem();
         }
-        else if (slot1.item.name == "BreadItem")
+        else if (playeritem.Iitem1.name == "BreadItem")
         {
             UseBreadItem();
         }
@@ -122,26 +118,6 @@ public class Inventory : MonoBehaviour
         player.GetComponent<Health>().RestoreHP(40);
     }
 
-    public void AcquireItem(Item _item)
-    {
-        if (slot1.item == null) //슬롯 비어있으면 넣어줌
-        {
-            slot1.AddItem(_item);
-        }
-        else if (slot1.item != null) //슬롯 비어있으면 넣어줌
-        {
-            if (slot2.item == null)
-            {
-                slot2.AddItem(_item);
-            }
 
-            else if (slot2.item != null)
-            {
-                Debug.Log("슬롯이 꽉 찼습니다.");
-            }
-        }
-
-   
-    }
 
 }

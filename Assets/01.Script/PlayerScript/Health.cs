@@ -26,12 +26,6 @@ public class Health : StatusController
         // StatusController의 OnEnable() 실행 (상태 초기화)
         base.OnEnable();
 
-        //체력 슬라이더 활성화
-        //HPSlider.gameObject.SetActive(true);
-        // 체력 슬라이더의 최대값을 기본 체력값으로 변경
-        //HPSlider.maxValue = startHP;
-        // 체력 슬라이더의 값을 현재 체력값으로 변경
-        //HPSlider.value = HP;
         UpdateUI();
 
     }
@@ -43,7 +37,6 @@ public class Health : StatusController
         base.RestoreHP(newHP);
         //체력 갱신 
         UpdateUI();
-        //HPSlider.value = HP;
     }
 
     // 데미지 처리
@@ -61,8 +54,6 @@ public class Health : StatusController
         }
 
         UpdateUI();
-        //갱신된 체력 슬라이더에 반영
-        //HPSlider.value = HP;
 
     }
 
@@ -79,8 +70,6 @@ public class Health : StatusController
     public override void Die()
     {
         base.Die();
-        //체력 슬라이더 비활성화
-        //HPSlider.gameObject.SetActive(false);
         //사망애니메이션
         playerAnimator.SetTrigger("Die");
 
