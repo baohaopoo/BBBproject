@@ -15,42 +15,31 @@ public class ActionControler : MonoBehaviourPun
 
     }
 
-    //닿았을때.
+
     private void OnTriggerStay(Collider other)
     {
-        ////호스트만 닿고 먹을수 있는데. 이때 
-        //if (!PhotonNetwork.IsMasterClient)
-        //{
-        //    return;
-        //}
+        Debug.Log("이 부분이 안먹는것");
 
-
-        
         if (other.tag == "Item")
         {
+
             if (photonView.IsMine)
             {
                 UIManager.instance.onactiontxt();
-                // actionText.text = other.transform.GetComponent<ItemPickup>().item.itemName + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
                 UIManager.instance.getitem(other.transform.GetComponent<ItemPickup>().item.itemName);  //E키를 누르면 먹을수 있다.
 
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
 
-                if (other.transform != null) //정보를 가져왔을때
-                    { 
-                       Debug.Log(other.transform.GetComponent<ItemPickup>().item.itemName + " 획득했습니다");
-                        //theInventory.AcquireItem(other.transform.GetComponent<ItemPickup>().item);
+                    if (other.transform != null) //정보를 가져왔을때
+                    {
                         playerhaveitem.AcquireItem(other.transform.GetComponent<ItemPickup>().item); //아이템 장착
-                       
-
-
-
                     }
 
 
                     //삭제해랏
+
 
                     PhotonNetwork.Destroy(other.transform.gameObject);
                     UIManager.instance.offactiontxt();
@@ -61,8 +50,13 @@ public class ActionControler : MonoBehaviourPun
                 }
 
             }
-         
+
         }
+
+
+
+
+
         //&&photonView.IsSceneView
         if (other.tag == "CanOpen")
         {

@@ -72,6 +72,9 @@ MonoBehaviour:
   - Punchgingoff
   - PunChingani
   - Punchingani
+  - Ekey
+  - boxanimationoff
+  - boxanimationopen
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

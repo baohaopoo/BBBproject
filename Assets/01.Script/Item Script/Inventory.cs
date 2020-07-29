@@ -31,6 +31,7 @@ public class Inventory : MonoBehaviourPun,IPunObservable
 
     private PlayerHaveItem playeritem;
 
+
     private void Start()
     {
         ham = player.transform.Find("Ham").gameObject;
@@ -113,12 +114,10 @@ public class Inventory : MonoBehaviourPun,IPunObservable
             }
 
             Debug.Log("지금 아이템 불렛을 추가했다! bullet:" + gun.bulletRemain);
-            //추가하자마자 bulletUI가 갱신되어야함.
 
-            gun.BulletUI(gun.bulletRemain);
+            //추가하자마자 bulletUI가 갱신되어야함.
             gun.UpdateUI();
-    
-     
+       
     }
 
 
@@ -131,8 +130,7 @@ public class Inventory : MonoBehaviourPun,IPunObservable
             Vector3 pos = player.transform.position + Vector3.up * 0.4f + Vector3.forward * 2f;
             //바닥에 덫 생성
             PhotonNetwork.Instantiate(realTrap_item_prefab.name, pos, Quaternion.identity);
-           // PhotonNetwork.Instantiate(realTrap_item_prefab.name, pos, Quaternion.identity);
-
+          
        
 
     }
