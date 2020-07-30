@@ -7,64 +7,92 @@ public class ActionControler : MonoBehaviour
 {
 
     [SerializeField]
-    private Text actionText;
-    [SerializeField]
-    private Text openText;
-
-    [SerializeField]
     private PlayerHaveItem playerhaveitem;
 
+    [SerializeField]
+    private GameObject player;
+
+    private Animator pickupanim;
+    private Item item;
     private void Start()
     {
-        
+        pickupanim = player.GetComponent<Animator>();
+
+
     }
     private void OnTriggerStay(Collider other)
     {
         
+
         if (other.tag == "Item")
         {
-            actionText.gameObject.SetActive(true);
-            actionText.text = other.transform.GetComponent<ItemPickup>().item.itemName + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
+            item = other.transform.GetComponent<ItemPickup>().item;
+            UIManager.instance.onactiontxt();
+            UIManager.instance.getitem(item.itemName);  //E키를 누르면 먹을수 있다.
 
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (other.transform != null) //정보를 가져왔을때
                 {
-                    Debug.Log(other.transform.GetComponent<ItemPickup>().item.itemName + " 획득했습니다");
-                    playerhaveitem.AcquireItem(other.transform.GetComponent<ItemPickup>().item); //아이템 장착
-                    Destroy(other.transform.gameObject); //아이템 파괴
-                    actionText.gameObject.SetActive(false); 
+                    pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
+                    Debug.Log(item.itemName + " 획득했습니다");
+                    playerhaveitem.AcquireItem(item); //아이템 장착
+                    //Destroy(other.transform.gameObject); //아이템 파괴
+                    other.transform.GetComponent<ItemDestroy>().destroyMe();
+   
                 }
+                UIManager.instance.offactiontxt();
             }
         }
 
         if (other.tag == "CanOpen")
         {
-            openText.gameObject.SetActive(true);
-            openText.text = other.transform.GetComponent<ItemPickup>().item.itemName + " 열기/닫기 " + "<color=yellow>" + "(Q)" + "</color>";
+            item = other.transform.GetComponent<ItemPickup>().item;
+            UIManager.instance.onopentxt();
+            UIManager.instance.openitem(item.itemName);
+
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                Debug.Log("2");
                 if (other.transform != null) //정보를 가져왔을때
                 {
-                    if (other.transform.GetComponent<ItemPickup>().item.itemName == "아이템박스")
+                    if (item.itemName == "아이템박스")
                     {
                         other.GetComponent<ItemBox>().BoxAnimation();//아이템박스 열기닫기
                     }
-                    else if (other.transform.GetComponent<ItemPickup>().item.itemName == "옷장")
+                    else if (item.itemName == "옷장")
                     {
-                        Debug.Log("들어오고있나여?");
-                       other.GetComponent<Open_Closet>().ClosetAnimation();//옷장 열기닫기 
+                        other.GetComponent<Open_Closet>().ClosetAnimation();//옷장 열기닫기 
                     }
+
                 }
+            }      
+        }
+        if (other.tag == "Friend")
+        {
+
+            item = other.transform.GetComponent<ItemPickup>().item;
+            UIManager.instance.onactiontxt();
+            UIManager.instance.friendfind(item.itemName);  //E키를 누르면 먹을수 있다.
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (other.transform != null) //정보를 가져왔을때
+                {
+                    pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
+                    if (item.itemName == "토끼")
+                    {
+                        UIManager.instance.updateFriend(1);
+                    }
+                    Destroy(other.transform.gameObject); //아이템 파괴
+                }
+                UIManager.instance.offactiontxt();
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        actionText.gameObject.SetActive(false);
-        openText.gameObject.SetActive(false);
+        UIManager.instance.offactiontxt();
+        UIManager.instance.offopentxt();
     }
 
 

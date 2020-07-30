@@ -20,8 +20,7 @@ public class PlayerPunch : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             punchCollider.SetActive(false);
-        }
-        
+        }     
     }
 
     private void Punching()

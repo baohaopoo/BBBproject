@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
         {
             Restart();
         }
+        //마우스 커서 숨기기 
+       // Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void Restart()

@@ -26,6 +26,7 @@ TagManager:
   - Ham
   - ItemBox
   - Closet
+  - Friend
   layers:
   - Default
   - TransparentFX

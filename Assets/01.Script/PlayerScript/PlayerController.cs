@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviourPun
         camSetting();     
     }
 
+
     void FixedUpdate()
     {
 
@@ -204,6 +205,8 @@ public class PlayerController : MonoBehaviourPun
             ForwardCam.SetActive(false);
         }
     }
+
+
     private void Rope(bool uprope, bool nogravity)
     {
         //Debug.Log("플레이어rope 들어옴");

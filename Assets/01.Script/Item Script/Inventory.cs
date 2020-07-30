@@ -23,12 +23,17 @@ public class Inventory : MonoBehaviour
 
     private PlayerHaveItem playeritem;
 
+    private Animator playeranim;
+    private Health playerhp;
+
 
     private void Start()
     {   
         ham = player.transform.Find("Ham").gameObject;
         bread= player.transform.Find("Bread").gameObject;
         playeritem = GetComponent<PlayerHaveItem>();
+        playeranim = player.GetComponent<Animator>();
+        playerhp = player.GetComponent<Health>();
     }
     private void Update()
     {
@@ -105,17 +110,17 @@ public class Inventory : MonoBehaviour
     private void UseHamItem()
     {
 
-        player.GetComponent<Animator>().SetTrigger("isEat");
+        playeranim.SetTrigger("isEat");
         ham.SetActive(true);
-        player.GetComponent<Health>().RestoreHP(80);
+        playerhp.RestoreHP(80);
     }
 
     private void UseBreadItem()
     {
 
-        player.GetComponent<Animator>().SetTrigger("isEat");
+        playeranim.SetTrigger("isEat");
         bread.SetActive(true);
-        player.GetComponent<Health>().RestoreHP(40);
+        playerhp.RestoreHP(40);
     }
 
 

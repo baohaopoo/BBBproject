@@ -19,7 +19,8 @@ public class Item : ScriptableObject //게임오브젝트에 붙일필요없는 
         Attack,
         Heal,
         CanOpen,
-        Etx
+        Etx,
+        Friend
    
     }
 

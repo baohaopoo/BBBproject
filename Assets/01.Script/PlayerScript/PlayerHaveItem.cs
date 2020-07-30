@@ -42,7 +42,7 @@ public class PlayerHaveItem : MonoBehaviour
         UIManager.instance.AddItem2(Iitem2);
 
     }
-    public void UseItem() //아이템 사용하기 
+    public void UseItem() 
     {
         Iitem1 = null;
         UIManager.instance.UseItem1();

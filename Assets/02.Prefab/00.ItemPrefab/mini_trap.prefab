@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 7692298624532506947}
   - component: {fileID: 7411825899583918675}
   - component: {fileID: -5561018239235426329}
+  - component: {fileID: -3326924147392056874}
   m_Layer: 0
   m_Name: mini_trap
   m_TagString: Item
@@ -354,6 +355,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: f124586e16df7734da720ffba5fc83ba, type: 2}
+--- !u!114 &-3326924147392056874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7333122569276371788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6ea79bc7faf69428252b5499cf6932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8097918028011317838
 GameObject:
   m_ObjectHideFlags: 0

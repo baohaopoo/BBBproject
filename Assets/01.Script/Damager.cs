@@ -23,6 +23,7 @@ public class Damager : StatusController
     {
 
         base.OnDamage(damage, hitPoint, hitNormal);
+        Debug.Log("아야");
         
     }
 
