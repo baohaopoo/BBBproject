@@ -94,7 +94,7 @@ public class ItemBox : MonoBehaviourPun
 
        
         Debug.Log("무얼까요무얼까요");
-        int ItemNum = Random.Range(0, 5);//랜덤
+        int ItemNum = Random.Range(3, 5);//랜덤
    
         if (ItemNum == 0)
         {

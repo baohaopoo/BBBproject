@@ -3,9 +3,7 @@ using Photon.Pun;
 // 주어진 Gun 오브젝트를 쏘거나 재장전
 public class PlayerShooter : MonoBehaviourPun
 {
-    GameObject playerGrabPoint;
-
-    //public Gun gunscript; //실험
+  //public Gun gunscript; //실험
 
     public Gun gun; // 사용할 총
 
@@ -24,19 +22,16 @@ public class PlayerShooter : MonoBehaviourPun
     private void Start()
     {
         // 사용할 컴포넌트들을 가져오기
-        playerGrabPoint = GameObject.FindGameObjectWithTag("grabPoint"); //플레이어 총잡을 부분 객체 소환
         //CrossHairUI = GameObject.FindGameObjectWithTag("Crosshair"); 
         playerController = GetComponent<PlayerController>();
         playerInput = GetComponent<PlayerInput>();
         playerAnimator = GetComponent<Animator>();
         cameraController = GetComponent<CameraController>();
 
-        //총을 자식으로 두고 위치갱신 
-        gun.transform.SetParent(playerGrabPoint.transform);
-        gun.transform.localPosition = new Vector3(-0.53f, -0.82f, 0.22f);
+  
         gun.transform.rotation = FindObjectOfType<PlayerController>().transform.rotation;
     }
-    public Gun guninstance;
+
     private void OnEnable()
     {
         //총이 쏴질때.
@@ -46,15 +41,15 @@ public class PlayerShooter : MonoBehaviourPun
         if (photonView.IsMine)
         {
             //에임 UI도 활성화
-            guninstance.Aimon();
+            gun.Aimon();
 
-            if (guninstance.bulletRemain <= 0)
+            if (gun.bulletRemain <= 0)
             {
                 //총알상태를 off
-                guninstance.Stateoff();
-            }else if (guninstance.bulletRemain > 0)
+                gun.Stateoff();
+            }else if (gun.bulletRemain > 0)
             {
-                guninstance.Stateon();
+                gun.Stateon();
             }
 
            // Aim.SetActive(false);
@@ -68,7 +63,7 @@ public class PlayerShooter : MonoBehaviourPun
     {
 
         // 슈터가 활성화될 때 총도 함께 활성화
-        this.gun.gameObject.SetActive(true);
+        gun.gameObject.SetActive(true);
 
         //if (gunscript.bulletRemain == 5)
         //{
@@ -85,7 +80,7 @@ public class PlayerShooter : MonoBehaviourPun
 
         if (photonView.IsMine) //포톤이 로컬일떄
         {
-            guninstance.Aimoff();
+            gun.Aimoff();
 
         }
     }
@@ -94,7 +89,7 @@ public class PlayerShooter : MonoBehaviourPun
     {
 
         // 슈터가 비활성화될 때 총도 함께 비활성화
-        this.gun.gameObject.SetActive(false);
+        gun.gameObject.SetActive(false);
 
 
     }
@@ -148,15 +143,5 @@ public class PlayerShooter : MonoBehaviourPun
         gun.transform.rotation = FindObjectOfType<CameraController>().transform.rotation;
     }
 
-
-    // 탄약 UI 갱신
-    //private void UpdateUI()
-    //{
-    //    //if (gun != null && UIManager.instance != null)
-    //    //{
-    //    //    // UI 매니저의 탄약 텍스트에 탄창의 탄약과 남은 전체 탄약을 표시
-    //    //    UIManager.instance.UpdateAmmoText(gun.magAmmo, gun.ammoRemain);
-    //    //}
-    //}
 
 }

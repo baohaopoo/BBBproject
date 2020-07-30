@@ -80,6 +80,7 @@ MonoBehaviour:
   - destroyMe
   - hamon
   - breadon
+  - hamgo
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

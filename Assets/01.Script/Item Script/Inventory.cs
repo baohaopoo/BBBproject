@@ -142,7 +142,14 @@ public class Inventory : MonoBehaviourPun
         
        
     }
+    [PunRPC]
+    public void hamani()
+    {
 
+        ham.SetActive(true);
+        player.GetComponent<Animator>().SetTrigger("isEat");
+
+    }
 
     private void UseHamItem()
     {
@@ -152,9 +159,9 @@ public class Inventory : MonoBehaviourPun
         //    return;
         //}
 
-        player.GetComponent<Animator>().SetTrigger("isEat");
-
-        ham.SetActive(true);
+        photonView.RPC("hamani", RpcTarget.All);
+        
+        //ham.SetActive(true);
         
 
         //if (PhotonNetwork.IsMasterClient)
@@ -171,7 +178,14 @@ public class Inventory : MonoBehaviourPun
        
     }
 
+    [PunRPC]
+    public void breadani()
+    {
 
+        bread.SetActive(true);
+        player.GetComponent<Animator>().SetTrigger("isEat");
+
+    }
     private void UseBreadItem()
     {
         //if (!photonView.IsMine)
@@ -179,9 +193,10 @@ public class Inventory : MonoBehaviourPun
         //    return;
         //}
 
-        player.GetComponent<Animator>().SetTrigger("isEat");
-
-        bread.SetActive(true);
+        photonView.RPC("breadani", RpcTarget.All);
+       
+       
+        //bread.SetActive(true);
 
         
         //if(PhotonNetwork.IsMasterClient)
