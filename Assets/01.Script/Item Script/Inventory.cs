@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Inventory : MonoBehaviourPun,IPunObservable
-{
+//inventory slot
+public class Inventory : MonoBehaviourPun
 
-    //주기적으로 자동 실행
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-
-
-    }
-
+{ 
     [SerializeField]
     private Gun gun;
 
@@ -25,17 +19,19 @@ public class Inventory : MonoBehaviourPun,IPunObservable
     [SerializeField]
     private GameObject player;
 
+    public GameObject ham;
+    public GameObject bread;
     //얘네는 내부적으로 다 들어와있어
-    private GameObject ham; //햄 아이템
-    private GameObject bread; //빵아이템
+    //private GameObject ham; //햄 아이템
+    //private GameObject bread; //빵아이템
 
     private PlayerHaveItem playeritem;
 
 
     private void Start()
     {
-        ham = player.transform.Find("Ham").gameObject;
-        bread = player.transform.Find("Bread").gameObject;
+        //ham = player.transform.Find("Ham").gameObject;
+        //bread = player.transform.Find("Bread").gameObject;
         playeritem = GetComponent<PlayerHaveItem>();
     }
     private void Update()
@@ -55,8 +51,6 @@ public class Inventory : MonoBehaviourPun,IPunObservable
             UseBreadItem();
         }
         //*****************//
-
-        //
 
     }
 
@@ -153,27 +147,49 @@ public class Inventory : MonoBehaviourPun,IPunObservable
     private void UseHamItem()
     {
 
+        //if (!photonView.IsMine)
+        //{
+        //    return;
+        //}
 
+        player.GetComponent<Animator>().SetTrigger("isEat");
 
-            player.GetComponent<Animator>().SetTrigger("isEat");
-            ham.SetActive(true);
-            player.GetComponent<Health>().RestoreHP(80);
+        ham.SetActive(true);
+        
+
+        //if (PhotonNetwork.IsMasterClient)
+        //{
+        //    //마스터 클라일경우만, 
+        //    player.GetComponent<Health>().RestoreHP(80);
+  
+
+        //}
+       
 
 
         
        
     }
 
+
     private void UseBreadItem()
     {
+        //if (!photonView.IsMine)
+        //{
+        //    return;
+        //}
 
-            player.GetComponent<Animator>().SetTrigger("isEat");
-            bread.SetActive(true);
-            player.GetComponent<Health>().RestoreHP(40);
+        player.GetComponent<Animator>().SetTrigger("isEat");
 
+        bread.SetActive(true);
 
         
-      
+        //if(PhotonNetwork.IsMasterClient)
+        //player.GetComponent<Health>().RestoreHP(40);
+
+
+
+
     }
 
  

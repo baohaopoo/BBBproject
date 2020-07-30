@@ -40,8 +40,9 @@ public class ActionControler : MonoBehaviourPun
 
                     //삭제해랏
 
+                    //E키를 눌러주면 삭제해주는데..
+                    other.transform.GetComponent<ItemDestroy>().destroyall();
 
-                    PhotonNetwork.Destroy(other.transform.gameObject);
                     UIManager.instance.offactiontxt();
 
 

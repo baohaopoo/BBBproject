@@ -77,9 +77,11 @@
     <Compile Include="Assets\01.Script\Item Script\ActionControler.cs" />
     <Compile Include="Assets\01.Script\Item Script\Consumer.cs" />
     <Compile Include="Assets\01.Script\Item Script\GrabItem.cs" />
+    <Compile Include="Assets\01.Script\Item Script\IItem.cs" />
     <Compile Include="Assets\01.Script\Item Script\Inventory.cs" />
     <Compile Include="Assets\01.Script\Item Script\Item.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemBox.cs" />
+    <Compile Include="Assets\01.Script\Item Script\ItemDestroy.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemManager.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemPickup.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemSpawner.cs" />
