@@ -12,7 +12,10 @@ public class Health : StatusController, IPunObservable
 
     int x = 100;
 
-    public static Health h_instance = null;
+
+
+    // 싱글톤 접근용 프로퍼티
+
 
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -56,12 +59,20 @@ public class Health : StatusController, IPunObservable
     }
 
     // 체력 회복
+
     [PunRPC]
     public override void RestoreHP(int newHP)
     {
-        base.RestoreHP(newHP);
-        //체력 갱신 
-        UpdateUI();
+        
+
+        if (photonView.IsMine)
+        {
+            base.RestoreHP(newHP);
+            //체력 갱신 
+            UpdateUI();
+
+        }
+
 
     }
 

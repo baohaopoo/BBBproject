@@ -26,6 +26,9 @@ public class Inventory : MonoBehaviourPun
     //private GameObject bread; //빵아이템
 
     private PlayerHaveItem playeritem;
+    private ham hami;
+    private bread bre;
+
 
 
     private void Start()
@@ -33,6 +36,8 @@ public class Inventory : MonoBehaviourPun
         //ham = player.transform.Find("Ham").gameObject;
         //bread = player.transform.Find("Bread").gameObject;
         playeritem = GetComponent<PlayerHaveItem>();
+        hami = GetComponent<ham>();
+        bre = GetComponent<bread>();
     }
     private void Update()
     {
@@ -154,28 +159,29 @@ public class Inventory : MonoBehaviourPun
     private void UseHamItem()
     {
 
-        //if (!photonView.IsMine)
-        //{
-        //    return;
-        //}
+        if (!photonView.IsMine)
+        {
+            return;
+        }
 
         photonView.RPC("hamani", RpcTarget.All);
-        
+
         //ham.SetActive(true);
-        
 
-        //if (PhotonNetwork.IsMasterClient)
-        //{
-        //    //마스터 클라일경우만, 
-        //    player.GetComponent<Health>().RestoreHP(80);
-  
 
-        //}
-       
+        // photonView.PRC("RestoreHP",)
 
+        //player.GetComponent<Health>().RestoreHP(80);
 
         
-       
+      
+        UIManager.instance.UpdateHPSlider(100);
+        //Health.instance.RestoreHP(80);
+
+
+        //player.GetComponent<Health>().OnEnable();
+
+
     }
 
     [PunRPC]
@@ -188,17 +194,26 @@ public class Inventory : MonoBehaviourPun
     }
     private void UseBreadItem()
     {
-        //if (!photonView.IsMine)
-        //{
-        //    return;
-        //}
+        if (!photonView.IsMine)
+        {
+            return;
+        }
 
         photonView.RPC("breadani", RpcTarget.All);
-       
-       
+
+        //현재 HP받아오자
+        UIManager.instance.UpdateHPSlider(100);
+        //Health.instance.RestoreHP(40);
+
+        // player.GetComponent<Health>().RestoreHP(40);
+        //player.GetComponent<Health>().OnEnable();
+
+
+
+    
         //bread.SetActive(true);
 
-        
+
         //if(PhotonNetwork.IsMasterClient)
         //player.GetComponent<Health>().RestoreHP(40);
 
@@ -207,7 +222,7 @@ public class Inventory : MonoBehaviourPun
 
     }
 
- 
-     
+
+
 
 }

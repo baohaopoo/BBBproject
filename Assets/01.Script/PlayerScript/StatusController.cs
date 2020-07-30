@@ -18,6 +18,7 @@ public class StatusController : MonoBehaviourPun, Damageable
 
 
     //호스트 -> 모든 클라이언트 방향으로 체력과 사망 상태를 동기화하는 메서
+    
     [PunRPC]
     public void ApplyUpdateHealth(int newHealth, bool newDead)
     {
