@@ -7,7 +7,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
 {
     //GameObject
     public static Gun instance = null;
-
+    public GameObject Player;
     //주기적으로 자동 실행
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -54,9 +54,10 @@ public class Gun : MonoBehaviourPun, IPunObservable
     public int damage = 20; // 공격력
     private float fireDistance = 50f; // 사정거리
 
-    public int bulletRemain = 5; // 남은 총알
+    public int bulletRemain; // 남은 총알
     public int bulletCapacity = 5; // 총알 용량
 
+    public int startbullet = 5;
     public float timeBetFire = 0.12f; // 총알 발사 사이의 시간간격
     public float lastFireTime = 0; // 총을 마지막으로 발사한 시점 
 
@@ -100,12 +101,13 @@ public class Gun : MonoBehaviourPun, IPunObservable
         state = State.Empty;
     
     }
+
     private void OnEnable()
     {
         // 총 상태 초기화
-    //    state = State.Ready; //총의 상태 : 준비되어있음
+     
         lastFireTime = 0;
-
+       
     }
 
 
@@ -126,7 +128,6 @@ public class Gun : MonoBehaviourPun, IPunObservable
         photonView.RPC("Shot", RpcTarget.All);
 
 
-
     }
 
 
@@ -141,6 +142,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
         Aim.SetActive(false);
         Debug.Log("aim 이 나가래");
     }
+
 
     // 발사 시도
     public void Fire()
@@ -237,6 +239,15 @@ public class Gun : MonoBehaviourPun, IPunObservable
             Debug.Log("아무것도 남지 않았다.");
 
         }
+    }
+
+    public void gunreset()
+    {
+
+        Debug.Log("총알 갯수 뤼셋한다.");
+        bulletRemain = 5;
+        UpdateUI();
+        Debug.Log(bulletRemain);
     }
     public void UpdateUI()
     {

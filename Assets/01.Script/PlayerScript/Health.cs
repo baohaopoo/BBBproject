@@ -9,6 +9,9 @@ public class Health : StatusController, IPunObservable
 
     private PlayerController playercontroller; // 플레이어 움직임 컴포넌트
     private PlayerShooter playerShooter; // 플레이어 슈터 컴포넌트
+    public GameObject player;
+    public Gun gun;
+
     public bool isres = false;
     int x = 100;
 
@@ -16,7 +19,7 @@ public class Health : StatusController, IPunObservable
     // 싱글톤 접근용 프로퍼티
 
 
-
+    public static bool gunreset = false;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
 
@@ -49,7 +52,7 @@ public class Health : StatusController, IPunObservable
             return;
         }
 
-        if (isdie)
+        if (isdie) //이즈다이가 트루이면
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -66,6 +69,7 @@ public class Health : StatusController, IPunObservable
     public void OnEnable()
     {
         // StatusController의 OnEnable() 실행 (상태 초기화)
+    
         base.OnEnable();
  
     }
@@ -211,8 +215,11 @@ public class Health : StatusController, IPunObservable
     [PunRPC]
     public void respawn2()
     {
-
-        playerAnimator.SetTrigger("Grounded");
+        if (!isdie)
+        {
+            playerAnimator.SetTrigger("Grounded");
+        }
+       
         //원점에서 반경 5유닛 내부의 랜덤 위치 지정
         Vector3 randomSpawnPos = Random.insideUnitSphere * 9f;
         //랜덤 위치의 y값을 0으로 변경
@@ -237,15 +244,20 @@ public class Health : StatusController, IPunObservable
             gameObject.SetActive(false);
             gameObject.SetActive(true);
             UIManager.instance.UpdateHPSlider(HP);
+
+            
         }
 
 
     }
+
+    
     public void Respawn()
     {
         UIManager.instance.SetActiveGameoverUI(false);
         UIManager.instance.gameover = false;
        
+        //리스폰 되면, 
 
         //로컬 플레이어만 직접 위치 변경 가능
        if (photonView.IsMine)
@@ -254,13 +266,17 @@ public class Health : StatusController, IPunObservable
 
           
             Debug.Log("들어오냐?");
-            //헬스 초기화
+            ////헬스 초기화
             this.gameObject.SetActive(false);
             this.gameObject.SetActive(true);
 
+             gun.bulletRemain = 5;
+           
+            gun.UpdateUI();
+           
 
             UIManager.instance.onallUI();
-            //UIManager.instance.UpdateHPSlider(100);
+            
         }
 
         photonView.RPC("respawn2", RpcTarget.All);

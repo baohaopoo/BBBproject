@@ -34,6 +34,9 @@ public class PlayerShooter : MonoBehaviourPun
 
     private void OnEnable()
     {
+     
+      
+        
         //총이 쏴질때.
         photonView.RPC("gunon_RPC", RpcTarget.All);
 
@@ -52,14 +55,14 @@ public class PlayerShooter : MonoBehaviourPun
                 gun.Stateon();
             }
 
-           // Aim.SetActive(false);
+            // Aim.SetActive(false);
 
-        
+          
         }
 
     }
     [PunRPC]
-    void gunon_RPC()
+    public void gunon_RPC()
     {
 
         // 슈터가 활성화될 때 총도 함께 활성화

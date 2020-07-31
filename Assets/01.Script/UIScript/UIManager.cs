@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
     public GameObject bulletImage3;
     public GameObject bulletImage4;
     public GameObject bulletImage5;
-
+    public GameObject inventory;
     [SerializeField]
     public Text actionText;
     [SerializeField]
@@ -77,8 +77,10 @@ public class UIManager : MonoBehaviour
 
     public void offallUI()
     {
+        //잔가지 치우기
         BulletUI.gameObject.SetActive(false);
         hpslider.gameObject.SetActive(false);
+        inventory.gameObject.SetActive(false);
     }
     public void onallUI()
     {
