@@ -176,6 +176,8 @@ public class Inventory : MonoBehaviourPun
         
       
         UIManager.instance.UpdateHPSlider(100);
+        //player.GetComponent<Health>().RestoreHP(80);
+
         //Health.instance.RestoreHP(80);
 
 

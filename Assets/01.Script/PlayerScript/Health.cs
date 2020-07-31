@@ -134,6 +134,7 @@ public class Health : StatusController, IPunObservable
             UpdategameoverUI();
 
 
+
         }
 
     }
@@ -145,6 +146,7 @@ public class Health : StatusController, IPunObservable
             UIManager.instance.SetActiveGameoverUI(true);
         }
     }
+
     //아이템 스크립트 오면 쓰자
     /*
     private void OnTriggerEnter(Collider other)

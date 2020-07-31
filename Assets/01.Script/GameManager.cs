@@ -72,7 +72,14 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
         isGameover = false;
         //playerPrefab.SetActive(true);
 
-        Vector3 randomPos = Random.insideUnitSphere * 5f;
+        //Random.insideUnitSphere * 5f 반경 5미터 안의 랜덤 위치.
+        //Vector3 randomPos = (Random.insideUnitSphere * 5f,0f,0f);
+
+        //치밀하게 지어준 나의 좌표,..
+        Vector3 randomPos;
+        randomPos.x= Random.Range(-5, 5);
+        randomPos.y = 0.08f;
+        randomPos.z = 0f;
 
         
         PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
@@ -91,6 +98,9 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
     public void Restart()
     {
         SceneManager.LoadScene("Kidsroom");
+
+
+
     }
     public void OnPlayerDead()
     {
