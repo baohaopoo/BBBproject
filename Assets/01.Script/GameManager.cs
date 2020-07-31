@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using TMPro;
 
+
 public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
 {
     public Gun guninstance;
@@ -33,10 +34,9 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
 
     public bool isGameover { get; private set; } // 게임 오버 상태
 
-    public GameObject gameoverUI;
+   
     public GameObject playerPrefab; //생성할 게임플레이어 
 
-   
 
     //주기적으로 자동 실행되는 동기화 메서드
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
     void Start()
     {
         isGameover = false;
-        //playerPrefab.SetActive(true);
+        playerPrefab.SetActive(true);
 
         //Random.insideUnitSphere * 5f 반경 5미터 안의 랜덤 위치.
         //Vector3 randomPos = (Random.insideUnitSphere * 5f,0f,0f);
@@ -89,26 +89,13 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
     
     void Update()
     {
-        if (isGameover && Input.GetMouseButtonDown(0))
-        {
-            Restart();
-        }
+        ////여기서 이제 버튼을 누르면 Restart 가 되는것이다.
+        //if (isGameover && Input.GetMouseButtonDown(0))
+        //{
+
+        //}
     }
 
-    public void Restart()
-    {
-        SceneManager.LoadScene("Kidsroom");
-
-
-
-    }
-    public void OnPlayerDead()
-    {
-        isGameover = true;
-
-        //UI
-        //gameoverUI.SetActive(true);
-    }
     public override void OnLeftRoom()
     {
         SceneManager.LoadScene("Lobby");

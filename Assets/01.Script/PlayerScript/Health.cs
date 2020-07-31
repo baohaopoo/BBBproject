@@ -9,9 +9,8 @@ public class Health : StatusController, IPunObservable
 
     private PlayerController playercontroller; // 플레이어 움직임 컴포넌트
     private PlayerShooter playerShooter; // 플레이어 슈터 컴포넌트
-
+    public bool isres = false;
     int x = 100;
-
 
 
     // 싱글톤 접근용 프로퍼티
@@ -118,27 +117,56 @@ public class Health : StatusController, IPunObservable
     // 사망 처리
     public override void Die()
     {
+
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+        //status controller 의 Die의 실행(사망 적용)
         base.Die();
+
+     
+        //갱신된 체력 슬라이더에 반영
+        UpdategameoverUI();
 
         //사망애니메이션
         playerAnimator.SetTrigger("Die");
 
-        GameManager.instance.OnPlayerDead();
 
-        if (photonView.IsMine)
+        //즉으면 사망 유아이 틀고 키가 안먹어짐.
+        UIManager.instance.die();
+
+        if (!UIManager.instance.isready)
         {
-
-            Debug.Log("현재 죽었냐?????????");
-
-            //갱신된 체력 슬라이더에 반영
-            UpdategameoverUI();
-
-
-
+            UIManager.instance.SetActiveGameoverUI(true);
+        
         }
 
-    }
+        Debug.Log("foresssssssssssssssssssss");
+        //재시작 버튼누르면 버튼 스크립트가 알아서 연결될거고
+        Debug.Log(UIManager.instance.isready);
 
+
+        ///////////////////////////
+        if (UIManager.instance.forres)
+        {
+            Debug.Log("여기까진 들어오겟지");
+            //Invoke("Respawn",2f);
+            Respawn();
+
+            Debug.Log("너이놈!");
+        }
+        //////////////////////////////
+        //Invoke("Respawn", 10f);
+       
+        //respawn함수 불러와
+       // Respawn();
+
+        //respawn함수에는 hp초기화, 애니메이션 사라, 인벤토리 초기화, bullet 초기화를 해주자.
+
+
+    }
+ 
     private void UpdategameoverUI()
     {
         if (playerRigidbody != null && UIManager.instance != null)
@@ -181,25 +209,29 @@ public class Health : StatusController, IPunObservable
 
     public void Respawn()
     {
+        UIManager.instance.gameover = false;
+       
         //로컬 플레이어만 직접 위치 변경 가능
-        if (photonView.IsMine)
+       if (photonView.IsMine)
         {
+            Debug.Log("뤼스폰 함수입니다.");
             //원점에서 반경 5유닛 내부의 랜덤 위치 지정
             Vector3 randomSpawnPos = Random.insideUnitSphere * 9f;
             //랜덤 위치의 y값을 0으로 변경
-            randomSpawnPos.y = 0f;
+            randomSpawnPos.y = 0.8f;
 
             //지정된 랜덤 위치로 이동
             transform.position = randomSpawnPos;
 
 
+            //헬스 초기화
+            gameObject.SetActive(false);
+            gameObject.SetActive(true);
+
+            //UIManager.instance.UpdateHPSlider(100);
         }
 
-
-        //컴포넌트를 리셋하기 위해 게임 오브젝트를 잠시 껐다고 다시 켜기
-        //컴포넌트의 ondisable(), onEnable()메서드가 실행됨
-        //gameObject.SetActive(false);
-        //gameObject.SetActive(true);
+ 
 
 
 

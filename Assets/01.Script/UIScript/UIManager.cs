@@ -44,6 +44,10 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     public Image itemImage2; //아이템 2 이미지
 
+    public Button restartbutton;
+    public bool gameover = false;
+    public bool isready = false;
+    public bool forres = false;
     public void getitem(string name)
     { 
      actionText.text = name + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
@@ -132,13 +136,34 @@ public class UIManager : MonoBehaviour
         hpslider.value = hp;
     }
 
+    public bool die()
+    {
+        gameover = true;
+        isready = false;
+        Debug.Log("게임오벌 유아이 틀어줘");
+
+
+        return isready;
+    }
     // 게임 오버 UI 활성화
     public void SetActiveGameoverUI(bool active)
     {
         gameoverUI.SetActive(active);
+        
     }
+    public void readyrespawn()
+    {
+        Debug.Log("잘들어오나요??구륑미ㅜ안림;ㅇ나러");
+        SetActiveGameoverUI(false);
+     
+        Debug.Log("isreadt가 바뀜");
 
-    // 게임 재시작
+
+        forres = true; 
+
+    }
+    
+    //게임 재시작
     //public void GameRestart()
     //{
     //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);

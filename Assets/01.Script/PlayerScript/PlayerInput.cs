@@ -38,7 +38,7 @@ public class PlayerInput : MonoBehaviourPun
         {
 
             //게임오버 상태에서는 사용자 입력 감지 안함
-            if (GameManager.instance != null && GameManager.instance.isGameover)
+            if (GameManager.instance != null && UIManager.instance.gameover)
             {
                 Verticalmove = 0;
                 Horizontalmove = 0;
