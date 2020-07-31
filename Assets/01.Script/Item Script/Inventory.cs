@@ -173,9 +173,9 @@ public class Inventory : MonoBehaviourPun
 
         //player.GetComponent<Health>().RestoreHP(80);
 
-        
-      
-        UIManager.instance.UpdateHPSlider(100);
+
+        player.GetComponent<Health>().HPrespawn();
+       //UIManager.instance.UpdateHPSlider(100);
         //player.GetComponent<Health>().RestoreHP(80);
 
         //Health.instance.RestoreHP(80);
@@ -204,7 +204,10 @@ public class Inventory : MonoBehaviourPun
         photonView.RPC("breadani", RpcTarget.All);
 
         //현재 HP받아오자
-        UIManager.instance.UpdateHPSlider(100);
+        player.GetComponent<Health>().HPrespawn();
+    
+
+       // UIManager.instance.UpdateHPSlider(100);
         //Health.instance.RestoreHP(40);
 
         // player.GetComponent<Health>().RestoreHP(40);

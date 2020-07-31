@@ -46,8 +46,7 @@ public class UIManager : MonoBehaviour
 
     public Button restartbutton;
     public bool gameover = false;
-    public bool isready = false;
-    public bool forres = false;
+
     public void getitem(string name)
     { 
      actionText.text = name + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
@@ -76,6 +75,16 @@ public class UIManager : MonoBehaviour
         openText.gameObject.SetActive(false);
     }
 
+    public void offallUI()
+    {
+        BulletUI.gameObject.SetActive(false);
+        hpslider.gameObject.SetActive(false);
+    }
+    public void onallUI()
+    {
+        BulletUI.gameObject.SetActive(true);
+        hpslider.gameObject.SetActive(true);
+    }
 
     public void updateBullet(int sb)
     {
@@ -136,14 +145,14 @@ public class UIManager : MonoBehaviour
         hpslider.value = hp;
     }
 
-    public bool die()
+    public void die()
     {
-        gameover = true;
-        isready = false;
-        Debug.Log("게임오벌 유아이 틀어줘");
+        gameover = true; // playerinput에서 사망처리일땐 조작키 안먹게 하려고 씀.
+        //isready = false;
+        //Debug.Log("게임오벌 유아이 틀어줘");
 
 
-        return isready;
+        //return isready;
     }
     // 게임 오버 UI 활성화
     public void SetActiveGameoverUI(bool active)
@@ -151,23 +160,7 @@ public class UIManager : MonoBehaviour
         gameoverUI.SetActive(active);
         
     }
-    public void readyrespawn()
-    {
-        Debug.Log("잘들어오나요??구륑미ㅜ안림;ㅇ나러");
-        SetActiveGameoverUI(false);
-     
-        Debug.Log("isreadt가 바뀜");
-
-
-        forres = true; 
-
-    }
-    
-    //게임 재시작
-    //public void GameRestart()
-    //{
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    //}
+  
 
 
     //이미지 투명도 조절 (이미지 비어있을땐 투명하게 한다)
