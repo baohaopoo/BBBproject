@@ -31,9 +31,8 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
 
     private static GameManager m_instance; // 싱글톤이 할당될 static 변수
 
-    public bool isGameover { get; private set; } // 게임 오버 상태
+    public bool isGameover;
 
-    public GameObject gameoverUI;
     public GameObject playerPrefab; //생성할 게임플레이어 
 
    
@@ -55,7 +54,6 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
             //score = (int)stream.ReceiveNext();
             guninstance.bulletRemain = (int)stream.ReceiveNext();
         }
-      // UIManager.instance.UpdateScoreText(score);
     }
 
     void Awake()
@@ -69,7 +67,7 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
     }
     void Start()
     {
-        isGameover = false;
+        //isGameover = false;
         //playerPrefab.SetActive(true);
 
         //Random.insideUnitSphere * 5f 반경 5미터 안의 랜덤 위치.
@@ -84,31 +82,31 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
         
         PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
 
-        Debug.Log(playerPrefab.name+"생성이다 이놈아ㅏ아앙");
     }
     
     void Update()
     {
-        if (isGameover && Input.GetMouseButtonDown(0))
-        {
-            Restart();
-        }
+        //if (isGameover && Input.GetMouseButtonDown(0))
+        //{
+        //    Restart();
+        //}
     }
 
-    public void Restart()
-    {
-        SceneManager.LoadScene("Kidsroom");
+    //public void Restart()
+    //{
+    //    // SceneManager.LoadScene("Kidsroom");
+    //    isGameover = false;
 
 
+    //}
+    //public void OnPlayerDead()
+    //{
+    //    isGameover = true;
 
-    }
-    public void OnPlayerDead()
-    {
-        isGameover = true;
+    //    //UI
+    //    //gameoverUI.SetActive(true);
+    //}
 
-        //UI
-        //gameoverUI.SetActive(true);
-    }
     public override void OnLeftRoom()
     {
         SceneManager.LoadScene("Lobby");

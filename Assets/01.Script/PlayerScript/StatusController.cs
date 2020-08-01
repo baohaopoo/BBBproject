@@ -7,8 +7,8 @@ public class StatusController : MonoBehaviourPun, Damageable
 
 
     public int HP { get; protected set; }
-    public bool dead { get; protected set; }
-    public event Action onDeath; //사망했을때 발동하는이벤트 
+    public bool dead;
+    //public event Action onDeath; //사망했을때 발동하는이벤트 
 
     //virtual : 가상메서드 ( 자식 클래스가 오버라이드 할 수 있도록 허용된 메서드 )
     // 자식클래스는 override로 부모클래스의 가상메서드를 재정의 가능 
@@ -26,9 +26,6 @@ public class StatusController : MonoBehaviourPun, Damageable
         HP = newHealth;
      
         dead = newDead;
-
-
-
     }
     //활성화될때 실행
     protected virtual void OnEnable()
@@ -105,18 +102,18 @@ public class StatusController : MonoBehaviourPun, Damageable
 
 
 
-        }
+       }
     }
 
     
     // 사망 처리
     public virtual void Die()
     {
-        // onDeath 이벤트에 등록된 메서드가 있다면 실행
-        if (onDeath != null)
-        {
-            onDeath();
-        }
+        //// onDeath 이벤트에 등록된 메서드가 있다면 실행
+        //if (onDeath != null)
+        //{
+        //    onDeath();
+        //}
 
         // 사망 상태를 참으로 변경
         dead = true;

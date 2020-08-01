@@ -81,6 +81,11 @@ MonoBehaviour:
   - hamon
   - breadon
   - hamgo
+  - Die
+  - Respawn
+  - dieAni
+  - repawnAni
+  - RegenHP
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

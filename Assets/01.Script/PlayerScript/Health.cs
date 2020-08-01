@@ -45,9 +45,15 @@ public class Health : StatusController, IPunObservable
     //요거  추가햄
     private void Update()
     {
+        
         if (photonView.IsMine == false)
         {
             return;
+        }
+
+        if (dead&&Input.GetMouseButtonDown(0))
+        {
+            Respawn();
         }
     
     }
@@ -72,6 +78,14 @@ public class Health : StatusController, IPunObservable
             UpdateUI();
 
         }
+
+
+    }
+
+    public void RegenHP()
+    {
+        HP = 100;
+        UpdateUI();
 
 
     }
@@ -115,75 +129,65 @@ public class Health : StatusController, IPunObservable
         }
     }
 
+
+
     // 사망 처리
     public override void Die()
     {
         base.Die();
 
-        //사망애니메이션
-        playerAnimator.SetTrigger("Die");
-
-        GameManager.instance.OnPlayerDead();
-
+        //GameManager.instance.isGameover = true;
+        photonView.RPC("dieAni", RpcTarget.All);
         if (photonView.IsMine)
         {
-
-            Debug.Log("현재 죽었냐?????????");
-
-            //갱신된 체력 슬라이더에 반영
-            UpdategameoverUI();
-
-
-
+            UpdategameoverUI(true);
         }
 
     }
 
-    private void UpdategameoverUI()
+    [PunRPC]
+    public void dieAni()
+    {
+        //사망애니메이션
+        playerAnimator.SetTrigger("Die");
+    }
+
+
+    private void UpdategameoverUI(bool active)
     {
         if (playerRigidbody != null && UIManager.instance != null)
         {
-            UIManager.instance.SetActiveGameoverUI(true);
+            UIManager.instance.SetActiveGameoverUI(active);
         }
     }
 
-    //아이템 스크립트 오면 쓰자
-    /*
-    private void OnTriggerEnter(Collider other)
-    {
-        //아이템과 충돌한 경우 해당  아이템을 사용하는 처리
-        //사망하지 않은 경우에만 아이템 사용 가능
 
-        if (!dead)
-        {
-
-            //충돌한 상대방으로부터 Item 컴포넌트 가져오기 시도
-            Item item = other.GetComponent<Item>();
-
-            //충돌한 상대방으로부터 item 컴포넌트 가져오는 데 성공하였다면
-            if (item != null)
-            {
-                //호스트 아이템 직접 사용 가능
-                //호스트에서는 아이템 사용 후 사용된 아이템의 효과를 모든 클라이언트에 동기화 시킴
-                if (PhotonNetwork.IsMasterClient)
-                {
-                    //use 메서드를 실행시켜 아이템 사용
-                    
-                }
-            }
-        }
-    
-
-    }
-        */
 
     //부활 처리
 
     public void Respawn()
     {
+        
+        //UpdategameoverUI(false);
+
+        //photonView.RPC("repawnAni", RpcTarget.All);
+
+        //RegenHP();
+        //HP = 100;
+        //UpdateUI();
+        //RestoreHP(500);
+
         //로컬 플레이어만 직접 위치 변경 가능
         if (photonView.IsMine)
         {
+            dead = false; //2p에서 이거 안됨 
+            HP = 100;   //회복된척보이지만 한대맞으면 다시 빵! (사실은 안된거)
+            UpdateUI(); //요거는 또 됨 ㅎㅎ;
+            UpdategameoverUI(false);
+
+            photonView.RPC("repawnAni", RpcTarget.All);
+
+            //RestoreHP(500);
             //원점에서 반경 5유닛 내부의 랜덤 위치 지정
             Vector3 randomSpawnPos = Random.insideUnitSphere * 9f;
             //랜덤 위치의 y값을 0으로 변경
@@ -195,14 +199,22 @@ public class Health : StatusController, IPunObservable
 
         }
 
-
-        //컴포넌트를 리셋하기 위해 게임 오브젝트를 잠시 껐다고 다시 켜기
-        //컴포넌트의 ondisable(), onEnable()메서드가 실행됨
-        //gameObject.SetActive(false);
-        //gameObject.SetActive(true);
-
-
-
-
     }
+    [PunRPC]
+    public void repawnAni()
+    {
+        playerAnimator.SetTrigger("Respawn"); //다시 일어낫!
+        
+    }
+
+
+    //컴포넌트를 리셋하기 위해 게임 오브젝트를 잠시 껐다고 다시 켜기
+    //컴포넌트의 ondisable(), onEnable()메서드가 실행됨
+    //gameObject.SetActive(false);
+    //gameObject.SetActive(true);
+
+
+
+
 }
+
