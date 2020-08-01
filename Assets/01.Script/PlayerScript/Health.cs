@@ -63,11 +63,11 @@ public class Health : StatusController, IPunObservable
     [PunRPC]
     public override void RestoreHP(int newHP)
     {
-        
+        base.RestoreHP(newHP);
 
         if (photonView.IsMine)
         {
-            base.RestoreHP(newHP);
+           
             //체력 갱신 
             UpdateUI();
 

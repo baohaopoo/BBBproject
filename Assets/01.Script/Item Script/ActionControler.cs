@@ -18,7 +18,6 @@ public class ActionControler : MonoBehaviourPun
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("이 부분이 안먹는것");
 
         if (other.tag == "Item")
         {

@@ -30,7 +30,6 @@ public class Inventory : MonoBehaviourPun
     private bread bre;
 
 
-
     private void Start()
     {
         //ham = player.transform.Find("Ham").gameObject;
@@ -38,13 +37,13 @@ public class Inventory : MonoBehaviourPun
         playeritem = GetComponent<PlayerHaveItem>();
         hami = GetComponent<ham>();
         bre = GetComponent<bread>();
+
     }
     private void Update()
     {
 
         if (playeritem.Iitem1 != null && Input.GetButtonDown("UseItem")) //아이템 있고 쉬프트키 누르면 사용 
         {
-            Debug.Log("!!!!!!!!!!!!!!!!!!!?");
             checkItem(); //아이템 뭔지 체크
             playeritem.UseItem(); //아이템 지워주기 
   
@@ -54,6 +53,7 @@ public class Inventory : MonoBehaviourPun
         if (Input.GetKey(KeyCode.Z))
         {
             UseBreadItem();
+
         }
         //*****************//
 
@@ -153,6 +153,8 @@ public class Inventory : MonoBehaviourPun
 
         ham.SetActive(true);
         player.GetComponent<Animator>().SetTrigger("isEat");
+        player.GetComponent<StatusController>().RestoreHP(100); //체력 100 충전 
+
 
     }
 
@@ -166,22 +168,6 @@ public class Inventory : MonoBehaviourPun
 
         photonView.RPC("hamani", RpcTarget.All);
 
-        //ham.SetActive(true);
-
-
-        // photonView.PRC("RestoreHP",)
-
-        //player.GetComponent<Health>().RestoreHP(80);
-
-        
-      
-        UIManager.instance.UpdateHPSlider(100);
-        //player.GetComponent<Health>().RestoreHP(80);
-
-        //Health.instance.RestoreHP(80);
-
-
-        //player.GetComponent<Health>().OnEnable();
 
 
     }
@@ -192,6 +178,7 @@ public class Inventory : MonoBehaviourPun
 
         bread.SetActive(true);
         player.GetComponent<Animator>().SetTrigger("isEat");
+        player.GetComponent<StatusController>().RestoreHP(40); //체력 40 충전 
 
     }
     private void UseBreadItem()
@@ -201,25 +188,7 @@ public class Inventory : MonoBehaviourPun
             return;
         }
 
-        photonView.RPC("breadani", RpcTarget.All);
-
-        //현재 HP받아오자
-        UIManager.instance.UpdateHPSlider(100);
-        //Health.instance.RestoreHP(40);
-
-        // player.GetComponent<Health>().RestoreHP(40);
-        //player.GetComponent<Health>().OnEnable();
-
-
-
-    
-        //bread.SetActive(true);
-
-
-        //if(PhotonNetwork.IsMasterClient)
-        //player.GetComponent<Health>().RestoreHP(40);
-
-
+        photonView.RPC("breadani", RpcTarget.All); //빵먹는애니메이션
 
 
     }

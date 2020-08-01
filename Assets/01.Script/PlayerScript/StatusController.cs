@@ -63,9 +63,9 @@ public class StatusController : MonoBehaviourPun, Damageable
 
 
             //호스트에서 클라이언트로 동기화
-            this.photonView.RPC("ApplyUpdateHealth", RpcTarget.Others, HP, dead);
+            photonView.RPC("ApplyUpdateHealth", RpcTarget.Others, HP, dead);
             //다른 클라이언트도 onDamage를 실행하도록 함
-            this.photonView.RPC("OnDamage", RpcTarget.Others, damage, hitPoint, hitNormal);
+            photonView.RPC("OnDamage", RpcTarget.Others, damage, hitPoint, hitNormal);
 
         }
        // applayHP();
@@ -92,7 +92,7 @@ public class StatusController : MonoBehaviourPun, Damageable
             // 체력 추가
             HP += newHP;
 
-            if (HP >= 100)
+            if (HP > 100)
             {
 
                 HP = 100;
@@ -101,7 +101,7 @@ public class StatusController : MonoBehaviourPun, Damageable
             //서버에서 클라이언트로 동기화
             photonView.RPC("ApplyUpdateHealth", RpcTarget.Others, HP, dead);
             //다른 클라이언트도 RestoreHealth 를 실행하도록 함
-            photonView.RPC("RestoreHealth", RpcTarget.Others, newHP);
+            photonView.RPC("RestoreHP", RpcTarget.Others, newHP);
 
 
 

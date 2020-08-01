@@ -653,10 +653,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: be6455eb-6b24-4bed-864e-60e70d330d87
+  cloudProjectId: c8ccc8bb-ac29-466c-8bc5-cda995191c6d
   framebufferDepthMemorylessMode: 0
-  projectName: BBB_Project
-  organizationId: baohaopoo
+  projectName: BBB_Project (2)
+  organizationId: ghdtmdgp
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
