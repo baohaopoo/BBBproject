@@ -33,9 +33,6 @@ public class StatusController : MonoBehaviourPun, Damageable
         dead = false;
         HP = startHP;
 
-
-
-
     }
     //public void applayHP()
     //{

@@ -6,11 +6,10 @@ public class PlayerPunch : MonoBehaviourPun
 {
     private Animator playerAnimator;
     public GameObject punchCollider;
-   // bool punchseton = false;
+    // bool punchseton = false;
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
-        //punchCollider.SetActive(punchseton);
     }
 
     void Update()
@@ -18,7 +17,7 @@ public class PlayerPunch : MonoBehaviourPun
         // 로컬일때
         if (photonView.IsMine)
         {
-            if (Input.GetMouseButtonDown(0)) //키를 누르면
+            if ( Input.GetMouseButtonDown(0)) //키를 누르면
             {
                 onpunch();
              

@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviourPun
     private bool isAir;
 
 
-    int rightmouseCnt=0; //오른쪽마우스 두번누르면 1인칭시점 취소시키기위해 만든변수
+    private int rightmouseCnt=0; //오른쪽마우스 두번누르면 1인칭시점 취소시키기위해 만든변수
     void Start()
     {
 
@@ -203,16 +203,12 @@ public class PlayerController : MonoBehaviourPun
         isForwardcam = false;
         if (playerInput.rightmouse)
         {
-            rightmouseCnt += 1;
-            isUseGun = true;
-            playershooter.enabled = true;
-            playerpunch.enabled = false;//펀치 불가
+            
+            CanUseGun();
             if (rightmouseCnt >= 2)//한번 더 누르면
             {
-                playershooter.enabled = false;
-                playerpunch.enabled = true; //펀치가능
-                isUseGun = false;
-                rightmouseCnt = 0;
+                NotUseGun();
+
             }
         }
         if (isUseGun) // 오른쪽마우스 누르면 총화면
@@ -248,6 +244,20 @@ public class PlayerController : MonoBehaviourPun
             }
             ForwardCam.SetActive(false);
         }
+    }
+    private void CanUseGun()
+    {
+        rightmouseCnt += 1;
+        isUseGun = true;
+        playershooter.enabled = true;
+        playerpunch.enabled = false;//펀치 불가
+    }
+    public void NotUseGun()
+    {
+        playershooter.enabled = false;
+        playerpunch.enabled = true; //펀치가능
+        isUseGun = false;
+        rightmouseCnt = 0;
     }
     private void Rope(bool uprope, bool nogravity)
     {

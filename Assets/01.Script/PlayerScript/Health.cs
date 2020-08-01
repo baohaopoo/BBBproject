@@ -8,14 +8,14 @@ public class Health : StatusController, IPunObservable
     private Rigidbody playerRigidbody; // 플레이어 캐릭터의 리지드바디
 
     private PlayerController playercontroller; // 플레이어 움직임 컴포넌트
-    private PlayerShooter playerShooter; // 플레이어 슈터 컴포넌트
+
 
     int x = 100;
 
+    public Gun gun;
 
-
+    private StatusController status;
     // 싱글톤 접근용 프로퍼티
-
 
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -40,6 +40,8 @@ public class Health : StatusController, IPunObservable
     {
         playerAnimator = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
+        status = GetComponent<StatusController>();
+        playercontroller = GetComponent<PlayerController>();
     }
 
     //요거  추가햄
@@ -136,7 +138,8 @@ public class Health : StatusController, IPunObservable
     {
         base.Die();
 
-        //GameManager.instance.isGameover = true;
+        //총 내려놓게함
+        playercontroller.NotUseGun(); 
         photonView.RPC("dieAni", RpcTarget.All);
         if (photonView.IsMine)
         {
@@ -167,27 +170,15 @@ public class Health : StatusController, IPunObservable
 
     public void Respawn()
     {
-        
-        //UpdategameoverUI(false);
 
-        //photonView.RPC("repawnAni", RpcTarget.All);
-
-        //RegenHP();
-        //HP = 100;
-        //UpdateUI();
-        //RestoreHP(500);
 
         //로컬 플레이어만 직접 위치 변경 가능
         if (photonView.IsMine)
         {
-            dead = false; //2p에서 이거 안됨 
-            HP = 100;   //회복된척보이지만 한대맞으면 다시 빵! (사실은 안된거)
-            UpdateUI(); //요거는 또 됨 ㅎㅎ;
             UpdategameoverUI(false);
 
             photonView.RPC("repawnAni", RpcTarget.All);
 
-            //RestoreHP(500);
             //원점에서 반경 5유닛 내부의 랜덤 위치 지정
             Vector3 randomSpawnPos = Random.insideUnitSphere * 9f;
             //랜덤 위치의 y값을 0으로 변경
@@ -196,22 +187,25 @@ public class Health : StatusController, IPunObservable
             //지정된 랜덤 위치로 이동
             transform.position = randomSpawnPos;
 
+            gun.bulletRemain = 5;
+            gun.UpdateUI();
+
+            
+
 
         }
 
     }
+
     [PunRPC]
     public void repawnAni()
     {
+        status.dead = false;
         playerAnimator.SetTrigger("Respawn"); //다시 일어낫!
-        
+        status.RestoreHP(500); //체력 100 충전 
+
+
     }
-
-
-    //컴포넌트를 리셋하기 위해 게임 오브젝트를 잠시 껐다고 다시 켜기
-    //컴포넌트의 ondisable(), onEnable()메서드가 실행됨
-    //gameObject.SetActive(false);
-    //gameObject.SetActive(true);
 
 
 
