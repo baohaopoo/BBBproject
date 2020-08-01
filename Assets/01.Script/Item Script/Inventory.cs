@@ -21,23 +21,29 @@ public class Inventory : MonoBehaviourPun
 
     public GameObject ham;
     public GameObject bread;
-    //얘네는 내부적으로 다 들어와있어
-    //private GameObject ham; //햄 아이템
-    //private GameObject bread; //빵아이템
+
 
     private PlayerHaveItem playeritem;
     private ham hami;
     private bread bre;
 
+    //릉애코드
+    private Animator playeranim;
+    private Health playerhp;
+    //
 
 
     private void Start()
     {
-        //ham = player.transform.Find("Ham").gameObject;
-        //bread = player.transform.Find("Bread").gameObject;
+      
         playeritem = GetComponent<PlayerHaveItem>();
         hami = GetComponent<ham>();
         bre = GetComponent<bread>();
+        //릉애코드
+        playeritem = GetComponent<PlayerHaveItem>();
+        playeranim = player.GetComponent<Animator>();
+        playerhp = player.GetComponent<Health>();
+        //
     }
     private void Update()
     {
@@ -113,10 +119,13 @@ public class Inventory : MonoBehaviourPun
             }
 
             Debug.Log("지금 아이템 불렛을 추가했다! bullet:" + gun.bulletRemain);
-
-            //추가하자마자 bulletUI가 갱신되어야함.
+          
             gun.UpdateUI();
-       
+
+
+        //릉애추가코드
+        //gun.BulletUI(gun.bulletRemain);
+        //
     }
 
 
@@ -166,22 +175,11 @@ public class Inventory : MonoBehaviourPun
 
         photonView.RPC("hamani", RpcTarget.All);
 
-        //ham.SetActive(true);
-
-
-        // photonView.PRC("RestoreHP",)
-
-        //player.GetComponent<Health>().RestoreHP(80);
-
-
         player.GetComponent<Health>().HPrespawn();
-       //UIManager.instance.UpdateHPSlider(100);
-        //player.GetComponent<Health>().RestoreHP(80);
 
-        //Health.instance.RestoreHP(80);
-
-
-        //player.GetComponent<Health>().OnEnable();
+        //릉애코드//
+        playerhp.RestoreHP(80);
+        //
 
 
     }
@@ -205,24 +203,11 @@ public class Inventory : MonoBehaviourPun
 
         //현재 HP받아오자
         player.GetComponent<Health>().HPrespawn();
-    
-
-       // UIManager.instance.UpdateHPSlider(100);
-        //Health.instance.RestoreHP(40);
-
-        // player.GetComponent<Health>().RestoreHP(40);
-        //player.GetComponent<Health>().OnEnable();
 
 
-
-    
-        //bread.SetActive(true);
-
-
-        //if(PhotonNetwork.IsMasterClient)
-        //player.GetComponent<Health>().RestoreHP(40);
-
-
+        //릉애 코드
+        playerhp.RestoreHP(40);
+        //
 
 
     }

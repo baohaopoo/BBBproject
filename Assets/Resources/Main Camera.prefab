@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerhaveitem: {fileID: 0}
+  player: {fileID: 0}
 --- !u!82 &2205417017535935441
 AudioSource:
   m_ObjectHideFlags: 0
