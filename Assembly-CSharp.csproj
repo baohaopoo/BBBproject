@@ -132,6 +132,7 @@
     <Compile Include="Assets\crosshair.cs" />
     <Compile Include="Assets\damager.cs" />
     <Compile Include="Assets\Friendcontroller.cs" />
+    <Compile Include="Assets\frog_controller.cs" />
     <Compile Include="Assets\gameMgr.cs" />
     <Compile Include="Assets\gethp.cs" />
     <Compile Include="Assets\ham.cs" />
@@ -168,6 +169,7 @@
     <None Include="Assets\Photon\PhotonUnityNetworking\link.xml" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\14.Shader\Water_Shader.shader" />
     <None Include="Assets\PostProcessing Profiles\ReadmeFIRST!.txt" />
     <None Include="Assets\03.Model\POLYGON city pack\Read_me.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
@@ -210,8 +212,14 @@
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Postprocessing.Editor">
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
       <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
@@ -221,12 +229,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

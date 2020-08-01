@@ -27,10 +27,6 @@ public class Inventory : MonoBehaviourPun
     private ham hami;
     private bread bre;
 
-    //릉애코드
-    private Animator playeranim;
-    private Health playerhp;
-    //
 
 
     private void Start()
@@ -39,18 +35,14 @@ public class Inventory : MonoBehaviourPun
         playeritem = GetComponent<PlayerHaveItem>();
         hami = GetComponent<ham>();
         bre = GetComponent<bread>();
-        //릉애코드
-        playeritem = GetComponent<PlayerHaveItem>();
-        playeranim = player.GetComponent<Animator>();
-        playerhp = player.GetComponent<Health>();
-        //
+        
     }
     private void Update()
     {
 
         if (playeritem.Iitem1 != null && Input.GetButtonDown("UseItem")) //아이템 있고 쉬프트키 누르면 사용 
         {
-            Debug.Log("!!!!!!!!!!!!!!!!!!!?");
+           
             checkItem(); //아이템 뭔지 체크
             playeritem.UseItem(); //아이템 지워주기 
   
@@ -121,11 +113,6 @@ public class Inventory : MonoBehaviourPun
             Debug.Log("지금 아이템 불렛을 추가했다! bullet:" + gun.bulletRemain);
           
             gun.UpdateUI();
-
-
-        //릉애추가코드
-        //gun.BulletUI(gun.bulletRemain);
-        //
     }
 
 
@@ -162,7 +149,7 @@ public class Inventory : MonoBehaviourPun
 
         ham.SetActive(true);
         player.GetComponent<Animator>().SetTrigger("isEat");
-
+        player.GetComponent<StatusController>().RestoreHP(100); //체력 100 충전 
     }
 
     private void UseHamItem()
@@ -175,11 +162,6 @@ public class Inventory : MonoBehaviourPun
 
         photonView.RPC("hamani", RpcTarget.All);
 
-        player.GetComponent<Health>().HPrespawn();
-
-        //릉애코드//
-        playerhp.RestoreHP(80);
-        //
 
 
     }
@@ -190,6 +172,7 @@ public class Inventory : MonoBehaviourPun
 
         bread.SetActive(true);
         player.GetComponent<Animator>().SetTrigger("isEat");
+        player.GetComponent<StatusController>().RestoreHP(40); //체력 40 충전 
 
     }
     private void UseBreadItem()
@@ -200,15 +183,6 @@ public class Inventory : MonoBehaviourPun
         }
 
         photonView.RPC("breadani", RpcTarget.All);
-
-        //현재 HP받아오자
-        player.GetComponent<Health>().HPrespawn();
-
-
-        //릉애 코드
-        playerhp.RestoreHP(40);
-        //
-
 
     }
 

@@ -24,21 +24,21 @@ public class PlayerInput : MonoBehaviourPun
     public float mouseX { get; private set; }
     public float mouseY { get; private set; }
 
+
+    private StatusController status;
+    private void Start()
+    {
+        status = gameObject.GetComponent<StatusController>();
+    }
     // 매프레임 사용자 입력을 감지
     private void Update()
     {
-        ////로컬 플레이어가 아닌 경우 입력을 받지 않음
-        //if (!photonView.IsMine)
-        //{
-        //    return;
-
-        //}
 
         if (photonView.IsMine)
         {
 
             //게임오버 상태에서는 사용자 입력 감지 안함
-            if (GameManager.instance != null && UIManager.instance.gameover)
+            if (GameManager.instance != null && status.dead)
             {
                 Verticalmove = 0;
                 Horizontalmove = 0;

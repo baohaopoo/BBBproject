@@ -59,38 +59,13 @@ public class PlayerController : MonoBehaviourPun
     void Start()
     {
 
-        //////maincamera가 플레이어만 보고 달려오는 부분 구현
-        
-        //if (photonView.IsMine)
-        //{
-
-        //    FollowCam = GameObject.Find("MainCamera");
-        //    FollowCam.GetComponent<SmoothFollow>().target = this.PlayerPibot.transform;
-      
-
-        //}
-
-        //if (!photonView.IsMine)
-        //{
-        //    FollowCam.SetActive(true);
-
-        //}
-
-        Debug.Log("maincamera 얻어오니");
-        //FollowCam.GetComponent<SmoothFollow>().target = playerTranform.Find("playerpivot").transform;
-   
-        
-        //if (!photonView.IsMine) //게임 오브젝트가 로컬 게임 오브젝트인 경우에만 이동, 회전, 애니메이션 파라미터 갱신 처리를 실행.
-        //{
-        //  
-
-        //}
 
 
         if  (Camera.main.GetComponent<SmoothFollow>().target)
         {
             Debug.Log("잘들어오고 있니?");
         }
+
         playerTranform = GetComponent<Transform>();
         playershooter = GetComponent<PlayerShooter>();
         playerInput = GetComponent<PlayerInput>();
@@ -139,12 +114,6 @@ public class PlayerController : MonoBehaviourPun
         playerAnimator.SetBool("upRope", isRope);
         playerAnimator.SetBool("UseGun", isUseGun);
 
-
-        ////로컬 플레이어만 직접 위치와 회전 변경 가능
-        //if (!photonView.IsMine)
-        //{
-        //    return;
-        //}
 
     }
 
@@ -249,6 +218,21 @@ public class PlayerController : MonoBehaviourPun
             ForwardCam.SetActive(false);
         }
     }
+
+    private void CanUseGun()
+    {
+        rightmouseCnt += 1;
+        isUseGun = true;
+        playershooter.enabled = true;
+        playerpunch.enabled = false;//펀치 불가
+    }
+    public void NotUseGun()
+    {
+        playershooter.enabled = false;
+        playerpunch.enabled = true; //펀치가능
+        isUseGun = false;
+        rightmouseCnt = 0;
+    }
     private void Rope(bool uprope, bool nogravity)
     {
         //Debug.Log("플레이어rope 들어옴");
@@ -332,10 +316,6 @@ public class PlayerController : MonoBehaviourPun
 
         }
 
-        //if (collision.gameObject == ropeCollision)
-        //{
-        //    nogravity = false;
-        //}
 
     }
     private void OnTriggerEnter(Collider other)

@@ -8,18 +8,15 @@ public class Health : StatusController, IPunObservable
     private Rigidbody playerRigidbody; // 플레이어 캐릭터의 리지드바디
 
     private PlayerController playercontroller; // 플레이어 움직임 컴포넌트
-    private PlayerShooter playerShooter; // 플레이어 슈터 컴포넌트
-    public GameObject player;
-    public Gun gun;
 
-    public bool isres = false;
+
+
     int x = 100;
+    public Gun gun;
+    private StatusController status;
 
-    bool isdie=false;
     // 싱글톤 접근용 프로퍼티
 
-
-    public static bool gunreset = false;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
 
@@ -42,6 +39,8 @@ public class Health : StatusController, IPunObservable
     {
         playerAnimator = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
+        status = GetComponent<StatusController>();
+        playercontroller = GetComponent<PlayerController>();
     }
 
     //요거  추가햄
@@ -52,18 +51,10 @@ public class Health : StatusController, IPunObservable
             return;
         }
 
-        if (isdie) //이즈다이가 트루이면
+        if (dead && Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-
-                Respawn();
-                isdie = false;
-
-            }
+            Respawn();
         }
-
-
 
     }
     public void OnEnable()
@@ -79,15 +70,23 @@ public class Health : StatusController, IPunObservable
     [PunRPC]
     public override void RestoreHP(int newHP)
     {
-        
+        base.RestoreHP(newHP);
 
         if (photonView.IsMine)
         {
-            base.RestoreHP(newHP);
+           
             //체력 갱신 
             UpdateUI();
 
         }
+
+
+    }
+
+    public void RegenHP()
+    {
+        HP = 100;
+        UpdateUI();
 
 
     }
@@ -132,155 +131,91 @@ public class Health : StatusController, IPunObservable
         }
     }
 
-    [PunRPC]
-    public void die2()
-    {
 
-
-        playerAnimator.SetTrigger("Die");
-
-    }
     // 사망 처리
     public override void Die()
     {
+
+        base.Die();
+
+        //총 내려놓게함
+        playercontroller.NotUseGun();
+        photonView.RPC("dieAni", RpcTarget.All);
         if (photonView.IsMine)
         {
+            UpdategameoverUI(true);
 
-
-            isdie = true;
-
-            //status controller 의 Die의 실행(사망 적용)
-            base.Die();
-
-
-            //갱신된 체력 슬라이더에 반영
-            UpdategameoverUI();
-            //즉으면 입력키 안먹게 하려고 
-            UIManager.instance.die();
-
-            //사망 유아이 킨다.
-            UIManager.instance.SetActiveGameoverUI(true);
-            //UI들도 안보잉게 한다.
-            HP = startHP;
-            UIManager.instance.offallUI();
-
-            //사망애니메이션
         }
-
-        photonView.RPC("die2", RpcTarget.All);
-
-      
-       
     }
- 
-    private void UpdategameoverUI()
+    [PunRPC]
+    public void dieAni()
+    {
+        //사망애니메이션
+        playerAnimator.SetTrigger("Die");
+    }
+    private void UpdategameoverUI(bool active)
     {
         if (playerRigidbody != null && UIManager.instance != null)
         {
-            UIManager.instance.SetActiveGameoverUI(true);
+            UIManager.instance.offallUI(); //아예 모든 UI를 꺼주세요.
+            UIManager.instance.SetActiveGameoverUI(active);
         }
     }
 
-    //아이템 스크립트 오면 쓰자
-    /*
-    private void OnTriggerEnter(Collider other)
-    {
-        //아이템과 충돌한 경우 해당  아이템을 사용하는 처리
-        //사망하지 않은 경우에만 아이템 사용 가능
-
-        if (!dead)
-        {
-
-            //충돌한 상대방으로부터 Item 컴포넌트 가져오기 시도
-            Item item = other.GetComponent<Item>();
-
-            //충돌한 상대방으로부터 item 컴포넌트 가져오는 데 성공하였다면
-            if (item != null)
-            {
-                //호스트 아이템 직접 사용 가능
-                //호스트에서는 아이템 사용 후 사용된 아이템의 효과를 모든 클라이언트에 동기화 시킴
-                if (PhotonNetwork.IsMasterClient)
-                {
-                    //use 메서드를 실행시켜 아이템 사용
-                    
-                }
-            }
-        }
-    
-
-    }
-        */
-
-    //부활 처리
     [PunRPC]
-    public void respawn2()
+    public void RespawnPhoton()
     {
-        if (!isdie)
-        {
-            playerAnimator.SetTrigger("Grounded");
-        }
+        //이 함수에선 respawn될때, 상대에게 질질끌려가는것처럼 보이는 모습을 수정하는 코드입니다.
+        //photonView.RPC("repawnAni", RpcTarget.All);
+
+       
+
+        
+
+        status.dead = false;
+        status.RestoreHP(500); //체력 100 충전 
+      
+
+    }
+    [PunRPC]
+    public void respawnani()
+    {
+
        
         //원점에서 반경 5유닛 내부의 랜덤 위치 지정
         Vector3 randomSpawnPos = Random.insideUnitSphere * 9f;
         //랜덤 위치의 y값을 0으로 변경
-        randomSpawnPos.y = 0.8f;
-
+        randomSpawnPos.y = 0f;
         //지정된 랜덤 위치로 이동
         transform.position = randomSpawnPos;
-
-
-
+        playerAnimator.SetTrigger("Respawn"); //다시 일어낫!
 
     }
-
-    public void HPrespawn()
+    public void Respawn()
     {
 
+        //로컬 플레이어만 직접 위치 변경 가능
         if (photonView.IsMine)
         {
-            Debug.Log("써지고 있는지");
-           
-            //헬스 초기화
-            gameObject.SetActive(false);
-            gameObject.SetActive(true);
-            UIManager.instance.UpdateHPSlider(HP);
+       
 
-            
+
+            //게임 오버 유아이 꺼주세요
+            UpdategameoverUI(false);
+
+ 
+            UIManager.instance.onallUI();
+            gun.bulletRemain = 5;
+            gun.UpdateUI();
+
+
         }
 
+        photonView.RPC("RespawnPhoton", RpcTarget.All);
+        photonView.RPC("respawnani", RpcTarget.All);
 
     }
 
     
-    public void Respawn()
-    {
-        UIManager.instance.SetActiveGameoverUI(false);
-        UIManager.instance.gameover = false;
-       
-        //리스폰 되면, 
 
-        //로컬 플레이어만 직접 위치 변경 가능
-       if (photonView.IsMine)
-        {
-            Debug.Log("뤼스폰 함수입니다.");
-
-          
-            Debug.Log("들어오냐?");
-            ////헬스 초기화
-            this.gameObject.SetActive(false);
-            this.gameObject.SetActive(true);
-
-             gun.bulletRemain = 5;
-           
-            gun.UpdateUI();
-           
-
-            UIManager.instance.onallUI();
-            
-        }
-
-        photonView.RPC("respawn2", RpcTarget.All);
-
-
-    }
 }

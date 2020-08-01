@@ -7,8 +7,7 @@ public class StatusController : MonoBehaviourPun, Damageable
 
 
     public int HP { get; protected set; }
-    public bool dead { get; protected set; }
-    public event Action onDeath; //사망했을때 발동하는이벤트 
+    public bool dead;
 
     //virtual : 가상메서드 ( 자식 클래스가 오버라이드 할 수 있도록 허용된 메서드 )
     // 자식클래스는 override로 부모클래스의 가상메서드를 재정의 가능 
@@ -17,38 +16,20 @@ public class StatusController : MonoBehaviourPun, Damageable
  
 
 
-    //호스트 -> 모든 클라이언트 방향으로 체력과 사망 상태를 동기화하는 메서
-    
+    //호스트 -> 모든 클라이언트 방향으로 체력과 사망 상태를 동기화하는 메서드
     [PunRPC]
     public void ApplyUpdateHealth(int newHealth, bool newDead)
-    {
-
+    { 
         HP = newHealth;
-     
         dead = newDead;
-
-
-
     }
     //활성화될때 실행
     protected virtual void OnEnable()
     {
         dead = false;
         HP = startHP;
-
-
-
-
     }
-    //public void applayHP()
-    //{
 
-    //    Debug.Log("체력바의 수치는????????");
-    //    hpslider.value ;
-    //    Debug.Log(hpslider.value);
-
-
-    //}
     //데미지를 입는다
     [PunRPC]
     public virtual void OnDamage(int damage, Vector3 hitPoint, Vector3 hitNormal)
@@ -58,9 +39,6 @@ public class StatusController : MonoBehaviourPun, Damageable
         {
             // 데미지만큼 체력 감소
             HP -= damage;
-
-           
-
 
             //호스트에서 클라이언트로 동기화
             this.photonView.RPC("ApplyUpdateHealth", RpcTarget.Others, HP, dead);
@@ -101,9 +79,7 @@ public class StatusController : MonoBehaviourPun, Damageable
             //서버에서 클라이언트로 동기화
             photonView.RPC("ApplyUpdateHealth", RpcTarget.Others, HP, dead);
             //다른 클라이언트도 RestoreHealth 를 실행하도록 함
-            photonView.RPC("RestoreHealth", RpcTarget.Others, newHP);
-
-
+            photonView.RPC("RestoreHP", RpcTarget.Others, newHP);
 
         }
     }
@@ -112,13 +88,6 @@ public class StatusController : MonoBehaviourPun, Damageable
     // 사망 처리
     public virtual void Die()
     {
-        // onDeath 이벤트에 등록된 메서드가 있다면 실행
-        if (onDeath != null)
-        {
-            onDeath();
-        }
-
-        // 사망 상태를 참으로 변경
         dead = true;
     }
 }

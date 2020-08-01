@@ -83,6 +83,11 @@ MonoBehaviour:
   - hamgo
   - respawn2
   - die2
+  - dieAni
+  - repawnAni
+  - ClosetAnimation
+  - RespawnPhoton
+  - respawnani
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

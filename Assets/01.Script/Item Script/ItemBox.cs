@@ -24,6 +24,8 @@ public class ItemBox : MonoBehaviourPun
     [SerializeField]
     private GameObject bread_item_prefab; //빵 아이템
 
+
+
     public float SpawnTime = 300f; //아이템 스폰 시간 
 
     private float lastSpawnTime; //마지막 생성 시점
@@ -55,6 +57,8 @@ public class ItemBox : MonoBehaviourPun
     [PunRPC]
     public void BoxAnimation()
     {
+  
+
         if (IsOpen == false)
         {
             BoxAnimator.SetBool("BoxOpen", true);
