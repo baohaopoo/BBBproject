@@ -77,11 +77,14 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
 
         //치밀하게 지어준 나의 좌표,..
         Vector3 randomPos;
-        randomPos.x= Random.Range(-5, 5);
-        randomPos.y = 0.08f;
-        randomPos.z = 0f;
+        //randomPos.x= Random.Range(-5, 5);
+        //randomPos.y = 0.08f;
+        //randomPos.z = 0f;
 
-        
+        randomPos.x = 293;
+        randomPos.y = -2;
+        randomPos.z = 408;
+
         PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
 
         Debug.Log(playerPrefab.name+"생성이다 이놈아ㅏ아앙");
@@ -98,6 +101,6 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
 
     public override void OnLeftRoom()
     {
-        SceneManager.LoadScene("Lobby");
+        SceneManager.LoadScene("city3");
     }
 }

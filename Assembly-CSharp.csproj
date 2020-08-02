@@ -63,6 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\01.Script\Astar\Astar.cs" />
+    <Compile Include="Assets\01.Script\Astar\Grid.cs" />
     <Compile Include="Assets\01.Script\CameraController.cs" />
     <Compile Include="Assets\01.Script\CameraScript\GunviewCameraController.cs" />
     <Compile Include="Assets\01.Script\CameraScript\MainCameraController.cs" />
