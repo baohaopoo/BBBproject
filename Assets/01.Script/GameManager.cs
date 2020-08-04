@@ -10,6 +10,8 @@ using TMPro;
 public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
 {
     public Gun guninstance;
+
+
    
     
     

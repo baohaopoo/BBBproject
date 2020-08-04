@@ -14,7 +14,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private string roomname;
     public Button startButton, goButton;
     public InputField nicknameinput, roominput;
-
+   
 
     public Text inputplayer, inputroom;
 
@@ -51,6 +51,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void ongo() //플레이어 닉네임과 방 이름 저장
     {
         isclickgo = true;
+
+        
         PhotonNetwork.LocalPlayer.NickName = nicknameinput.text; //플레이어 이름 정해주기
         roomname = roominput.text;
 
@@ -64,7 +66,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsConnected)
         {
             CreateRoom(); //방만들기 정해준 이름으로
-            Info();
+           
          
             Debug.Log("방 생성 및 접속중..");
         }
