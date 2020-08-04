@@ -18,15 +18,25 @@ TagManager:
   - ropeCollision
   - Item
   - Ladder
-  - Ladder_bottom
   - Ladder_Top
   - Ladder_Air
   - CanOpen
   - trap
-  - Ham
   - ItemBox
   - Closet
   - Friend
+  - MaleHead
+  - MaleSuit
+  - Female_SkinForSkirt
+  - Female_TrouserSuit
+  - Female_SkirtSuit
+  - Female_SkinForTrousers
+  - box_collider
+  - Left
+  - Right
+  - BackOrRight
+  - Back
+  - BackOrLeft
   layers:
   - Default
   - TransparentFX
