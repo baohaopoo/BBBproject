@@ -25,7 +25,7 @@ namespace UnityStandardAssets.Utility
 		void Start() { }
 
 		// Update is called once per frame
-		void LateUpdate()
+		void FixedUpdate()
 		{
 			// Early out if we don't have a target
 			if (!target)

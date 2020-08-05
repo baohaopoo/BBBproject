@@ -218,18 +218,18 @@ public class scr_Selector_Female : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (Input.GetKeyDown("space"))
-        {
+        //if (Input.GetKeyDown("space"))
+        //{
 
 
-            pickType();
-            // pick a suit
-            pickSuit();
-            // pick headType A/B
-            pickSkin();
+        //    pickType();
+        //    // pick a suit
+        //    pickSuit();
+        //    // pick headType A/B
+        //    pickSkin();
        
 
-        }
+        //}
     }
 
 

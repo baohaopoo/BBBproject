@@ -87,6 +87,8 @@
     <Compile Include="Assets\01.Script\LobbyManager.cs" />
     <Compile Include="Assets\01.Script\NPC\dollFriend.cs" />
     <Compile Include="Assets\01.Script\NPC\HumanEnemy.cs" />
+    <Compile Include="Assets\01.Script\NPC\HumanSit.cs" />
+    <Compile Include="Assets\01.Script\NPC\HumanStanding.cs" />
     <Compile Include="Assets\01.Script\NPC\HumanWalk.cs" />
     <Compile Include="Assets\01.Script\Open_Closet.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\Health.cs" />

@@ -9,8 +9,9 @@ public class HumanWalk : MonoBehaviour
     private Quaternion rotation;
     private Rigidbody humanRigidbody;
     private bool isWalking;
-    private float behaviorTime = 8f; //일정시간이 지나면 새로운 행동하기
+    private float behaviorTime = 20f; //일정시간이 지나면 새로운 행동하기
     private float lastBehaviorTime; //마지막 행동 시점
+    private bool onPhone;
 
     void Start()
     {
@@ -18,11 +19,14 @@ public class HumanWalk : MonoBehaviour
         humanAnimator = GetComponent<Animator>();
         rotation = this.transform.rotation;
         isWalking = true;
+        onPhone = false;
     }
 
 
     private void Update()
     {
+        humanAnimator.SetBool("walk", isWalking);
+        humanAnimator.SetBool("OnPhone", onPhone);
         if (Time.time > lastBehaviorTime + behaviorTime)
         {
             lastBehaviorTime = Time.time;
@@ -31,29 +35,30 @@ public class HumanWalk : MonoBehaviour
 
         if (isWalking)
         {
-            Walking();
+            Move();
         }
     }
 
 
-    private void Walking()
+    private void Move()
     {
-        humanAnimator.SetBool("walk", true);
         Vector3 moveDistance = transform.forward * speed * Time.deltaTime;
         humanRigidbody.MovePosition(humanRigidbody.position + moveDistance);
     }
 
     private void randomBehavor()
     {
-        //중간중간 멈춰서 행동
-        int b = Random.Range(0, 4);
+        int b = Random.Range(0, 2);
         if (b == 0)
         {
+            //폰사용
             isWalking = false;
-            humanAnimator.SetBool("walk", false);
+            onPhone = true;
+
         }
         else
         {
+            onPhone = false;
             isWalking = true;
         }
 

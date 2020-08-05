@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isGameover = false;
-        Player.SetActive(true);
+        //Player.SetActive(true);
     }
 
     // Update is called once per frame

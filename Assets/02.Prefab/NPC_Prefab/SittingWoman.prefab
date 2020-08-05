@@ -2632,6 +2632,8 @@ GameObject:
   - component: {fileID: 3464884294249973343}
   - component: {fileID: 3555385120799885175}
   - component: {fileID: 3572289121776356575}
+  - component: {fileID: 1033780916939018949}
+  - component: {fileID: 7436812357385849393}
   m_Layer: 0
   m_Name: SittingWoman
   m_TagString: Untagged
@@ -2678,6 +2680,7 @@ Transform:
   - {fileID: 3464835291961903903}
   - {fileID: 3461808093340798959}
   - {fileID: 3464446169988592411}
+  - {fileID: 5108337263924724752}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
@@ -2716,6 +2719,37 @@ MonoBehaviour:
   SkinTrousers: []
   SuitSkirts: []
   SkinSkirts: []
+--- !u!114 &1033780916939018949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3459446725545691879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cceb289c0dae13048908016088d4c1d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7436812357385849393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3459446725545691879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ba6e193d43e8849b2bb03a8f184adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thingsToSay:
+  - "\uC5EC\uBCF4\uC138\uC694?"
+  - Hello
+  - Yes Sir
+  mouth: {fileID: 5108337263924724752}
+  timeBetweenSpeak: 5
+  doTalkOnYourOwn: 1
 --- !u!1 &3459475963140602135
 GameObject:
   m_ObjectHideFlags: 0
@@ -4115,3 +4149,33 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.15049893, y: -0.009065613, z: -0.000000029802322}
     m_Extent: {x: 0.7664686, y: 0.15187109, z: 0.292376}
   m_DirtyAABB: 0
+--- !u!1 &7777907089022467897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5108337263924724752}
+  m_Layer: 0
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5108337263924724752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7777907089022467897}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.687, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3464884294249973343}
+  m_RootOrder: 28
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
