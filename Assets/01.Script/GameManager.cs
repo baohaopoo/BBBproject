@@ -85,9 +85,9 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
         //randomPos.z = 408;
 
 
-        randomPos.x = -2;
-        randomPos.y = 0;
-        randomPos.z = 0;
+        randomPos.x = 457f;
+        randomPos.y = 0.4f;
+        randomPos.z = 219f;
 
         PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
 
@@ -106,6 +106,6 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
 
     public override void OnLeftRoom()
     {
-        SceneManager.LoadScene("city3");
+        //SceneManager.LoadScene("city3");
     }
 }
