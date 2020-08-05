@@ -46,7 +46,7 @@ public class HumanWalk : MonoBehaviour
     private void randomBehavor()
     {
         //중간중간 멈춰서 행동
-        int b = Random.Range(0, 3);
+        int b = Random.Range(0, 4);
         if (b == 0)
         {
             isWalking = false;
