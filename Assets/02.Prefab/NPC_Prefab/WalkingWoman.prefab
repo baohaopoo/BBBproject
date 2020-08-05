@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2795227793249784029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6276431347717482078}
+  m_Layer: 0
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6276431347717482078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795227793249784029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.716, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3464884294249973343}
+  m_RootOrder: 28
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3458772058465295177
 GameObject:
   m_ObjectHideFlags: 0
@@ -2635,6 +2665,7 @@ GameObject:
   - component: {fileID: 6497146568901125383}
   - component: {fileID: 4011518940142863748}
   - component: {fileID: 3460047798095267514}
+  - component: {fileID: 2972817627540459595}
   m_Layer: 0
   m_Name: WalkingWoman
   m_TagString: Untagged
@@ -2681,6 +2712,7 @@ Transform:
   - {fileID: 3464835291961903903}
   - {fileID: 3461808093340798959}
   - {fileID: 3464446169988592411}
+  - {fileID: 6276431347717482078}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
@@ -2760,6 +2792,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &2972817627540459595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3459446725545691879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ba6e193d43e8849b2bb03a8f184adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thingsToSay:
+  - "\uBB54\uAC00\uB97C \uBCF8 \uAC83 \uAC19\uC740\uB370.."
+  - "\uC778\uD615\uC744 \uBCF8 \uAC83 \uAC19\uC544"
+  - "\uD5DB \uAC83\uC744 \uBD24\uB098?"
+  mouth: {fileID: 6276431347717482078}
+  timeBetweenSpeak: 5
+  doTalkOnYourOwn: 1
 --- !u!1 &3459475963140602135
 GameObject:
   m_ObjectHideFlags: 0

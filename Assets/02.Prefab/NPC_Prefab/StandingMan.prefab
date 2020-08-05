@@ -3602,8 +3602,8 @@ MonoBehaviour:
   - Hi Baohaopoo
   - What are you doing now?
   - Oh my God! It's TeddyBear?
-  - "\uC778\uD615\uC774 \uC6C0\uC9C1\uC778\uB2E4\uACE0?"
-  - "\uC65C\uC774\uB807\uAC8C \uBC14\uC058\uC9C0.."
+  - I can't believe my eyes.
+  - It a Robot?
   mouth: {fileID: 6234489566754955641}
   timeBetweenSpeak: 5
   doTalkOnYourOwn: 1

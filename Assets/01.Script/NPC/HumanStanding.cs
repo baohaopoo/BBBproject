@@ -5,11 +5,12 @@ using UnityEngine;
 public class HumanStanding : MonoBehaviour
 {
     private Animator humanAnimator;
-    private float behaviorTime = 10f; //일정시간이 지나면 새로운 행동하기
+    private float behaviorTime; //일정시간이 지나면 새로운 행동하기
     private float lastBehaviorTime; //마지막 행동 시점
     private VikingCrewDevelopment.Demos.SayRandomThingsBehaviour SaySomething;
     void Start()
     {
+        behaviorTime = 10f;
         humanAnimator = GetComponent<Animator>();
         SaySomething = GetComponent<VikingCrewDevelopment.Demos.SayRandomThingsBehaviour>();
     }
@@ -21,6 +22,7 @@ public class HumanStanding : MonoBehaviour
         {
             lastBehaviorTime = Time.time;
             randomBehavor();
+            behaviorTime = Random.Range(8, 15);
         }
     }
 

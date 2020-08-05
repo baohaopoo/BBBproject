@@ -2789,9 +2789,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thingsToSay:
   - Thank You
-  - "\uBB50\uD574?"
+  - I saw a teddy bear with a big butt.
   - It's Tired..
-  - "\uCE58\uD0A8\uBA39\uACE0\uC2F6"
+  - What should we eat today?
   - Oh My God!
   mouth: {fileID: 7893260067234068845}
   timeBetweenSpeak: 5

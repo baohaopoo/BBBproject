@@ -2745,8 +2745,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thingsToSay:
   - "\uC5EC\uBCF4\uC138\uC694?"
-  - Hello
-  - Yes Sir
+  - "\uB9DE\uC9F1\uC774\uB77C\uB3C4 \uB730\uB798"
+  - "\uB9D0\uC2DC\uD0A4\uC9C0 \uB9D0\uC544\uC904\uB798"
   mouth: {fileID: 5108337263924724752}
   timeBetweenSpeak: 5
   doTalkOnYourOwn: 1

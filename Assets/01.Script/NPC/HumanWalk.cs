@@ -9,17 +9,20 @@ public class HumanWalk : MonoBehaviour
     private Quaternion rotation;
     private Rigidbody humanRigidbody;
     private bool isWalking;
-    private float behaviorTime = 20f; //일정시간이 지나면 새로운 행동하기
+    private float behaviorTime; //일정시간이 지나면 새로운 행동하기
     private float lastBehaviorTime; //마지막 행동 시점
     private bool onPhone;
+    private VikingCrewDevelopment.Demos.SayRandomThingsBehaviour SaySomething;
 
     void Start()
     {
+        behaviorTime = 20f;
         humanRigidbody = GetComponent<Rigidbody>();
         humanAnimator = GetComponent<Animator>();
         rotation = this.transform.rotation;
         isWalking = true;
         onPhone = false;
+        SaySomething = GetComponent<VikingCrewDevelopment.Demos.SayRandomThingsBehaviour>();
     }
 
 
@@ -31,6 +34,7 @@ public class HumanWalk : MonoBehaviour
         {
             lastBehaviorTime = Time.time;
             randomBehavor();
+            behaviorTime = Random.Range(8, 21);
         }
 
         if (isWalking)
@@ -54,12 +58,14 @@ public class HumanWalk : MonoBehaviour
             //폰사용
             isWalking = false;
             onPhone = true;
+            SaySomething.doTalkOnYourOwn = true; //말한다
 
         }
         else
         {
             onPhone = false;
             isWalking = true;
+            SaySomething.doTalkOnYourOwn = false; //말 안한다
         }
 
     }
