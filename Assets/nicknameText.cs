@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 public class nicknameText : MonoBehaviourPun
 {
-    public Text nickname;
+    public Text nickname; //플레이어의 nickname을 데려와..
     private string name;
 
     Vector3 mypos;
@@ -15,7 +15,7 @@ public class nicknameText : MonoBehaviourPun
     void Start()
     {
         nickname.text = "";
-        //name = lobby.inputplayer.text;
+        name = lobby.inputplayer.text;
         Debug.Log(name);
         nickname.text += name.ToString();
 

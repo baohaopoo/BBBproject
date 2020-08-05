@@ -2278,15 +2278,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2c2a46e9474367f42af1fdbfcc3c2434, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2c2a46e9474367f42af1fdbfcc3c2434, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2c2a46e9474367f42af1fdbfcc3c2434, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 2c2a46e9474367f42af1fdbfcc3c2434, type: 3}
       propertyPath: m_ReceiveShadows
@@ -3506,6 +3506,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1858182966850097457, guid: 9f8f66473c26197448d8dcccc734050b,
+        type: 3}
+      propertyPath: m_Name
+      value: Post-process Volume
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858182966850097457, guid: 9f8f66473c26197448d8dcccc734050b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1858182966850097468, guid: 9f8f66473c26197448d8dcccc734050b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3559,16 +3569,6 @@ PrefabInstance:
     - target: {fileID: 1858182966850097468, guid: 9f8f66473c26197448d8dcccc734050b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1858182966850097457, guid: 9f8f66473c26197448d8dcccc734050b,
-        type: 3}
-      propertyPath: m_Name
-      value: Post-process Volume
-      objectReference: {fileID: 0}
-    - target: {fileID: 1858182966850097457, guid: 9f8f66473c26197448d8dcccc734050b,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1858182966850097458, guid: 9f8f66473c26197448d8dcccc734050b,

@@ -11,9 +11,6 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
 {
     public Gun guninstance;
 
-
-   
-    
     
     //싱글톤 접근용 프로퍼티
     public static GameManager instance
@@ -104,6 +101,7 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
         //{
 
         //}
+        //playerPrefab.GetComponent<nicknameText>();
     }
 
     public override void OnLeftRoom()

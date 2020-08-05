@@ -22,6 +22,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private bool isclickgo = false;
     private string add;
+
+
+
     void Start()
     {
         PhotonNetwork.GameVersion = gameVersion;
@@ -29,6 +32,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         startButton.interactable = false;
 
+       
     }
     //서버 연결
     public override void OnConnectedToMaster() //connect가 연결이 되면 콜백함수임. 여기서 콜백함수란 앞의 connet함수가 잘되어야 이 함수가 된다는의미.
@@ -93,9 +97,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     //방 참가 콜백함수
     public override void OnJoinedRoom()
     {
+        Vector3 randomPos;
+        randomPos.x = -2;
+        randomPos.y = 0;
+        randomPos.z = 0;
+
 
         Debug.Log("방 참가 완료");
         PhotonNetwork.LoadLevel("Kidsroom"); //모든 룸 참가자가 Kidsroom씬을 로드하게 함.
+       
 
     }
 
