@@ -517,6 +517,8 @@ GameObject:
   - component: {fileID: 5390846384611885532}
   - component: {fileID: 5444059504375078508}
   - component: {fileID: 5424358479614901438}
+  - component: {fileID: 2540767054710605265}
+  - component: {fileID: 1982524229166162258}
   m_Layer: 0
   m_Name: SittingMan
   m_TagString: Untagged
@@ -562,6 +564,7 @@ Transform:
   - {fileID: 5390739706201324806}
   - {fileID: 5390793796019307782}
   - {fileID: 5390533596960660880}
+  - {fileID: 4080356506195636376}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -598,6 +601,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Suits: []
   Heads: []
+--- !u!114 &2540767054710605265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5393446194789591578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ba6e193d43e8849b2bb03a8f184adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thingsToSay:
+  - "\uB124 \uBD80\uC7A5\uB2D8"
+  - "\uC544 \uC815\uB9D0\uC694?"
+  - "\uB124 \uC54C\uACA0\uC2B5\uB2C8\uB2E4."
+  mouth: {fileID: 4080356506195636376}
+  timeBetweenSpeak: 5
+  doTalkOnYourOwn: 0
+--- !u!114 &1982524229166162258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5393446194789591578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cceb289c0dae13048908016088d4c1d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5393449930520606988
 GameObject:
   m_ObjectHideFlags: 0
@@ -4203,4 +4237,34 @@ Transform:
   - {fileID: 5390670583279482068}
   m_Father: {fileID: 5390310874339362246}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7153145974506424178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4080356506195636376}
+  m_Layer: 0
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4080356506195636376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7153145974506424178}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.702, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5390846384611885532}
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

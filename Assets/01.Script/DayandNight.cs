@@ -5,7 +5,7 @@ using UnityEngine;
 public class DayandNight : MonoBehaviour
 {
     [SerializeField]
-    private float gameTime; 
+    private float gameTime=100; 
      
     private bool isNight = false;
 

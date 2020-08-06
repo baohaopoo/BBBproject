@@ -9,52 +9,63 @@ public class HumanWalk : MonoBehaviour
     private Quaternion rotation;
     private Rigidbody humanRigidbody;
     private bool isWalking;
-    private float behaviorTime = 8f; //일정시간이 지나면 새로운 행동하기
+    private float behaviorTime; //일정시간이 지나면 새로운 행동하기
     private float lastBehaviorTime; //마지막 행동 시점
+    private bool onPhone;
+    private VikingCrewDevelopment.Demos.SayRandomThingsBehaviour SaySomething;
 
     void Start()
     {
+        behaviorTime = 20f;
         humanRigidbody = GetComponent<Rigidbody>();
         humanAnimator = GetComponent<Animator>();
         rotation = this.transform.rotation;
         isWalking = true;
+        onPhone = false;
+        SaySomething = GetComponent<VikingCrewDevelopment.Demos.SayRandomThingsBehaviour>();
     }
 
 
     private void Update()
     {
+        humanAnimator.SetBool("walk", isWalking);
+        humanAnimator.SetBool("OnPhone", onPhone);
         if (Time.time > lastBehaviorTime + behaviorTime)
         {
             lastBehaviorTime = Time.time;
             randomBehavor();
+            behaviorTime = Random.Range(8, 21);
         }
 
         if (isWalking)
         {
-            Walking();
+            Move();
         }
     }
 
 
-    private void Walking()
+    private void Move()
     {
-        humanAnimator.SetBool("walk", true);
         Vector3 moveDistance = transform.forward * speed * Time.deltaTime;
         humanRigidbody.MovePosition(humanRigidbody.position + moveDistance);
     }
 
     private void randomBehavor()
     {
-        //중간중간 멈춰서 행동
-        int b = Random.Range(0, 3);
+        int b = Random.Range(0, 2);
         if (b == 0)
         {
+            //폰사용
             isWalking = false;
-            humanAnimator.SetBool("walk", false);
+            onPhone = true;
+            SaySomething.doTalkOnYourOwn = true; //말한다
+
         }
         else
         {
+            onPhone = false;
             isWalking = true;
+            SaySomething.doTalkOnYourOwn = false; //말 안한다
         }
 
     }
@@ -106,10 +117,10 @@ public class HumanWalk : MonoBehaviour
     }
     private void turnRight()
     {
-        transform.Rotate(0, 45, 0);
+        transform.Rotate(0, 90, 0);
     }
     private void turnLeft()
     {
-        transform.Rotate(0, -45, 0);
+        transform.Rotate(0, -90, 0);
     }
 }
