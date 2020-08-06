@@ -7,7 +7,7 @@ using Photon.Pun;
 public class ChangeScenePoint : MonoBehaviourPunCallbacks
 {
     public GameObject player;
-    Scene scene2 = SceneManager.GetSceneByName("city3");
+    //Scene scene2 = SceneManager.GetSceneByName("city3");
 
 
     // Start is called before the first frame update
