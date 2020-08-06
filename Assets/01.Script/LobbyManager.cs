@@ -7,16 +7,19 @@ using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 
+using TMPro;
+
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     private string gameVersion = "1"; //게임 버전
     private string roomname;
     public Button startButton, goButton;
-    public InputField nicknameinput, roominput;
+    public TMP_InputField nicknameinput, roominput;
+    //public InputField nicknameinput, roominput;
    
 
-    public Text inputplayer, inputroom;
+    public TextMeshProUGUI inputplayer, inputroom;
 
     public GameObject Roomlist;
     public GameObject pause;
