@@ -6990,6 +6990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3d0ec09153fd94bb727f314145584b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!65 &1304450668
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7127,7 +7128,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 839e8f28af921564b99648a4b6947417,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 448
+      value: 77
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 839e8f28af921564b99648a4b6947417,
         type: 3}
@@ -7137,7 +7138,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 839e8f28af921564b99648a4b6947417,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 231
+      value: 352
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 839e8f28af921564b99648a4b6947417,
         type: 3}
@@ -11491,7 +11492,7 @@ PrefabInstance:
     - target: {fileID: 4945403621205322010, guid: 7a3ebdf560d60d1438cd56df7f5ec525,
         type: 3}
       propertyPath: viewIdField
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4945403621205322010, guid: 7a3ebdf560d60d1438cd56df7f5ec525,
         type: 3}

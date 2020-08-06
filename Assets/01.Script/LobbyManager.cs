@@ -19,10 +19,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public Text inputplayer, inputroom;
 
     public GameObject Roomlist;
-
+    public GameObject pause;
     private bool isclickgo = false;
     private string add;
-
+    private int gocnt = 0;
 
 
     void Start()
@@ -30,14 +30,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.GameVersion = gameVersion;
         PhotonNetwork.ConnectUsingSettings(); //마스터 서버 연결
 
-        startButton.interactable = false;
-
+        // startButton.interactable = false;
+        gocnt = 0;
        
     }
     //서버 연결
     public override void OnConnectedToMaster() //connect가 연결이 되면 콜백함수임. 여기서 콜백함수란 앞의 connet함수가 잘되어야 이 함수가 된다는의미.
     {
-        startButton.interactable = true;
+        //startButton.interactable = true;
        //PhotonNetwork.LocalPlayer.NickName = nicknameinput.text; //플레이어 이름 정해주기
         Debug.Log("서버 접속 완료");
 
@@ -46,7 +46,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     //서버 연결끊기
     public override void OnDisconnected(DisconnectCause cause)
     {
-        startButton.interactable = false;
+        //startButton.interactable = false;
         Debug.Log("연결끊김");
         PhotonNetwork.ConnectUsingSettings(); //마스터 서버 재연결
     }
@@ -59,18 +59,25 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         
         PhotonNetwork.LocalPlayer.NickName = nicknameinput.text; //플레이어 이름 정해주기
         roomname = roominput.text;
-
+        gocnt += 1;
         Debug.Log("클릭했냐?");
         Debug.Log(isclickgo);
 
     }
     //startbutton 누르면
     public void Connect() {
-
-        if (PhotonNetwork.IsConnected)
+       
+        if (PhotonNetwork.IsConnected) //마스터에 연결되어있고
         {
-            CreateRoom(); //방만들기 정해준 이름으로
-           
+            if (gocnt>= 1)
+            {
+                CreateRoom(); //방만들기 정해준 이름으로
+
+            }else if (gocnt == 0)
+            {
+                pause.SetActive(true);
+            }
+            
          
             Debug.Log("방 생성 및 접속중..");
         }
@@ -139,6 +146,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
 
         Roomlist.SetActive(false);
+
+
+
+    }
+
+    public void cautionclose()
+    {
+
+        pause.SetActive(false);
 
 
 
