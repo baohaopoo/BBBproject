@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 using Photon.Pun;
 public class nicknameText : MonoBehaviourPun
@@ -9,6 +10,7 @@ public class nicknameText : MonoBehaviourPun
     public Text nickname; //플레이어의 nickname을 데려와..
     private string name;
 
+    //public TextMeshProUGUI nickname;
     Vector3 mypos;
 
     LobbyManager lobby;
