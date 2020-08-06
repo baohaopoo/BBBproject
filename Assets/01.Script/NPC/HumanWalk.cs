@@ -117,10 +117,10 @@ public class HumanWalk : MonoBehaviour
     }
     private void turnRight()
     {
-        transform.Rotate(0, 45, 0);
+        transform.Rotate(0, 90, 0);
     }
     private void turnLeft()
     {
-        transform.Rotate(0, -45, 0);
+        transform.Rotate(0, -90, 0);
     }
 }
