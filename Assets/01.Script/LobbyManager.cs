@@ -60,9 +60,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         isclickgo = true;
 
-        
-        PhotonNetwork.LocalPlayer.NickName = nicknameinput.text.ToString(); //플레이어 이름 정해주기 , 로컬 이름에 nicknameinput에서 받아온 text를 넣어준다.
-        roomname = roominput.text.ToString(); //roomname string에도 roominput.text받아온거를 넣어준다.
+
+
+       
+       PhotonNetwork.LocalPlayer.NickName = nicknameinput.text.ToString(); //플레이어 이름 정해주기 , 로컬 이름에 nicknameinput에서 받아온 text를 넣어준다.
+       roomname = roominput.text.ToString(); //roomname string에도 roominput.text받아온거를 넣어준다.
+           
+
         gocnt += 1;
         Debug.Log("클릭했냐?");
         Debug.Log(isclickgo);
@@ -73,11 +77,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
        
         if (PhotonNetwork.IsConnected) //마스터에 연결되어있고
         {
+          
             if (gocnt>= 1)
             {
              //   PhotonNetwork.JoinOrCreateRoom(roominput.text, new RoomOptions { MaxPlayers = 4 },)
-                CreateRoom(); //방만들기 정해준 이름으로
-
+                //CreateRoom(); //방만들기 정해준 이름으로
+        
+                    PhotonNetwork.JoinOrCreateRoom(roominput.text, null, TypedLobby.Default);
+            
             }else if (gocnt == 0)
             {
                 pause.SetActive(true);
@@ -97,6 +104,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void CreateRoom()
     {
         PhotonNetwork.CreateRoom(roominput.text, new RoomOptions { MaxPlayers = 4 });
+
 
     }
     //방 만들기 콜백함수
@@ -120,6 +128,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
        
 
     }
+
+
 
     //방만들기 실패 콜백함수
     public override void OnCreateRoomFailed(short returnCode, string message)
@@ -155,6 +165,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
 
     }
+
 
     public void cautionclose()
     {

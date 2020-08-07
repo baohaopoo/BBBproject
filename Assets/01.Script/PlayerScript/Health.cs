@@ -162,60 +162,48 @@ public class Health : StatusController, IPunObservable
         }
     }
 
-    [PunRPC]
-    public void RespawnPhoton()
-    {
-        //이 함수에선 respawn될때, 상대에게 질질끌려가는것처럼 보이는 모습을 수정하는 코드입니다.
-        //photonView.RPC("repawnAni", RpcTarget.All);
+    //부활 처리
 
-       
-
-        
-
-        status.dead = false;
-        status.RestoreHP(500); //체력 100 충전 
-      
-
-    }
-    [PunRPC]
-    public void respawnani()
-    {
-
-       
-        //원점에서 반경 5유닛 내부의 랜덤 위치 지정
-        Vector3 randomSpawnPos = Random.insideUnitSphere * 9f;
-        //랜덤 위치의 y값을 0으로 변경
-        randomSpawnPos.y = 0f;
-        //지정된 랜덤 위치로 이동
-        transform.position = randomSpawnPos;
-        playerAnimator.SetTrigger("Respawn"); //다시 일어낫!
-
-    }
     public void Respawn()
     {
+
 
         //로컬 플레이어만 직접 위치 변경 가능
         if (photonView.IsMine)
         {
-       
-
-
-            //게임 오버 유아이 꺼주세요
             UpdategameoverUI(false);
-
- 
             UIManager.instance.onallUI();
+            photonView.RPC("repawnAni", RpcTarget.All);
+
+            //원점에서 반경 5유닛 내부의 랜덤 위치 지정
+            Vector3 randomSpawnPos = Random.insideUnitSphere * 9f;
+            //랜덤 위치의 y값을 0으로 변경
+            randomSpawnPos.y = 0f;
+
+            //지정된 랜덤 위치로 이동
+            transform.position = randomSpawnPos;
+
             gun.bulletRemain = 5;
             gun.UpdateUI();
 
 
-        }
 
-        photonView.RPC("RespawnPhoton", RpcTarget.All);
-        photonView.RPC("respawnani", RpcTarget.All);
+
+        }
 
     }
 
-    
+    [PunRPC]
+    public void repawnAni()
+    {
+        status.dead = false;
+        playerAnimator.SetTrigger("Respawn"); //다시 일어낫!
+        status.RestoreHP(500); //체력 100 충전 
+
+
+    }
+
+
+
 
 }

@@ -7,11 +7,11 @@ using Photon.Pun;
 using TMPro;
 
 
-public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
+public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     public Gun guninstance;
 
-    
+
     //싱글톤 접근용 프로퍼티
     public static GameManager instance
     {
@@ -31,14 +31,15 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
 
     private static GameManager m_instance; // 싱글톤이 할당될 static 변수
 
-    public bool isGameover { get; private set; } // 게임 오버 상태
+    public bool isGameover; // 게임 오버 상태
 
-   
+
     public GameObject playerPrefab; //생성할 게임플레이어 
 
 
     //주기적으로 자동 실행되는 동기화 메서드
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
 
         //로컬 부분이라면 쓰기 부분이 실행
         if (stream.IsWriting)
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
             //score = (int)stream.ReceiveNext();
             guninstance.bulletRemain = (int)stream.ReceiveNext();
         }
-      // UIManager.instance.UpdateScoreText(score);
+        // UIManager.instance.UpdateScoreText(score);
     }
 
     void Awake()
@@ -68,44 +69,67 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
     }
     void Start()
     {
-        isGameover = false;
-        playerPrefab.SetActive(true);
 
-        //Random.insideUnitSphere * 5f 반경 5미터 안의 랜덤 위치.
-        //Vector3 randomPos = (Random.insideUnitSphere * 5f,0f,0f);
-
-        //치밀하게 지어준 나의 좌표,..
         Vector3 randomPos;
-        //randomPos.x= Random.Range(-5, 5);
-        //randomPos.y = 0.08f;
-        //randomPos.z = 0f;
-
-        //randomPos.x = 293;
-        //randomPos.y = -2;
-        //randomPos.z = 408;
-
 
         randomPos.x = 94.89f;
         randomPos.y = 0.5f;
         randomPos.z = 342.92f;
 
+        
         PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
 
-        Debug.Log(playerPrefab.name+"생성이다 이놈아ㅏ아앙");
-    }
-    
-    void Update()
-    {
-        ////여기서 이제 버튼을 누르면 Restart 가 되는것이다.
-        //if (isGameover && Input.GetMouseButtonDown(0))
+        if (photonView.ViewID == 2001)
+        {
+            if (photonView.IsMine)
+            {
+
+
+
+            }else { 
+            
+            
+            
+            }
+
+        }
+        else if (photonView.ViewID == 1001)
+        {
+
+            if (photonView.IsMine)
+            {
+
+
+            }else { 
+            
+            
+            }
+
+        }
+
+        //if (PhotonNetwork.IsMasterClient)
         //{
 
+        //    foreach (PhotonNetwork.PlayerList)
+        //    {
+
+        //        nicknameinput[playerPrefab.GetInstanceID - 1].text = playerPrefab.name;
+
+
+
+        //    }
+        
         //}
-        //playerPrefab.GetComponent<nicknameText>();
+    }
+
+    void Update()
+    {
+
     }
 
     public override void OnLeftRoom()
     {
-        //SceneManager.LoadScene("city3");
+        //SceneManager.LoadScene("Lobby");
     }
+
 }

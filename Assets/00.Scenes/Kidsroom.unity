@@ -9234,6 +9234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guninstance: {fileID: 0}
+  isGameover: 0
   playerPrefab: {fileID: 4233478493770235770, guid: ef7bf84ce6c5c3f44b7545eb9651483b,
     type: 3}
 --- !u!4 &1602873130
@@ -10885,6 +10886,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &2048534847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8951732305934348373, guid: 3d065d072193bf14eb4c1e59d613567c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3811823640567342391}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2054818922
 Transform:
   m_ObjectHideFlags: 0
@@ -11406,6 +11413,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 553140188}
     m_Modifications:
+    - target: {fileID: 1858182966850097457, guid: 9f8f66473c26197448d8dcccc734050b,
+        type: 3}
+      propertyPath: m_Name
+      value: Post-process Volume
+      objectReference: {fileID: 0}
     - target: {fileID: 1858182966850097468, guid: 9f8f66473c26197448d8dcccc734050b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11460,11 +11472,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1858182966850097457, guid: 9f8f66473c26197448d8dcccc734050b,
-        type: 3}
-      propertyPath: m_Name
-      value: Post-process Volume
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f8f66473c26197448d8dcccc734050b, type: 3}
@@ -11952,6 +11959,11 @@ PrefabInstance:
       propertyPath: bulletImage2
       value: 
       objectReference: {fileID: 3811823640567342392}
+    - target: {fileID: 3811823641457860604, guid: 3d065d072193bf14eb4c1e59d613567c,
+        type: 3}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 2048534847}
     - target: {fileID: 2909950684681464939, guid: 3d065d072193bf14eb4c1e59d613567c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -11960,22 +11972,22 @@ PrefabInstance:
     - target: {fileID: 2295834225993054588, guid: 3d065d072193bf14eb4c1e59d613567c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 388
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2295834225993054588, guid: 3d065d072193bf14eb4c1e59d613567c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 130.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2295834225993054588, guid: 3d065d072193bf14eb4c1e59d613567c,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 594.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2295834225993054588, guid: 3d065d072193bf14eb4c1e59d613567c,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 222.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2295834225993054588, guid: 3d065d072193bf14eb4c1e59d613567c,
         type: 3}

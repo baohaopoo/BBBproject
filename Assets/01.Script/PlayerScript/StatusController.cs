@@ -23,6 +23,7 @@ public class StatusController : MonoBehaviourPun, Damageable
         HP = newHealth;
         dead = newDead;
     }
+
     //활성화될때 실행
     protected virtual void OnEnable()
     {
@@ -41,9 +42,9 @@ public class StatusController : MonoBehaviourPun, Damageable
             HP -= damage;
 
             //호스트에서 클라이언트로 동기화
-            this.photonView.RPC("ApplyUpdateHealth", RpcTarget.Others, HP, dead);
+            photonView.RPC("ApplyUpdateHealth", RpcTarget.Others, HP, dead);
             //다른 클라이언트도 onDamage를 실행하도록 함
-            this.photonView.RPC("OnDamage", RpcTarget.Others, damage, hitPoint, hitNormal);
+            photonView.RPC("OnDamage", RpcTarget.Others, damage, hitPoint, hitNormal);
 
         }
        // applayHP();

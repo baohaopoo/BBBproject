@@ -25,14 +25,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     public GameObject gameoverUI; // 게임 오버시 활성화할 UI 
     [SerializeField]
-    public Image itemImage1; //아이템 1 이미지
-    [SerializeField]
-    public Image itemImage2; //아이템 2 이미지
-    [SerializeField]
-    public Text actionText;
-    [SerializeField]
-    public Text openText;
-
     public GameObject BulletUI;
     public GameObject FriendUI;
     public GameObject bulletImage1;
@@ -40,8 +32,24 @@ public class UIManager : MonoBehaviour
     public GameObject bulletImage3;
     public GameObject bulletImage4;
     public GameObject bulletImage5;
+
+
+    [SerializeField]
+    public Text actionText;
+    [SerializeField]
+    public Text openText;
+
     public GameObject inventory;
 
+    [SerializeField]
+    public Image itemImage1; //아이템 1 이미지
+    [SerializeField]
+    public Image itemImage2; //아이템 2 이미지
+
+    //backgroud이밎
+    public GameObject background;
+   
+    //친구이미지
     public GameObject friendImage1;
     public GameObject friendImage2;
     public GameObject friendImage3;
@@ -87,6 +95,7 @@ public class UIManager : MonoBehaviour
         hpslider.gameObject.SetActive(false);
         inventory.gameObject.SetActive(false);
         FriendUI.gameObject.SetActive(false);
+        background.gameObject.SetActive(false);
 
     }
     public void onallUI()
@@ -95,6 +104,8 @@ public class UIManager : MonoBehaviour
         hpslider.gameObject.SetActive(true);
         inventory.gameObject.SetActive(true);
         FriendUI.gameObject.SetActive(true);
+        background.gameObject.SetActive(true);
+
     }
     public void UpdateHPSlider(int hp)
     {
