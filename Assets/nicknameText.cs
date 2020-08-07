@@ -7,7 +7,7 @@ using TMPro;
 using Photon.Pun;
 public class nicknameText : MonoBehaviourPun
 {
-    public Text nickname; //플레이어의 nickname을 데려와..
+    public TextMeshProUGUI nickname; //플레이어의 nickname을 데려와..
     private string name;
 
     //public TextMeshProUGUI nickname;
@@ -17,10 +17,11 @@ public class nicknameText : MonoBehaviourPun
     void Start()
     {
         nickname.text = "";
-        name = lobby.inputplayer.text;
-        Debug.Log(name);
+        name = PhotonNetwork.LocalPlayer.NickName;//lobby.inputplayer.text;
         nickname.text += name.ToString();
 
+
+        
         mypos.x = 18.4f;
         mypos.y = 0;
         mypos.z = -10.3f;
@@ -29,14 +30,14 @@ public class nicknameText : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine)
-        {
+        //if (photonView.IsMine)
+        //{
 
-            nickname.transform.Rotate(-90, 0, 0);
-            transform.position = mypos;
+        //    nickname.transform.Rotate(-90, 0, 0);
+        //    transform.position = mypos;
 
         
-        }
+        //}
         
     }
 }

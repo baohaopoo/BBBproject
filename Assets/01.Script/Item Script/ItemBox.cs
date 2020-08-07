@@ -125,15 +125,15 @@ public class ItemBox : MonoBehaviourPun
             //가시아이템생성
           
 
-             PhotonNetwork.Instantiate(obstacle_item_prefab.name, ItemboxTransform.position, Quaternion.identity);
-            Debug.Log("가시 아이템 생성");
+            // PhotonNetwork.Instantiate(obstacle_item_prefab.name, ItemboxTransform.position, Quaternion.identity);
+            //Debug.Log("가시 아이템 생성");
         }
         else if (ItemNum == 3)
         {
             //햄아이템생성
            
 
-             PhotonNetwork.Instantiate(ham_item_prefab.name, ItemboxTransform.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(ham_item_prefab.name, ItemboxTransform.position, Quaternion.identity);
             Debug.Log("햄 아이템 생성");
         }
         else if (ItemNum == 4)

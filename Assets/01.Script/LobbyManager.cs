@@ -14,12 +14,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 {
     private string gameVersion = "1"; //게임 버전
     private string roomname;
+
     public Button startButton, goButton;
-    public TMP_InputField nicknameinput, roominput;
+    public TMP_InputField nicknameinput, roominput; //인풋필드
+
     //public InputField nicknameinput, roominput;
    
 
-    public TextMeshProUGUI inputplayer, inputroom;
+    public TextMeshProUGUI inputplayer, inputroom; //roomlist용 코드
 
     public GameObject Roomlist;
     public GameObject pause;
@@ -40,8 +42,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     //서버 연결
     public override void OnConnectedToMaster() //connect가 연결이 되면 콜백함수임. 여기서 콜백함수란 앞의 connet함수가 잘되어야 이 함수가 된다는의미.
     {
-        //startButton.interactable = true;
-       //PhotonNetwork.LocalPlayer.NickName = nicknameinput.text; //플레이어 이름 정해주기
+
         Debug.Log("서버 접속 완료");
 
     }
@@ -49,7 +50,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     //서버 연결끊기
     public override void OnDisconnected(DisconnectCause cause)
     {
-        //startButton.interactable = false;
+        
         Debug.Log("연결끊김");
         PhotonNetwork.ConnectUsingSettings(); //마스터 서버 재연결
     }
@@ -60,8 +61,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         isclickgo = true;
 
         
-        PhotonNetwork.LocalPlayer.NickName = nicknameinput.text; //플레이어 이름 정해주기
-        roomname = roominput.text;
+        PhotonNetwork.LocalPlayer.NickName = nicknameinput.text.ToString(); //플레이어 이름 정해주기 , 로컬 이름에 nicknameinput에서 받아온 text를 넣어준다.
+        roomname = roominput.text.ToString(); //roomname string에도 roominput.text받아온거를 넣어준다.
         gocnt += 1;
         Debug.Log("클릭했냐?");
         Debug.Log(isclickgo);
@@ -74,6 +75,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         {
             if (gocnt>= 1)
             {
+             //   PhotonNetwork.JoinOrCreateRoom(roominput.text, new RoomOptions { MaxPlayers = 4 },)
                 CreateRoom(); //방만들기 정해준 이름으로
 
             }else if (gocnt == 0)
@@ -171,42 +173,33 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         if (isclickgo)
         {
-            inputplayer.text = "";
-            inputroom.text = "";
+            
+            inputplayer.text = ""; //한번씩 초기화
+            inputroom.text = ""; //한번씩 초기화
                 
             string playerStr = "방에 있는 플레이어 목록 : ";
             for (int i = 0; i < nicknameinput.text.Length; i++) playerStr += nicknameinput.text;//;PhotonNetwork.PlayerList[i].NickName + ",";
 
             string roomname2 = roomname;
-            //string playernum = "(" + PhotonNetwork.CurrentRoom.PlayerCount + "/";
-            //string playerallnum = PhotonNetwork.CurrentRoom.MaxPlayers + ")";
 
-            inputplayer.text += nicknameinput.text.ToString();
-            inputroom.text += roomname2.ToString();// + playernum.ToString() + playerallnum.ToString();
-
-           
-
+            inputplayer.text += nicknameinput.GetComponent<TMP_InputField>().text.ToString();// nicknameinput.text.ToString();
+            inputroom.text += roominput.GetComponent<TMP_InputField>().text.ToString();// roomname2.ToString();// + playernum.ToString() + playerallnum.ToString();
         }
         else if(!isclickgo)
         {
 
-            inputplayer.text = "";
-            inputroom.text = "";
-            add += "...";
-            inputplayer.text = add.ToString();
-            inputroom.text = add.ToString();
-        
+            inputplayer.text = ""; //한번씩초기화
+            inputroom.text = ""; //한번씩 초기화
+            add = "...";
+            inputplayer.text += add.ToString();
+            inputroom.text += add.ToString();
+
+
         }
-
-
-
-
 
         if (PhotonNetwork.InRoom)
         {
   
-
-
             print("현재 방 이름 : " + PhotonNetwork.CurrentRoom.Name);
             print("현재 방 인원수 : " + PhotonNetwork.CurrentRoom.PlayerCount);
             print("현재 방 최대 인원수 :" + PhotonNetwork.CurrentRoom.MaxPlayers);
@@ -222,11 +215,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             print("연결되었는지? :" + PhotonNetwork.IsConnected);
         
         }
-    
-    
-    
-    
-    
+
     }
 
 }
