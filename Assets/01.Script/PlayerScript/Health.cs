@@ -48,7 +48,7 @@ public class Health : StatusController
         if (!dead)
         {
             playerAnimator.SetTrigger("Damaged");
-            
+            StartCoroutine(DamageCorutain());
             playerRigidbody.velocity = Vector3.zero; //속도 0으로하고
             playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);//뒤로
         }
@@ -63,6 +63,20 @@ public class Health : StatusController
         if (playerRigidbody != null && UIManager.instance != null)
         {
             UIManager.instance.UpdateHPSlider(HP);
+        }
+    }
+
+    private IEnumerator DamageCorutain()
+    {
+        DamagedUI(true);
+        yield return new WaitForSeconds(0.3f);
+        DamagedUI(false);
+    }
+    private void DamagedUI(bool active)
+    {
+        if (playerRigidbody != null && UIManager.instance != null)
+        {
+            UIManager.instance.SetActiveDamagerUI(active);
         }
     }
 

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4689192003253474295}
   - component: {fileID: 4644341417127524612}
   - component: {fileID: 784319461600702881}
-  - component: {fileID: 1390000659312039584}
   m_Layer: 0
   m_Name: mini_Obstacle
   m_TagString: Item
@@ -107,15 +106,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 0416e4dc394bee648af16d5b5e7eb94e, type: 2}
---- !u!114 &1390000659312039584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7128666437137567071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe6ea79bc7faf69428252b5499cf6932, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

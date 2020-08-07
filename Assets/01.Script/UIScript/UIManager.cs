@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     public GameObject gameoverUI; // 게임 오버시 활성화할 UI 
     [SerializeField]
+    public GameObject damagedUI; // 데미지시 활성화할 UI 
+    [SerializeField]
     public Image itemImage1; //아이템 1 이미지
     [SerializeField]
     public Image itemImage2; //아이템 2 이미지
@@ -82,6 +84,12 @@ public class UIManager : MonoBehaviour
     public void SetActiveGameoverUI(bool active)
     {
         gameoverUI.SetActive(active);
+    }
+
+    // 데미지 UI 활성화
+    public void SetActiveDamagerUI(bool active)
+    {
+        damagedUI.SetActive(active);
     }
 
     // 게임 재시작

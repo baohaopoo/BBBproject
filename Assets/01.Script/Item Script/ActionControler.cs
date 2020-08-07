@@ -37,8 +37,7 @@ public class ActionControler : MonoBehaviour
                     pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
                     Debug.Log(item.itemName + " 획득했습니다");
                     playerhaveitem.AcquireItem(item); //아이템 장착
-                    //Destroy(other.transform.gameObject); //아이템 파괴
-                    other.transform.GetComponent<ItemDestroy>().destroyMe();
+                    Destroy(other.transform.gameObject); //아이템 파괴
    
                 }
                 UIManager.instance.offactiontxt();
