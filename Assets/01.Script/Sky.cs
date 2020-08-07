@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class Sky : MonoBehaviour
 {
-    public bool inNight = true;
+    public bool inNight = false;
 
-    private Material originalSky; //원래하늘 
+    //private Material originalSky; //원래하늘 
     public Material NightSky; 
     public Material DaySky;
-
+    [HideInInspector]
+    public float progressDawn = 0;//새벽
+    [HideInInspector]
+    public float progressDay = 0;//낮
+    [HideInInspector]
+    public float progressEvening = 0;//저녁
+    [HideInInspector]
+    public float progressNight = 0; //밤
+    private Color sunSet;
+    private Color sunOrigin;
+    private Color nughtStart;
+    private DayandNight daynight;
+  
     void Start()
     {
-        originalSky = RenderSettings.skybox;
+        daynight = GetComponent<DayandNight>();
+        //originalSky = RenderSettings.skybox;
+        sunSet = new Color(0.8784f, 0.1607f, 0.2352f, 1f);
+        sunOrigin = new Color(0.5f, 0.5f, 0.5f, 1f);
+
     }
 
     // Update is called once per frame
@@ -21,13 +37,70 @@ public class Sky : MonoBehaviour
        if (inNight)
         {
             RenderSettings.skybox = NightSky;
+            NightSkyColor();
         }
         else if (!inNight)
         {
             RenderSettings.skybox = DaySky;
+            DaySkyColor();
         }
+       
     }
 
 
-    
+    private void DaySkyColor()
+    {
+        //머터리얼 색상은 0~1까지 
+        //Debug.Log(DaySky.GetColor("_TintColor"));
+        //Debug.Log(daynight.DayTime);
+        if (progressDawn < 1)
+        { 
+            //새벽
+           // DaySky.SetFloat("_Exposure",1f);
+            DaySky.SetColor("_TintColor", Color.Lerp(Color.black, sunOrigin, progressDawn));
+            progressDawn += (Time.deltaTime / (daynight.DayTime/6f)); 
+            Debug.Log("새벽이당");
+        }
+        else if (progressDawn >= 1)
+        {
+            if (progressDay < 1)
+            {
+                //낮
+                Debug.Log("낮이당" + Mathf.Lerp(1.0f, 2f, progressDay));
+                //DaySky.SetFloat("_Exposure", Mathf.Lerp(1.0f, 2f, progressDawn));
+                DaySky.SetColor("_TintColor", Color.Lerp(sunOrigin, sunSet, progressDay));
+                progressDay += (Time.deltaTime / (daynight.DayTime *(5f/6f)));
+                        
+            }
+            else if (progressDay >= 1)
+            {
+                Debug.Log("밤시작!");
+                NightSky.SetFloat("_Exposure", 2f);
+
+            }
+        }
+        
+    }
+
+    private void NightSkyColor()
+    {
+        if (progressEvening < 1)
+        {
+            NightSky.SetColor("_TintColor", sunOrigin); //밤 색상 설정
+            Debug.Log("저녁이당!");
+            DaySky.SetFloat("_Exposure", Mathf.Lerp(2.0f, 1.0f, progressEvening));
+            progressEvening += (Time.deltaTime / (daynight.DayTime * (5f / 6f)));
+        }
+        else if (progressEvening >= 1)
+        {
+            if (progressNight < 1)
+            {
+                Debug.Log("밤에서 칠흙으로 가는길");
+                NightSky.SetColor("_TintColor", Color.Lerp(sunOrigin, Color.black, progressNight));
+                progressNight += (Time.deltaTime / (daynight.DayTime / 6f));
+            }
+
+        }
+    }
+
 }

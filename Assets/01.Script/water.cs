@@ -55,7 +55,6 @@ public class water : MonoBehaviour
 
         RenderSettings.fogColor = waterColor;
         RenderSettings.fogDensity = waterFogDensity;
-        Debug.Log("들어왔닝?");
     }
     private void OutWater(Collider player)
     {
@@ -65,7 +64,6 @@ public class water : MonoBehaviour
             player.transform.GetComponent<Rigidbody>().drag = originDrag;
             RenderSettings.fogColor = originColor;
             RenderSettings.fogDensity = originFogDensity;
-            Debug.Log("나갔니?");
         }
     }
 }

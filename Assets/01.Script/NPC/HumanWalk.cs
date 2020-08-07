@@ -56,6 +56,7 @@ public class HumanWalk : MonoBehaviour
         if (b == 0)
         {
             //폰사용
+            humanRigidbody.velocity = Vector3.zero; //속도 0으로 두자
             isWalking = false;
             onPhone = true;
             SaySomething.doTalkOnYourOwn = true; //말한다
