@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
 
 
         randomPos.x = 94.89f;
-        randomPos.y = 0.4f;
+        randomPos.y = 0.5f;
         randomPos.z = 342.92f;
 
         PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);

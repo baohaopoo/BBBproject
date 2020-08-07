@@ -8,8 +8,9 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 28d571e5c4d21ae41a53f32f42856b64
+  m_OcclusionCullingData: {fileID: 36300000, guid: 6f4679a4898c8c743a3c79e6627ba8ac,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -956,7 +957,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103318057}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 15
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -11405,11 +11406,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 553140188}
     m_Modifications:
-    - target: {fileID: 1858182966850097457, guid: 9f8f66473c26197448d8dcccc734050b,
-        type: 3}
-      propertyPath: m_Name
-      value: Post-process Volume
-      objectReference: {fileID: 0}
     - target: {fileID: 1858182966850097468, guid: 9f8f66473c26197448d8dcccc734050b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11465,6 +11461,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1858182966850097457, guid: 9f8f66473c26197448d8dcccc734050b,
+        type: 3}
+      propertyPath: m_Name
+      value: Post-process Volume
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f8f66473c26197448d8dcccc734050b, type: 3}
 --- !u!1001 &2205417017520053491
@@ -11487,7 +11488,7 @@ PrefabInstance:
     - target: {fileID: 2205417017535935468, guid: 7a3ebdf560d60d1438cd56df7f5ec525,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 2205417017535935468, guid: 7a3ebdf560d60d1438cd56df7f5ec525,
         type: 3}
@@ -11989,7 +11990,7 @@ PrefabInstance:
     - target: {fileID: 1023257861260862923, guid: 3d065d072193bf14eb4c1e59d613567c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -786
+      value: -715
       objectReference: {fileID: 0}
     - target: {fileID: 1023257861260862923, guid: 3d065d072193bf14eb4c1e59d613567c,
         type: 3}

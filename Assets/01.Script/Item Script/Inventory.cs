@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviourPun
     private ham hami;
     private bread bre;
 
-
+  
 
     private void Start()
     {
@@ -35,7 +35,7 @@ public class Inventory : MonoBehaviourPun
         playeritem = GetComponent<PlayerHaveItem>();
         hami = GetComponent<ham>();
         bre = GetComponent<bread>();
-        
+      
     }
     private void Update()
     {
@@ -161,7 +161,8 @@ public class Inventory : MonoBehaviourPun
         }
 
         photonView.RPC("hamani", RpcTarget.All);
-
+ 
+      
 
 
     }
@@ -180,9 +181,12 @@ public class Inventory : MonoBehaviourPun
         if (!photonView.IsMine)
         {
             return;
+
         }
 
         photonView.RPC("breadani", RpcTarget.All);
+        
+    
 
     }
 

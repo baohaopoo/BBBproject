@@ -42,11 +42,17 @@ public class Gun : MonoBehaviourPun, IPunObservable
     public Transform fireTransform; // 총알이 발사될 위치
     public ParticleSystem shellEjectEffect; // 탄피 배출 효과
     public ParticleSystem muzzleFlashEffect; // 총구 화염 효과
+    
 
+
+    //mins
+    public ParticleSystem shootedEffect; //총알 맞았을때 효과
     private LineRenderer bulletLineRenderer; // 총알 궤적을 그리기 위한 렌더러
 
     [SerializeField]
     private GameObject HitEffect; //총에 맞았을때 나오는 효과
+    //private GameObject ShootedEffect; 
+    
 
     [HideInInspector]
     public bool isFineSightMode = false;
@@ -185,7 +191,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
             //피격 이벤트 생성
             //Instantiate(생성할 오브젝트, 생성될 위치, 어느 방향으로?)
             Instantiate(HitEffect, hit.point, Quaternion.LookRotation(hit.normal));
-
+            
 
             //UI를 바꾼다.
             //BulletUI();
@@ -215,9 +221,9 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
         //발사 이펙트 재생
         StartCoroutine(ShotEffect(hitPosition));
+       
 
-
-        bulletRemain -= 1;
+       bulletRemain -= 1;
 
         if (photonView.IsMine)
         {
@@ -264,7 +270,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
     {
         shellEjectEffect.Play(); //탄피 배출 효과 재생
         muzzleFlashEffect.Play();
-
+       // shootedEffect.Play();
         //탄알 궤적 그리기
         //라인의 시작점은 총구에 위치한다. 
         bulletLineRenderer.SetPosition(0, fireTransform.position);
@@ -282,6 +288,13 @@ public class Gun : MonoBehaviourPun, IPunObservable
     
     }
 
+
+    private void Shooted(Vector3 hitPosition)
+    {
+        shootedEffect.Play();
+
+    }
+   
     
   
 }

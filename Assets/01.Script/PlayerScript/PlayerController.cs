@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviourPun
 
     public float lookSensitivity = 3f;//마우스 민감도
 
-    public float jumpPower = 5f;
+    public float jumpPower = 16f;
     
     private PlayerShooter playershooter;
     private PlayerInput playerInput; 
