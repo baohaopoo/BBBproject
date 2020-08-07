@@ -50,7 +50,8 @@ public class ActionControler : MonoBehaviourPun
 
                     }
 
-                    other.transform.GetComponent<ItemDestroy>().destroyall();
+                     other.transform.GetComponent<ItemDestroy>().destroyall();
+                    //Destroy(other.transform.gameObject);
                     UIManager.instance.offactiontxt();
           
 

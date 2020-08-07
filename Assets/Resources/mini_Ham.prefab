@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 911814053478876067}
   - component: {fileID: 549574311266357619}
   - component: {fileID: 1794640229735556985}
+  - component: {fileID: 8332213353538779884}
   m_Layer: 0
   m_Name: mini_Ham
   m_TagString: Item
@@ -262,3 +263,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 62a5477111c3fcd448598331bce98126, type: 2}
+--- !u!114 &8332213353538779884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641866657380016023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e2eaee2b2ee1c7409adb2debd03e73d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
