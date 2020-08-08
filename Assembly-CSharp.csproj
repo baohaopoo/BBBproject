@@ -216,9 +216,9 @@
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\14.Shader\Water_Shader.shader" />
+    <None Include="Assets\LowPolyBusinessPeople\Shaders\SimpleSelfLit.shader" />
     <None Include="Assets\PostProcessing Profiles\ReadmeFIRST!.txt" />
     <None Include="Assets\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
-    <None Include="Assets\LowPolyBusinessPeople\Shaders\SimpleSelfLit.shader" />
     <None Include="Assets\03.Model\POLYGON city pack\Read_me.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\03.Model\sky5X\README.txt" />
@@ -237,10 +237,10 @@
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
     <None Include="Assets\PostProcessing Profiles\ForVolumetricLights\Readme.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\LowPolyBusinessPeople\NotesAndInstructions.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
-    <None Include="Assets\LowPolyBusinessPeople\NotesAndInstructions.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
