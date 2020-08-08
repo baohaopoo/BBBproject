@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\01.Script\CameraScript\GunviewCameraController.cs" />
     <Compile Include="Assets\01.Script\CameraScript\MainCameraController.cs" />
+    <Compile Include="Assets\01.Script\CameraScript\SmoothFollow.cs" />
     <Compile Include="Assets\01.Script\ChangeScene.cs" />
     <Compile Include="Assets\01.Script\Damageable.cs" />
     <Compile Include="Assets\01.Script\Damager.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\01.Script\Item Script\Inventory.cs" />
     <Compile Include="Assets\01.Script\Item Script\Item.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemBox.cs" />
+    <Compile Include="Assets\01.Script\Item Script\ItemDestroy.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemManager.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemPickup.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemSpawner.cs" />
@@ -101,7 +103,6 @@
     <Compile Include="Assets\01.Script\SceneFadeIn.cs" />
     <Compile Include="Assets\01.Script\Sky.cs" />
     <Compile Include="Assets\01.Script\StartButtonPressed.cs" />
-    <Compile Include="Assets\01.Script\Timelinedirector.cs" />
     <Compile Include="Assets\01.Script\TimerDelayS.cs" />
     <Compile Include="Assets\01.Script\UIScript\ChangeScenePoint.cs" />
     <Compile Include="Assets\01.Script\UIScript\Particle.cs" />
@@ -109,18 +110,6 @@
     <Compile Include="Assets\01.Script\water.cs" />
     <Compile Include="Assets\01.Script\Window_Action.cs" />
     <Compile Include="Assets\01.Script\ZoomInOut.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\OverTheShoulderAim\ActivateOnKeypress.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\Scripting\ScriptingExample.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\Trigger volumes\GenericTrigger.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Models\UnityCharacter\Scripts\CharacterMovement.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Models\UnityCharacter\Scripts\CharacterMovement2D.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\ActivateCameraWithDistance.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\ActivateCamOnPlay.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\ExampleHelpWindow.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\MixingCameraBlend.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMove.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMoveOnSphere.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMovePhysics.cs" />
     <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\SettingsUtils\SettingsData.cs" />
     <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledBanner.cs" />
     <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledCategory.cs" />
@@ -795,10 +784,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{D7E527C4-F765-2C64-5434-87E995A7E3A3}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj">
       <Project>{A116772F-2473-EF55-18CE-41783DEC937D}</Project>
       <Name>PhotonUnityNetworking.Utilities.PhotonPlayer.Editor</Name>

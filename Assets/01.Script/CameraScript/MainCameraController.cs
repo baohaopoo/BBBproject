@@ -23,7 +23,6 @@ public class MainCameraController : MonoBehaviour
 
         yPosition = camTransform.position.y;
         pitch += 0.001f * y;
-        Debug.Log("pitch:" + pitch);
         if (!(-0.229f < pitch && pitch < 0.15f))
         {
             pitch -= 0.001f * y;

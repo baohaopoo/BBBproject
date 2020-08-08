@@ -87,7 +87,6 @@ public class Inventory : MonoBehaviour
         {
             gun.bulletRemain = 5;
         }
-        gun.BulletUI(gun.bulletRemain);
     }
 
     private void UsetrapItem()

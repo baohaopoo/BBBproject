@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7806725043838570167}
   - component: {fileID: 7806725043838570166}
   - component: {fileID: 7806725043838570165}
-  - component: {fileID: 7806725043838570120}
+  - component: {fileID: 3337560206692825273}
+  - component: {fileID: 8703595846085749051}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -84,7 +85,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7806725043838570164}
   m_Enabled: 1
---- !u!114 &7806725043838570120
+--- !u!114 &3337560206692825273
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,28 +94,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 7806725043838570164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Script: {fileID: 11500000, guid: f76806479d916a64aa03f8e3eba7912f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  target: {fileID: 0}
+  distance: 4
+  height: 8
+  rotationDamping: 2
+  heightDamping: 2
+--- !u!114 &8703595846085749051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7806725043838570164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f58780a2301f8046bb1b3f33362b211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 1

@@ -34,11 +34,6 @@ public class Gun : MonoBehaviour
     public float timeBetFire = 0.12f; // 총알 발사 사이의 시간간격
     public float lastFireTime = 0; // 총을 마지막으로 발사한 시점 
 
-    public GameObject bulletImage1;
-    public GameObject bulletImage2;
-    public GameObject bulletImage3;
-    public GameObject bulletImage4;
-    public GameObject bulletImage5;
 
     private void Awake()
     {
@@ -66,8 +61,17 @@ public class Gun : MonoBehaviour
         {
             bulletRemain = 5;
         }
-        BulletUI(bulletRemain);
+
       
+    }
+
+    public void UpdateUI()
+    {
+        if (UIManager.instance != null)
+        {
+
+            UIManager.instance.updateBullet(bulletRemain);
+        }
     }
 
 
@@ -128,6 +132,7 @@ public class Gun : MonoBehaviour
 
         //탄알의 수 -1 
         bulletRemain -= 1;
+        UpdateUI();
         if (bulletRemain <= 0)
         {
             //총알이 남은게 없다면 현재상태 Empty
@@ -157,55 +162,4 @@ public class Gun : MonoBehaviour
         bulletLineRenderer.enabled = false;
     }
 
-    public void BulletUI(int br)
-    {
-        if (br == 5)
-        {
-            bulletImage1.SetActive(true);
-            bulletImage2.SetActive(true);
-            bulletImage3.SetActive(true);
-            bulletImage4.SetActive(true);
-            bulletImage5.SetActive(true);
-        }
-        else if (br == 4)
-        {
-            bulletImage1.SetActive(true);
-            bulletImage2.SetActive(true);
-            bulletImage3.SetActive(true);
-            bulletImage4.SetActive(true);
-            bulletImage5.SetActive(false);
-        }
-        else if (br == 3)
-        {
-            bulletImage1.SetActive(true);
-            bulletImage2.SetActive(true);
-            bulletImage3.SetActive(true);
-            bulletImage4.SetActive(false);
-            bulletImage5.SetActive(false);
-        }
-        else if (br == 2)
-        {
-            bulletImage1.SetActive(true);
-            bulletImage2.SetActive(true);
-            bulletImage3.SetActive(false);
-            bulletImage4.SetActive(false);
-            bulletImage5.SetActive(false);
-        }
-        else if (br == 1)
-        {
-            bulletImage1.SetActive(true);
-            bulletImage2.SetActive(false);
-            bulletImage3.SetActive(false);
-            bulletImage4.SetActive(false);
-            bulletImage5.SetActive(false);
-        }
-        else if (br == 0)
-        {
-            bulletImage1.SetActive(false);
-            bulletImage2.SetActive(false);
-            bulletImage3.SetActive(false);
-            bulletImage4.SetActive(false);
-            bulletImage5.SetActive(false);
-        }
-    }
 }
