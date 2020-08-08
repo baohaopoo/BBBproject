@@ -79,33 +79,33 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         
         PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
 
-        if (photonView.ViewID == 2001)
-        {
-            if (photonView.IsMine)
-            {
+        //if (photonView.ViewID == 2001)
+        //{
+        //    if (photonView.IsMine)
+        //    {
 
 
 
-            }else { 
+        //    }else { 
             
             
             
-            }
+        //    }
 
-        }
-        else if (photonView.ViewID == 1001)
-        {
+        //}
+        //else if (photonView.ViewID == 1001)
+        //{
 
-            if (photonView.IsMine)
-            {
+        //    if (photonView.IsMine)
+        //    {
 
 
-            }else { 
+        //    }else { 
             
             
-            }
+        //    }
 
-        }
+        //}
 
         //if (PhotonNetwork.IsMasterClient)
         //{

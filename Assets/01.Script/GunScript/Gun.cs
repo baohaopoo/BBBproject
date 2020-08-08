@@ -6,7 +6,7 @@ using Photon.Pun;
 public class Gun : MonoBehaviourPun, IPunObservable
 {
     //GameObject
-    public static Gun instance = null;
+    private static Gun instance = null;
     public GameObject Player;
     //주기적으로 자동 실행
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

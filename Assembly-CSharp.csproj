@@ -71,6 +71,7 @@
     <Compile Include="Assets\01.Script\ChangeScene.cs" />
     <Compile Include="Assets\01.Script\Damageable.cs" />
     <Compile Include="Assets\01.Script\Damager.cs" />
+    <Compile Include="Assets\01.Script\DayandNight.cs" />
     <Compile Include="Assets\01.Script\DaynNight.cs" />
     <Compile Include="Assets\01.Script\Doll_Action.cs" />
     <Compile Include="Assets\01.Script\ExitToRoom.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Assets\01.Script\PlayerScript\PlayerTied.cs" />
     <Compile Include="Assets\01.Script\PlayerScript\StatusController.cs" />
     <Compile Include="Assets\01.Script\SceneFadeIn.cs" />
+    <Compile Include="Assets\01.Script\Sky.cs" />
     <Compile Include="Assets\01.Script\StartButtonPressed.cs" />
     <Compile Include="Assets\01.Script\Timelinedirector.cs" />
     <Compile Include="Assets\01.Script\TimerDelayS.cs" />
@@ -131,6 +133,18 @@
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMove.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMoveOnSphere.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMovePhysics.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\SettingsUtils\SettingsData.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledBanner.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledCategory.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledInteractive.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledMessage.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledPopupArray.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledPopupLayers.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledRangeOptions.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledSpace.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledTexturePreview.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledMono\StyledMonoBehaviour.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledMono\StyledMonoHideScriptField.cs" />
     <Compile Include="Assets\bread.cs" />
     <Compile Include="Assets\bulletUI.cs" />
     <Compile Include="Assets\CameraSetup.cs" />
@@ -181,6 +195,7 @@
     <Compile Include="Assets\PhotonChatApi\IChatClientListener.cs" />
     <Compile Include="Assets\playerpivot.cs" />
     <Compile Include="Assets\restart.cs" />
+    <Compile Include="Assets\RPG Food &amp; Drinks Pack\Assets\Scripts\Rotator.cs" />
     <Compile Include="Assets\Viking Crew Tools\Camera controls\MouseOrbitImproved.cs" />
     <Compile Include="Assets\Viking Crew Tools\UI\SpeechBubbleManager\Demos\2d scene\RandomMovementBehaviour.cs" />
     <Compile Include="Assets\Viking Crew Tools\UI\SpeechBubbleManager\Demos\SayRandomThingsBehaviour.cs" />
@@ -216,6 +231,7 @@
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Photon\PhotonUnityNetworking\readme.txt" />
+    <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders\Skybox Cubemap Extended.shader" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
