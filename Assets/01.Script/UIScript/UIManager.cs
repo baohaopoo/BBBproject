@@ -36,11 +36,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     public Text openText;
 
-    public GameObject friendImage1;
-    public GameObject friendImage2;
-    public GameObject friendImage3;
-    public GameObject friendImage4;
-    public GameObject friendImage5;
+    [SerializeField]
+    public Text scoreText;
 
     [SerializeField]
     public GameObject bulletImage1;
@@ -49,6 +46,12 @@ public class UIManager : MonoBehaviour
     public GameObject bulletImage4;
     public GameObject bulletImage5;
 
+    //
+    public void getScore(int num)
+    {
+        scoreText.text = "Saved Friend: " + "<color=orange>" + num + "</color>";
+    }
+    //
     public void getitem(string name)
     {
         actionText.text = name + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
@@ -137,29 +140,7 @@ public class UIManager : MonoBehaviour
         SetColor(0, itemImage2);
     }
 
-    public void updateFriend(int n)
-    {
-        if (n == 1)
-        {
-            friendImage1.SetActive(true);
-        }
-        else if (n == 2)
-        {
-            friendImage2.SetActive(true);
-        }
-        else if (n == 3)
-        {
-            friendImage3.SetActive(true);
-        }
-        else if (n == 4)
-        {
-            friendImage4.SetActive(true);
-        }
-        else if (n == 5)
-        {
-            friendImage5.SetActive(true);
-        }
-    }
+   
 
     public void updateBullet(int sb)
     {

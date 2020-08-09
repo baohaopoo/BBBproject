@@ -129,13 +129,12 @@
     <Compile Include="Assets\damager.cs" />
     <Compile Include="Assets\Friendcontroller.cs" />
     <Compile Include="Assets\frog_controller.cs" />
+    <Compile Include="Assets\FullTiltBoogie\RotateFlareHolder.cs" />
     <Compile Include="Assets\gameMgr.cs" />
     <Compile Include="Assets\gethp.cs" />
     <Compile Include="Assets\ham.cs" />
     <Compile Include="Assets\LowPolyBusinessPeople\Scrips\scr_Selector.cs" />
     <Compile Include="Assets\LowPolyBusinessPeople\Scrips\scr_Selector_Female.cs" />
-    <Compile Include="Assets\Models\poisondartfrog\ToxicFrogs\FrogController.cs" />
-    <Compile Include="Assets\Models\poisondartfrog\ToxicFrogs\RotateCamFrog.cs" />
     <Compile Include="Assets\NetWorkMgr.cs" />
     <Compile Include="Assets\nicknameText.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
@@ -184,6 +183,7 @@
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\14.Shader\Water_Shader.shader" />
     <None Include="Assets\LowPolyBusinessPeople\Shaders\SimpleSelfLit.shader" />
+    <None Include="Assets\FullTiltBoogie\Helpers\readme.txt" />
     <None Include="Assets\LowPolyBusinessPeople\LowPolyOfficeProps_Demo\About.txt" />
     <None Include="Assets\03.Model\POLYGON city pack\Read_me.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />

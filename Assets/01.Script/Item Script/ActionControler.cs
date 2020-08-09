@@ -14,10 +14,11 @@ public class ActionControler : MonoBehaviour
 
     private Animator pickupanim;
     private Item item;
+    public int FriendNum;
     private void Start()
     {
         pickupanim = player.GetComponent<Animator>();
-
+        FriendNum = 0;
 
     }
     private void OnTriggerStay(Collider other)
@@ -77,10 +78,12 @@ public class ActionControler : MonoBehaviour
             {
                 if (other.transform != null) //정보를 가져왔을때
                 {
+                    FriendNum += 1; ///////////////
+                    UIManager.instance.getScore(FriendNum);
                     pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
                     if (item.itemName == "토끼")
                     {
-                        UIManager.instance.updateFriend(1);
+                        Debug.Log("토깽쓰 ");
                     }
                     Destroy(other.transform.gameObject); //아이템 파괴
                 }

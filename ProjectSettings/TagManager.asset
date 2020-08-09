@@ -37,6 +37,9 @@ TagManager:
   - BackOrRight
   - Back
   - BackOrLeft
+  - Ham
+  - Ladder_bottom
+  - water
   layers:
   - Default
   - TransparentFX
