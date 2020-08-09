@@ -13,8 +13,8 @@ public class HumanEnemy : StatusController
     public int damage = 20;// 공격력
     public float timeBetAttack = 0.5f; //공격간격
     private float lastAttackTime; //마지막 공격 시점
-
-
+    public float traceRange = 20f; //추적 범위 
+    private Animator catAnimator;
 
     // 추적할 대상이 존재하는지 알려주는 프로퍼티
     private bool hasTarget
@@ -24,7 +24,7 @@ public class HumanEnemy : StatusController
             // 추적할 대상이 존재하고, 대상이 사망하지 않았다면 true
             if (target != null && !target.dead)
             {
-                Debug.Log("??");
+                Debug.Log("추적대상 존재");
                 return true;
             }
 
@@ -35,7 +35,7 @@ public class HumanEnemy : StatusController
     private void Awake()
     {
         pathFinder = GetComponent<NavMeshAgent>();
-
+        catAnimator = GetComponent<Animator>();
     }
     [PunRPC]
     public void Setup(int newHealth, int newDamage,float newSpeed, Color skinColor)
@@ -70,7 +70,7 @@ public class HumanEnemy : StatusController
         //{
         //    return;
         //}
-
+        catAnimator.SetBool("isWalk", hasTarget); //타겟 있으면 걷는다
     }
 
     // 주기적으로 추적할 대상의 위치를 찾아 경로를 갱신
@@ -80,9 +80,9 @@ public class HumanEnemy : StatusController
         while (!dead)
         {
             if (hasTarget)
-            {
-                
+            {               
                 // 추적 대상 존재 : 경로를 갱신하고 AI 이동을 계속 진행
+                
                 pathFinder.isStopped = false;
                 pathFinder.SetDestination(target.transform.position);
             }
@@ -94,7 +94,7 @@ public class HumanEnemy : StatusController
                 // 20 유닛의 반지름을 가진 가상의 구를 그렸을때, 구와 겹치는 모든 콜라이더를 가져옴
                 // 단, targetLayers에 해당하는 레이어를 가진 콜라이더만 가져오도록 필터링
                 Collider[] colliders =
-                    Physics.OverlapSphere(transform.position, 20f, PlayerTarget);
+                    Physics.OverlapSphere(transform.position, traceRange, PlayerTarget);
 
                 // 모든 콜라이더들을 순회하면서, 살아있는 플레이어를 찾기
                 for (int i = 0; i < colliders.Length; i++)
@@ -105,7 +105,7 @@ public class HumanEnemy : StatusController
                     // statuscontroller 컴포넌트가 존재하며, 해당 statuscontroller 살아있다면,
                     if (statuscontroller != null && !statuscontroller.dead)
                     {
-                        // 추적 대상을 해당 LivingEntity로 설정
+                        // 추적 대상을 해당 statuscontroller로 설정
                         target = statuscontroller;
 
                         // for문 루프 즉시 정지
@@ -123,7 +123,6 @@ public class HumanEnemy : StatusController
     [PunRPC]
     public override void OnDamage(int damage, Vector3 hitPoint, Vector3 hitNormal)
     {
-
         // statuscontroller OnDamage()를 실행하여 데미지 적용
         base.OnDamage(damage, hitPoint, hitNormal);
     }
@@ -131,7 +130,7 @@ public class HumanEnemy : StatusController
     // 사망 처리
     public override void Die()
     {
-        // LivingEntity의 Die()를 실행하여 기본 사망 처리 실행
+        // statuscontroller의 Die()를 실행하여 기본 사망 처리 실행
         base.Die();
 
         // 다른 AI들을 방해하지 않도록 자신의 모든 콜라이더들을 비활성화
@@ -144,6 +143,8 @@ public class HumanEnemy : StatusController
         // AI 추적을 중지하고 내비메쉬 컴포넌트를 비활성화
         pathFinder.isStopped = true;
         pathFinder.enabled = false;
+        catAnimator.SetTrigger("isDie");
+        Destroy(gameObject, 10f);//10초뒤 제거 
 
     }
 
@@ -159,7 +160,7 @@ public class HumanEnemy : StatusController
         // 최근 공격 시점에서 timeBetAttack 이상 시간이 지났다면 공격 가능
         if (!dead && Time.time >= lastAttackTime + timeBetAttack)
         {
-            // 상대방으로부터 LivingEntity 타입을 가져오기 시도
+            // 상대방으로부터 StatusController 타입을 가져오기 시도
             StatusController attackTarget
                 = other.GetComponent<StatusController>();
 
