@@ -2,32 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class ChangeScenePoint : MonoBehaviour
+
+public class ChangeScenePoint : MonoBehaviourPunCallbacks
 {
 
-    GameObject player;
+    //Scene scene2 = SceneManager.GetSceneByName("city3");
+ 
+
     // Start is called before the first frame update
     void Start()
     {
-        player =GameObject.FindGameObjectWithTag("Player");
+      
 
     }
 
     // Update is called once per frame
-    void Update()
+
+
+    private void OnCollisionEnter(Collision other)
     {
-
-
-        
-    }
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject == player)
+        if (other.transform.tag== "Player")
         {
 
+            UIManager.instance.playMovie();
             SceneChange();
         
         
@@ -36,8 +35,9 @@ public class ChangeScenePoint : MonoBehaviour
 
     private void SceneChange()
     {
+
+
         SceneManager.LoadScene("city3");
-    
-    
+
     }
 }

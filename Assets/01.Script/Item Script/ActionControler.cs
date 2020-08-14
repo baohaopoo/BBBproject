@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class ActionControler : MonoBehaviour
+public class ActionControler : MonoBehaviourPun
 {
+    
 
     [SerializeField]
     private PlayerHaveItem playerhaveitem;
@@ -14,85 +16,180 @@ public class ActionControler : MonoBehaviour
 
     private Animator pickupanim;
     private Item item;
+    public int FriendNum;
+
     private void Start()
     {
-        pickupanim = player.GetComponent<Animator>();
-
-
+    
+        //pickupanim = player.GetComponent<Animator>();
     }
+
+
     private void OnTriggerStay(Collider other)
     {
-        
+
 
         if (other.tag == "Item")
         {
-            item = other.transform.GetComponent<ItemPickup>().item;
-            UIManager.instance.onactiontxt();
-            UIManager.instance.getitem(item.itemName);  //E키를 누르면 먹을수 있다.
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (photonView.IsMine) //로컬이라면,
             {
-                if (other.transform != null) //정보를 가져왔을때
+               
+                item = other.transform.GetComponent<ItemPickup>().item;
+                
+                UIManager.instance.onactiontxt(); //UIManager로 actiontxt 켜줌
+                UIManager.instance.getitem(other.transform.GetComponent<ItemPickup>().item.itemName);  //E키를 누르면 먹을수 있다.
+         
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
-                    Debug.Log(item.itemName + " 획득했습니다");
-                    playerhaveitem.AcquireItem(item); //아이템 장착
-                    //Destroy(other.transform.gameObject); //아이템 파괴
-                    other.transform.GetComponent<ItemDestroy>().destroyMe();
-   
+
+                    if (other.transform != null) //정보를 가져왔을때
+                    {
+
+                        playerhaveitem.AcquireItem(other.transform.GetComponent<ItemPickup>().item); //아이템 장착
+
+                    }
+
+                     other.transform.GetComponent<ItemDestroy>().destroyall();
+                    //Destroy(other.transform.gameObject);
+                    UIManager.instance.offactiontxt();
+                   
+
                 }
-                UIManager.instance.offactiontxt();
+
             }
+
         }
+
 
         if (other.tag == "CanOpen")
         {
-            item = other.transform.GetComponent<ItemPickup>().item;
-            UIManager.instance.onopentxt();
-            UIManager.instance.openitem(item.itemName);
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (photonView.IsMine)
             {
-                if (other.transform != null) //정보를 가져왔을때
+           
+                item = other.transform.GetComponent<ItemPickup>().item;
+       
+                UIManager.instance.onopentxt();
+                UIManager.instance.openitem(other.transform.GetComponent<ItemPickup>().item.itemName);
+                
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
                     if (item.itemName == "아이템박스")
                     {
-                        other.GetComponent<ItemBox>().BoxAnimation();//아이템박스 열기닫기
+                        other.GetComponent<ItemBox>().goani();//아이템박스 열기닫기
                     }
                     else if (item.itemName == "옷장")
                     {
-                        other.GetComponent<Open_Closet>().ClosetAnimation();//옷장 열기닫기 
+                        other.GetComponent<Open_Closet>().goclosetani();//옷장 열기닫기 
                     }
-
                 }
-            }      
+            }
+          
         }
+
+
         if (other.tag == "Friend")
         {
 
-            item = other.transform.GetComponent<ItemPickup>().item;
-            UIManager.instance.onactiontxt();
-            UIManager.instance.friendfind(item.itemName);  //E키를 누르면 먹을수 있다.
-            if (Input.GetKeyDown(KeyCode.E))
+            if (photonView.IsMine) //로컬일때만, onactiontxt 켜져라.
             {
-                if (other.transform != null) //정보를 가져왔을때
+
+                //UIManager.instance.friendfind(other.transform.GetComponent<ItemPickup>().item.itemName);  
+                //UIManager.instance.onactiontxt();
+
+                item = other.transform.GetComponent<ItemPickup>().item;
+                UIManager.instance.onactiontxt();
+                UIManager.instance.friendfind(item.itemName);  //E키를 누르면 먹을수 있다.
+
+
+                //E키를 누르면 먹어야하는데..
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
-                    if (item.itemName == "토끼")
+
+                    UIManager.instance.offactiontxt();
+                    
+                    if (other.transform != null) //정보를 가져왔을때
                     {
-                        UIManager.instance.updateFriend(1);
+                        FriendNum += 1; ///////////////
+                        UIManager.instance.getScore(FriendNum);
+                        // pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
+                        if (item.itemName == "옹졸이")
+                        {
+                            //그저 이미지
+                            //UIManager.instance.updateFriend(1);
+                            UIManager.instance.OnsaveUI(1);
+
+                           
+                        }
+
+                        // pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
+                        if (item.itemName == "움파룸파")
+                        {
+                            //그저 이미지
+                            //UIManager.instance.updateFriend(1);
+                            UIManager.instance.OnsaveUI(2);
+
+
+                        }
+                        if (item.itemName == "구미베어")
+                        {
+                            //그저 이미지
+                            //UIManager.instance.updateFriend(1);
+                            UIManager.instance.OnsaveUI(3);
+
+
+                        }
+                       
+                        if (item.itemName == "툼워치톡어")
+                        {
+                            //그저 이미지
+                            //UIManager.instance.updateFriend(1);
+                            UIManager.instance.OnsaveUI(4);
+
+
+                        }
+                        if (item.itemName == "판")
+                        {
+                            //그저 이미지
+                            //UIManager.instance.updateFriend(1);
+                            UIManager.instance.OnsaveUI(5);
+
+
+                        }
+
                     }
-                    Destroy(other.transform.gameObject); //아이템 파괴
+
+                    other.transform.GetComponent<ItemDestroy>().destroyall();
+                   
                 }
-                UIManager.instance.offactiontxt();
+
+
+
             }
+        }
+
+
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+
+            UIManager.instance.OffSaveUI();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        UIManager.instance.offactiontxt();
-        UIManager.instance.offopentxt();
+
+        if (photonView.IsMine)
+        {
+            UIManager.instance.offactiontxt();
+            UIManager.instance.offopentxt();
+        }
+
     }
 
 

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class Open_Closet : MonoBehaviour
+public class Open_Closet : MonoBehaviourPun
 {
     private Animator closetAnimator;
     private bool IsOpen = false;
@@ -12,19 +13,20 @@ public class Open_Closet : MonoBehaviour
     {
         closetAnimator = GetComponent<Animator>();
 
-       
-        
-
     }
     private void Update()
     {
 
-
-        
-      
-
-
     }
+
+
+
+    public void goclosetani()
+    {
+        photonView.RPC("ClosetAnimation", RpcTarget.All);
+    
+    }
+    [PunRPC]
     public void ClosetAnimation()
     {
         //closetAnimator.SetBool("Open", true);

@@ -1,27 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
-
 using Photon.Pun;
+using UnityStandardAssets.Utility;
 public class CameraSetup : MonoBehaviourPun
 {
-    // Start is called before the first frame update
+
+    private GameObject FollowCam; //main camera
+    public GameObject PlayerPibot;
+    public GameObject Player;
     void Start()
     {
+        //////maincamera가 플레이어만 보고 달려오는 부분 구현
         if (photonView.IsMine)
         {
-            CinemachineVirtualCamera followCam = FindObjectOfType<CinemachineVirtualCamera>();
-            followCam.Follow = transform;
-            followCam.LookAt = transform;
 
-        
+            FollowCam = GameObject.Find("MainCamera");
+            //FollowCam.GetComponent<SmoothFollow>().target = this.Player.transform;
+            FollowCam.GetComponent<SmoothFollow>().target = PlayerPibot.transform;
+
+
         }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       // Camera.main.GetComponent<SmoothFollow>().target = PlayerPibot.transform;
+
     }
 }

@@ -1,12 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class ItemDestroy : MonoBehaviour
+using Photon.Pun;
+public class ItemDestroy : MonoBehaviourPun
 {
+    [PunRPC]
     public void destroyMe()
     {
-        Destroy(gameObject);
-        Debug.Log("??");
+        
+        Destroy(this.gameObject);
+    }
+
+
+    public void destroyall()
+    {
+     
+            photonView.RPC("destroyMe", RpcTarget.All);
+
+
+
+    
     }
 }

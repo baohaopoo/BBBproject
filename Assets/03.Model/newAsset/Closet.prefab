@@ -459,7 +459,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5957493543293072246}
   - component: {fileID: 4334511307152563724}
-  - component: {fileID: 8437485364826828778}
+  - component: {fileID: 1718105797695838322}
+  - component: {fileID: 8003894263558792747}
+  - component: {fileID: 1297558396914053625}
   m_Layer: 0
   m_Name: Closet
   m_TagString: CanOpen
@@ -494,7 +496,7 @@ Animator:
   m_GameObject: {fileID: 7275034171754168677}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a510845073950234ab365d0f9502a8bb, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4f1ad1ae4c5f6f448a3339a90c2d4afa, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5118a4333b8e5ec4aa3d3e9eaea9a6f2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -503,7 +505,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8437485364826828778
+--- !u!114 &1718105797695838322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -515,6 +517,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410a3f816b47d7d4287c956196c2bcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8003894263558792747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7275034171754168677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0941f3ca7f162f4091fcea10adcf92b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 98aa2a0dfe8db8945a4e6a234913b70e, type: 2}
+--- !u!65 &1297558396914053625
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7275034171754168677}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 24.30328, z: 28.91793}
+  m_Center: {x: -34.32, y: 30.001638, z: -13.958965}
 --- !u!1 &8115155766073307529
 GameObject:
   m_ObjectHideFlags: 0

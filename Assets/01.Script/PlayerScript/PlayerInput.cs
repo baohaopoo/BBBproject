@@ -24,43 +24,53 @@ public class PlayerInput : MonoBehaviourPun
     public float mouseX { get; private set; }
     public float mouseY { get; private set; }
 
+
+    private StatusController status;
+    private void Start()
+    {
+        status = gameObject.GetComponent<StatusController>();
+    }
     // 매프레임 사용자 입력을 감지
     private void Update()
     {
-        //게임오버 상태에서는 사용자 입력 감지 안함
-        if (GameManager.instance != null && GameManager.instance.isGameover)
-        {
-            Verticalmove = 0;
-            Horizontalmove = 0;
-            rightmouse = false;
-            jump = false;
-            fire = false;
-            backMirror = false;
-            mouseX = 0;
-            mouseY = 0;
-            return;
-        }
-
-        //  입력 감지
-        Verticalmove = Input.GetAxis(VerticalAxisName);
-        Horizontalmove = Input.GetAxis(HorizontalAxisName);
-        jump = Input.GetButtonDown(jumpButtonName);
-        fire = Input.GetButtonDown(fireButtonName);
-
-        //카메라 입력감지 
-        backMirror = Input.GetKey(KeyCode.F);
-        rightmouse = Input.GetButtonDown(RightMouseButtonName);
-
-        //마우스 입력감지
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
-
-        ////로컬 플레이어가 아닌 경우 입력을 받지 않음
         //if (!photonView.IsMine)
         //{
         //    return;
 
         //}
 
+        if (photonView.IsMine)
+        {
+
+            //게임오버 상태에서는 사용자 입력 감지 안함
+            if (GameManager.instance != null && status.dead)
+            {
+                Verticalmove = 0;
+                Horizontalmove = 0;
+                rightmouse = false;
+                jump = false;
+                fire = false;
+                backMirror = false;
+                mouseX = 0;
+                mouseY = 0;
+                return;
+            }
+
+            //  입력 감지
+            Verticalmove = Input.GetAxis(VerticalAxisName);
+            Horizontalmove = Input.GetAxis(HorizontalAxisName);
+            jump = Input.GetButtonDown(jumpButtonName);
+            fire = Input.GetButtonDown(fireButtonName);
+
+            //카메라 입력감지 
+            backMirror = Input.GetKey(KeyCode.F);
+            rightmouse = Input.GetButtonDown(RightMouseButtonName);
+
+            //마우스 입력감지
+            mouseX = Input.GetAxis("Mouse X");
+            mouseY = Input.GetAxis("Mouse Y");
+
+
+        }
     }
 }

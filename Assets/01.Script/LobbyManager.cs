@@ -1,131 +1,235 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-using Photon.Pun; //유니티용 포톤 컴포넌트
-using Photon.Realtime; //포톤 서비스관련 라이브러리
+using Photon.Pun; 
+using Photon.Realtime; 
 
 using UnityEngine;
 using UnityEngine.UI;
 
-//마스터 매치메이킹 서버와 룸접속 담당
+using TMPro;
+
+
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-    private string gameVersion = "Kidsroom 1.0"; //게임 버전
+    private string gameVersion = "1"; //게임 버전
+    private string roomname;
 
-    public Text connectionInfoText; //네트워크 정보를 표시할 텍스트
-    public Button joinButton; //룸접속버튼
+    public Button startButton, goButton;
+    public TMP_InputField nicknameinput, roominput; //인풋필드
 
-    public GameObject playerPrefab;
+    //public InputField nicknameinput, roominput;
+   
 
-    //게임 실행과 동시에 마스터 서버 접속 시도
+    public TextMeshProUGUI inputplayer, inputroom; //roomlist용 코드
+
+    public GameObject Roomlist;
+    public GameObject pause;
+    private bool isclickgo = false;
+    private string add;
+    private int gocnt = 0;
+
+
     void Start()
     {
-        PhotonNetwork.GameVersion = gameVersion; //접속에 필요한 정보설정
-        PhotonNetwork.ConnectUsingSettings(); //설정한 정보로 마스터 서버 접속 시도
+        PhotonNetwork.GameVersion = gameVersion;
+        PhotonNetwork.ConnectUsingSettings(); //마스터 서버 연결
 
+        // startButton.interactable = false;
+        gocnt = 0;
+       
+    }
+    //서버 연결
+    public override void OnConnectedToMaster() //connect가 연결이 되면 콜백함수임. 여기서 콜백함수란 앞의 connet함수가 잘되어야 이 함수가 된다는의미.
+    {
 
-        Debug.Log("마스터 서버에 접속중..");
-
-
-        joinButton.interactable = false; //접속하는 동안에 룸 접속 못하도록 접속 버튼 비활.
-        connectionInfoText.text = "마스터 서버에 접속중..";
-
-
+        Debug.Log("서버 접속 완료");
 
     }
 
-    //마스터 서버 접속 성공시 자동 실행
-    public override void OnConnectedToMaster() {
-        joinButton.interactable = true;
-        connectionInfoText.text = "온라인 : 마스터 서버와 연결됨";
-        Debug.Log("온라인 : 마스터 서버와 연결됨");
-
-        Connect();
-    }
-
-    //마스터 서버 접속 실패시 자동 실행
+    //서버 연결끊기
     public override void OnDisconnected(DisconnectCause cause)
     {
-        joinButton.interactable = false;
-        connectionInfoText.text = "오프라인 : 마스터 서버와 연결되지 않음 \n접속 재시도 중...";
-        Debug.Log("오프라인: 마스터 서버와 연결되지 않음 ,접속 재시도 중.");
-        PhotonNetwork.ConnectUsingSettings();
+        
+        Debug.Log("연결끊김");
+        PhotonNetwork.ConnectUsingSettings(); //마스터 서버 재연결
     }
 
-    //룸 접속 시도
+
+    public void ongo() //플레이어 닉네임과 방 이름 저장
+    {
+        isclickgo = true;
+
+
+
+       
+       PhotonNetwork.LocalPlayer.NickName = nicknameinput.text.ToString(); //플레이어 이름 정해주기 , 로컬 이름에 nicknameinput에서 받아온 text를 넣어준다.
+       roomname = roominput.text.ToString(); //roomname string에도 roominput.text받아온거를 넣어준다.
+           
+
+        gocnt += 1;
+        Debug.Log("클릭했냐?");
+        Debug.Log(isclickgo);
+
+    }
+    //startbutton 누르면
     public void Connect() {
-        //중복 접속 시도를 막기 위해 접속 버튼 잠시 비활성화
-        joinButton.interactable = false;
-        //마스터 서버에 접속중이라면
-        if (PhotonNetwork.IsConnected)
+       
+        if (PhotonNetwork.IsConnected) //마스터에 연결되어있고
         {
-            //룸 접속 실행
-            connectionInfoText.text = "룸에 접속...";
-            PhotonNetwork.JoinRandomRoom();
-            Debug.Log("룸에 접속..");
+          
+            if (gocnt>= 1)
+            {
+             //   PhotonNetwork.JoinOrCreateRoom(roominput.text, new RoomOptions { MaxPlayers = 4 },)
+                //CreateRoom(); //방만들기 정해준 이름으로
+        
+                    PhotonNetwork.JoinOrCreateRoom(roominput.text, null, TypedLobby.Default);
+            
+            }else if (gocnt == 0)
+            {
+                pause.SetActive(true);
+            }
+            
+         
+            Debug.Log("방 생성 및 접속중..");
         }
         else
-        {
-            //마스터 서버에 접속 중이 아니라면 마스터 서버에 접속 시도
-            connectionInfoText.text = "오프라인: 마스터 서버와 연결되지 않음 \n 접속 재시도중...";
-            //마스터 서버로의 재접속 시도
+        { 
             PhotonNetwork.ConnectUsingSettings();
         }
     }
 
+
+    //방만들기
+    public void CreateRoom()
+    {
+        PhotonNetwork.CreateRoom(roominput.text, new RoomOptions { MaxPlayers = 4 });
+
+
+    }
+    //방 만들기 콜백함수
+    public override void OnCreatedRoom()
+    {
+        Debug.Log("방 만들기 완료");
+    }
+
+
+    //방 참가 콜백함수
+    public override void OnJoinedRoom()
+    {
+        Vector3 randomPos;
+        randomPos.x = -2;
+        randomPos.y = 0;
+        randomPos.z = 0;
+
+
+        Debug.Log("방 참가 완료");
+        PhotonNetwork.LoadLevel("Kidsroom"); //모든 룸 참가자가 Kidsroom씬을 로드하게 함.
+       
+
+        
+
+    }
+
+    
+
+
+    //방만들기 실패 콜백함수
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        Debug.Log("방 만들기 실패");
+    }
+
+    //방만들기 실패 콜백함수
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        Debug.Log("방 참가 실패");
+    }
+
+    //랜덤 방 참가
+    public void JoinRandomRoom()
+    {
+        PhotonNetwork.JoinRandomRoom();
+    
+    }
+
     //빈방이 없어 랜덤 룸 참가에 실패한 경우 자동 실행
-    public override void OnJoinRandomFailed(short returnCode, string message) {
-        Debug.Log("No Room");
-        connectionInfoText.text = "빈 방이 없음.. 새로운 방 생성..";
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        Debug.Log("랜덤 방 참가 실패");
         PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 4 });
 
     }
-
-
-
-    //룸에 참가 완료된 경우 자동 실행
-    public override void OnJoinedRoom()
+    public void Infoclose()
     {
-        connectionInfoText.text = "방 참가 성공";
-        Debug.Log("Joined room");
-        PhotonNetwork.LoadLevel("Kidsroom"); //모든 룸 참가자가 Kidsroom씬을 로드하게 함.
 
-  
+        Roomlist.SetActive(false);
 
-
-        ////플레이어를 생성한다.
-        //if (playerPrefab == null)
-        //{
-        //    Debug.Log("없습니다");
-        //}
-        //else
-        //{
-        //    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-6.4f, 11.95f, 11.81f),Quaternion.identity,0);
-        //}
-        //StartCoroutine(this.CreatePlayer());
 
 
     }
 
-    ////네트워크상에 연결되어 있는 모든 클라이언트에 플레이어를 생성한다.
-    //private IEnumerator CreatePlayer()
-    //{
 
+    public void cautionclose()
+    {
 
-    //    PhotonNetwork.Instantiate("player",
-    //        new Vector3(-6.4f, 11.95f, 11.81f),
-    //        Quaternion.identity,
-    //        0);
-
-    //    Debug.Log("Player 생성");
-
-    //    yield return null;
+        pause.SetActive(false);
 
 
 
+    }
+    //roomlist버튼 누르면
+    public void Info()
+    {
 
 
+        Roomlist.SetActive(true);
 
-    //}
+        if (isclickgo)
+        {
+            
+            inputplayer.text = ""; //한번씩 초기화
+            inputroom.text = ""; //한번씩 초기화
+                
+            string playerStr = "방에 있는 플레이어 목록 : ";
+            for (int i = 0; i < nicknameinput.text.Length; i++) playerStr += nicknameinput.text;//;PhotonNetwork.PlayerList[i].NickName + ",";
+
+            string roomname2 = roomname;
+
+            inputplayer.text += nicknameinput.GetComponent<TMP_InputField>().text.ToString();// nicknameinput.text.ToString();
+            inputroom.text += roominput.GetComponent<TMP_InputField>().text.ToString();// roomname2.ToString();// + playernum.ToString() + playerallnum.ToString();
+        }
+        else if(!isclickgo)
+        {
+
+            inputplayer.text = ""; //한번씩초기화
+            inputroom.text = ""; //한번씩 초기화
+            add = "...";
+            inputplayer.text += add.ToString();
+            inputroom.text += add.ToString();
+
+
+        }
+
+        if (PhotonNetwork.InRoom)
+        {
+  
+            print("현재 방 이름 : " + PhotonNetwork.CurrentRoom.Name);
+            print("현재 방 인원수 : " + PhotonNetwork.CurrentRoom.PlayerCount);
+            print("현재 방 최대 인원수 :" + PhotonNetwork.CurrentRoom.MaxPlayers);
+
+        }
+        else
+        {
+
+            print("마스터 서버에 접속한 인원수 :" + PhotonNetwork.CountOfPlayers);
+            print("방 개수 : " + PhotonNetwork.CountOfRooms);
+            print("모든 방에 있는 인원수 : " + PhotonNetwork.CountOfPlayersInRooms);
+            print("로비에 있는지? : " + PhotonNetwork.InLobby);
+            print("연결되었는지? :" + PhotonNetwork.IsConnected);
+        
+        }
+
+    }
 
 }

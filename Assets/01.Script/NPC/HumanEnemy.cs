@@ -8,13 +8,14 @@ public class HumanEnemy : StatusController
     public LayerMask PlayerTarget;//추적대상 레이어
     private StatusController target;// 추적대상 
     private NavMeshAgent pathFinder; //경로계산 AI
-    private Transform targetTransform;  //??
 
     public int damage = 20;// 공격력
     public float timeBetAttack = 0.5f; //공격간격
     private float lastAttackTime; //마지막 공격 시점
     public float traceRange = 20f; //추적 범위 
     private Animator catAnimator;
+    private float traceTime=10f; //일정시간 지나면 추적 안함 
+    private float lastTraceTime = 0; //마지막 추적 시점 
 
     // 추적할 대상이 존재하는지 알려주는 프로퍼티
     private bool hasTarget
@@ -32,13 +33,8 @@ public class HumanEnemy : StatusController
             return false;
         }
     }
-    private void Awake()
-    {
-        pathFinder = GetComponent<NavMeshAgent>();
-        catAnimator = GetComponent<Animator>();
-    }
     [PunRPC]
-    public void Setup(int newHealth, int newDamage,float newSpeed, Color skinColor)
+    public void Setup(int newHealth, int newDamage,float newSpeed)
     {
         // 체력 설정
         startHP = newHealth;
@@ -51,6 +47,9 @@ public class HumanEnemy : StatusController
     // Start is called before the first frame update
     void Start()
     {
+          
+        pathFinder = GetComponent<NavMeshAgent>();
+        catAnimator = GetComponent<Animator>();
         // 호스트가 아니라면 AI의 추적 루틴을 실행하지 않음
         //if (!PhotonNetwork.IsMasterClient)
         //{
@@ -58,6 +57,7 @@ public class HumanEnemy : StatusController
         //}
 
         // 게임 오브젝트 활성화와 동시에 AI의 추적 루틴 시작
+
         StartCoroutine(UpdatePath());
     }
 
@@ -80,17 +80,21 @@ public class HumanEnemy : StatusController
         while (!dead)
         {
             if (hasTarget)
-            {               
-                // 추적 대상 존재 : 경로를 갱신하고 AI 이동을 계속 진행
-                
+            {
+                // 추적 대상 존재 : 경로를 갱신하고 AI 이동을 계속 진행            
                 pathFinder.isStopped = false;
                 pathFinder.SetDestination(target.transform.position);
+                if (Time.time > lastTraceTime + traceTime)
+                {
+                    lastTraceTime = Time.time;
+                    target = null;
+                }
             }
             else
             {
                 // 추적 대상 없음 : AI 이동 중지
                 pathFinder.isStopped = true;
-
+                Debug.Log("추적대상 없음");
                 // 20 유닛의 반지름을 가진 가상의 구를 그렸을때, 구와 겹치는 모든 콜라이더를 가져옴
                 // 단, targetLayers에 해당하는 레이어를 가진 콜라이더만 가져오도록 필터링
                 Collider[] colliders =
@@ -125,6 +129,22 @@ public class HumanEnemy : StatusController
     {
         // statuscontroller OnDamage()를 실행하여 데미지 적용
         base.OnDamage(damage, hitPoint, hitNormal);
+        // 아직 사망하지 않은 경우에만 피격 효과 재생
+        if (!dead)
+        {
+            catAnimator.SetTrigger("isYaOng");
+            target = null;
+            // 공격 받은 지점과 방향으로 파티클 효과를 재생
+            //hitEffect.transform.position = hitPoint;
+            //hitEffect.transform.rotation = Quaternion.LookRotation(hitNormal);
+            //hitEffect.Play();
+
+            // 피격 효과음 재생
+            //enemyAudioPlayer.PlayOneShot(hitSound);
+        }
+
+
+        
     }
 
     // 사망 처리
@@ -144,7 +164,7 @@ public class HumanEnemy : StatusController
         pathFinder.isStopped = true;
         pathFinder.enabled = false;
         catAnimator.SetTrigger("isDie");
-        Destroy(gameObject, 10f);//10초뒤 제거 
+        Destroy(gameObject, 20f);//20초뒤 제거 
 
     }
 

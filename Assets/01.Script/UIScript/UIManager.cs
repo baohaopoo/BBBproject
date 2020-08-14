@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI; // UI 관련 코드
+using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
+using Photon.Pun;
 // 필요한 UI에 즉시 접근하고 변경할 수 있도록 허용하는 UI 매니저
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviourPun
 {
     // 싱글톤 접근용 프로퍼티
     public static UIManager instance
@@ -27,46 +30,102 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     public GameObject damagedUI; // 데미지시 활성화할 UI 
     [SerializeField]
-    public Image itemImage1; //아이템 1 이미지
-    [SerializeField]
-    public Image itemImage2; //아이템 2 이미지
-
-    [SerializeField]
-    public Text actionText;
-    [SerializeField]
-    public Text openText;
-
-    public GameObject friendImage1;
-    public GameObject friendImage2;
-    public GameObject friendImage3;
-    public GameObject friendImage4;
-    public GameObject friendImage5;
-
-    [SerializeField]
+    public GameObject BulletUI;
+   
     public GameObject bulletImage1;
     public GameObject bulletImage2;
     public GameObject bulletImage3;
     public GameObject bulletImage4;
     public GameObject bulletImage5;
 
-    public void getitem(string name)
+
+    [SerializeField]
+    public Text actionText;
+    [SerializeField]
+    public Text openText;
+    [SerializeField]
+    public Text scoreText;
+
+    public GameObject inventory;
+
+    [SerializeField]
+    public Image itemImage1; //아이템 1 이미지
+    [SerializeField]
+    public Image itemImage2; //아이템 2 이미지
+
+    //backgroud이밎
+    public GameObject background;
+
+    //삭제해줄 player22
+    public GameObject player;
+
+    ////push ui
+    //public GameObject pushUI;
+
+    //옹졸이 ui
+    public GameObject saveUI1;
+    //움파룸파UI
+    public GameObject saveUI2;
+    //구미베어UI
+    public GameObject saveUI3;
+    //판다UI
+    public GameObject saveUI4;
+    //투머치톡어UI
+    public GameObject saveUI5;
+
+    public GameObject movie;
+    public VideoPlayer daymovie;
+
+    private int savecnt = 0;
+
+    private int allfriend = 5;
+
+
+    //public void judge(int num)
+    //{
+    //    if (allfriend <= 0)
+    //    {
+           
+    //        if (PhotonNetwork.IsMasterClient&& num==1)
+    //        {
+               
+    //        }
+    //        else
+    //        {
+
+            
+
+    //        }
+    //    }
+    
+    //}
+
+
+
+
+    //
+    public void getScore(int num)
     {
-        actionText.text = name + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
-
-
+        scoreText.text = "Saved Friend: " + "<color=orange>" + num + "</color>";
+    }
+    //
+    public void getitem(string name)
+    { 
+     actionText.text = name + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
     }
     public void openitem(string name)
-    {
+    { 
         openText.text = name + " 열기/닫기 " + "<color=yellow>" + "(Q)" + "</color>";
 
     }
     public void friendfind(string name)
     {
-        actionText.text = name + "를 찾았다! " + "<color=yellow>" + "(E)" + "</color>"+"를 눌러!";
+        actionText.text = name + "를 찾았다! " + "<color=yellow>" + "(E)" + "</color>" + "를 눌러!";
     }
+
     public void onactiontxt()
     {
-        actionText.gameObject.SetActive(true);
+        actionText.gameObject.SetActive(true);    
     }
     public void offactiontxt()
     {
@@ -81,16 +140,34 @@ public class UIManager : MonoBehaviour
         openText.gameObject.SetActive(false);
     }
 
+    public void offallUI()
+    {
+        //잔가지 치우기
+        BulletUI.gameObject.SetActive(false);
+        hpslider.gameObject.SetActive(false);
+        inventory.gameObject.SetActive(false);
 
+        background.gameObject.SetActive(false);
+
+    }
+    public void onallUI()
+    {
+        BulletUI.gameObject.SetActive(true);
+        hpslider.gameObject.SetActive(true);
+        inventory.gameObject.SetActive(true);
+      
+        background.gameObject.SetActive(true);
+
+    }
     public void UpdateHPSlider(int hp)
     {
         hpslider.value = hp;
     }
-
     // 게임 오버 UI 활성화
     public void SetActiveGameoverUI(bool active)
     {
         gameoverUI.SetActive(active);
+
     }
 
     // 데미지 UI 활성화
@@ -99,15 +176,9 @@ public class UIManager : MonoBehaviour
         damagedUI.SetActive(active);
     }
 
-    // 게임 재시작
-    //public void GameRestart()
-    //{
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    //}
-
 
     //이미지 투명도 조절 (이미지 비어있을땐 투명하게 한다)
-    public void SetColor(float _alpha,Image _image)
+    public void SetColor(float _alpha, Image _image)
     {
         Color color = _image.color;
         color.a = _alpha;
@@ -137,30 +208,79 @@ public class UIManager : MonoBehaviour
         SetColor(0, itemImage2);
     }
 
-    public void updateFriend(int n)
+
+
+  
+    public void OnsaveUI(int num)
     {
-        if (n == 1)
+        if (num == 1)
         {
-            friendImage1.SetActive(true);
+            saveUI1.SetActive(true);
+            allfriend -= 1;
+            Debug.Log(allfriend);
         }
-        else if (n == 2)
+        if (num == 2)
         {
-            friendImage2.SetActive(true);
+            saveUI2.SetActive(true);
+            allfriend -= 1;
+            Debug.Log(allfriend);
         }
-        else if (n == 3)
+        if (num == 3)
         {
-            friendImage3.SetActive(true);
+            //구미베ㅔ어
+            saveUI3.SetActive(true);
+            allfriend -= 1;
+            Debug.Log(allfriend);
         }
-        else if (n == 4)
+        if (num == 4)
+        {//툼어치톡어
+            saveUI4.SetActive(true);
+            allfriend -= 1;
+            Debug.Log(allfriend);
+        }
+        if (num == 5)
         {
-            friendImage4.SetActive(true);
+           // 판
+            saveUI5.SetActive(true);
+            allfriend -= 1;
+            Debug.Log(allfriend);
         }
-        else if (n == 5)
-        {
-            friendImage5.SetActive(true);
-        }
+
+
+      
+
     }
 
+    public void OffSaveUI()
+    {
+     
+            saveUI1.SetActive(false);
+    
+  
+            saveUI2.SetActive(false);
+     
+            saveUI3.SetActive(false);
+     
+            saveUI4.SetActive(false);
+            saveUI5.SetActive(false);
+      
+
+    
+       
+
+    }
+
+
+ 
+    //public void OnpushUI()
+    //{
+
+    //    pushUI.SetActive(true);
+    //}
+    //public void OffPushUI()
+    //{
+    //    pushUI.SetActive(false);
+    //}
     public void updateBullet(int sb)
     {
 
@@ -212,7 +332,20 @@ public class UIManager : MonoBehaviour
             bulletImage4.SetActive(false);
             bulletImage5.SetActive(false);
         }
+       
+    }
 
+    public void playMovie()
+    {
+        movie.gameObject.SetActive(true);
+        daymovie.Play();
 
     }
+    public void EndMovie()
+    {
+        movie.gameObject.SetActive(false);
+    }
+
+
+
 }

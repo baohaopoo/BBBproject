@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 
-public class PlayerHaveItem : MonoBehaviour
+public class PlayerHaveItem : MonoBehaviourPun
 {
     public Item Iitem1; //획득한 아이템1
     public Item Iitem2; //획득한 아이템2
 
+ 
+    //진짜 아이템 정보인것
     public void AcquireItem(Item _item)
     {
         if (Iitem1 == null) //아이템 1이 비어있다면 
@@ -29,20 +32,25 @@ public class PlayerHaveItem : MonoBehaviour
 
     }
 
+
+
+    [PunRPC]
     private void AddItem1(Item _item1) //아이템1 추가
     {
         Iitem1 = _item1;
         UIManager.instance.AddItem1(Iitem1);
 
     }
-
+    [PunRPC]
     private void AddItem2(Item _item2) //아이템2 추가 
     {
         Iitem2 = _item2;
         UIManager.instance.AddItem2(Iitem2);
 
     }
-    public void UseItem() 
+
+
+    public void UseItem() //아이템 사용하기 
     {
         Iitem1 = null;
         UIManager.instance.UseItem1();
@@ -50,6 +58,8 @@ public class PlayerHaveItem : MonoBehaviour
         {
             AddItem1(Iitem2); //아이템2를 아이템1에 추가
             Iitem2 = null; //아이템2는 비워주기
+
+               
             UIManager.instance.MoveItem2();
         }
     }

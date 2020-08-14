@@ -13,7 +13,7 @@ public class gethp : MonoBehaviour
     void Start()
     {
 
-        //h_instance.OnEnable();
+        h_instance.OnEnable();
     }
 
     // Update is called once per frame

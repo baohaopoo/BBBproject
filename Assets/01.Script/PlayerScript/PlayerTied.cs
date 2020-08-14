@@ -25,12 +25,12 @@ public class PlayerTied : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag=="Player")
+        if (other.tag == "Player")
         {
-            player =other.gameObject;
+            player = other.gameObject;
             StartCoroutine(playerOnTrap());
             StartCoroutine(trapAnimation.TrapAnimation());
-            
+
         }
     }
 
