@@ -77,7 +77,6 @@ public class Gun : MonoBehaviourPun, IPunObservable
     private PlayerShooter playershooter;
     public GameObject Aim;
     public Animator AimAnimator;
-    // public static Gun instance= null;  //실험
 
 
     //audio클립
@@ -115,9 +114,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
     private void OnEnable()
     {
-       // bulletRemain = 5;
-            
-        // 총 상태 초기화
+
 
         lastFireTime = 0;
        
@@ -139,7 +136,6 @@ public class Gun : MonoBehaviourPun, IPunObservable
     {
       
         photonView.RPC("Shot", RpcTarget.All);
-        bulletRemain -= 1;
 
     }
 
@@ -201,9 +197,6 @@ public class Gun : MonoBehaviourPun, IPunObservable
             Instantiate(HitEffect, hit.point, Quaternion.LookRotation(hit.normal));
             Instantiate(explosionEffect, hit.point, Quaternion.LookRotation(hit.normal));
 
-            //UI를 바꾼다.
-            //BulletUI();
-
 
             //레이가 물체에 닿은경우에는 True, 아님 Fasle 
             //충돌체로부터 Damageable 가져오기 
@@ -231,9 +224,8 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
 
 
-     //   bulletRemain -= 1;
+        bulletRemain -= 1;
 
-      //  UpdateUI();
 
         if (photonView.IsMine)
         {
