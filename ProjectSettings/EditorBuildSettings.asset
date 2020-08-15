@@ -8,13 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Scenes/StartScene.unity
     guid: d24b1fae8193ace45aafe4c8e369ab0c
-  - enabled: 0
-    path: Assets/00.Scenes/Lobby.unity
-    guid: 6bf2fb8ce5ce4d444b1f746ba8cb933b
   - enabled: 1
     path: Assets/00.Scenes/Kidsroom.unity
     guid: 28d571e5c4d21ae41a53f32f42856b64
   - enabled: 1
     path: Assets/00.Scenes/city3.unity
     guid: 4e0fcc2699754df4094e6101916c1b46
+  - enabled: 1
+    path: Assets/00.Scenes/EndingScene/HappyEnding.unity
+    guid: 39673cf6bba19c94ca99805a4e812311
+  - enabled: 1
+    path: Assets/00.Scenes/EndingScene/BadEnding.unity
+    guid: 0e886e680d4d85246bcd278e0a8659ae
   m_configObjects: {}

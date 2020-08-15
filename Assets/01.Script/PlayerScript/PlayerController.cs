@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 using UnityStandardAssets.Utility;
 
 public class PlayerController : MonoBehaviourPun
@@ -9,7 +10,6 @@ public class PlayerController : MonoBehaviourPun
     public float startmoveSpeed = 7f;
     public float rotateSpeed = 80f;
     float moveSpeed;
-
     public float lookSensitivity = 3f;//마우스 민감도
 
     public float jumpPower = 16f;
@@ -24,7 +24,11 @@ public class PlayerController : MonoBehaviourPun
     public GameObject ForwardCam; //F키 눌를떄
     public GameObject FirstPlayerCam;
     public GameObject PlayerPibot; //플레이어의 피봇
-    
+
+
+    //플레이어 파티클
+    public ParticleSystem pusheffect; //닿으면 나올 파티클
+
    // public GameObject Timeline;
 
     bool isGrounded;
@@ -48,24 +52,34 @@ public class PlayerController : MonoBehaviourPun
 
     GameObject friend;
 
-    //사다리
-    GameObject Ladder;
 
-    private bool isLadder;
+  
     private bool isAir;
 
 
     int rightmouseCnt=0; //오른쪽마우스 두번누르면 1인칭시점 취소시키기위해 만든변수
+
+    void Awake()
+    {
+        //죽지마 플레이어야!!
+        DontDestroyOnLoad(gameObject);
+
+    }
     void Start()
     {
 
 
+        //GetComponent<SmoothFollow>().target = PlayerPibot.transform;
+        //Camera.main.GetComponent<SmoothFollow>().target = PlayerPibot.transform;
 
-        if  (Camera.main.GetComponent<SmoothFollow>().target)
+        //if  (Camera.main.GetComponent<SmoothFollow>().target == gameObject)
+        //{
+        //    Debug.Log("잘들어오고 있니?");
+        //}
+        if (Camera.main.GetComponent<SmoothFollow>().target)
         {
             Debug.Log("잘들어오고 있니?");
         }
-
         playerTranform = GetComponent<Transform>();
         playershooter = GetComponent<PlayerShooter>();
         playerInput = GetComponent<PlayerInput>();
@@ -91,7 +105,44 @@ public class PlayerController : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        camSetting();     
+        //Camera.main.GetComponent<SmoothFollow>().target = PlayerPibot.transform;
+
+        //Debug.Log("카메라야 카메라야 잘들어왔느뇨>?");
+        camSetting();
+
+        //치트키 h키 누르면 바로 도시.
+        if (Input.GetKey(KeyCode.H))
+        {
+
+            SceneManager.LoadScene("city3");
+
+
+           
+
+        }
+        //치트키 h키 누르면 바로 도시.
+        //if (Input.GetKey(KeyCode.J))
+        //{
+        //    SceneManager.LoadScene("kidsroom");
+        //}
+
+        if (Input.GetKey(KeyCode.O))
+        {
+          //  GameObject.Destroy(gameObject);
+
+            SceneManager.LoadScene("HappyEnding");
+
+        }
+
+        if (Input.GetKey(KeyCode.P))
+        {
+          //  GameObject.Destroy(gameObject);
+
+            SceneManager.LoadScene("BadEnding");
+
+        }
+
+      
     }
 
     void FixedUpdate()
@@ -116,7 +167,20 @@ public class PlayerController : MonoBehaviourPun
 
 
     }
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.transform.tag == "pushObject")
+        {
 
+            pusheffect.Play();
+
+
+
+        }
+        
+
+
+    }
     // 입력값에 따라 캐릭터를 앞뒤로 움직임
     private void Move()
     {
@@ -125,29 +189,29 @@ public class PlayerController : MonoBehaviourPun
             return;
         }
 
-        if (playerInput.Verticalmove != 0)
-        {
-            if (playerInput.Verticalmove == 1f)
+    
+            if (playerInput.Verticalmove != 0)
             {
-                moveSpeed = startmoveSpeed + 5;
+                if (playerInput.Verticalmove == 1f)
+                {
+                    moveSpeed = startmoveSpeed + 5;
+                }
+                else
+                {
+                    moveSpeed = startmoveSpeed;
+                }
             }
-            else
-            {
-                moveSpeed = startmoveSpeed;
-            }
-        }
-            
-        Vector3 VertiacalmoveDistance =
-            playerInput.Verticalmove * transform.forward * moveSpeed * Time.deltaTime;
-        Vector3 HorizontalmoveDistance =
-            playerInput.Horizontalmove * transform.right * moveSpeed * Time.deltaTime;
-        //위치 변경
-        playerRigidbody.MovePosition(playerRigidbody.position + VertiacalmoveDistance + HorizontalmoveDistance);
-        // Vector3.up 축을 기준으로 rotSpeed만큼의 속도로 회전
-        playerTranform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime * playerInput.mouseX);
-    }
 
- 
+            Vector3 VertiacalmoveDistance =
+                playerInput.Verticalmove * transform.forward * moveSpeed * Time.deltaTime;
+            Vector3 HorizontalmoveDistance =
+                playerInput.Horizontalmove * transform.right * moveSpeed * Time.deltaTime;
+            //위치 변경
+            playerRigidbody.MovePosition(playerRigidbody.position + VertiacalmoveDistance + HorizontalmoveDistance);
+            // Vector3.up 축을 기준으로 rotSpeed만큼의 속도로 회전
+            playerTranform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime * playerInput.mouseX);
+        }
+    
 
     private void Jump()
     {
@@ -235,50 +299,6 @@ public class PlayerController : MonoBehaviourPun
     }
     private void Rope(bool uprope, bool nogravity)
     {
-        //Debug.Log("플레이어rope 들어옴");
-        //if (uprope)
-        //{
-        //    Debug.Log("플레이어1차 충돌");
-        //    Debug.Log("rope애니");
-        //    isRope = true;
-
-        //    bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
-        //    bool downKey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
-
-
-        //    if (upKey)
-        //    {
-        //        this.transform.Translate(0, 5f * Time.deltaTime, 0);
-
-        //    }
-
-        //    else if (downKey)
-        //    {
-
-        //        this.transform.Translate(0, -5f * Time.deltaTime, 0);
-
-        //    }
-        //}
-
-
-
-        //else if (noGravity)
-        //{
-
-        //    Debug.Log("노그래비티존");
-        //    // playerRigidbody.isKinematic = true;
-        //    bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
-        //    bool downKey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
-
-        //    if (upKey)
-        //    {
-        //        this.transform.Translate(0, 0, 3 * Time.deltaTime);
-        //    }
-        //    else if (downKey)
-        //    {
-        //        this.transform.Translate(0, 0, -3 * Time.deltaTime);
-        //    }
-        //}
 
 
 

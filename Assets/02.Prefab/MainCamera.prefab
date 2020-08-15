@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerhaveitem: {fileID: 0}
   player: {fileID: 0}
+  FriendNum: 0
 --- !u!82 &1893484975460387351
 AudioSource:
   m_ObjectHideFlags: 0
@@ -211,11 +212,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76806479d916a64aa03f8e3eba7912f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 908336905940684137, guid: ef7bf84ce6c5c3f44b7545eb9651483b, type: 3}
+  target: {fileID: 7192049195124168618, guid: 1bdeb9e8c9e41ba47ac47b05919df4b2, type: 3}
   distance: 4
   height: 1
   rotationDamping: 2
   heightDamping: 2
+  player: {fileID: 6166575211548534201, guid: 1bdeb9e8c9e41ba47ac47b05919df4b2, type: 3}
 --- !u!114 &4647063897630576860
 MonoBehaviour:
   m_ObjectHideFlags: 0

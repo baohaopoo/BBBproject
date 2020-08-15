@@ -67,7 +67,7 @@ public class PlayerShooter : MonoBehaviourPun
 
         // 슈터가 활성화될 때 총도 함께 활성화
         gun.gameObject.SetActive(true);
-
+      
         //if (gunscript.bulletRemain == 5)
         //{
         //    gunscript.BulletUI();

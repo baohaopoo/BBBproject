@@ -33,6 +33,11 @@ public class PlayerInput : MonoBehaviourPun
     // 매프레임 사용자 입력을 감지
     private void Update()
     {
+        //if (!photonView.IsMine)
+        //{
+        //    return;
+
+        //}
 
         if (photonView.IsMine)
         {

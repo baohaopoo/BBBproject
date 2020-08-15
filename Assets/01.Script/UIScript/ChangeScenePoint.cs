@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 
+
 public class ChangeScenePoint : MonoBehaviourPunCallbacks
 {
-    public GameObject player;
-    //Scene scene2 = SceneManager.GetSceneByName("city3");
 
+    //Scene scene2 = SceneManager.GetSceneByName("city3");
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class ChangeScenePoint : MonoBehaviourPunCallbacks
         if (other.transform.tag== "Player")
         {
 
+            UIManager.instance.playMovie();
             SceneChange();
         
         
@@ -33,14 +35,9 @@ public class ChangeScenePoint : MonoBehaviourPunCallbacks
 
     private void SceneChange()
     {
-        SceneManager.LoadScene("city3");
 
-        //SceneManager.LoadScene("city3",LoadSceneMode.Additive);
-        //SceneManager.MoveGameObjectToScene(player, scene2);
-       
-        
-       // PhotonNetwork.LeaveRoom();
-        
+
+        SceneManager.LoadScene("city3");
 
     }
 }

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using System.Collections;
+
 public class Health : StatusController, IPunObservable
 {
     private AudioSource playerAudioPlayer; // 플레이어 소리 재생기
@@ -102,7 +104,7 @@ public class Health : StatusController, IPunObservable
         if (!dead)
         {
             playerAnimator.SetTrigger("Damaged");
-
+            StartCoroutine(DamageCorutain());
             playerRigidbody.velocity = Vector3.zero; //속도 0으로하고
             playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);//뒤로
         }
@@ -131,6 +133,26 @@ public class Health : StatusController, IPunObservable
         }
     }
 
+    private IEnumerator DamageCorutain()
+    {
+
+        if (!photonView.IsMine)
+        {
+            yield break;
+
+        }
+        DamagedUI(true);
+        yield return new WaitForSeconds(0.3f);
+        DamagedUI(false);
+    }
+
+    private void DamagedUI(bool active)
+    {
+        if (playerRigidbody != null && UIManager.instance != null)
+        {
+            UIManager.instance.SetActiveDamagerUI(active);
+        }
+    }
 
     // 사망 처리
     public override void Die()
@@ -175,13 +197,20 @@ public class Health : StatusController, IPunObservable
             UIManager.instance.onallUI();
             photonView.RPC("repawnAni", RpcTarget.All);
 
+
+
+            Vector3 randomPos;
+
+            randomPos.x = 88.2153f;
+            randomPos.y =5f;
+            randomPos.z = 453.567f;
             //원점에서 반경 5유닛 내부의 랜덤 위치 지정
-            Vector3 randomSpawnPos = Random.insideUnitSphere * 9f;
+         //   Vector3 randomSpawnPos = Random.insideUnitSphere * 9f;
             //랜덤 위치의 y값을 0으로 변경
-            randomSpawnPos.y = 0f;
+           // randomSpawnPos.y = 5f;
 
             //지정된 랜덤 위치로 이동
-            transform.position = randomSpawnPos;
+            transform.position = randomPos;
 
             gun.bulletRemain = 5;
             gun.UpdateUI();

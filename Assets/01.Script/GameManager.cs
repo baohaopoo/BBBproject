@@ -69,57 +69,20 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     }
     void Start()
     {
-
+   
         Vector3 randomPos;
 
         randomPos.x = 88.2153f;
         randomPos.y = 4.39109f;
         randomPos.z = 453.567f;
 
-        
+
+
+  
         PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
 
-        //if (photonView.ViewID == 2001)
-        //{
-        //    if (photonView.IsMine)
-        //    {
-
-
-
-        //    }else { 
-            
-            
-            
-        //    }
-
-        //}
-        //else if (photonView.ViewID == 1001)
-        //{
-
-        //    if (photonView.IsMine)
-        //    {
-
-
-        //    }else { 
-            
-            
-        //    }
-
-        //}
-
-        //if (PhotonNetwork.IsMasterClient)
-        //{
-
-        //    foreach (PhotonNetwork.PlayerList)
-        //    {
-
-        //        nicknameinput[playerPrefab.GetInstanceID - 1].text = playerPrefab.name;
-
-
-
-        //    }
+       
         
-        //}
     }
 
     void Update()

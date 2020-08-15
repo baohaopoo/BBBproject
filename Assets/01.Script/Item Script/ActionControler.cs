@@ -16,7 +16,7 @@ public class ActionControler : MonoBehaviourPun
 
     private Animator pickupanim;
     private Item item;
-
+    public int FriendNum;
 
     private void Start()
     {
@@ -53,7 +53,7 @@ public class ActionControler : MonoBehaviourPun
                      other.transform.GetComponent<ItemDestroy>().destroyall();
                     //Destroy(other.transform.gameObject);
                     UIManager.instance.offactiontxt();
-          
+                   
 
                 }
 
@@ -107,27 +107,78 @@ public class ActionControler : MonoBehaviourPun
                 if (Input.GetKeyDown(KeyCode.E))
                 {
 
-
+                    UIManager.instance.offactiontxt();
+                    
                     if (other.transform != null) //정보를 가져왔을때
                     {
+                        FriendNum += 1; ///////////////
+                        UIManager.instance.getScore(FriendNum);
                         // pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
-                        if (item.itemName == "토끼")
+                        if (item.itemName == "옹졸이")
                         {
                             //그저 이미지
-                            UIManager.instance.updateFriend(1);
+                            //UIManager.instance.updateFriend(1);
+                            UIManager.instance.OnsaveUI(1);
+
+                           
+                        }
+
+                        // pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
+                        if (item.itemName == "움파룸파")
+                        {
+                            //그저 이미지
+                            //UIManager.instance.updateFriend(1);
+                            UIManager.instance.OnsaveUI(2);
+
+
+                        }
+                        if (item.itemName == "구미베어")
+                        {
+                            //그저 이미지
+                            //UIManager.instance.updateFriend(1);
+                            UIManager.instance.OnsaveUI(3);
+
+
+                        }
+                       
+                        if (item.itemName == "툼워치톡어")
+                        {
+                            //그저 이미지
+                            //UIManager.instance.updateFriend(1);
+                            UIManager.instance.OnsaveUI(4);
+
+
+                        }
+                        if (item.itemName == "판")
+                        {
+                            //그저 이미지
+                            //UIManager.instance.updateFriend(1);
+                            UIManager.instance.OnsaveUI(5);
+
 
                         }
 
                     }
+
                     other.transform.GetComponent<ItemDestroy>().destroyall();
-                    UIManager.instance.offactiontxt();
+                   
                 }
+
 
 
             }
         }
 
 
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+
+            UIManager.instance.OffSaveUI();
+        }
     }
 
     private void OnTriggerExit(Collider other)

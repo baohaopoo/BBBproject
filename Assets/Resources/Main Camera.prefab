@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 2205417017535935468}
   - component: {fileID: 2205417017535935469}
   - component: {fileID: 2205417017535935470}
-  - component: {fileID: 2205417017535935442}
   - component: {fileID: 2205417017535935441}
   - component: {fileID: 2205417017535935440}
   - component: {fileID: 4945403621205322010}
   - component: {fileID: -4171340594759893040}
+  - component: {fileID: 327270535299466488}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -88,20 +88,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2205417017535935471}
   m_Enabled: 1
---- !u!114 &2205417017535935442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2205417017535935471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9411b73b6926aa4aac93d64f5639600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerhaveitem: {fileID: 0}
-  player: {fileID: 0}
 --- !u!82 &2205417017535935441
 AudioSource:
   m_ObjectHideFlags: 0
@@ -116,7 +102,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.292
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -210,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76806479d916a64aa03f8e3eba7912f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 908336905940684137, guid: ef7bf84ce6c5c3f44b7545eb9651483b, type: 3}
+  target: {fileID: 0}
   distance: 4
   height: 1
   rotationDamping: 2
@@ -252,3 +238,18 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &327270535299466488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2205417017535935471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35ac8238af353cc4a9cb7b59791fb307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 1
+  cam: {fileID: 2205417017535935469}
+  player: {fileID: 6166575211548534201, guid: 1bdeb9e8c9e41ba47ac47b05919df4b2, type: 3}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AppSettings:
     AppIdRealtime: eedf30a2-4ea9-44a9-8ac4-83170cb109aa
-    AppIdChat: 5fe27e54-5649-43b0-8f1f-09b19287e685
+    AppIdChat: 
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
@@ -88,6 +88,8 @@ MonoBehaviour:
   - ClosetAnimation
   - RespawnPhoton
   - respawnani
+  - Setup
+  - ChangeScene
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

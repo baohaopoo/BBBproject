@@ -127,8 +127,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("Kidsroom"); //모든 룸 참가자가 Kidsroom씬을 로드하게 함.
        
 
+        
+
     }
 
+    
 
 
     //방만들기 실패 콜백함수

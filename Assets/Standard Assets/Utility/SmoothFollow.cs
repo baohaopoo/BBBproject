@@ -4,12 +4,12 @@ using Photon.Pun;
 #pragma warning disable 649
 namespace UnityStandardAssets.Utility
 {
-	public class SmoothFollow : MonoBehaviour
+	public class SmoothFollow : MonoBehaviourPun
 	{
 
 
 		// The target we are following
-		[SerializeField]
+		//[SerializeField]
 		public Transform target;
 		// The distance in the x-z plane to the target
 		[SerializeField]
@@ -23,15 +23,26 @@ namespace UnityStandardAssets.Utility
 		[SerializeField]
 		private float heightDamping;
 
-		// Use this for initialization
-		void Start() { }
+        // Use this for initialization
+        //public GameObject player;
+ 
+        //void Start() {
 
+        //}
+
+        //public void findTarget()
+        //{
+        //    player = GameObject.Find("playerpivot").gameObject;
+        //    target = player.transform;
+        //}
 		// Update is called once per frame
-		void LateUpdate()
+		void FixedUpdate()
 		{
-			// Early out if we don't have a target
-           
-			if (!target)
+ 
+
+            // Early out if we don't have a target
+
+            if (!target)
 				return;
 
 			// Calculate the current rotation angles

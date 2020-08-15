@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using Photon.Pun;
 
 public class Gun : MonoBehaviourPun, IPunObservable
@@ -8,6 +9,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
     //GameObject
     private static Gun instance = null;
     public GameObject Player;
+
     //주기적으로 자동 실행
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -42,8 +44,8 @@ public class Gun : MonoBehaviourPun, IPunObservable
     public Transform fireTransform; // 총알이 발사될 위치
     public ParticleSystem shellEjectEffect; // 탄피 배출 효과
     public ParticleSystem muzzleFlashEffect; // 총구 화염 효과
-    
-
+                                            
+   
 
     //mins
     public ParticleSystem shootedEffect; //총알 맞았을때 효과
@@ -51,8 +53,10 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
     [SerializeField]
     private GameObject HitEffect; //총에 맞았을때 나오는 효과
+    public GameObject explosionEffect; //particle
+
     //private GameObject ShootedEffect; 
-    
+
 
     [HideInInspector]
     public bool isFineSightMode = false;
@@ -60,18 +64,13 @@ public class Gun : MonoBehaviourPun, IPunObservable
     public int damage = 20; // 공격력
     private float fireDistance = 50f; // 사정거리
 
-    public int bulletRemain; // 남은 총알
+    public int bulletRemain=5; // 남은 총알
     public int bulletCapacity = 5; // 총알 용량
 
     public int startbullet = 5;
     public float timeBetFire = 0.12f; // 총알 발사 사이의 시간간격
     public float lastFireTime = 0; // 총을 마지막으로 발사한 시점 
 
-    public GameObject bulletImage1;
-    public GameObject bulletImage2;
-    public GameObject bulletImage3;
-    public GameObject bulletImage4;
-    public GameObject bulletImage5;
 
 
     private PlayerInput playerInput;
@@ -81,6 +80,10 @@ public class Gun : MonoBehaviourPun, IPunObservable
     // public static Gun instance= null;  //실험
 
 
+    //audio클립
+    private AudioSource gunAudio;
+    public AudioClip shotClip;
+   
     private void Awake()
     {
         // 사용할 컴포넌트들의 참조를 가져오기
@@ -94,10 +97,12 @@ public class Gun : MonoBehaviourPun, IPunObservable
         playershooter = GetComponent<PlayerShooter>();
 
 
+        gunAudio = GetComponent<AudioSource>();
 
     }
     public void Stateon()
     {
+     
         state = State.Ready;
     }
 
@@ -110,8 +115,10 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
     private void OnEnable()
     {
+       // bulletRemain = 5;
+            
         // 총 상태 초기화
-     
+
         lastFireTime = 0;
        
     }
@@ -177,13 +184,14 @@ public class Gun : MonoBehaviourPun, IPunObservable
     [PunRPC]
     private void Shot()
     {
-        
-
+        gunAudio.PlayOneShot(shotClip);
+       
 
         //레이캐스트에 의한 충돌 정보 저장
         RaycastHit hit;
         //탄알이 맞은곳
         Vector3 hitPosition = Vector3.zero;
+
 
         //레이캐스트(시작지점, 방향 ,충돌정보, 거리)
         if (Physics.Raycast(fireTransform.position, fireTransform.forward, out hit, fireDistance))
@@ -191,7 +199,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
             //피격 이벤트 생성
             //Instantiate(생성할 오브젝트, 생성될 위치, 어느 방향으로?)
             Instantiate(HitEffect, hit.point, Quaternion.LookRotation(hit.normal));
-            
+            Instantiate(explosionEffect, hit.point, Quaternion.LookRotation(hit.normal));
 
             //UI를 바꾼다.
             //BulletUI();
@@ -210,7 +218,6 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
             //레이가 충돌한 위치 저장
             hitPosition = hit.point;
-
         }
         else
         {
@@ -221,14 +228,17 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
         //발사 이펙트 재생
         StartCoroutine(ShotEffect(hitPosition));
-       
 
-       bulletRemain -= 1;
+
+
+        bulletRemain -= 1;
+
+      //  UpdateUI();
 
         if (photonView.IsMine)
         {
 
-
+           
             Debug.Log("현재 탄알은??????");
             Debug.Log(bulletRemain);
             UpdateUI();
@@ -270,6 +280,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
     {
         shellEjectEffect.Play(); //탄피 배출 효과 재생
         muzzleFlashEffect.Play();
+        //explosionEffect.Play();
        // shootedEffect.Play();
         //탄알 궤적 그리기
         //라인의 시작점은 총구에 위치한다. 

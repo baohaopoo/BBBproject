@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: "\uC637\uC7A5"
   itemType: 3
   itemImage: {fileID: 0}
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 7275034171754168677, guid: 8cae1c4d0049b8644b2bb2a546efc5db,
+    type: 3}
   realPrefab: {fileID: 0}

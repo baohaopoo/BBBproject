@@ -93,6 +93,7 @@
     <Compile Include="Assets\01.Script\Ladder_Action.cs" />
     <Compile Include="Assets\01.Script\LobbyManager.cs" />
     <Compile Include="Assets\01.Script\NPC\dollFriend.cs" />
+    <Compile Include="Assets\01.Script\NPC\frog_controller.cs" />
     <Compile Include="Assets\01.Script\NPC\HumanEnemy.cs" />
     <Compile Include="Assets\01.Script\NPC\HumanSit.cs" />
     <Compile Include="Assets\01.Script\NPC\HumanStanding.cs" />
@@ -117,10 +118,9 @@
     <Compile Include="Assets\01.Script\UIScript\Particle.cs" />
     <Compile Include="Assets\01.Script\UIScript\UIManager.cs" />
     <Compile Include="Assets\01.Script\UIScript\water.cs" />
+    <Compile Include="Assets\01.Script\videoHadler.cs" />
     <Compile Include="Assets\01.Script\Window_Action.cs" />
     <Compile Include="Assets\01.Script\ZoomInOut.cs" />
-    <Compile Include="Assets\07.Material\ToxicFrogs\FrogController.cs" />
-    <Compile Include="Assets\07.Material\ToxicFrogs\RotateCamFrog.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\OverTheShoulderAim\ActivateOnKeypress.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\Scripting\ScriptingExample.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\Trigger volumes\GenericTrigger.cs" />
@@ -147,11 +147,11 @@
     <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledMono\StyledMonoHideScriptField.cs" />
     <Compile Include="Assets\bread.cs" />
     <Compile Include="Assets\bulletUI.cs" />
+    <Compile Include="Assets\cameradontdestroy.cs" />
     <Compile Include="Assets\CameraSetup.cs" />
     <Compile Include="Assets\crosshair.cs" />
     <Compile Include="Assets\damager.cs" />
     <Compile Include="Assets\Friendcontroller.cs" />
-    <Compile Include="Assets\frog_controller.cs" />
     <Compile Include="Assets\gameMgr.cs" />
     <Compile Include="Assets\gethp.cs" />
     <Compile Include="Assets\ham.cs" />
@@ -193,9 +193,11 @@
     <Compile Include="Assets\PhotonChatApi\ChatState.cs" />
     <Compile Include="Assets\PhotonChatApi\ChatUserStatus.cs" />
     <Compile Include="Assets\PhotonChatApi\IChatClientListener.cs" />
+    <Compile Include="Assets\playerEffect.cs" />
     <Compile Include="Assets\playerpivot.cs" />
     <Compile Include="Assets\restart.cs" />
     <Compile Include="Assets\RPG Food &amp; Drinks Pack\Assets\Scripts\Rotator.cs" />
+    <Compile Include="Assets\saveUI.cs" />
     <Compile Include="Assets\Viking Crew Tools\Camera controls\MouseOrbitImproved.cs" />
     <Compile Include="Assets\Viking Crew Tools\UI\SpeechBubbleManager\Demos\2d scene\RandomMovementBehaviour.cs" />
     <Compile Include="Assets\Viking Crew Tools\UI\SpeechBubbleManager\Demos\SayRandomThingsBehaviour.cs" />
@@ -242,43 +244,43 @@
     <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -458,10 +460,10 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Assets/Plugins/Photon3Unity3D.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
-      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject-master/BBBproject/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+      <HintPath>C:/Users/baohao/OneDrive/바탕 화면/졸업작품/BBBproject/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

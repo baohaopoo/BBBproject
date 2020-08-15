@@ -161,28 +161,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20c46f253ee2f834f946c65db32cdc26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   fireTransform: {fileID: 8637939021815209691}
   shellEjectEffect: {fileID: 8457601992056519347}
   muzzleFlashEffect: {fileID: 0}
+  shootedEffect: {fileID: 0}
   HitEffect: {fileID: 0}
+  explosionEffect: {fileID: 0}
   isFineSightMode: 0
   damage: 20
   bulletRemain: 5
-  bulletCapacity: 3
+  bulletCapacity: 5
+  startbullet: 5
   timeBetFire: 0.12
   lastFireTime: 0
-  bulletImage1: {fileID: 1539505358672673069, guid: 3f19edbd7589a224c83a8e2816aba299,
-    type: 3}
-  bulletImage2: {fileID: 409451836927152790, guid: d2db7bc8f5efc8a4781aa76cfb16819a,
-    type: 3}
-  bulletImage3: {fileID: 4516345264830057917, guid: e573c0d559485d6479e2c5ae7d13f48e,
-    type: 3}
-  bulletImage4: {fileID: 2520331939915911298, guid: 6d7b7075c0b9e3747991d331f549ed8a,
-    type: 3}
-  bulletImage5: {fileID: 979170826783607939, guid: 36171bc9fd2b6a544ad26bcf8f292df2,
-    type: 3}
   Aim: {fileID: 0}
   AimAnimator: {fileID: 0}
+  shotClip: {fileID: 0}
 --- !u!114 &-1059302974254502743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +431,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3646414901678658047}
     m_Modifications:
+    - target: {fileID: 1000013947318026, guid: 8e60b325a019543cbb2e3920522a2e6b, type: 3}
+      propertyPath: m_Name
+      value: ShellEjectEffect
+      objectReference: {fileID: 0}
     - target: {fileID: 4000011175361746, guid: 8e60b325a019543cbb2e3920522a2e6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.01
@@ -479,10 +478,6 @@ PrefabInstance:
     - target: {fileID: 4000011175361746, guid: 8e60b325a019543cbb2e3920522a2e6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013947318026, guid: 8e60b325a019543cbb2e3920522a2e6b, type: 3}
-      propertyPath: m_Name
-      value: ShellEjectEffect
       objectReference: {fileID: 0}
     - target: {fileID: 4000011485593706, guid: 8e60b325a019543cbb2e3920522a2e6b, type: 3}
       propertyPath: m_LocalRotation.y
