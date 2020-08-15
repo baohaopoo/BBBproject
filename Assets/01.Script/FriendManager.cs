@@ -26,11 +26,11 @@ public class FriendManager : MonoBehaviour
 
     public void updateFriend(int n)
     {
-        //allFriend += n;
-        //if (allFriend < 0)
-        //{
-        //    allFriend = 0;
-        //}
+        allFriend += n;
+        if (allFriend < 0)
+        {
+            allFriend = 0;
+        }
     }
 
     public void respawnFriend()
