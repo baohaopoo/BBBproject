@@ -70,9 +70,6 @@ public class UIManager : MonoBehaviourPun
     public GameObject movie;
     public VideoPlayer daymovie;
 
-    private int savecnt = 0;
-
-    private int allfriend = 5;
 
 
     //public void judge(int num)
@@ -140,7 +137,6 @@ public class UIManager : MonoBehaviourPun
         BulletUI.gameObject.SetActive(false);
         hpslider.gameObject.SetActive(false);
         inventory.gameObject.SetActive(false);
-
         background.gameObject.SetActive(false);
 
     }
@@ -210,35 +206,30 @@ public class UIManager : MonoBehaviourPun
         if (num == 1)
         {
             saveUI1.SetActive(true);
-            allfriend -= 1;
-            Debug.Log(allfriend);
+
         }
         if (num == 2)
         {
             saveUI2.SetActive(true);
-            allfriend -= 1;
-            Debug.Log(allfriend);
+
         }
         if (num == 3)
         {
             //구미베ㅔ어
             saveUI3.SetActive(true);
-            allfriend -= 1;
-            Debug.Log(allfriend);
+
         }
         if (num == 4)
         {//툼어치톡어
             saveUI4.SetActive(true);
-            allfriend -= 1;
-            Debug.Log(allfriend);
+
         }
         if (num == 5)
         {
            // 판
             saveUI5.SetActive(true);
-            allfriend -= 1;
-            Debug.Log(allfriend);
         }
+
 
 
       

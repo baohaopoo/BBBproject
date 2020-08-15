@@ -17,10 +17,11 @@ public class ActionControler : MonoBehaviourPun
     private Animator pickupanim;
     private Item item;
     public int FriendNum;
+    private FriendManager friendManager;
 
     private void Start()
     {
-    
+        friendManager = GameObject.Find("FriendManager").GetComponent<FriendManager>();
         //pickupanim = player.GetComponent<Animator>();
     }
 
@@ -111,8 +112,9 @@ public class ActionControler : MonoBehaviourPun
                     
                     if (other.transform != null) //정보를 가져왔을때
                     {
-                        FriendNum += 1; ///////////////
+                        FriendNum += 1; /////////////// 
                         UIManager.instance.getScore(FriendNum);
+                        friendManager.updateFriend(-1);
                         // pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
                         if (item.itemName == "옹졸이")
                         {
@@ -160,7 +162,9 @@ public class ActionControler : MonoBehaviourPun
 
                     }
 
-                    other.transform.GetComponent<ItemDestroy>().destroyall();
+                    //other.transform.GetComponent<ItemDestroy>().destroyall();
+                    other.gameObject.SetActive(false); //끈다
+                    
                    
                 }
 

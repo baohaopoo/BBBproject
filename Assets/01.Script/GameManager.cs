@@ -7,7 +7,7 @@ using Photon.Pun;
 using TMPro;
 
 
-public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
+public class GameManager : MonoBehaviourPunCallbacks//, IPunObservable
 {
     public Gun guninstance;
 
@@ -75,24 +75,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         randomPos.x = 88.2153f;
         randomPos.y = 4.39109f;
         randomPos.z = 453.567f;
-
-
-
-  
+ 
         PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
 
        
         
-    }
-
-    void Update()
-    {
-
-    }
-
-    public override void OnLeftRoom()
-    {
-        //SceneManager.LoadScene("Lobby");
     }
 
 }

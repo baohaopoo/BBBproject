@@ -47,7 +47,7 @@ public class StatusController : MonoBehaviourPun, Damageable
             photonView.RPC("OnDamage", RpcTarget.Others, damage, hitPoint, hitNormal);
 
         }
-       // applayHP();
+
         //체력 0 이하 && 아직 죽지 않았다면 실행하도록 함
         if (HP < 0 && !dead)
         {

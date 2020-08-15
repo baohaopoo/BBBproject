@@ -10,12 +10,13 @@ public class Health : StatusController, IPunObservable
     private Rigidbody playerRigidbody; // 플레이어 캐릭터의 리지드바디
 
     private PlayerController playercontroller; // 플레이어 움직임 컴포넌트
-
-
+    public ActionControler actionController; //플레이어의 친구 수 받아오려고 
 
     int x = 100;
     public Gun gun;
     private StatusController status;
+
+    private FriendManager friendManager;
 
     // 싱글톤 접근용 프로퍼티
 
@@ -43,6 +44,7 @@ public class Health : StatusController, IPunObservable
         playerRigidbody = GetComponent<Rigidbody>();
         status = GetComponent<StatusController>();
         playercontroller = GetComponent<PlayerController>();
+        friendManager = GameObject.Find("FriendManager").GetComponent<FriendManager>();
     }
 
     //요거  추가햄
@@ -112,11 +114,8 @@ public class Health : StatusController, IPunObservable
         if (photonView.IsMine)
         {
 
-            Debug.Log("현재 체력은?????????");
-            Debug.Log(HP);
             //갱신된 체력 슬라이더에 반영
             UpdateUI();
-
 
         }
 
@@ -160,13 +159,19 @@ public class Health : StatusController, IPunObservable
 
         base.Die();
 
+        if (actionController.FriendNum >0) 
+        {
+            //친구 한명 이상 구했으면
+            actionController.FriendNum -= 1; //하나 뺀다
+            friendManager.updateFriend(1); //전체친구는 하나 더한다.
+            friendManager.respawnFriend(); //친구 리스폰
+        }
         //총 내려놓게함
         playercontroller.NotUseGun();
         photonView.RPC("dieAni", RpcTarget.All);
         if (photonView.IsMine)
         {
             UpdategameoverUI(true);
-
         }
     }
     [PunRPC]
@@ -193,9 +198,10 @@ public class Health : StatusController, IPunObservable
         //로컬 플레이어만 직접 위치 변경 가능
         if (photonView.IsMine)
         {
-            UpdategameoverUI(false);
-            UIManager.instance.onallUI();
             photonView.RPC("repawnAni", RpcTarget.All);
+            UpdategameoverUI(false);
+            UIManager.instance.onallUI(); //모든 UI 켜기
+            UIManager.instance.getScore(actionController.FriendNum); //점수갱신
 
 
 
@@ -204,13 +210,7 @@ public class Health : StatusController, IPunObservable
             randomPos.x = 88.2153f;
             randomPos.y =5f;
             randomPos.z = 453.567f;
-            //원점에서 반경 5유닛 내부의 랜덤 위치 지정
-         //   Vector3 randomSpawnPos = Random.insideUnitSphere * 9f;
-            //랜덤 위치의 y값을 0으로 변경
-           // randomSpawnPos.y = 5f;
-
-            //지정된 랜덤 위치로 이동
-            transform.position = randomPos;
+            gameObject.transform.position = randomPos;
 
             gun.bulletRemain = 5;
             gun.UpdateUI();
@@ -227,7 +227,8 @@ public class Health : StatusController, IPunObservable
     {
         status.dead = false;
         playerAnimator.SetTrigger("Respawn"); //다시 일어낫!
-        status.RestoreHP(500); //체력 100 충전 
+        status.RestoreHP(1000); //체력 100 충전 
+        
 
 
     }
