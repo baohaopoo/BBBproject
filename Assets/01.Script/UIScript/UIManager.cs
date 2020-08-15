@@ -56,12 +56,6 @@ public class UIManager : MonoBehaviourPun
     //backgroud이밎
     public GameObject background;
 
-    //삭제해줄 player22
-    public GameObject player;
-
-    ////push ui
-    //public GameObject pushUI;
-
     //옹졸이 ui
     public GameObject saveUI1;
     //움파룸파UI
@@ -271,16 +265,7 @@ public class UIManager : MonoBehaviourPun
     }
 
 
- 
-    //public void OnpushUI()
-    //{
 
-    //    pushUI.SetActive(true);
-    //}
-    //public void OffPushUI()
-    //{
-    //    pushUI.SetActive(false);
-    //}
     public void updateBullet(int sb)
     {
 

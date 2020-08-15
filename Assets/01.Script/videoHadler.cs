@@ -86,19 +86,22 @@ public class videoHadler : MonoBehaviour
         }
         if (cnt >= 10)
         {
-           // if (photonView.IsMine)
-           // {
-
-                FollowCam = GameObject.Find("MainCamera");
-                PlayerPibot = GameObject.Find("playerpivot");
-                FollowCam.GetComponent<SmoothFollow>().target = PlayerPibot.transform;
-
-
-            //}
-            UIManager.instance.EndMovie();
+            StopMovie();
         }
 
+        if (Input.GetKeyDown("1"))
+        {
+            StopMovie(); //영상 멈추는 치트키 
+        }
 
+    }
 
+    public void StopMovie()
+    {
+        FollowCam = GameObject.Find("MainCamera");
+        PlayerPibot = GameObject.Find("playerpivot");
+        FollowCam.GetComponent<SmoothFollow>().target = PlayerPibot.transform;
+
+        UIManager.instance.EndMovie();
     }
 }

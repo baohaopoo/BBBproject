@@ -71,6 +71,11 @@ public class PlayerInput : MonoBehaviourPun
             mouseY = Input.GetAxis("Mouse Y");
 
 
+
+
+
+
+
         }
     }
 }
