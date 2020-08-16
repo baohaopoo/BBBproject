@@ -5,36 +5,21 @@ public class PlayerShooter : MonoBehaviourPun
 {
 
     public Gun gun; // 사용할 총
-
-    private PlayerController playerController;
+    public Magazine magazine; //탄창
     private PlayerInput playerInput;
-    private Animator playerAnimator;
-    public GameObject gunViewCam;
 
-    //에임 
     public Animator CrossHairAnimator;
 
-    
-    //에임 유아이
-    public GameObject CrossHairUI;
 
     private void Start()
     {
-        // 사용할 컴포넌트들을 가져오기
-        //CrossHairUI = GameObject.FindGameObjectWithTag("Crosshair"); 
-        playerController = GetComponent<PlayerController>();
         playerInput = GetComponent<PlayerInput>();
-        playerAnimator = GetComponent<Animator>();
-
-  
-        gun.transform.rotation = FindObjectOfType<PlayerController>().transform.rotation;
     }
 
     private void OnEnable()
     {
      
-      
-        
+             
         //총이 쏴질때.
         photonView.RPC("gunon_RPC", RpcTarget.All);
 
@@ -44,11 +29,11 @@ public class PlayerShooter : MonoBehaviourPun
             //에임 UI도 활성화
             gun.Aimon();
 
-            if (gun.bulletRemain <= 0)
+            if (magazine.bulletRemain <= 0)
             {
                 //총알상태를 off
                 gun.Stateoff();
-            }else if (gun.bulletRemain > 0)
+            }else if (magazine.bulletRemain > 0)
             {
                 gun.Stateon();
             }
@@ -93,8 +78,6 @@ public class PlayerShooter : MonoBehaviourPun
     private void Update()
     {
 
-
-        rotateGun();
         animations();
 
 
@@ -108,7 +91,7 @@ public class PlayerShooter : MonoBehaviourPun
         {
             CrossHairAnimator.SetBool("Walking", true);
     
-            if (playerInput.fire&&gun.bulletRemain!=0)
+            if (playerInput.fire&&magazine.bulletRemain!=0)
             {
                 CrossHairAnimator.SetTrigger("walk_Fire");
                 gun.Fire();
@@ -117,7 +100,7 @@ public class PlayerShooter : MonoBehaviourPun
         else
         {
             CrossHairAnimator.SetBool("Walking", false);
-            if (playerInput.fire&& gun.bulletRemain != 0)
+            if (playerInput.fire&& magazine.bulletRemain != 0)
             {
                 CrossHairAnimator.SetTrigger("Idle_Fire");
                 gun.Fire();
@@ -125,10 +108,7 @@ public class PlayerShooter : MonoBehaviourPun
         }
 
     }
-    private void rotateGun()
-    {
-        gun.transform.rotation = gunViewCam.transform.rotation;
-    }
+
 
 
 }

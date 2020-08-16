@@ -17,7 +17,8 @@ public class videoHadler : MonoBehaviourPun
     private ActionControler actioncontroller;
 
     private Health player;
-    private Gun gun;
+    private Magazine magazine;
+    private PlayerHaveItem playerhaveItem;
 
     void Start()
     {
@@ -122,11 +123,12 @@ public class videoHadler : MonoBehaviourPun
         player = GameObject.Find("player22(Clone)").GetComponent<Health>();
         player.UpdateUI();
         //총알
-        gun = GameObject.Find("Gun").GetComponent<Gun>();
-        gun.UpdateUI();
+        magazine = GameObject.Find("magazine").GetComponent<Magazine>();
+        magazine.UpdateUI();
 
         //인벤토리
-        
+        playerhaveItem = GameObject.Find("InventorySlot").GetComponent<PlayerHaveItem>();
+        playerhaveItem.updateItemUI();
         
     }
     

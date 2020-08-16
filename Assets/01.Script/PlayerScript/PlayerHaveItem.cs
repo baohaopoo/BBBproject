@@ -53,8 +53,14 @@ public class PlayerHaveItem : MonoBehaviourPun
 
     public void updateItemUI()
     {
-        UIManager.instance.AddItem1(Iitem1);
-        UIManager.instance.AddItem2(Iitem2);
+        if (Iitem1 != null)
+        {
+            UIManager.instance.AddItem1(Iitem1);
+        }
+        if (Iitem2!=null)
+        {
+            UIManager.instance.AddItem2(Iitem2);
+        }
     }
 
     public void UseItem() //아이템 사용하기 

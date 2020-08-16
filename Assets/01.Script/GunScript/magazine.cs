@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class magazine : MonoBehaviour
+public class Magazine : MonoBehaviour
 {
+    public int bulletRemain = 5;
 
-    void Start()
+    public void UpdateUI()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        if (UIManager.instance != null)
+        {
+            UIManager.instance.updateBullet(bulletRemain);
+        }
     }
 }

@@ -76,7 +76,7 @@
     <Compile Include="Assets\01.Script\FriendManager.cs" />
     <Compile Include="Assets\01.Script\GameManager.cs" />
     <Compile Include="Assets\01.Script\GunScript\Gun.cs" />
-    <Compile Include="Assets\01.Script\GunScript\magazine.cs" />
+    <Compile Include="Assets\01.Script\GunScript\Magazine.cs" />
     <Compile Include="Assets\01.Script\iPhinterClickHandler.cs" />
     <Compile Include="Assets\01.Script\Item Script\ActionControler.cs" />
     <Compile Include="Assets\01.Script\Item Script\Consumer.cs" />

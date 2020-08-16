@@ -13,7 +13,7 @@ public class Health : StatusController, IPunObservable
     public ActionControler actionController; //플레이어의 친구 수 받아오려고 
 
     int x = 100;
-    public Gun gun;
+    public Magazine magazine;
     private StatusController status;
 
     private FriendManager friendManager;
@@ -47,7 +47,6 @@ public class Health : StatusController, IPunObservable
         friendManager = GameObject.Find("FriendManager").GetComponent<FriendManager>();
     }
 
-    //요거  추가햄
     private void Update()
     {
         if (photonView.IsMine == false)
@@ -206,8 +205,8 @@ public class Health : StatusController, IPunObservable
             randomPos.z = 453.567f;
             gameObject.transform.position = randomPos;
 
-            gun.bulletRemain = 5;
-            gun.UpdateUI();
+            magazine.bulletRemain = 5;
+            magazine.UpdateUI();
 
 
 

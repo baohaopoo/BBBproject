@@ -113,18 +113,18 @@ public class scr_Selector : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (Input.GetKeyDown("space"))
-        {
+        //if (Input.GetKeyDown("space"))
+        //{
 
                   
           
-            // pick a suit
-            pickSuit();
-            // pick headType A/B
-            pickHead();
+        //    // pick a suit
+        //    pickSuit();
+        //    // pick headType A/B
+        //    pickHead();
        
 
-        }
+        //}
     }
 
 

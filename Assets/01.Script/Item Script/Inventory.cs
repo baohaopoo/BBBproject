@@ -7,8 +7,6 @@ using Photon.Pun;
 public class Inventory : MonoBehaviourPun
 
 { 
-    [SerializeField]
-    private Gun gun;
 
     [SerializeField]
     private GameObject realTrap_item_prefab; //진짜덫 아이템
@@ -19,6 +17,8 @@ public class Inventory : MonoBehaviourPun
     [SerializeField]
     private GameObject player;
 
+    public Magazine magazine;
+    
     public GameObject ham;
     public GameObject bread;
 
@@ -74,20 +74,15 @@ public class Inventory : MonoBehaviourPun
             UsetrapItem();
         }
 
-        //
+       
         else if (playeritem.Iitem1.name == "ObstacleItem")
         {
-
-            Debug.Log("아이템 사용되고 있나?");
             UseObstacleItem();
         }
-        //
+     
         else if (playeritem.Iitem1.name == "HamItem")
         {
-
-            Debug.Log("햄 아이템 사용되고 있나?");
             UseHamItem();
-
 
         }
         else if (playeritem.Iitem1.name == "BreadItem")
@@ -102,17 +97,14 @@ public class Inventory : MonoBehaviourPun
 
     private void UsebulletItem()
     {
-    
-            //gun에 
-            gun.bulletRemain += 3;
-            if (gun.bulletRemain > 5)
+     
+            magazine.bulletRemain += 3;
+            if (magazine.bulletRemain > 5)
             {
-                gun.bulletRemain = 5;
+                magazine.bulletRemain = 5;
             }
-
-            Debug.Log("지금 아이템 불렛을 추가했다! bullet:" + gun.bulletRemain);
           
-            gun.UpdateUI();
+            magazine.UpdateUI();
     }
 
 
