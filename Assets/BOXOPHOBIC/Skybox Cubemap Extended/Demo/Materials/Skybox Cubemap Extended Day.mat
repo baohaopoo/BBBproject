@@ -115,4 +115,4 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Tex_HDR: {r: 1, g: 1, b: 0, a: 0}
-    - _TintColor: {r: 0.8775653, g: 0.16144843, b: 0.23578411, a: 1}
+    - _TintColor: {r: 0.8710338, g: 0.16730511, b: 0.24035484, a: 1}

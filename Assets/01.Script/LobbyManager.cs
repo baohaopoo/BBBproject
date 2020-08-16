@@ -35,6 +35,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.GameVersion = gameVersion;
         PhotonNetwork.ConnectUsingSettings(); //마스터 서버 연결
 
+       
         // startButton.interactable = false;
         gocnt = 0;
        
@@ -65,7 +66,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
        
        PhotonNetwork.LocalPlayer.NickName = nicknameinput.text.ToString(); //플레이어 이름 정해주기 , 로컬 이름에 nicknameinput에서 받아온 text를 넣어준다.
        roomname = roominput.text.ToString(); //roomname string에도 roominput.text받아온거를 넣어준다.
-           
 
         gocnt += 1;
         Debug.Log("클릭했냐?");
@@ -103,8 +103,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     //방만들기
     public void CreateRoom()
     {
-        PhotonNetwork.CreateRoom(roominput.text, new RoomOptions { MaxPlayers = 4 });
+        //룸옵션 주기
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.PublishUserId = true;
 
+        PhotonNetwork.CreateRoom(roominput.text, new RoomOptions { MaxPlayers = 4 });
+        
 
     }
     //방 만들기 콜백함수
@@ -117,6 +121,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     //방 참가 콜백함수
     public override void OnJoinedRoom()
     {
+
+
+
         Vector3 randomPos;
         randomPos.x = -2;
         randomPos.y = 0;
@@ -125,9 +132,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         Debug.Log("방 참가 완료");
         PhotonNetwork.LoadLevel("Kidsroom"); //모든 룸 참가자가 Kidsroom씬을 로드하게 함.
-       
-
-        
 
     }
 
@@ -150,7 +154,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void JoinRandomRoom()
     {
         PhotonNetwork.JoinRandomRoom();
-    
+        //룸옵션 주기
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.PublishUserId = true;
+
     }
 
     //빈방이 없어 랜덤 룸 참가에 실패한 경우 자동 실행

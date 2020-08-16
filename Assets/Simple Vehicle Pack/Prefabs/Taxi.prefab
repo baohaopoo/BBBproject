@@ -327,6 +327,8 @@ GameObject:
   - component: {fileID: 4870167790249810}
   - component: {fileID: 2943012659581198551}
   - component: {fileID: 1308911090778413174}
+  - component: {fileID: 6727037906953028630}
+  - component: {fileID: 3010275081345636152}
   m_Layer: 0
   m_Name: Taxi
   m_TagString: Untagged
@@ -361,7 +363,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646981259178978}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 0.7045119, z: 2.2851737}
@@ -378,8 +380,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872ccc2b7dbec6f42ad7c038681c3a8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dead: 0
   startHP: 99999
   damage: 20
+--- !u!54 &6727037906953028630
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646981259178978}
+  serializedVersion: 2
+  m_Mass: 2
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &3010275081345636152
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646981259178978}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.826107, y: 1, z: 2.31115}
+  m_Center: {x: -0.0026080608, y: 0, z: -0.023934841}
 --- !u!1 &1770694637400948
 GameObject:
   m_ObjectHideFlags: 0

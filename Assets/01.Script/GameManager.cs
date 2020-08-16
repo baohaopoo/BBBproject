@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     public bool isGameover; // 게임 오버 상태
 
 
-    public GameObject playerPrefab; //생성할 게임플레이어 
+    public GameObject playerPrefab; //생성할 게임플레이어 (마스터)
+    public GameObject playerLocal; //생성할 로컬 플레이어( 로컬)
 
 
     //주기적으로 자동 실행되는 동기화 메서드
@@ -76,13 +77,25 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         randomPos.y = 4.39109f;
         randomPos.z = 453.567f;
 
+        Vector3 localPos;
+        localPos.x = 85.2153f;
+        localPos.y = 4.39109f;
+        localPos.z = 450.567f;
 
-
-  
-        PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
-
+        //마스터 클라이언트일 경우엔
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
+        }
+        else //로컬일경우엔
+        {
+            PhotonNetwork.Instantiate(playerLocal.name, localPos, Quaternion.identity);
+        }
        
-        
+    
+
+
+
     }
 
     void Update()

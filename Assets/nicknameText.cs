@@ -17,11 +17,26 @@ public class nicknameText : MonoBehaviourPun
     void Start()
     {
         nickname.text = "";
-        name = PhotonNetwork.LocalPlayer.NickName;//lobby.inputplayer.text;
+
+
+
+        // name = PhotonNetwork.LocalPlayer.NickName;//lobby.inputplayer.text;
+          name = PhotonNetwork.NickName;//lobby.inputplayer.text;
+
+
+        //if (photonView.IsMine)
+        //{
+
+        //    name = PhotonNetwork.NickName;
+        //}
+        //else
+        //{
+        //    name = "daf";
+           
+        //}
+        //name = photonView.Owner.NickName;
         nickname.text += name.ToString();
 
-
-        
         mypos.x = 18.4f;
         mypos.y = 0;
         mypos.z = -10.3f;
@@ -30,14 +45,15 @@ public class nicknameText : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+
         //if (photonView.IsMine)
         //{
 
         //    nickname.transform.Rotate(-90, 0, 0);
         //    transform.position = mypos;
 
-        
+
         //}
-        
+
     }
 }

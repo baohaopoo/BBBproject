@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class water : MonoBehaviour
+public class water : MonoBehaviourPun
 {
     private static bool isWater = false; //물속 안에 있는가 
     [SerializeField]
@@ -50,6 +51,11 @@ public class water : MonoBehaviour
 
     private void InWater(Collider player)
     {
+
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         isWater = true;
         player.transform.GetComponent<Rigidbody>().drag = waterDrag;
 
@@ -59,6 +65,12 @@ public class water : MonoBehaviour
     }
     private void OutWater(Collider player)
     {
+
+
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         if (isWater)
         {
             isWater = false;
