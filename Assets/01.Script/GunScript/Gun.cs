@@ -230,9 +230,6 @@ public class Gun : MonoBehaviourPun, IPunObservable
         if (photonView.IsMine)
         {
 
-           
-            Debug.Log("현재 탄알은??????");
-            Debug.Log(bulletRemain);
             UpdateUI();
            
 

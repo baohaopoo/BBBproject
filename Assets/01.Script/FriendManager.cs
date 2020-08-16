@@ -5,39 +5,101 @@ using UnityEngine;
 public class FriendManager : MonoBehaviour
 {
 
-    private int allFriend = 5;
+    public int kidsroomFriend = 2;
+    public int cityFriend = 3;
 
-    public GameObject blue;
-    public GameObject rabbit;
-    public GameObject yellow;
-    public GameObject pan;
-    public GameObject pink;
+    private GameObject blue;
+    private GameObject rabbit;
+    private GameObject yellow;
+    private GameObject pan;
+    private GameObject pink;
 
-    void Start()
+    void Awake()
     {
-      
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void EndGame()
     {
-        
-    }
-
-    public void updateFriend(int n)
-    {
-        allFriend += n;
-        if (allFriend < 0)
+        if (kidsroomFriend + cityFriend != 0)
         {
-            allFriend = 0;
+            return;
         }
+
+        Debug.Log("게임끝!");
+    }
+    public void updateKidsFriend(int n)
+    {
+        if (kidsroomFriend == 2)
+        {
+            rabbit = GameObject.Find("rabbit");
+            blue = GameObject.Find("blueBear");
+        }
+        kidsroomFriend += n;
+        if (kidsroomFriend < 0)
+        {
+            kidsroomFriend = 0;
+        }
+
+        EndGame();
+
+
     }
 
-    public void respawnFriend()
+    public void updateCityFriend(int n)
     {
-        if (!blue.activeSelf)
+        if (cityFriend == 3)
         {
+            pink = GameObject.Find("pinkBear");
+            pan = GameObject.Find("pandda");
+            yellow = GameObject.Find("yellowBear");
+        }
+        cityFriend += n;
+        if (cityFriend < 0)
+        {
+            cityFriend = 0;
+        }
+
+        EndGame();
+    }
+
+    public void respawnKidsroomFriend()
+    {     
+
+        if (!rabbit.activeSelf)
+        {
+            //토끼가 꺼져있으면 
+            rabbit.SetActive(true);
+            return;
+        }
+        else if (!blue.activeSelf)
+        {
+            //파란애가 꺼져있으면 
             blue.SetActive(true);
+            return;
         }
+
+    }
+    public void respawnCityFriend()
+    {
+
+
+        if (!pink.activeSelf)
+        {
+            pink.SetActive(true);
+            return;
+        }
+        else if (!pan.activeSelf)
+        {
+            pan.SetActive(true);
+            return;
+        }
+
+        else if (!yellow.activeSelf)
+        {
+            yellow.SetActive(true);
+            return;
+        }
+
     }
 }

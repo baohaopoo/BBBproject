@@ -38,17 +38,24 @@ public class PlayerHaveItem : MonoBehaviourPun
     private void AddItem1(Item _item1) //아이템1 추가
     {
         Iitem1 = _item1;
-        UIManager.instance.AddItem1(Iitem1);
+        // UIManager.instance.AddItem1(Iitem1);
+        updateItemUI();
 
     }
     [PunRPC]
     private void AddItem2(Item _item2) //아이템2 추가 
     {
         Iitem2 = _item2;
-        UIManager.instance.AddItem2(Iitem2);
+        //UIManager.instance.AddItem2(Iitem2);
+        updateItemUI();
 
     }
 
+    public void updateItemUI()
+    {
+        UIManager.instance.AddItem1(Iitem1);
+        UIManager.instance.AddItem2(Iitem2);
+    }
 
     public void UseItem() //아이템 사용하기 
     {

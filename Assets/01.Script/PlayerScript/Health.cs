@@ -124,7 +124,7 @@ public class Health : StatusController, IPunObservable
     }
 
     //ui갱신 
-    private void UpdateUI()
+    public void UpdateUI()
     {
          if (playerRigidbody != null && UIManager.instance != null)
         {
@@ -159,13 +159,7 @@ public class Health : StatusController, IPunObservable
 
         base.Die();
 
-        if (actionController.FriendNum >0) 
-        {
-            //친구 한명 이상 구했으면
-            actionController.FriendNum -= 1; //하나 뺀다
-            friendManager.updateFriend(1); //전체친구는 하나 더한다.
-            friendManager.respawnFriend(); //친구 리스폰
-        }
+        actionController.minusFriend(); //친구 빼라
         //총 내려놓게함
         playercontroller.NotUseGun();
         photonView.RPC("dieAni", RpcTarget.All);
@@ -201,7 +195,7 @@ public class Health : StatusController, IPunObservable
             photonView.RPC("repawnAni", RpcTarget.All);
             UpdategameoverUI(false);
             UIManager.instance.onallUI(); //모든 UI 켜기
-            UIManager.instance.getScore(actionController.FriendNum); //점수갱신
+
 
 
 
