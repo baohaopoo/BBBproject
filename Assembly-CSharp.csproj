@@ -132,6 +132,7 @@
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMove.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMoveOnSphere.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMovePhysics.cs" />
+    <Compile Include="Assets\billboard.cs" />
     <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\SettingsUtils\SettingsData.cs" />
     <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledBanner.cs" />
     <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledCategory.cs" />
