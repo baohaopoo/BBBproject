@@ -270,7 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3392067974260023404}
-  - component: {fileID: 3029384653840525021}
+  - component: {fileID: 3001096791697540039}
   m_Layer: 9
   m_Name: magazine
   m_TagString: Untagged
@@ -292,7 +292,7 @@ Transform:
   m_Father: {fileID: 7192049195124168618}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3029384653840525021
+--- !u!114 &3001096791697540039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2279,7 +2279,7 @@ MonoBehaviour:
   realObstacle_item_prefab: {fileID: 65438640008825627, guid: 7fbe5cf481d29b44a94a2a3b8852f719,
     type: 3}
   player: {fileID: 6166575211548534201}
-  magazine: {fileID: 3029384653840525021}
+  magazine: {fileID: 3001096791697540039}
   ham: {fileID: 5835817408485251233}
   bread: {fileID: 2157144848714294625}
 --- !u!114 &5963625616565105901
@@ -2641,7 +2641,7 @@ MonoBehaviour:
   dead: 0
   startHP: 100
   actionController: {fileID: 258594895251656905}
-  magazine: {fileID: 0}
+  magazine: {fileID: 3001096791697540039}
 --- !u!114 &2789415291505305064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2655,7 +2655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 7224818090847452416}
-  magazine: {fileID: 3029384653840525021}
+  magazine: {fileID: 3001096791697540039}
   CrossHairAnimator: {fileID: 3121261464594962730}
 --- !u!114 &3535147954140480512
 MonoBehaviour:
@@ -3385,10 +3385,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5812210381666303086}
     m_Modifications:
-    - target: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
-      propertyPath: m_Name
-      value: CFX_Hit_A Red+RandomText
-      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3432,6 +3428,10 @@ PrefabInstance:
     - target: {fileID: 400004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
+      propertyPath: m_Name
+      value: CFX_Hit_A Red+RandomText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
@@ -3540,7 +3540,7 @@ PrefabInstance:
         type: 3}
       propertyPath: magazine
       value: 
-      objectReference: {fileID: 3029384653840525021}
+      objectReference: {fileID: 3001096791697540039}
     - target: {fileID: 8637939022194435747, guid: 8d81b117cb6151f4dbb341062552b046,
         type: 3}
       propertyPath: gunViewCam
@@ -3654,16 +3654,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7192049195124168618}
     m_Modifications:
-    - target: {fileID: 2582328240703467669, guid: e69e231d28491ec4ea966715d3db58ec,
-        type: 3}
-      propertyPath: m_Name
-      value: Ham
-      objectReference: {fileID: 0}
-    - target: {fileID: 2582328240703467669, guid: e69e231d28491ec4ea966715d3db58ec,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2577607383189254417, guid: e69e231d28491ec4ea966715d3db58ec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3719,6 +3709,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 111
       objectReference: {fileID: 0}
+    - target: {fileID: 2582328240703467669, guid: e69e231d28491ec4ea966715d3db58ec,
+        type: 3}
+      propertyPath: m_Name
+      value: Ham
+      objectReference: {fileID: 0}
+    - target: {fileID: 2582328240703467669, guid: e69e231d28491ec4ea966715d3db58ec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2468121416096853515, guid: e69e231d28491ec4ea966715d3db58ec,
         type: 3}
       propertyPath: interval
@@ -3745,16 +3745,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 874141265517621253}
     m_Modifications:
-    - target: {fileID: 8269322020736071075, guid: fc5aa0c0c738669409f9279a1d49e7fc,
-        type: 3}
-      propertyPath: m_Name
-      value: BulletUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 8269322020736071075, guid: fc5aa0c0c738669409f9279a1d49e7fc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8196071971163688704, guid: fc5aa0c0c738669409f9279a1d49e7fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3859,6 +3849,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8269322020736071075, guid: fc5aa0c0c738669409f9279a1d49e7fc,
+        type: 3}
+      propertyPath: m_Name
+      value: BulletUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8269322020736071075, guid: fc5aa0c0c738669409f9279a1d49e7fc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8952123311770831591, guid: fc5aa0c0c738669409f9279a1d49e7fc,
         type: 3}

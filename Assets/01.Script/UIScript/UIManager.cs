@@ -38,13 +38,17 @@ public class UIManager : MonoBehaviourPun
     public GameObject bulletImage4;
     public GameObject bulletImage5;
 
+    public GameObject bearImage1;
+    public GameObject bearImage2;
+    public GameObject bearImage3;
+    public GameObject bearImage4;
+    public GameObject bearImage5;
+
 
     [SerializeField]
     public Text actionText;
     [SerializeField]
     public Text openText;
-    [SerializeField]
-    public Text scoreText;
 
     public GameObject inventory;
 
@@ -53,8 +57,6 @@ public class UIManager : MonoBehaviourPun
     [SerializeField]
     public Image itemImage2; //아이템 2 이미지
 
-    //backgroud이밎
-    public GameObject background;
 
     //옹졸이 ui
     public GameObject saveUI1;
@@ -94,12 +96,65 @@ public class UIManager : MonoBehaviourPun
 
 
 
-    //
+    
+    //public void getScore(int num)
+    //{
+    //    scoreText.text = "Saved Friend: " + "<color=orange>" + num + "</color>";
+    //}
+
     public void getScore(int num)
     {
-        scoreText.text = "Saved Friend: " + "<color=orange>" + num + "</color>";
+        if (num == 0)
+        {
+            bearImage1.SetActive(false);
+            bearImage2.SetActive(false);
+            bearImage3.SetActive(false);
+            bearImage4.SetActive(false);
+            bearImage5.SetActive(false);
+        }
+        else if (num == 1)
+        {
+            bearImage1.SetActive(true);
+            bearImage2.SetActive(false);
+            bearImage3.SetActive(false);
+            bearImage4.SetActive(false);
+            bearImage5.SetActive(false);
+        }
+        else if (num == 2)
+        {
+            bearImage1.SetActive(true);
+            bearImage2.SetActive(true);
+            bearImage3.SetActive(false);
+            bearImage4.SetActive(false);
+            bearImage5.SetActive(false);
+        }
+        else if (num == 3)
+        {
+            bearImage1.SetActive(true);
+            bearImage2.SetActive(true);
+            bearImage3.SetActive(true);
+            bearImage4.SetActive(false);
+            bearImage5.SetActive(false);
+        }
+        else if (num == 4)
+        {
+            bearImage1.SetActive(true);
+            bearImage2.SetActive(true);
+            bearImage3.SetActive(true);
+            bearImage4.SetActive(true);
+            bearImage5.SetActive(false);
+        }
+        else if (num == 5)
+        {
+            bearImage1.SetActive(true);
+            bearImage2.SetActive(true);
+            bearImage3.SetActive(true);
+            bearImage4.SetActive(true);
+            bearImage5.SetActive(true);
+        }
+
     }
-    //
+
     public void getitem(string name)
     { 
      actionText.text = name + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
@@ -137,7 +192,7 @@ public class UIManager : MonoBehaviourPun
         BulletUI.gameObject.SetActive(false);
         hpslider.gameObject.SetActive(false);
         inventory.gameObject.SetActive(false);
-        background.gameObject.SetActive(false);
+
 
     }
     public void onallUI()
@@ -145,8 +200,6 @@ public class UIManager : MonoBehaviourPun
         BulletUI.gameObject.SetActive(true);
         hpslider.gameObject.SetActive(true);
         inventory.gameObject.SetActive(true);
-      
-        background.gameObject.SetActive(true);
 
     }
     public void UpdateHPSlider(int hp)

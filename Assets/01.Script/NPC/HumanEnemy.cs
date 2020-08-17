@@ -129,11 +129,15 @@ public class HumanEnemy : StatusController
     {
         // statuscontroller OnDamage()를 실행하여 데미지 적용
         base.OnDamage(damage, hitPoint, hitNormal);
-        // 아직 사망하지 않은 경우에만 피격 효과 재생
-        if (!dead)
+        if (dead)
         {
-            catAnimator.SetTrigger("isYaOng");
-            target = null;
+            return;
+        }
+        catAnimator.SetTrigger("isYaOng");
+        target = null;
+        // 아직 사망하지 않은 경우에만 피격 효과 재생
+
+            
             // 공격 받은 지점과 방향으로 파티클 효과를 재생
             //hitEffect.transform.position = hitPoint;
             //hitEffect.transform.rotation = Quaternion.LookRotation(hitNormal);
@@ -141,7 +145,7 @@ public class HumanEnemy : StatusController
 
             // 피격 효과음 재생
             //enemyAudioPlayer.PlayOneShot(hitSound);
-        }
+        
 
 
         
