@@ -94,7 +94,6 @@ public class HumanEnemy : StatusController
             {
                 // 추적 대상 없음 : AI 이동 중지
                 pathFinder.isStopped = true;
-                Debug.Log("추적대상 없음");
                 // 20 유닛의 반지름을 가진 가상의 구를 그렸을때, 구와 겹치는 모든 콜라이더를 가져옴
                 // 단, targetLayers에 해당하는 레이어를 가진 콜라이더만 가져오도록 필터링
                 Collider[] colliders =
@@ -165,6 +164,7 @@ public class HumanEnemy : StatusController
         }
 
         // AI 추적을 중지하고 내비메쉬 컴포넌트를 비활성화
+        target = null;
         pathFinder.isStopped = true;
         pathFinder.enabled = false;
         catAnimator.SetTrigger("isDie");

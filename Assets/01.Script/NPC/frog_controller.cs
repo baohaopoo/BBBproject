@@ -15,13 +15,14 @@ public class frog_controller : StatusController
     private Animator frogAnimator;
     public float speed = 10;
 
-    Vector3 frogPosition;
-    Quaternion frogRotation;
-    Vector3 dist;
-    Vector3 goalPosition;
-    Quaternion goalRotation;
+
+    Transform targetTrans;
+    private bool goFrog=false;
+
     private bool isSwimming = false;
 
+    public float traceTime = 15f; //일정시간 지나면 추적 안함 
+    private float lastTraceTime = 0; //마지막 추적 시점 
 
     // 추적할 대상이 존재하는지 알려주는 프로퍼티
     private bool hasTarget
@@ -31,7 +32,6 @@ public class frog_controller : StatusController
             // 추적할 대상이 존재하고, 대상이 사망하지 않았다면 true
             if (target != null && !target.dead)
             {
-                Debug.Log("추적대상 존재");
                 return true;
             }
 
@@ -51,8 +51,6 @@ public class frog_controller : StatusController
     // Start is called before the first frame update
     void Start()
     {
-        frogPosition = gameObject.transform.position;
-        frogRotation = gameObject.transform.rotation;
         frogAnimator = GetComponent<Animator>();
         // 호스트가 아니라면 AI의 추적 루틴을 실행하지 않음
         //if (!PhotonNetwork.IsMasterClient)
@@ -79,15 +77,12 @@ public class frog_controller : StatusController
         }
 
 
-        if (hasTarget)
-        { 
-            frogPosition = Vector3.Lerp(frogPosition, goalPosition,  0.1f*speed*Time.deltaTime);
-            frogRotation = Quaternion.Lerp(frogRotation, goalRotation,  0.1f* speed*Time.deltaTime);
-            gameObject.transform.position = frogPosition;
-            gameObject.transform.rotation = frogRotation;
+
+        if (hasTarget&&goFrog)
+        {
+            transform.LookAt(targetTrans);
+            transform.position = Vector3.Lerp(transform.position, targetTrans.position, 0.1f * speed * Time.deltaTime);
         }
-
-
     }
 
     // 주기적으로 추적할 대상의 위치를 찾아 경로를 갱신
@@ -96,12 +91,27 @@ public class frog_controller : StatusController
         // 살아있는 동안 무한 루프
         while (!dead)
         {
-
+            
             if (hasTarget)
             {
+                goFrog = true;
+                var distance = target.transform.position - this.transform.position; //거리
+                                                                                    //목표 갱신
+                targetTrans = target.transform;
 
-                goalPosition = target.transform.position; //목표 갱신
-                goalRotation = target.transform.rotation;
+                if (distance.sqrMagnitude < 1f)
+                {
+                    goFrog = false;
+                }
+
+
+                if (Time.time > lastTraceTime + traceTime)
+                {
+                    //일정한 추적시간이 지나면 추적 중지.
+                    lastTraceTime = Time.time;
+                    target = null;
+                    goFrog = false;
+                }
             }
 
             else
@@ -129,7 +139,6 @@ public class frog_controller : StatusController
                 }
             }
 
-            // 0.25초 주기로 처리 반복
             yield return new WaitForSeconds(0.25f);
         }
     }
@@ -143,8 +152,9 @@ public class frog_controller : StatusController
         base.OnDamage(damage, hitPoint, hitNormal);
         if (!dead)
         {
-            frogAnimator.SetTrigger("isDamaged");
-            target = null;          
+            goFrog = false;
+            target = null;
+            frogAnimator.SetTrigger("isDamaged");        
         }
         
     }
@@ -162,7 +172,9 @@ public class frog_controller : StatusController
             enemyColliders[i].enabled = false;
         }
 
-        // AI 추적을 중지하고 내비메쉬 컴포넌트를 비활성화
+
+        goFrog = false;
+        target = null;
         frogAnimator.SetTrigger("isDie");
         Destroy(gameObject, 20f);//20초뒤 제거 
 

@@ -301,16 +301,16 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 110243102}
-    m_Position: {x: 370, y: 80, z: 0}
+    m_Position: {x: 410, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110226184}
-    m_Position: {x: 370, y: -70, z: 0}
+    m_Position: {x: 340, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110237378}
     m_Position: {x: 370, y: -140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110238668}
-    m_Position: {x: 370, y: 0, z: 0}
+    m_Position: {x: 340, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 617100929782531662}
     m_Position: {x: 80, y: -80, z: 0}
