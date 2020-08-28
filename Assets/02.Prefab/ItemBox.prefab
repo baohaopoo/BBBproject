@@ -184,6 +184,8 @@ MonoBehaviour:
     type: 3}
   bread_item_prefab: {fileID: 2159411086723896621, guid: 27162a3c77cc9284cad0a1a0c4a5821b,
     type: 3}
+  shield_item_prefab: {fileID: 1808228417298534, guid: f16e0d712129f7b4abba89bfd58e985b,
+    type: 3}
   SpawnTime: 1
 --- !u!114 &1311579358897386774
 MonoBehaviour:

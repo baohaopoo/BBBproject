@@ -9,7 +9,7 @@ using UnityStandardAssets.Utility;
 public class videoHadler : MonoBehaviourPun
 {
     private GameObject FollowCam; //main camera
-    public UnityStandardAssets.Utility.SmoothFollow maincam;
+
     public RawImage mScreen = null;
     public VideoPlayer mVideoPlayer = null;
     private int cnt = 0;

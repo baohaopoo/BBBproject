@@ -166,7 +166,7 @@ public class UIManager : MonoBehaviourPun
     }
     public void friendfind(string name)
     {
-        actionText.text = name + "를 찾았다! " + "<color=yellow>" + "(E)" + "</color>" + "를 눌러!";
+        openText.text = name + "와의 상호작용은 " + "<color=yellow>" + "(E)" + "</color>" + "Key";
     }
 
     public void onactiontxt()

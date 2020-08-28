@@ -112,6 +112,8 @@ public class PlayerController : MonoBehaviourPun
         //Debug.Log("카메라야 카메라야 잘들어왔느뇨>?");
         camSetting();
 
+     
+
         //치트키 h키 누르면 바로 도시.
         if (Input.GetKey(KeyCode.H))
         {
@@ -340,10 +342,9 @@ public class PlayerController : MonoBehaviourPun
     }
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("노그래비티존");
-        if (other.gameObject == ropeCollision)
+        if (other.tag == "Finish")
         {
-            noGravity = true;
+            SceneManager.LoadScene("city3");
         }
 
     }

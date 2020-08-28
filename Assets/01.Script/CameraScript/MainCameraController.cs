@@ -10,6 +10,9 @@ public class MainCameraController : MonoBehaviour
     private float yPosition = 0.0f;
     private float pitch = 0.0f;
 
+    public bool iswall = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,10 @@ public class MainCameraController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (iswall)
+        {
+            return;
+        }
         float y = Input.GetAxis("Mouse Y");
 
         yPosition = camTransform.position.y;

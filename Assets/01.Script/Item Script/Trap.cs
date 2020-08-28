@@ -8,19 +8,13 @@ public class Trap : MonoBehaviour
     private bool tied = false;
     private Animator TrapAnimator;
     private Animator playerAnimator;
+    private frog_controller frog;
 
     private void Start()
     {
         TrapAnimator = GetComponent<Animator>();
     }
 
-    private void Update()
-    {
-        //if (tied)
-        //{
-        //    player.transform.localPosition = Vector3.zero;
-        //}
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -32,8 +26,25 @@ public class Trap : MonoBehaviour
             StartCoroutine(playerOnTrap());
 
         }
+
+        else if (other.tag == "frog")
+        {
+            other.gameObject.transform.position = this.gameObject.transform.position;
+            frog = other.gameObject.GetComponent<frog_controller>();
+            StartCoroutine(frogOnTrap());
+        }
     }
 
+    private IEnumerator frogOnTrap()
+    {
+        
+        TrapAnimator.SetBool("trap_bite", true);
+        frog.target = null;
+        frog.Ontrap = true;
+        yield return new WaitForSeconds(3f);//3초동안 기다린다 
+        TrapAnimator.SetBool("trap_bite", false);
+        frog.Ontrap = false;
+    }
 
     private IEnumerator playerOnTrap()
     {

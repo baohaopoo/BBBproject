@@ -8,7 +8,6 @@ public class ItemBox : MonoBehaviourPun
 {
 
     private bool IsOpen = false;
-
     private Animator BoxAnimator;
 
 
@@ -23,6 +22,8 @@ public class ItemBox : MonoBehaviourPun
     private GameObject ham_item_prefab; //햄 아이템
     [SerializeField]
     private GameObject bread_item_prefab; //빵 아이템
+    [SerializeField]
+    private GameObject shield_item_prefab;
 
 
 
@@ -98,9 +99,9 @@ public class ItemBox : MonoBehaviourPun
 
        
         Debug.Log("무얼까요무얼까요");
-        int ItemNum = Random.Range(0, 5);//랜덤
+        int ItemNum = Random.Range(0, 6);//랜덤
    
-        if (ItemNum == 0)
+        if (ItemNum ==0)
         {
             //총알 아이템 생성 Instantiate(생성아이템,아이템위치,기본회전값)
 
@@ -125,7 +126,7 @@ public class ItemBox : MonoBehaviourPun
             //가시아이템생성
           
 
-            // PhotonNetwork.Instantiate(obstacle_item_prefab.name, ItemboxTransform.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(obstacle_item_prefab.name, ItemboxTransform.position, Quaternion.identity);
             //Debug.Log("가시 아이템 생성");
         }
         else if (ItemNum == 3)
@@ -142,6 +143,11 @@ public class ItemBox : MonoBehaviourPun
            
             PhotonNetwork.Instantiate(bread_item_prefab.name, ItemboxTransform.position, Quaternion.identity);
             Debug.Log("빵 아이템 생성");
+        }
+        else if (ItemNum == 5)
+        {
+            //쉴드포션
+            PhotonNetwork.Instantiate(shield_item_prefab.name, ItemboxTransform.position, Quaternion.identity);
         }
     }
 }

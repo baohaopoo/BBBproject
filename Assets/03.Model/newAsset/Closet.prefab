@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 3974446037322527092}
   - component: {fileID: 857121076791560954}
   - component: {fileID: 7366036223823230114}
-  - component: {fileID: 1718105798443716323}
   m_Layer: 8
   m_Name: closetdoor_left
   m_TagString: door
@@ -109,19 +108,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1718105798443716323
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2642629008961119205}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.531814, y: 5.0583997, z: 11.43662}
-  m_Center: {x: -0.0000034570699, y: 0.0000003734496, z: -5.8349543}
 --- !u!1 &2791982627115514785
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +232,6 @@ GameObject:
   - component: {fileID: 3649282511979550835}
   - component: {fileID: 8759895637497146563}
   - component: {fileID: 3289712138396313441}
-  - component: {fileID: 1718105797956060773}
   m_Layer: 0
   m_Name: closet_drawer_top
   m_TagString: Untagged
@@ -314,19 +299,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1718105797956060773
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5609016518064763188}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 8.007388, y: 4.7440076, z: 5.5653715}
-  m_Center: {x: 0.0000019073486, y: -0.00000035762815, z: -0.0000014305106}
 --- !u!1 &6563989172651823313
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +310,6 @@ GameObject:
   - component: {fileID: 3741272581841298790}
   - component: {fileID: 8556425756916643021}
   - component: {fileID: 2083783401372663643}
-  - component: {fileID: 1718105796784935844}
   m_Layer: 8
   m_Name: closetdoor_right
   m_TagString: door
@@ -406,19 +377,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1718105796784935844
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6563989172651823313}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.531814, y: 5.0583997, z: 11.436619}
-  m_Center: {x: -0.44075558, y: -0.00000037979723, z: 5.7265983}
 --- !u!1 &6828068571650450310
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +419,6 @@ GameObject:
   - component: {fileID: 4334511307152563724}
   - component: {fileID: 1718105797695838322}
   - component: {fileID: 8003894263558792747}
-  - component: {fileID: 1297558396914053625}
   m_Layer: 0
   m_Name: Closet
   m_TagString: CanOpen
@@ -496,7 +453,7 @@ Animator:
   m_GameObject: {fileID: 7275034171754168677}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a510845073950234ab365d0f9502a8bb, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5118a4333b8e5ec4aa3d3e9eaea9a6f2, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -530,19 +487,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 98aa2a0dfe8db8945a4e6a234913b70e, type: 2}
---- !u!65 &1297558396914053625
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7275034171754168677}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 24.30328, z: 28.91793}
-  m_Center: {x: -34.32, y: 30.001638, z: -13.958965}
 --- !u!1 &8115155766073307529
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +498,6 @@ GameObject:
   - component: {fileID: 3216005871952988265}
   - component: {fileID: 9143562568711698662}
   - component: {fileID: 1998501491696748085}
-  - component: {fileID: 1718105797377504465}
   m_Layer: 0
   m_Name: closet_drawer_bottom
   m_TagString: Untagged
@@ -622,16 +565,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1718105797377504465
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8115155766073307529}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 8.007388, y: 4.7440076, z: 5.5653715}
-  m_Center: {x: 0.0000019073486, y: 0.000000119209005, z: -0.0000021457663}

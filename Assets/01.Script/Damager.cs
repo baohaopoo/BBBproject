@@ -13,7 +13,7 @@ public class Damager : StatusController
         Vector3 hitPoint = other.ClosestPoint(transform.position);
         //closet.Point:콜라이더의 표면 위 점중 특정위치와 가장 가까운점 반환
         Vector3 hitNormal = transform.position - other.transform.position; //공격대상 위치에서 자신의 위치로 향하는 방향
-        if (target != null)
+        if (target != null &&!target.dead)
         {
             target.OnDamage(damage, hitPoint, hitNormal); //공격 실행
         }

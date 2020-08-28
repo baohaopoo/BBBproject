@@ -70,7 +70,12 @@ public class HumanEnemy : StatusController
         //{
         //    return;
         //}
-        catAnimator.SetBool("isWalk", hasTarget); //타겟 있으면 걷는다
+        Debug.Log("dead?:" + dead);
+        if (!dead)
+        {
+            catAnimator.SetBool("isWalk", hasTarget); //타겟 있으면 걷는다
+        }
+
     }
 
     // 주기적으로 추적할 대상의 위치를 찾아 경로를 갱신
@@ -115,6 +120,9 @@ public class HumanEnemy : StatusController
                         break;
                     }
                 }
+
+                
+
             }
 
             // 0.25초 주기로 처리 반복
@@ -127,24 +135,25 @@ public class HumanEnemy : StatusController
     public override void OnDamage(int damage, Vector3 hitPoint, Vector3 hitNormal)
     {
         // statuscontroller OnDamage()를 실행하여 데미지 적용
-        base.OnDamage(damage, hitPoint, hitNormal);
-        if (dead)
+        if (!dead)
         {
-            return;
+            Debug.Log("데미지입었다");
+
+            base.OnDamage(damage, hitPoint, hitNormal);
+            target = null;
+            catAnimator.SetTrigger("isYaOng");
         }
-        catAnimator.SetTrigger("isYaOng");
-        target = null;
+
         // 아직 사망하지 않은 경우에만 피격 효과 재생
 
-            
-            // 공격 받은 지점과 방향으로 파티클 효과를 재생
-            //hitEffect.transform.position = hitPoint;
-            //hitEffect.transform.rotation = Quaternion.LookRotation(hitNormal);
-            //hitEffect.Play();
 
-            // 피격 효과음 재생
-            //enemyAudioPlayer.PlayOneShot(hitSound);
-        
+        // 공격 받은 지점과 방향으로 파티클 효과를 재생
+        //hitEffect.transform.position = hitPoint;
+        //hitEffect.transform.rotation = Quaternion.LookRotation(hitNormal);
+        //hitEffect.Play();
+
+        // 피격 효과음 재생
+        //enemyAudioPlayer.PlayOneShot(hitSound);
 
 
         
@@ -155,7 +164,7 @@ public class HumanEnemy : StatusController
     {
         // statuscontroller의 Die()를 실행하여 기본 사망 처리 실행
         base.Die();
-
+        catAnimator.SetTrigger("isDie");
         // 다른 AI들을 방해하지 않도록 자신의 모든 콜라이더들을 비활성화
         Collider[] enemyColliders = GetComponents<Collider>();
         for (int i = 0; i < enemyColliders.Length; i++)
@@ -167,7 +176,7 @@ public class HumanEnemy : StatusController
         target = null;
         pathFinder.isStopped = true;
         pathFinder.enabled = false;
-        catAnimator.SetTrigger("isDie");
+
         Destroy(gameObject, 20f);//20초뒤 제거 
 
     }

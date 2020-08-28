@@ -6,7 +6,7 @@ using Photon.Pun;
 public class frog_controller : StatusController
 {
     public LayerMask PlayerTarget;//추적대상 레이어
-    private StatusController target;// 추적대상 
+    public StatusController target;// 추적대상 
 
     public int damage = 10;// 공격력
     public float timeBetAttack = 0.5f; //공격간격
@@ -23,7 +23,7 @@ public class frog_controller : StatusController
 
     public float traceTime = 15f; //일정시간 지나면 추적 안함 
     private float lastTraceTime = 0; //마지막 추적 시점 
-
+    public bool Ontrap = false;
     // 추적할 대상이 존재하는지 알려주는 프로퍼티
     private bool hasTarget
     {
@@ -80,11 +80,15 @@ public class frog_controller : StatusController
 
         if (hasTarget&&goFrog)
         {
-            transform.LookAt(targetTrans);
-            transform.position = Vector3.Lerp(transform.position, targetTrans.position, 0.1f * speed * Time.deltaTime);
+            frogMove();
         }
     }
 
+    private void frogMove()
+    {
+        transform.LookAt(targetTrans);
+        transform.position = Vector3.Lerp(transform.position, targetTrans.position, 0.1f * speed * Time.deltaTime);
+    }
     // 주기적으로 추적할 대상의 위치를 찾아 경로를 갱신
     private IEnumerator UpdatePath()
     {
@@ -116,27 +120,31 @@ public class frog_controller : StatusController
 
             else
             {
-                // 20 유닛의 반지름을 가진 가상의 구를 그렸을때, 구와 겹치는 모든 콜라이더를 가져옴
-                // 단, targetLayers에 해당하는 레이어를 가진 콜라이더만 가져오도록 필터링
-                Collider[] colliders =
-                    Physics.OverlapSphere(transform.position, traceRange, PlayerTarget);
-
-                // 모든 콜라이더들을 순회하면서, 살아있는 플레이어를 찾기
-                for (int i = 0; i < colliders.Length; i++)
+                if (!Ontrap)
                 {
-                    // 콜라이더로부터 statuscontroller 컴포넌트 가져오기
-                    StatusController statuscontroller = colliders[i].GetComponent<StatusController>();
+                    // 20 유닛의 반지름을 가진 가상의 구를 그렸을때, 구와 겹치는 모든 콜라이더를 가져옴
+                    // 단, targetLayers에 해당하는 레이어를 가진 콜라이더만 가져오도록 필터링
+                    Collider[] colliders =
+                        Physics.OverlapSphere(transform.position, traceRange, PlayerTarget);
 
-                    // statuscontroller 컴포넌트가 존재하며, 해당 statuscontroller 살아있다면,
-                    if (statuscontroller != null && !statuscontroller.dead)
+                    // 모든 콜라이더들을 순회하면서, 살아있는 플레이어를 찾기
+                    for (int i = 0; i < colliders.Length; i++)
                     {
-                        // 추적 대상을 해당 statuscontroller로 설정
-                        target = statuscontroller;
+                        // 콜라이더로부터 statuscontroller 컴포넌트 가져오기
+                        StatusController statuscontroller = colliders[i].GetComponent<StatusController>();
 
-                        // for문 루프 즉시 정지
-                        break;
+                        // statuscontroller 컴포넌트가 존재하며, 해당 statuscontroller 살아있다면,
+                        if (statuscontroller != null && !statuscontroller.dead)
+                        {
+                            // 추적 대상을 해당 statuscontroller로 설정
+                            target = statuscontroller;
+
+                            // for문 루프 즉시 정지
+                            break;
+                        }
                     }
                 }
+               
             }
 
             yield return new WaitForSeconds(0.25f);

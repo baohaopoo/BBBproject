@@ -21,20 +21,18 @@ public class Inventory : MonoBehaviourPun
     
     public GameObject ham;
     public GameObject bread;
+    public GameObject shield;
 
 
     private PlayerHaveItem playeritem;
-    private ham hami;
-    private bread bre;
 
-  
+    private Health health;
 
     private void Start()
     {
       
         playeritem = GetComponent<PlayerHaveItem>();
-        hami = GetComponent<ham>();
-        bre = GetComponent<bread>();
+        health = player.GetComponent<Health>();
       
     }
     private void Update()
@@ -87,12 +85,33 @@ public class Inventory : MonoBehaviourPun
         }
         else if (playeritem.Iitem1.name == "BreadItem")
         {
-
-            Debug.Log("빵 아이템 사용되고 있나?");
             UseBreadItem();
         } 
+
+        else if (playeritem.Iitem1.name == "ShieldItem")
+        {
+            UseShieldItem();
+        }
     
     
+    }
+    private void UseShieldItem()
+    {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+
+        StartCoroutine(shieldCoroutine());
+    }
+
+    private IEnumerator shieldCoroutine()
+    {
+        shield.SetActive(true);
+        health.onShield = true;
+        yield return new WaitForSeconds(10f);
+        health.onShield = false;
+        shield.SetActive(false);
     }
 
     private void UsebulletItem()

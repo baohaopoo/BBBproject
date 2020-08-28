@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Photon.Pun;
 using System.Collections;
+using UnityStandardAssets.Utility;
 
 public class Health : StatusController, IPunObservable
 {
@@ -17,6 +18,8 @@ public class Health : StatusController, IPunObservable
     private StatusController status;
 
     private FriendManager friendManager;
+
+    public bool onShield = false;
 
     // 싱글톤 접근용 프로퍼티
 
@@ -98,7 +101,11 @@ public class Health : StatusController, IPunObservable
     [PunRPC]
     public override void OnDamage(int damage, Vector3 hitPoint, Vector3 hitDirection)
     {
-
+        if (onShield)
+        {
+            Debug.Log("쉴드다!");
+            return;
+        }
         base.OnDamage(damage, hitPoint, hitDirection);
 
         //죽지않았고 , 닿으면 뒤로
@@ -107,7 +114,7 @@ public class Health : StatusController, IPunObservable
             playerAnimator.SetTrigger("Damaged");
             StartCoroutine(DamageCorutain());
             playerRigidbody.velocity = Vector3.zero; //속도 0으로하고
-            playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);//뒤로
+            //playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);//뒤로
         }
 
         if (photonView.IsMine)

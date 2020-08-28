@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RabbitFriend
   m_EditorClassIdentifier: 
   itemName: "\uC6C0\uD30C\uB8F8\uD30C"
-  itemType: 5
-  itemImage: {fileID: 21300000, guid: b9618ab4f4e277b40ac95639d126463b, type: 3}
-  itemPrefab: {fileID: -927199367670048503, guid: c834240988c69e244a8fcc288babfcc4,
+  itemType: 4
+  itemImage: {fileID: 0}
+  itemPrefab: {fileID: 5189977572102570859, guid: 531c05a08e9c44d48b9230a9214789f2,
     type: 3}
   realPrefab: {fileID: 0}

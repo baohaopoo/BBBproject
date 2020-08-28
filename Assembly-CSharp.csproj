@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\01.Script\Astar\Astar.cs" />
     <Compile Include="Assets\01.Script\Astar\Grid.cs" />
+    <Compile Include="Assets\01.Script\CameraScript\CameraBlocker.cs" />
     <Compile Include="Assets\01.Script\CameraScript\GunviewCameraController.cs" />
     <Compile Include="Assets\01.Script\CameraScript\MainCameraController.cs" />
     <Compile Include="Assets\01.Script\ChangeScene.cs" />
@@ -71,9 +72,9 @@
     <Compile Include="Assets\01.Script\Damager.cs" />
     <Compile Include="Assets\01.Script\DayandNight.cs" />
     <Compile Include="Assets\01.Script\DaynNight.cs" />
-    <Compile Include="Assets\01.Script\Doll_Action.cs" />
     <Compile Include="Assets\01.Script\ExitToRoom.cs" />
-    <Compile Include="Assets\01.Script\FriendManager.cs" />
+    <Compile Include="Assets\01.Script\FriendScript\FriendInteraction.cs" />
+    <Compile Include="Assets\01.Script\FriendScript\FriendManager.cs" />
     <Compile Include="Assets\01.Script\GameManager.cs" />
     <Compile Include="Assets\01.Script\GunScript\Gun.cs" />
     <Compile Include="Assets\01.Script\GunScript\Magazine.cs" />
@@ -90,7 +91,6 @@
     <Compile Include="Assets\01.Script\Item Script\ItemPickup.cs" />
     <Compile Include="Assets\01.Script\Item Script\ItemSpawner.cs" />
     <Compile Include="Assets\01.Script\Item Script\Trap.cs" />
-    <Compile Include="Assets\01.Script\Ladder_Action.cs" />
     <Compile Include="Assets\01.Script\LobbyManager.cs" />
     <Compile Include="Assets\01.Script\NPC\dollFriend.cs" />
     <Compile Include="Assets\01.Script\NPC\frog_controller.cs" />
@@ -119,7 +119,6 @@
     <Compile Include="Assets\01.Script\UIScript\water.cs" />
     <Compile Include="Assets\01.Script\videoHadler.cs" />
     <Compile Include="Assets\01.Script\Window_Action.cs" />
-    <Compile Include="Assets\01.Script\ZoomInOut.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\OverTheShoulderAim\ActivateOnKeypress.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\Scripting\ScriptingExample.cs" />
     <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\Trigger volumes\GenericTrigger.cs" />

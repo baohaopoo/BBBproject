@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class ActionControler : MonoBehaviourPun
 {
-    
+
+    public Transform PlayerPivot;
+    public Transform FriendPivot;
 
     [SerializeField]
     private PlayerHaveItem playerhaveitem;
@@ -17,15 +19,19 @@ public class ActionControler : MonoBehaviourPun
 
     private Animator pickupanim;
     private Item item;
-    
+
+    private FriendInteraction friendInter;
+    private bool friendMeet = false;
+
     private int kFriendnum=0;
     private int cFrinednum=0;
     private FriendManager friendManager;
 
-
+    private PlayerInput playerinput;
     private void Start()
     {
         friendManager = GameObject.Find("FriendManager").GetComponent<FriendManager>();
+        playerinput = player.GetComponent<PlayerInput>();
     }
 
     public void minusFriend()
@@ -108,6 +114,7 @@ public class ActionControler : MonoBehaviourPun
                 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
+                    Debug.Log("보자보자");
                     if (item.itemName == "아이템박스")
                     {
                         other.GetComponent<ItemBox>().goani();//아이템박스 열기닫기
@@ -132,18 +139,29 @@ public class ActionControler : MonoBehaviourPun
                 //UIManager.instance.onactiontxt();
 
                 item = other.transform.GetComponent<ItemPickup>().item;
-                UIManager.instance.onactiontxt();
-                UIManager.instance.friendfind(item.itemName);  //E키를 누르면 먹을수 있다.
-
-
+                friendInter = other.GetComponent<FriendInteraction>();
+                if (friendMeet == false)
+                {
+                    UIManager.instance.onopentxt();
+                    UIManager.instance.friendfind(item.itemName);  //E키를 누르면 먹을수 있다.
+                }
+                Debug.Log("1");
                 //E키를 누르면 먹어야하는데..
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-
-                    UIManager.instance.offactiontxt();
-                    
-                    if (other.transform != null) //정보를 가져왔을때
+                    UIManager.instance.offopentxt();
+                    Debug.Log("??");
+                    if (friendMeet==false) 
                     {
+                        friendMeet = true;
+                        player.transform.position = other.gameObject.transform.position+ new Vector3(0f,0f,-4f);
+                        //서로를 바라보세요
+                        player.transform.LookAt(other.gameObject.transform);
+                        other.gameObject.transform.LookAt(player.transform);
+                        playerinput.blockKey = true; //플레이어 멈춤
+                        friendInter.CamOn(true); //카메라 변경
+                        friendInter.MeetAnim(); //친구 애니메이션 변경 
+                        UIManager.instance.offallUI();
                         // pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
                         if (SceneManager.GetActiveScene().name == "Kidsroom")
                         {
@@ -152,7 +170,7 @@ public class ActionControler : MonoBehaviourPun
                             friendManager.updateKidsFriend(-1);  //남은 키즈룸친구 -1
                             if (item.itemName == "옹졸이")
                             {
-                                UIManager.instance.OnsaveUI(1);
+                               UIManager.instance.OnsaveUI(1);
                             }
                             if (item.itemName == "움파룸파")
                             {
@@ -185,11 +203,32 @@ public class ActionControler : MonoBehaviourPun
                         updateScore(); //ui업뎃
                     }
 
+                    //else if (friendMeet == true)
+                    //{
+                    //    UIManager.instance.offopentxt();
+                    //    friendMeet = false;
+                    //    Debug.Log("친구만나서 e");
+                    //    other.gameObject.SetActive(false); //끈다
+                    //}
+
                     //other.transform.GetComponent<ItemDestroy>().destroyall();
-                    other.gameObject.SetActive(false); //끈다
                     
                    
                 }
+
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    Debug.Log("g눌렀따");
+                    UIManager.instance.OffSaveUI();
+                    UIManager.instance.onallUI();
+                    playerinput.blockKey = false;
+                    UIManager.instance.offopentxt();
+                    friendMeet = false;
+                    Debug.Log("친구만나서 e");
+                    other.gameObject.SetActive(false); //끈다
+                }
+
+
 
 
 
@@ -199,13 +238,13 @@ public class ActionControler : MonoBehaviourPun
 
     }
 
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-
-            UIManager.instance.OffSaveUI();
-        }
+        //if (Input.GetKeyDown(KeyCode.G))
+        //{
+        //    UIManager.instance.OffSaveUI();
+        //}
     }
 
     public void updateScore()
