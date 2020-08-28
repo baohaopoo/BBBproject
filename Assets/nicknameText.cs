@@ -3,57 +3,65 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityStandardAssets.Utility;
 
 using Photon.Pun;
 public class nicknameText : MonoBehaviourPun
 {
     public TextMeshProUGUI nickname; //플레이어의 nickname을 데려와..
     private string name;
-
-    //public TextMeshProUGUI nickname;
+    private GameObject FollowCam; //main camera
+    public GameObject playerpivot;
     Vector3 mypos;
 
     LobbyManager lobby;
     void Start()
     {
-        nickname.text = "";
+        
+        photonView.RPC("show", RpcTarget.All); //모두에게 닉네임 보여주기
+ 
 
-
-
-        // name = PhotonNetwork.LocalPlayer.NickName;//lobby.inputplayer.text;
-          name = PhotonNetwork.NickName;//lobby.inputplayer.text;
-
-
-        //if (photonView.IsMine)
-        //{
-
-        //    name = PhotonNetwork.NickName;
-        //}
-        //else
-        //{
-        //    name = "daf";
-           
-        //}
-        //name = photonView.Owner.NickName;
-        nickname.text += name.ToString();
-
-        mypos.x = 18.4f;
-        mypos.y = 0;
-        mypos.z = -10.3f;
     }
-
-    // Update is called once per frame
-    void Update()
+    [PunRPC]
+    public void show()
     {
+        if (photonView.IsMine)
+        {
+            nickname.text = "";
 
-        //if (photonView.IsMine)
-        //{
+            name = photonView.Owner.NickName;
+            nickname.text += name.ToString();
+        }
 
-        //    nickname.transform.Rotate(-90, 0, 0);
-        //    transform.position = mypos;
+        if (!photonView.IsMine)
+        {
 
 
-        //}
+            nickname.text = "";
 
+            name = photonView.Owner.NickName;
+
+            nickname.text += name.ToString();
+        }
+
+    
     }
+
+    private void LateUpdate()
+    {
+ 
+        transform.position = playerpivot.transform.position;
+   
+        
+
+        // transform
+        Vector3 pos;
+        pos.x = 0;// -18.4f;
+        pos.y = 0;
+        pos.z = 0;// -10.3f;
+       // FollowCam.GetComponent<SmoothFollow>().transform.rotation
+        transform.rotation = Camera.main.transform.rotation;
+    }
+
+
 }

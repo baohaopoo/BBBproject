@@ -9,7 +9,6 @@ public class PlayerHaveItem : MonoBehaviourPun
     public Item Iitem1; //획득한 아이템1
     public Item Iitem2; //획득한 아이템2
 
- 
     //진짜 아이템 정보인것
     public void AcquireItem(Item _item)
     {
@@ -38,17 +37,30 @@ public class PlayerHaveItem : MonoBehaviourPun
     private void AddItem1(Item _item1) //아이템1 추가
     {
         Iitem1 = _item1;
-        UIManager.instance.AddItem1(Iitem1);
+        // UIManager.instance.AddItem1(Iitem1);
+        updateItemUI();
 
     }
     [PunRPC]
     private void AddItem2(Item _item2) //아이템2 추가 
     {
         Iitem2 = _item2;
-        UIManager.instance.AddItem2(Iitem2);
+        //UIManager.instance.AddItem2(Iitem2);
+        updateItemUI();
 
     }
 
+    public void updateItemUI()
+    {
+        if (Iitem1 != null)
+        {
+            UIManager.instance.AddItem1(Iitem1);
+        }
+        if (Iitem2 != null)
+        {
+            UIManager.instance.AddItem2(Iitem2);
+        }
+    }
 
     public void UseItem() //아이템 사용하기 
     {
@@ -59,7 +71,7 @@ public class PlayerHaveItem : MonoBehaviourPun
             AddItem1(Iitem2); //아이템2를 아이템1에 추가
             Iitem2 = null; //아이템2는 비워주기
 
-               
+
             UIManager.instance.MoveItem2();
         }
     }

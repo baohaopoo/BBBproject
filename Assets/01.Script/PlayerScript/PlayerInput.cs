@@ -24,26 +24,23 @@ public class PlayerInput : MonoBehaviourPun
     public float mouseX { get; private set; }
     public float mouseY { get; private set; }
 
-
     private StatusController status;
+
     private void Start()
     {
-        status = gameObject.GetComponent<StatusController>();
+        status = GetComponent<StatusController>();
     }
+
+    public bool blockKey = false;
+
     // 매프레임 사용자 입력을 감지
     private void Update()
     {
-        //if (!photonView.IsMine)
-        //{
-        //    return;
-
-        //}
-
         if (photonView.IsMine)
         {
 
             //게임오버 상태에서는 사용자 입력 감지 안함
-            if (GameManager.instance != null && status.dead)
+            if (blockKey || status.dead)
             {
                 Verticalmove = 0;
                 Horizontalmove = 0;
@@ -69,7 +66,6 @@ public class PlayerInput : MonoBehaviourPun
             //마우스 입력감지
             mouseX = Input.GetAxis("Mouse X");
             mouseY = Input.GetAxis("Mouse Y");
-
 
         }
     }

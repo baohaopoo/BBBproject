@@ -14,7 +14,7 @@ public class HumanEnemy : StatusController
     private float lastAttackTime; //마지막 공격 시점
     public float traceRange = 20f; //추적 범위 
     private Animator catAnimator;
-    private float traceTime=10f; //일정시간 지나면 추적 안함 
+    private float traceTime = 10f; //일정시간 지나면 추적 안함 
     private float lastTraceTime = 0; //마지막 추적 시점 
 
     // 추적할 대상이 존재하는지 알려주는 프로퍼티
@@ -34,7 +34,7 @@ public class HumanEnemy : StatusController
         }
     }
     [PunRPC]
-    public void Setup(int newHealth, int newDamage,float newSpeed)
+    public void Setup(int newHealth, int newDamage, float newSpeed)
     {
         // 체력 설정
         startHP = newHealth;
@@ -47,7 +47,7 @@ public class HumanEnemy : StatusController
     // Start is called before the first frame update
     void Start()
     {
-          
+
         pathFinder = GetComponent<NavMeshAgent>();
         catAnimator = GetComponent<Animator>();
         // 호스트가 아니라면 AI의 추적 루틴을 실행하지 않음
@@ -70,7 +70,12 @@ public class HumanEnemy : StatusController
         //{
         //    return;
         //}
-        catAnimator.SetBool("isWalk", hasTarget); //타겟 있으면 걷는다
+        Debug.Log("dead?:" + dead);
+        if (!dead)
+        {
+            catAnimator.SetBool("isWalk", hasTarget); //타겟 있으면 걷는다
+        }
+
     }
 
     // 주기적으로 추적할 대상의 위치를 찾아 경로를 갱신
@@ -94,7 +99,6 @@ public class HumanEnemy : StatusController
             {
                 // 추적 대상 없음 : AI 이동 중지
                 pathFinder.isStopped = true;
-                Debug.Log("추적대상 없음");
                 // 20 유닛의 반지름을 가진 가상의 구를 그렸을때, 구와 겹치는 모든 콜라이더를 가져옴
                 // 단, targetLayers에 해당하는 레이어를 가진 콜라이더만 가져오도록 필터링
                 Collider[] colliders =
@@ -116,6 +120,9 @@ public class HumanEnemy : StatusController
                         break;
                     }
                 }
+
+
+
             }
 
             // 0.25초 주기로 처리 반복
@@ -128,23 +135,28 @@ public class HumanEnemy : StatusController
     public override void OnDamage(int damage, Vector3 hitPoint, Vector3 hitNormal)
     {
         // statuscontroller OnDamage()를 실행하여 데미지 적용
-        base.OnDamage(damage, hitPoint, hitNormal);
-        // 아직 사망하지 않은 경우에만 피격 효과 재생
         if (!dead)
         {
-            catAnimator.SetTrigger("isYaOng");
-            target = null;
-            // 공격 받은 지점과 방향으로 파티클 효과를 재생
-            //hitEffect.transform.position = hitPoint;
-            //hitEffect.transform.rotation = Quaternion.LookRotation(hitNormal);
-            //hitEffect.Play();
+            Debug.Log("데미지입었다");
 
-            // 피격 효과음 재생
-            //enemyAudioPlayer.PlayOneShot(hitSound);
+            base.OnDamage(damage, hitPoint, hitNormal);
+            target = null;
+            catAnimator.SetTrigger("isYaOng");
         }
 
+        // 아직 사망하지 않은 경우에만 피격 효과 재생
 
-        
+
+        // 공격 받은 지점과 방향으로 파티클 효과를 재생
+        //hitEffect.transform.position = hitPoint;
+        //hitEffect.transform.rotation = Quaternion.LookRotation(hitNormal);
+        //hitEffect.Play();
+
+        // 피격 효과음 재생
+        //enemyAudioPlayer.PlayOneShot(hitSound);
+
+
+
     }
 
     // 사망 처리
@@ -152,7 +164,7 @@ public class HumanEnemy : StatusController
     {
         // statuscontroller의 Die()를 실행하여 기본 사망 처리 실행
         base.Die();
-
+        catAnimator.SetTrigger("isDie");
         // 다른 AI들을 방해하지 않도록 자신의 모든 콜라이더들을 비활성화
         Collider[] enemyColliders = GetComponents<Collider>();
         for (int i = 0; i < enemyColliders.Length; i++)
@@ -161,9 +173,10 @@ public class HumanEnemy : StatusController
         }
 
         // AI 추적을 중지하고 내비메쉬 컴포넌트를 비활성화
+        target = null;
         pathFinder.isStopped = true;
         pathFinder.enabled = false;
-        catAnimator.SetTrigger("isDie");
+
         Destroy(gameObject, 20f);//20초뒤 제거 
 
     }

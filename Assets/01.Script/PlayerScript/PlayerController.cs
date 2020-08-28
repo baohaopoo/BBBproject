@@ -116,33 +116,30 @@ public class PlayerController : MonoBehaviourPun
 
             SceneManager.LoadScene("city3");
 
-
-           
-
         }
-        //치트키 h키 누르면 바로 도시.
-        //if (Input.GetKey(KeyCode.J))
+            //치트키 h키 누르면 바로 도시.
+            if (Input.GetKey(KeyCode.J))
+        {
+            SceneManager.LoadScene("kidsroom");
+        }
+
+        //if (Input.GetKey(KeyCode.O))
         //{
-        //    SceneManager.LoadScene("kidsroom");
+        //  //  GameObject.Destroy(gameObject);
+
+        //    SceneManager.LoadScene("HappyEnding");
+
         //}
 
-        if (Input.GetKey(KeyCode.O))
-        {
-          //  GameObject.Destroy(gameObject);
+        //if (Input.GetKey(KeyCode.P))
+        //{
+        //  //  GameObject.Destroy(gameObject);
 
-            SceneManager.LoadScene("HappyEnding");
+        //    SceneManager.LoadScene("BadEnding");
 
-        }
+        //}
 
-        if (Input.GetKey(KeyCode.P))
-        {
-          //  GameObject.Destroy(gameObject);
 
-            SceneManager.LoadScene("BadEnding");
-
-        }
-
-      
     }
 
     void FixedUpdate()
@@ -340,10 +337,9 @@ public class PlayerController : MonoBehaviourPun
     }
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("노그래비티존");
-        if (other.gameObject == ropeCollision)
+        if (other.tag == "Finish")
         {
-            noGravity = true;
+            SceneManager.LoadScene("city3");
         }
 
     }

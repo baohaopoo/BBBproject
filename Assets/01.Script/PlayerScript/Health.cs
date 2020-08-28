@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Photon.Pun;
 using System.Collections;
+using UnityStandardAssets.Utility;
 
 public class Health : StatusController, IPunObservable
 {
@@ -10,12 +11,15 @@ public class Health : StatusController, IPunObservable
     private Rigidbody playerRigidbody; // 플레이어 캐릭터의 리지드바디
 
     private PlayerController playercontroller; // 플레이어 움직임 컴포넌트
-
-
+    public ActionControler actionController; //플레이어의 친구 수 받아오려고 
 
     int x = 100;
-    public Gun gun;
+    public Magazine magazine;
     private StatusController status;
+
+    private FriendManager friendManager;
+
+    public bool onShield = false;
 
     // 싱글톤 접근용 프로퍼티
 
@@ -43,9 +47,9 @@ public class Health : StatusController, IPunObservable
         playerRigidbody = GetComponent<Rigidbody>();
         status = GetComponent<StatusController>();
         playercontroller = GetComponent<PlayerController>();
+        friendManager = GameObject.Find("FriendManager").GetComponent<FriendManager>();
     }
 
-    //요거  추가햄
     private void Update()
     {
         if (photonView.IsMine == false)
@@ -97,7 +101,11 @@ public class Health : StatusController, IPunObservable
     [PunRPC]
     public override void OnDamage(int damage, Vector3 hitPoint, Vector3 hitDirection)
     {
-
+        if (onShield)
+        {
+            Debug.Log("쉴드다!");
+            return;
+        }
         base.OnDamage(damage, hitPoint, hitDirection);
 
         //죽지않았고 , 닿으면 뒤로
@@ -106,17 +114,14 @@ public class Health : StatusController, IPunObservable
             playerAnimator.SetTrigger("Damaged");
             StartCoroutine(DamageCorutain());
             playerRigidbody.velocity = Vector3.zero; //속도 0으로하고
-            playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);//뒤로
+            //playerRigidbody.AddForce(Vector3.right * -10, ForceMode.Impulse);//뒤로
         }
 
         if (photonView.IsMine)
         {
 
-            Debug.Log("현재 체력은?????????");
-            Debug.Log(HP);
             //갱신된 체력 슬라이더에 반영
             UpdateUI();
-
 
         }
 
@@ -125,7 +130,7 @@ public class Health : StatusController, IPunObservable
     }
 
     //ui갱신 
-    private void UpdateUI()
+    public void UpdateUI()
     {
          if (playerRigidbody != null && UIManager.instance != null)
         {
@@ -160,13 +165,13 @@ public class Health : StatusController, IPunObservable
 
         base.Die();
 
+        actionController.minusFriend(); //친구 빼라
         //총 내려놓게함
         playercontroller.NotUseGun();
         photonView.RPC("dieAni", RpcTarget.All);
         if (photonView.IsMine)
         {
             UpdategameoverUI(true);
-
         }
     }
     [PunRPC]
@@ -193,9 +198,10 @@ public class Health : StatusController, IPunObservable
         //로컬 플레이어만 직접 위치 변경 가능
         if (photonView.IsMine)
         {
-            UpdategameoverUI(false);
-            UIManager.instance.onallUI();
             photonView.RPC("repawnAni", RpcTarget.All);
+            UpdategameoverUI(false);
+            UIManager.instance.onallUI(); //모든 UI 켜기
+
 
 
 
@@ -204,16 +210,10 @@ public class Health : StatusController, IPunObservable
             randomPos.x = 88.2153f;
             randomPos.y =5f;
             randomPos.z = 453.567f;
-            //원점에서 반경 5유닛 내부의 랜덤 위치 지정
-         //   Vector3 randomSpawnPos = Random.insideUnitSphere * 9f;
-            //랜덤 위치의 y값을 0으로 변경
-           // randomSpawnPos.y = 5f;
+            gameObject.transform.position = randomPos;
 
-            //지정된 랜덤 위치로 이동
-            transform.position = randomPos;
-
-            gun.bulletRemain = 5;
-            gun.UpdateUI();
+            magazine.bulletRemain = 5;
+            magazine.UpdateUI();
 
 
 
@@ -227,7 +227,8 @@ public class Health : StatusController, IPunObservable
     {
         status.dead = false;
         playerAnimator.SetTrigger("Respawn"); //다시 일어낫!
-        status.RestoreHP(500); //체력 100 충전 
+        status.RestoreHP(1000); //체력 100 충전 
+        
 
 
     }

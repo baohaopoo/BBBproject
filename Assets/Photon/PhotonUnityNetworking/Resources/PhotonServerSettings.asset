@@ -90,6 +90,13 @@ MonoBehaviour:
   - respawnani
   - Setup
   - ChangeScene
+  - shownickname
+  - show
+  - ChatRPC
+  - Chat
+  - Send
+  - closeTrap
+  - openTrap
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

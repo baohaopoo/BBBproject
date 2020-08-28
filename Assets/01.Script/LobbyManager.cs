@@ -19,7 +19,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public TMP_InputField nicknameinput, roominput; //인풋필드
 
     //public InputField nicknameinput, roominput;
-   
+
 
     public TextMeshProUGUI inputplayer, inputroom; //roomlist용 코드
 
@@ -30,16 +30,22 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private int gocnt = 0;
 
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     void Start()
     {
         PhotonNetwork.GameVersion = gameVersion;
         PhotonNetwork.ConnectUsingSettings(); //마스터 서버 연결
 
-       
+
         // startButton.interactable = false;
         gocnt = 0;
-       
+
     }
+
+
     //서버 연결
     public override void OnConnectedToMaster() //connect가 연결이 되면 콜백함수임. 여기서 콜백함수란 앞의 connet함수가 잘되어야 이 함수가 된다는의미.
     {
@@ -51,7 +57,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     //서버 연결끊기
     public override void OnDisconnected(DisconnectCause cause)
     {
-        
+
         Debug.Log("연결끊김");
         PhotonNetwork.ConnectUsingSettings(); //마스터 서버 재연결
     }
@@ -62,39 +68,40 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         isclickgo = true;
 
 
+        // PhotonNetwork.NickName = nicknameinput.text.ToString();
 
-       
-       PhotonNetwork.LocalPlayer.NickName = nicknameinput.text.ToString(); //플레이어 이름 정해주기 , 로컬 이름에 nicknameinput에서 받아온 text를 넣어준다.
-       roomname = roominput.text.ToString(); //roomname string에도 roominput.text받아온거를 넣어준다.
+        PhotonNetwork.LocalPlayer.NickName = nicknameinput.text.ToString(); //플레이어 이름 정해주기 , 로컬 이름에 nicknameinput에서 받아온 text를 넣어준다.
+        roomname = roominput.text.ToString(); //roomname string에도 roominput.text받아온거를 넣어준다.   
 
         gocnt += 1;
         Debug.Log("클릭했냐?");
         Debug.Log(isclickgo);
 
     }
+
     //startbutton 누르면
     public void Connect() {
-       
+
         if (PhotonNetwork.IsConnected) //마스터에 연결되어있고
         {
-          
-            if (gocnt>= 1)
+
+            if (gocnt >= 1)
             {
-             //   PhotonNetwork.JoinOrCreateRoom(roominput.text, new RoomOptions { MaxPlayers = 4 },)
+                //   PhotonNetwork.JoinOrCreateRoom(roominput.text, new RoomOptions { MaxPlayers = 4 },)
                 //CreateRoom(); //방만들기 정해준 이름으로
-        
-                    PhotonNetwork.JoinOrCreateRoom(roominput.text, null, TypedLobby.Default);
-            
-            }else if (gocnt == 0)
+
+                PhotonNetwork.JoinOrCreateRoom(roominput.text, null, TypedLobby.Default);
+
+            } else if (gocnt == 0)
             {
                 pause.SetActive(true);
             }
-            
-         
+
+
             Debug.Log("방 생성 및 접속중..");
         }
         else
-        { 
+        {
             PhotonNetwork.ConnectUsingSettings();
         }
     }
@@ -108,7 +115,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         roomOptions.PublishUserId = true;
 
         PhotonNetwork.CreateRoom(roominput.text, new RoomOptions { MaxPlayers = 4 });
-        
+
 
     }
     //방 만들기 콜백함수
@@ -135,7 +142,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     }
 
-    
+
 
 
     //방만들기 실패 콜백함수
@@ -167,6 +174,18 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 4 });
 
     }
+
+    ////채팅관련함수
+    //public void Send()
+    //{ 
+
+    //    string msg = PhotonNetwork.NickName+":"+ 
+
+    //}
+    //public override void OnPlayerEnteredRoom(Player newPlayer)
+    //{
+    //    PV.RPC("ChatRPC", RpcTarget.All, "<color=yellow>" + newPlayer.NickName + "님이 참가하셨습니다</color>");
+    //}
     public void Infoclose()
     {
 

@@ -6,9 +6,7 @@ using Photon.Pun;
 //inventory slot
 public class Inventory : MonoBehaviourPun
 
-{ 
-    [SerializeField]
-    private Gun gun;
+{
 
     [SerializeField]
     private GameObject realTrap_item_prefab; //진짜덫 아이템
@@ -19,33 +17,34 @@ public class Inventory : MonoBehaviourPun
     [SerializeField]
     private GameObject player;
 
+    public Magazine magazine;
+
     public GameObject ham;
     public GameObject bread;
+    public GameObject shield;
 
 
     private PlayerHaveItem playeritem;
-    private ham hami;
-    private bread bre;
 
-  
+    private Health health;
 
     private void Start()
     {
-      
+
         playeritem = GetComponent<PlayerHaveItem>();
-        hami = GetComponent<ham>();
-        bre = GetComponent<bread>();
-      
+        health = player.GetComponent<Health>();
+
     }
     private void Update()
     {
+        Debug.Log("onshield:" + health.onShield);
 
         if (playeritem.Iitem1 != null && Input.GetButtonDown("UseItem")) //아이템 있고 쉬프트키 누르면 사용 
         {
-           
+
             checkItem(); //아이템 뭔지 체크
             playeritem.UseItem(); //아이템 지워주기 
-  
+
         }
 
         //치트키********//
@@ -74,59 +73,72 @@ public class Inventory : MonoBehaviourPun
             UsetrapItem();
         }
 
-        //
+
         else if (playeritem.Iitem1.name == "ObstacleItem")
         {
-
-            Debug.Log("아이템 사용되고 있나?");
             UseObstacleItem();
         }
-        //
+
         else if (playeritem.Iitem1.name == "HamItem")
         {
-
-            Debug.Log("햄 아이템 사용되고 있나?");
             UseHamItem();
-
 
         }
         else if (playeritem.Iitem1.name == "BreadItem")
         {
-
-            Debug.Log("빵 아이템 사용되고 있나?");
             UseBreadItem();
-        } 
-    
-    
+        }
+
+        else if (playeritem.Iitem1.name == "ShieldItem")
+        {
+            UseShieldItem();
+        }
+
+
+    }
+    private void UseShieldItem()
+    {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+
+        StartCoroutine(shieldCoroutine());
+    }
+
+    private IEnumerator shieldCoroutine()
+    {
+        shield.SetActive(true);
+        health.onShield = true;
+        yield return new WaitForSeconds(10f);
+        health.onShield = false;
+        shield.SetActive(false);
     }
 
     private void UsebulletItem()
     {
-    
-            //gun에 
-            gun.bulletRemain += 3;
-            if (gun.bulletRemain > 5)
-            {
-                gun.bulletRemain = 5;
-            }
 
-            Debug.Log("지금 아이템 불렛을 추가했다! bullet:" + gun.bulletRemain);
-          
-            gun.UpdateUI();
+        magazine.bulletRemain += 3;
+        if (magazine.bulletRemain > 5)
+        {
+            magazine.bulletRemain = 5;
+        }
+
+        magazine.UpdateUI();
     }
 
 
     private void UsetrapItem()
     {
-     
-  
 
-            //플레이어를 기준으로 조금 위, 조금 앞에 덫을 위치하게 한다.
-            Vector3 pos = player.transform.position + Vector3.up * 0.4f + Vector3.forward * 2f;
-            //바닥에 덫 생성
-            PhotonNetwork.Instantiate(realTrap_item_prefab.name, pos, Quaternion.identity);
-          
-       
+
+
+        //플레이어를 기준으로 조금 위, 조금 앞에 덫을 위치하게 한다.
+        Vector3 pos = player.transform.position + Vector3.up * 0.4f + Vector3.forward * 2f;
+        //바닥에 덫 생성
+        PhotonNetwork.Instantiate(realTrap_item_prefab.name, pos, Quaternion.identity);
+
+
 
     }
 
@@ -135,13 +147,13 @@ public class Inventory : MonoBehaviourPun
     {
 
 
-            //플레이어를 기준으로 조금 위, 조금 앞에 obstacle을 위치하게 한다.
-            Vector3 pos = player.transform.position + Vector3.up * 0.4f + Vector3.forward * 2f;
-         
-            PhotonNetwork.Instantiate(realObstacle_item_prefab.name, pos, Quaternion.identity);
+        //플레이어를 기준으로 조금 위, 조금 앞에 obstacle을 위치하게 한다.
+        Vector3 pos = player.transform.position + Vector3.up * 0.4f + Vector3.forward * 2f;
 
-        
-       
+        PhotonNetwork.Instantiate(realObstacle_item_prefab.name, pos, Quaternion.identity);
+
+
+
     }
     [PunRPC]
     public void hamani()
@@ -161,8 +173,8 @@ public class Inventory : MonoBehaviourPun
         }
 
         photonView.RPC("hamani", RpcTarget.All);
- 
-      
+
+
 
 
     }
@@ -185,8 +197,8 @@ public class Inventory : MonoBehaviourPun
         }
 
         photonView.RPC("breadani", RpcTarget.All);
-        
-    
+
+
 
     }
 

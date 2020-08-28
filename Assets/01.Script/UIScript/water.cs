@@ -52,10 +52,7 @@ public class water : MonoBehaviourPun
     private void InWater(Collider player)
     {
 
-        if (!photonView.IsMine)
-        {
-            return;
-        }
+
         isWater = true;
         player.transform.GetComponent<Rigidbody>().drag = waterDrag;
 
@@ -67,10 +64,7 @@ public class water : MonoBehaviourPun
     {
 
 
-        if (!photonView.IsMine)
-        {
-            return;
-        }
+
         if (isWater)
         {
             isWater = false;

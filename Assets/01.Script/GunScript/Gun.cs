@@ -9,6 +9,8 @@ public class Gun : MonoBehaviourPun, IPunObservable
     //GameObject
     private static Gun instance = null;
     public GameObject Player;
+    public Magazine magazine;
+    public GameObject gunViewCam;
 
     //주기적으로 자동 실행
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -18,13 +20,13 @@ public class Gun : MonoBehaviourPun, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(state);
-            stream.SendNext(bulletRemain);
+            stream.SendNext(magazine.bulletRemain);
 
         }
         else
         {
             state = (State)stream.ReceiveNext();
-            bulletRemain = (int)stream.ReceiveNext();
+            magazine.bulletRemain = (int)stream.ReceiveNext();
 
         }
 
@@ -55,7 +57,6 @@ public class Gun : MonoBehaviourPun, IPunObservable
     private GameObject HitEffect; //총에 맞았을때 나오는 효과
     public GameObject explosionEffect; //particle
 
-    //private GameObject ShootedEffect; 
 
 
     [HideInInspector]
@@ -64,20 +65,16 @@ public class Gun : MonoBehaviourPun, IPunObservable
     public int damage = 20; // 공격력
     private float fireDistance = 50f; // 사정거리
 
-    public int bulletRemain=5; // 남은 총알
     public int bulletCapacity = 5; // 총알 용량
 
-    public int startbullet = 5;
+
     public float timeBetFire = 0.12f; // 총알 발사 사이의 시간간격
     public float lastFireTime = 0; // 총을 마지막으로 발사한 시점 
 
 
-
-    private PlayerInput playerInput;
-    private PlayerShooter playershooter;
     public GameObject Aim;
     public Animator AimAnimator;
-    // public static Gun instance= null;  //실험
+
 
 
     //audio클립
@@ -93,16 +90,17 @@ public class Gun : MonoBehaviourPun, IPunObservable
         bulletLineRenderer.enabled = false;
 
 
-        playerInput = GetComponent<PlayerInput>();
-        playershooter = GetComponent<PlayerShooter>();
-
-
         gunAudio = GetComponent<AudioSource>();
 
     }
+
+    private void Start()
+    {
+        gameObject.transform.rotation = Player.transform.rotation;
+    }
     public void Stateon()
     {
-     
+
         state = State.Ready;
     }
 
@@ -110,36 +108,24 @@ public class Gun : MonoBehaviourPun, IPunObservable
     {
 
         state = State.Empty;
-    
+
     }
 
     private void OnEnable()
     {
-       // bulletRemain = 5;
-            
-        // 총 상태 초기화
+
 
         lastFireTime = 0;
-       
+
     }
 
 
-    public void cheetkey()
-    { 
-        if (Input.GetKey(KeyCode.X))
-        {
-            Debug.Log("치트키가 써졌다!~");
-            bulletRemain += 1;
-
-        }
-    }
 
 
     public void preshot()
     {
-      
-        photonView.RPC("Shot", RpcTarget.All);
 
+        photonView.RPC("Shot", RpcTarget.All);
 
     }
 
@@ -159,7 +145,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
     // 발사 시도
     public void Fire()
-   {
+    {
         //마지막 발사 했을때에서 timeBetfire이상의 시간이 났을때 
         if (state == State.Ready && Time.time >= lastFireTime + timeBetFire)
         {
@@ -167,25 +153,18 @@ public class Gun : MonoBehaviourPun, IPunObservable
             lastFireTime = Time.time;
 
             preshot(); //쏴라!
-       
-  
+
+
         }
     }
 
     // 실제 발사 처리
 
-
-    private void Update()
-    {
-        /////치트키
-        cheetkey();
-        
-    }
     [PunRPC]
     private void Shot()
     {
         gunAudio.PlayOneShot(shotClip);
-       
+
 
         //레이캐스트에 의한 충돌 정보 저장
         RaycastHit hit;
@@ -200,9 +179,6 @@ public class Gun : MonoBehaviourPun, IPunObservable
             //Instantiate(생성할 오브젝트, 생성될 위치, 어느 방향으로?)
             Instantiate(HitEffect, hit.point, Quaternion.LookRotation(hit.normal));
             Instantiate(explosionEffect, hit.point, Quaternion.LookRotation(hit.normal));
-
-            //UI를 바꾼다.
-            //BulletUI();
 
 
             //레이가 물체에 닿은경우에는 True, 아님 Fasle 
@@ -231,48 +207,27 @@ public class Gun : MonoBehaviourPun, IPunObservable
 
 
 
-        bulletRemain -= 1;
+        magazine.bulletRemain -= 1;
 
-      //  UpdateUI();
 
         if (photonView.IsMine)
         {
 
-           
-            Debug.Log("현재 탄알은??????");
-            Debug.Log(bulletRemain);
-            UpdateUI();
-           
+            magazine.UpdateUI();
+
 
         }
 
 
         Debug.Log("남은 탄알의 수");
-        if (bulletRemain <= 0)
+        if (magazine.bulletRemain <= 0)
         {
             //총알이 남은게 없다면 현재상태 Empty
             state = State.Empty;
-            Debug.Log("아무것도 남지 않았다.");
-
         }
     }
 
-    public void gunreset()
-    {
 
-        Debug.Log("총알 갯수 뤼셋한다.");
-        bulletRemain = 5;
-        UpdateUI();
-        Debug.Log(bulletRemain);
-    }
-    public void UpdateUI()
-    {
-        if ( UIManager.instance != null)
-        {
-           
-            UIManager.instance.updateBullet(bulletRemain);
-        }
-    }
 
 
     // 발사 이펙트와 총알 궤적을 그린다    //코루틴사용
@@ -281,7 +236,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
         shellEjectEffect.Play(); //탄피 배출 효과 재생
         muzzleFlashEffect.Play();
         //explosionEffect.Play();
-       // shootedEffect.Play();
+        // shootedEffect.Play();
         //탄알 궤적 그리기
         //라인의 시작점은 총구에 위치한다. 
         bulletLineRenderer.SetPosition(0, fireTransform.position);
@@ -296,7 +251,7 @@ public class Gun : MonoBehaviourPun, IPunObservable
         // 라인 렌더러를 비활성화하여 총알 궤적을 지운다
         bulletLineRenderer.enabled = false;
 
-    
+
     }
 
 
@@ -305,7 +260,15 @@ public class Gun : MonoBehaviourPun, IPunObservable
         shootedEffect.Play();
 
     }
-   
-    
-  
+
+    private void rotateGun()
+    {
+        gameObject.transform.rotation = gunViewCam.transform.rotation;
+    }
+
+    private void Update()
+    {
+        rotateGun();
+    }
+
 }

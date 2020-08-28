@@ -6,18 +6,20 @@ using UnityEngine.Video;
 using Photon.Pun;
 using UnityStandardAssets.Utility;
 
-public class videoHadler : MonoBehaviour
+public class videoHadler : MonoBehaviourPun
 {
     private GameObject FollowCam; //main camera
-    public UnityStandardAssets.Utility.SmoothFollow maincam;
+
     public RawImage mScreen = null;
     public VideoPlayer mVideoPlayer = null;
-    //public GameObject player;
-    // public Scene city;
-    // private bool isend = false;
     private int cnt = 0;
     private GameObject PlayerPibot;
-    // Start is called before the first frame update
+    private ActionControler actioncontroller;
+
+    private Health player;
+    private Magazine magazine;
+    private PlayerHaveItem playerhaveItem;
+
     void Start()
     {
         if (mScreen != null && mVideoPlayer != null)
@@ -44,38 +46,7 @@ public class videoHadler : MonoBehaviour
 
         mScreen.texture = mVideoPlayer.texture;
     }
-    //public void PlayVideo()
-    //{
-    //    if (mVideoPlayer != null && mVideoPlayer.isPrepared)
-    //    {
 
-    //        // 비디오 재생
-    //        mVideoPlayer.Play();
-    //        Debug.Log("비디오 재생중..");
-    //        mScreen.gameObject.SetActive(true);
-
-
-
-    //    }
-    //}
-
-    //public void ChangeScene()
-    //{
-    //    Debug.Log("체인지?");
-    //    SceneManager.LoadScene("city3");
-    //}
-    //public void StopVideo()
-    //{
-    //    if (mVideoPlayer != null && mVideoPlayer.isPrepared)
-    //    {
-    //        // 비디오 멈춤
-    //        mVideoPlayer.Stop();
-    //        mScreen.gameObject.SetActive(false);
-
-
-    //    }
-    //}
-    // Update is called once per frame
     void Update()
     {
 
@@ -84,21 +55,50 @@ public class videoHadler : MonoBehaviour
             cnt += 1;
 
         }
-        if (cnt >= 10)
+        if (cnt == 10)
         {
-           // if (photonView.IsMine)
-           // {
-
-                FollowCam = GameObject.Find("MainCamera");
-                PlayerPibot = GameObject.Find("playerpivot");
-                FollowCam.GetComponent<SmoothFollow>().target = PlayerPibot.transform;
-
-
-            //}
-            UIManager.instance.EndMovie();
+            StopMovie();
         }
 
-
+        if (Input.GetKeyDown("1"))
+        {
+            StopMovie(); //영상 멈추는 치트키 
+        }
 
     }
+
+    public void StopMovie()
+    {
+        resetCam(); //cam 피봇 재설정 
+        resetUI(); //UI 넘어가면서 재설정 
+        UIManager.instance.EndMovie();
+
+    }
+
+    private void resetCam()
+    {
+        FollowCam = GameObject.Find("MainCamera");
+        PlayerPibot = GameObject.Find("playerpivot");
+        FollowCam.GetComponent<SmoothFollow>().target = PlayerPibot.transform;
+    }
+
+
+    private void resetUI()
+    {
+        //친구구한 갯수 
+        actioncontroller = GameObject.Find("ItemCollider").GetComponent<ActionControler>();
+        actioncontroller.updateScore();
+        //HP
+        player = GameObject.Find("player22(Clone)").GetComponent<Health>();
+        player.UpdateUI();
+        //총알
+        magazine = GameObject.Find("Magazine").GetComponent<Magazine>();
+        magazine.UpdateUI();
+
+        //인벤토리
+        playerhaveItem = GameObject.Find("InventorySlot").GetComponent<PlayerHaveItem>();
+        playerhaveItem.updateItemUI();
+
+    }
+
 }

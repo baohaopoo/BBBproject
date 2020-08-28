@@ -29,6 +29,19 @@ TagManager:
   - Guts
   - FxTemporaire
   - pushObject
+  - frog
+  - Left
+  - BackOrLeft
+  - Right
+  - BackOrRight
+  - Back
+  - MaleSuit
+  - MaleHead
+  - Female_TrouserSuit
+  - Female_SkinForSkirt
+  - Female_SkirtSuit
+  - Female_SkinForTrousers
+  - chat
   layers:
   - Default
   - TransparentFX
