@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{8188A31D-C79D-38A9-9183-863DE7042B88}</ProjectGuid>
+    <ProjectGuid>{73F41C4A-C1E3-9429-FFB1-EC838A495F68}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\01.Script\Astar\Astar.cs" />
     <Compile Include="Assets\01.Script\Astar\Grid.cs" />
+    <Compile Include="Assets\01.Script\CameraController.cs" />
     <Compile Include="Assets\01.Script\CameraScript\GunviewCameraController.cs" />
     <Compile Include="Assets\01.Script\CameraScript\MainCameraController.cs" />
     <Compile Include="Assets\01.Script\ChangeScene.cs" />
@@ -249,43 +250,43 @@
     <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -465,10 +466,10 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Assets/Plugins/Photon3Unity3D.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
-      <HintPath>C:/Users/user/Desktop/BBBproject-finalmerge/BBBproject-finalmerge/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.9f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -833,51 +834,51 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{4AC987F4-AA3D-1B8A-6075-A88FD44A2F5E}</Project>
+      <Project>{D7E527C4-F765-2C64-5434-87E995A7E3A3}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj">
-      <Project>{97B545BD-764F-8446-0D39-6EE90D61409C}</Project>
+      <Project>{A116772F-2473-EF55-18CE-41783DEC937D}</Project>
       <Name>PhotonUnityNetworking.Utilities.PhotonPlayer.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PunDemos.DemoHubEditor.csproj">
-      <Project>{5F670920-BEBF-E6DF-0A4D-97050A94264B}</Project>
+      <Project>{5C481F59-B2E8-3B0B-E4BF-471E133E34DB}</Project>
       <Name>PunDemos.DemoHubEditor</Name>
     </ProjectReference>
     <ProjectReference Include="PunDemos.DemoSlotcarEditor.csproj">
-      <Project>{C451E2C2-F6F6-9FBF-DAFB-3A0D5EABF864}</Project>
+      <Project>{B8DA9436-6329-EBCA-53E9-2F487134C5D7}</Project>
       <Name>PunDemos.DemoSlotcarEditor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Demos.csproj">
-      <Project>{484E16E5-EFDF-2F4B-77A9-94D0F132CBF7}</Project>
+      <Project>{497CD6AF-404E-D4A6-2EF0-B2C1BBC42837}</Project>
       <Name>PhotonUnityNetworking.Demos</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.csproj">
-      <Project>{09BF9C39-D75F-C7E9-C111-250BC926E53E}</Project>
+      <Project>{A26DC5F1-FCAD-C863-2599-82A27157115B}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonWebSocket.csproj">
-      <Project>{02EA2DF5-AEFE-275A-504F-9505606133EE}</Project>
+      <Project>{38A39429-2ECC-5D81-F636-DE1B56E704B9}</Project>
       <Name>PhotonWebSocket</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonRealtime.csproj">
-      <Project>{4C3127E3-755D-6CCD-A270-3500544F322E}</Project>
+      <Project>{F4C972FB-5D7C-F8D8-2656-035A799D2C09}</Project>
       <Name>PhotonRealtime</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.csproj">
-      <Project>{82F56108-2B98-E37C-2CE2-EB46FAB1E99A}</Project>
+      <Project>{B0647CCF-FCD9-489D-1EC6-313C749F706D}</Project>
       <Name>PhotonUnityNetworking</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonChat.csproj">
-      <Project>{B9342373-E266-3E76-7E55-319177DA2BBE}</Project>
+      <Project>{A9B32F2C-1C09-061D-7AA7-6372CA7AF4B5}</Project>
       <Name>PhotonChat</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
-      <Project>{2B2CDFAD-3862-3A13-55BF-ED22836F7679}</Project>
+      <Project>{49AD4EAB-999D-336B-7574-4210E1BEE3AA}</Project>
       <Name>PhotonUnityNetworking.Utilities.Culling.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Editor.csproj">
-      <Project>{BA830063-AD58-BD6E-2D88-51AA48D2DEAD}</Project>
+      <Project>{6F595D4E-3373-B745-935A-847BCBC9A119}</Project>
       <Name>PhotonUnityNetworking.Editor</Name>
     </ProjectReference>
   </ItemGroup>

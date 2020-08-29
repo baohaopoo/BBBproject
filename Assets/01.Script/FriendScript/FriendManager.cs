@@ -108,7 +108,7 @@ public class FriendManager : MonoBehaviour
 
     private void findcamera(GameObject parent)
     {
-        GameObject friendcam = parent.transform.FindChild("friendCam").gameObject;
+        GameObject friendcam = parent.transform.Find("friendCam").gameObject;
         friendcam.SetActive(false);
     }
 }
