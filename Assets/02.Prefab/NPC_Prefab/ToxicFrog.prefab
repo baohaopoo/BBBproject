@@ -3362,7 +3362,7 @@ MonoBehaviour:
   startHP: 40
   PlayerTarget:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 256
   target: {fileID: 0}
   damage: 10
   timeBetAttack: 0.5

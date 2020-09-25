@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Utility;
 
 public class MainCameraController : MonoBehaviour
 {
@@ -10,19 +11,19 @@ public class MainCameraController : MonoBehaviour
     private float yPosition = 0.0f;
     private float pitch = 0.0f;
 
-    public bool iswall = false;
-
+    private SmoothFollow smoothfollow;
 
     // Start is called before the first frame update
     void Start()
     {
+        smoothfollow = GetComponent<SmoothFollow>();
         camTransform = GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (iswall)
+        if (smoothfollow.iswall)
         {
             return;
         }

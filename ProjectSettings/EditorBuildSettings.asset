@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/00.Scenes/StartScene.unity
     guid: d24b1fae8193ace45aafe4c8e369ab0c
   - enabled: 1
+    path: Assets/07.Material/PlayerPick.unity
+    guid: 8582a6d4f824cef49b33dc16bf3cfbf9
+  - enabled: 1
+    path: Assets/00.Scenes/checkbearpick.unity
+    guid: 339e2ff1e70467c41b6bce5fb1a47d02
+  - enabled: 1
+    path: Assets/00.Scenes/pinkbearpick.unity
+    guid: da13bb5fff6535d4486bcd37f84118dd
+  - enabled: 1
     path: Assets/00.Scenes/Kidsroom.unity
     guid: 28d571e5c4d21ae41a53f32f42856b64
   - enabled: 1

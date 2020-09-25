@@ -197,10 +197,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  distance: 4
+  width: 10
   height: 1
   rotationDamping: 2
   heightDamping: 2
+  iswall: 0
 --- !u!114 &4945403621205322010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,4 +252,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 1
-  iswall: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerpickup : MonoBehaviour
 {
@@ -9,15 +10,23 @@ public class playerpickup : MonoBehaviour
     public GameObject playerpick;
     int cnt = 0;
 
+    public void Awake()
+    {
+     
+    }
     public void pick()
     {
-        playerpick.gameObject.SetActive(true);
+        //playerpick.gameObject.SetActive(true);
+
         cnt += 1;
 
-
+        // PlayerPrefs.SetString("Name",)
+        GameObject.Find("SSs").SetActive(false);
+        SceneManager.LoadScene("PlayerPick",LoadSceneMode.Additive);
+        
         if (cnt == 2)
         {
-            playerpick.gameObject.SetActive(false);
+            //playerpick.gameObject.SetActive(false);
             cnt = 0;
           
         }

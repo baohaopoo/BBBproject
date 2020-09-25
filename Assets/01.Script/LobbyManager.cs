@@ -13,7 +13,7 @@ using TMPro;
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     private string gameVersion = "1"; //게임 버전
-    private string roomname;
+    private static string roomname;
 
     public Button startButton, goButton;
     public TMP_InputField nicknameinput, roominput; //인풋필드
@@ -71,11 +71,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         // PhotonNetwork.NickName = nicknameinput.text.ToString();
 
         PhotonNetwork.LocalPlayer.NickName = nicknameinput.text.ToString(); //플레이어 이름 정해주기 , 로컬 이름에 nicknameinput에서 받아온 text를 넣어준다.
-        roomname = roominput.text.ToString(); //roomname string에도 roominput.text받아온거를 넣어준다.   
-
+        //roomname = roominput.text.ToString(); //roomname string에도 roominput.text받아온거를 넣어준다.   
+        roomname = PlayerPrefs.GetString(roominput.text.ToString());
         gocnt += 1;
         Debug.Log("클릭했냐?");
         Debug.Log(isclickgo);
+
 
     }
 

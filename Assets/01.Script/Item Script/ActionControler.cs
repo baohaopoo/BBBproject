@@ -32,6 +32,7 @@ public class ActionControler : MonoBehaviourPun
     {
         friendManager = GameObject.Find("FriendManager").GetComponent<FriendManager>();
         playerinput = player.GetComponent<PlayerInput>();
+        pickupanim = player.GetComponent<Animator>();
     }
 
     public void minusFriend()
@@ -81,6 +82,7 @@ public class ActionControler : MonoBehaviourPun
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
 
                     if (other.transform != null) //정보를 가져왔을때
                     {
@@ -114,7 +116,7 @@ public class ActionControler : MonoBehaviourPun
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    Debug.Log("보자보자");
+                    pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
                     if (item.itemName == "아이템박스")
                     {
                         other.GetComponent<ItemBox>().goani();//아이템박스 열기닫기
@@ -131,6 +133,32 @@ public class ActionControler : MonoBehaviourPun
 
         if (other.tag == "Friend")
         {
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+
+                UIManager.instance.OffSaveUI();
+                UIManager.instance.onallUI();
+                playerinput.blockKey = false;
+                UIManager.instance.offopentxt();
+                friendMeet = false;
+                friendInter.goOff();
+                //other.gameObject.SetActive(false); //끈다
+                //if (friendManager.isEnd())
+                //{
+                //    //끝났는지판정. 끝났다면 
+                //    GameObject.Destroy(player);
+                //    if (kFriendnum + cFrinednum >= 3)
+                //    {
+                //        //3개 이상 먹었으면 승리
+                //        SceneManager.LoadScene("HappyEnding");
+                //    }
+                //    else
+                //    {
+                //        //3개 이상 먹지 못했다면 패배 
+                //        SceneManager.LoadScene("BadEnding");
+                //    }
+                //}
+            }
 
             if (photonView.IsMine) //로컬일때만, onactiontxt 켜져라.
             {
@@ -145,64 +173,76 @@ public class ActionControler : MonoBehaviourPun
                     UIManager.instance.onopentxt();
                     UIManager.instance.friendfind(item.itemName);  //E키를 누르면 먹을수 있다.
                 }
-                Debug.Log("1");
-                //E키를 누르면 먹어야하는데..
-                if (Input.GetKeyDown(KeyCode.E))
+            }
+            //E키를 누르면 먹어야하는데..
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
+                UIManager.instance.offopentxt();
+                if (friendMeet == false)
                 {
-                    UIManager.instance.offopentxt();
-                    Debug.Log("??");
-                    if (friendMeet == false)
+                    friendMeet = true;
+                    player.transform.position = other.gameObject.transform.position + new Vector3(0f, 0f, -4f);
+                    //서로를 바라보세요
+                    player.transform.LookAt(other.gameObject.transform);
+                    other.gameObject.transform.LookAt(player.transform);
+                    playerinput.blockKey = true; //플레이어 멈춤
+                    friendInter.CamOn(true); //카메라 변경
+                    friendInter.MeetAnim(); //친구 애니메이션 변경 
+                    UIManager.instance.offallUI();
+
+                    if (SceneManager.GetActiveScene().name == "Kidsroom")
                     {
-                        friendMeet = true;
-                        player.transform.position = other.gameObject.transform.position + new Vector3(0f, 0f, -4f);
-                        //서로를 바라보세요
-                        player.transform.LookAt(other.gameObject.transform);
-                        other.gameObject.transform.LookAt(player.transform);
-                        playerinput.blockKey = true; //플레이어 멈춤
-                        friendInter.CamOn(true); //카메라 변경
-                        friendInter.MeetAnim(); //친구 애니메이션 변경 
-                        UIManager.instance.offallUI();
-                        // pickupanim.SetTrigger("isPickup"); //플레이어 애니메이션
-                        if (SceneManager.GetActiveScene().name == "Kidsroom")
+                        //이곳은 키즈룸?
+                        kFriendnum += 1;//키즈룸친구 1 추가
+                        friendManager.updateKidsFriend(-1);  //남은 키즈룸친구 -1
+                        if (item.itemName == "옹졸이")
                         {
-                            //이곳은 키즈룸?
-                            kFriendnum += 1;//키즈룸친구 1 추가
-                            friendManager.updateKidsFriend(-1);  //남은 키즈룸친구 -1
-                            if (item.itemName == "옹졸이")
-                            {
-                                UIManager.instance.OnsaveUI(1);
-                            }
-                            if (item.itemName == "움파룸파")
-                            {
-                                UIManager.instance.OnsaveUI(2);
-                                Debug.Log("움파룸파");
-                            }
+                            UIManager.instance.OnsaveUI(1);
                         }
-
-                        else
+                        if (item.itemName == "움파룸파")
                         {
-                            //이곳은 씨티?
-                            cFrinednum += 1;
-                            friendManager.updateCityFriend(-1);  //남은 씨티친구 -1
-                            if (item.itemName == "구미베어")
-                            {
-                                UIManager.instance.OnsaveUI(3);
-                            }
-
-                            if (item.itemName == "툼워치톡어")
-                            {
-                                UIManager.instance.OnsaveUI(4);
-                            }
-                            if (item.itemName == "판")
-                            {
-                                UIManager.instance.OnsaveUI(5);
-
-                            }
-
+                            UIManager.instance.OnsaveUI(2);
+                            Debug.Log("움파룸파");
                         }
-
-                        updateScore(); //ui업뎃
                     }
+
+                    else
+                    {
+                        //이곳은 씨티?
+                        cFrinednum += 1;
+                        friendManager.updateCityFriend(-1);  //남은 씨티친구 -1
+                        if (item.itemName == "구미베어")
+                        {
+                            UIManager.instance.OnsaveUI(3);
+                        }
+
+                        if (item.itemName == "툼워치톡어")
+                        {
+                            UIManager.instance.OnsaveUI(4);
+                            GameObject.Destroy(player);
+                            if (kFriendnum + cFrinednum >= 3)
+                            {
+                                //3개 이상 먹었으면 승리
+                                SceneManager.LoadScene("HappyEnding");
+                            }
+                            else
+                            {
+                                //3개 이상 먹지 못했다면 패배 
+                                SceneManager.LoadScene("BadEnding");
+                            }
+
+                        }
+                        if (item.itemName == "판")
+                        {
+                            UIManager.instance.OnsaveUI(5);
+
+                        }
+
+                    }
+
+                    updateScore(); //ui업뎃
+
 
                     //else if (friendMeet == true)
                     //{
@@ -217,30 +257,7 @@ public class ActionControler : MonoBehaviourPun
 
                 }
 
-                if (Input.GetKeyDown(KeyCode.G))
-                {
-                    UIManager.instance.OffSaveUI();
-                    UIManager.instance.onallUI();
-                    playerinput.blockKey = false;
-                    UIManager.instance.offopentxt();
-                    friendMeet = false;
-                    other.gameObject.SetActive(false); //끈다
-                    if (friendManager.isEnd())
-                    {
-                        //끝났는지판정. 끝났다면 
-                        GameObject.Destroy(player);
-                        if (kFriendnum + cFrinednum >= 3)
-                        {
-                            //3개 이상 먹었으면 승리
-                            SceneManager.LoadScene("HappyEnding");
-                        }
-                        else
-                        {
-                            //3개 이상 먹지 못했다면 패배 
-                            SceneManager.LoadScene("BadEnding");
-                        }
-                    }
-                }
+
 
 
 
@@ -255,10 +272,21 @@ public class ActionControler : MonoBehaviourPun
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.G))
-        //{
-        //    UIManager.instance.OffSaveUI();
-        //}
+        if (friendManager.isEnd())
+        {
+            //끝났는지판정. 끝났다면 
+            GameObject.Destroy(player);
+            if (kFriendnum + cFrinednum >= 3)
+            {
+                //3개 이상 먹었으면 승리
+                SceneManager.LoadScene("HappyEnding");
+            }
+            else
+            {
+                //3개 이상 먹지 못했다면 패배 
+                SceneManager.LoadScene("BadEnding");
+            }
+        }
     }
 
     public void updateScore()

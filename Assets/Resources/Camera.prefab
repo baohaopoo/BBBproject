@@ -196,11 +196,6 @@ PrefabInstance:
       propertyPath: far clip plane
       value: 500
       objectReference: {fileID: 0}
-    - target: {fileID: 2205417017535935442, guid: 7a3ebdf560d60d1438cd56df7f5ec525,
-        type: 3}
-      propertyPath: actionText
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2205417017535935440, guid: 7a3ebdf560d60d1438cd56df7f5ec525,
         type: 3}
       propertyPath: target
@@ -231,6 +226,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Synchronization
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2205417017535935442, guid: 7a3ebdf560d60d1438cd56df7f5ec525,
+        type: 3}
+      propertyPath: actionText
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a3ebdf560d60d1438cd56df7f5ec525, type: 3}

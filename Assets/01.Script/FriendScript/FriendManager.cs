@@ -20,6 +20,7 @@ public class FriendManager : MonoBehaviour
 
     public bool isEnd()
     {
+        
         if (kidsroomFriend + cityFriend == 0)
         {
             Debug.Log("게임끝!");
@@ -32,6 +33,7 @@ public class FriendManager : MonoBehaviour
     }
     public void updateKidsFriend(int n)
     {
+
         if (kidsroomFriend == 2)
         {
             rabbit = GameObject.Find("rabbit");
@@ -42,10 +44,23 @@ public class FriendManager : MonoBehaviour
         {
             kidsroomFriend = 0;
         }
-
+        Debug.Log("kidsroomFriend" + kidsroomFriend);
 
     }
 
+    //public void minusKidsFriend()
+    //{
+    //    if (kidsroomFriend == 2)
+    //    {
+    //        rabbit = GameObject.Find("rabbit");
+    //        blue = GameObject.Find("blueBear");
+    //    }
+    //    kidsroomFriend += n;
+    //    if (kidsroomFriend < 0)
+    //    {
+    //        kidsroomFriend = 0;
+    //    }
+    //}
     public void updateCityFriend(int n)
     {
         if (cityFriend == 3)
@@ -59,6 +74,7 @@ public class FriendManager : MonoBehaviour
         {
             cityFriend = 0;
         }
+        Debug.Log("cityFriend" + cityFriend);
     }
 
     public void respawnKidsroomFriend()

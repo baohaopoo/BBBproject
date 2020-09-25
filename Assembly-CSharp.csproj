@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{73F41C4A-C1E3-9429-FFB1-EC838A495F68}</ProjectGuid>
+    <ProjectGuid>{04F23C6F-1E4E-6E37-86DC-5D5EC2CA7E69}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -73,8 +73,9 @@
     <Compile Include="Assets\01.Script\Damager.cs" />
     <Compile Include="Assets\01.Script\DayandNight.cs" />
     <Compile Include="Assets\01.Script\DaynNight.cs" />
-    <Compile Include="Assets\01.Script\Doll_Action.cs" />
+    <Compile Include="Assets\01.Script\EndGame.cs" />
     <Compile Include="Assets\01.Script\ExitToRoom.cs" />
+    <Compile Include="Assets\01.Script\FadeInOut.cs" />
     <Compile Include="Assets\01.Script\FriendScript\FriendInteraction.cs" />
     <Compile Include="Assets\01.Script\FriendScript\FriendManager.cs" />
     <Compile Include="Assets\01.Script\GameManager.cs" />
@@ -123,18 +124,6 @@
     <Compile Include="Assets\01.Script\videoHadler.cs" />
     <Compile Include="Assets\01.Script\Window_Action.cs" />
     <Compile Include="Assets\01.Script\ZoomInOut.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\OverTheShoulderAim\ActivateOnKeypress.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\Scripting\ScriptingExample.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Scenes\Trigger volumes\GenericTrigger.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Models\UnityCharacter\Scripts\CharacterMovement.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Models\UnityCharacter\Scripts\CharacterMovement2D.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\ActivateCameraWithDistance.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\ActivateCamOnPlay.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\ExampleHelpWindow.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\MixingCameraBlend.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMove.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMoveOnSphere.cs" />
-    <Compile Include="Assets\11.Cinemachine\cinemachine\Cinemachine\2.5.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMovePhysics.cs" />
     <Compile Include="Assets\billboard.cs" />
     <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\SettingsUtils\SettingsData.cs" />
     <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledBanner.cs" />
@@ -149,6 +138,7 @@
     <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledMono\StyledMonoBehaviour.cs" />
     <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledMono\StyledMonoHideScriptField.cs" />
     <Compile Include="Assets\bread.cs" />
+    <Compile Include="Assets\brownbearpick.cs" />
     <Compile Include="Assets\bulletUI.cs" />
     <Compile Include="Assets\cameradontdestroy.cs" />
     <Compile Include="Assets\CameraSetup.cs" />
@@ -168,11 +158,19 @@
     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoRotate.cs" />
     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightIntensityFade.cs" />
+    <Compile Include="Assets\leftbutton.cs" />
     <Compile Include="Assets\letteron.cs" />
     <Compile Include="Assets\LowPolyBusinessPeople\Scrips\scr_Selector.cs" />
     <Compile Include="Assets\LowPolyBusinessPeople\Scrips\scr_Selector_Female.cs" />
     <Compile Include="Assets\NetWorkMgr.cs" />
+    <Compile Include="Assets\nextplayer.cs" />
     <Compile Include="Assets\nicknameText.cs" />
+    <Compile Include="Assets\Paintz Free\Demo\Scripts\PaintExample.cs" />
+    <Compile Include="Assets\Paintz Free\Demo\Scripts\RandomRotate.cs" />
+    <Compile Include="Assets\Paintz Free\Scripts\CollisionPainter.cs" />
+    <Compile Include="Assets\Paintz Free\Scripts\Paint.cs" />
+    <Compile Include="Assets\Paintz Free\Scripts\PaintTarget.cs" />
+    <Compile Include="Assets\Paintz Free\Scripts\ParticlePainter.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
@@ -204,6 +202,7 @@
     <Compile Include="Assets\restart.cs" />
     <Compile Include="Assets\RPG Food &amp; Drinks Pack\Assets\Scripts\Rotator.cs" />
     <Compile Include="Assets\saveUI.cs" />
+    <Compile Include="Assets\SceneLoader.cs" />
     <Compile Include="Assets\Viking Crew Tools\Camera controls\MouseOrbitImproved.cs" />
     <Compile Include="Assets\Viking Crew Tools\UI\SpeechBubbleManager\Demos\2d scene\RandomMovementBehaviour.cs" />
     <Compile Include="Assets\Viking Crew Tools\UI\SpeechBubbleManager\Demos\SayRandomThingsBehaviour.cs" />
@@ -214,6 +213,7 @@
     <Compile Include="Assets\Viking Crew Tools\UI\SpeechBubbleManager\SpeechBubbleBehaviour.cs" />
     <Compile Include="Assets\Viking Crew Tools\UI\SpeechBubbleManager\SpeechBubbleManager.cs" />
     <Compile Include="Assets\Viking Crew Tools\UI\SpeechBubbleManager\SpeechBubbleTmp.cs" />
+    <None Include="Assets\Paintz Free\Scripts\Resources\Shaders\Utility\PaintBinormal.shader" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
@@ -221,11 +221,13 @@
     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFXM_MobileParticleAdd_Alpha8.shader" />
     <None Include="Assets\Photon\PhotonUnityNetworking\link.xml" />
     <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX Free.txt" />
+    <None Include="Assets\Paintz Free\Scripts\Resources\Shaders\Utility\PaintPos.shader" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\14.Shader\Water_Shader.shader" />
     <None Include="Assets\LowPolyBusinessPeople\Shaders\SimpleSelfLit.shader" />
     <None Include="Assets\PostProcessing Profiles\ReadmeFIRST!.txt" />
+    <None Include="Assets\Paintz Free\Scripts\Resources\Shaders\Utility\PaintBlit.shader" />
     <None Include="Assets\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
     <None Include="Assets\03.Model\POLYGON city pack\Read_me.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
@@ -237,6 +239,7 @@
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\12.ETC\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Paintz Free\Scripts\Resources\Shaders\Utility\PaintTangent.shader" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Photon\PhotonUnityNetworking\readme.txt" />
     <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders\Skybox Cubemap Extended.shader" />
@@ -245,48 +248,79 @@
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
     <None Include="Assets\PostProcessing Profiles\ForVolumetricLights\Readme.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\Paintz Free\Scripts\Resources\Shaders\PaintStandard.shader" />
     <None Include="Assets\LowPolyBusinessPeople\NotesAndInstructions.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
     <None Include="Assets\12.ETC\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.multiplayer-hlapi.Editor">
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.multiplayer-weaver.Editor">
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XR.LegacyInputHelpers">
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.SpatialTracking">
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.XR.LegacyInputHelpers">
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.multiplayer-hlapi.Runtime">
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -466,10 +500,19 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Assets/Plugins/Photon3Unity3D.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
-      <HintPath>C:/Users/user/Desktop/졸작/BBBproject/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.Editor">
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.StandardEvents">
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.Tracker">
+      <HintPath>C:/Users/user/Downloads/최종직전+ 씬3개 추가+채팅수정+릉애꺼 합친거/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.9f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -834,51 +877,51 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{D7E527C4-F765-2C64-5434-87E995A7E3A3}</Project>
+      <Project>{E1935986-8866-8F74-B080-9A96E1963718}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj">
-      <Project>{A116772F-2473-EF55-18CE-41783DEC937D}</Project>
+      <Project>{5BBBB24C-CB53-C270-3016-A14E1B640427}</Project>
       <Name>PhotonUnityNetworking.Utilities.PhotonPlayer.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PunDemos.DemoHubEditor.csproj">
-      <Project>{5C481F59-B2E8-3B0B-E4BF-471E133E34DB}</Project>
+      <Project>{C7857CCC-2F8C-70AF-E6CB-16E314A24E2B}</Project>
       <Name>PunDemos.DemoHubEditor</Name>
     </ProjectReference>
     <ProjectReference Include="PunDemos.DemoSlotcarEditor.csproj">
-      <Project>{B8DA9436-6329-EBCA-53E9-2F487134C5D7}</Project>
+      <Project>{7E2A9F79-30EA-7F87-163C-7D913E5A8086}</Project>
       <Name>PunDemos.DemoSlotcarEditor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Demos.csproj">
-      <Project>{497CD6AF-404E-D4A6-2EF0-B2C1BBC42837}</Project>
+      <Project>{F2C7FB59-4BC2-F375-9511-B20E85605165}</Project>
       <Name>PhotonUnityNetworking.Demos</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.csproj">
-      <Project>{A26DC5F1-FCAD-C863-2599-82A27157115B}</Project>
+      <Project>{81ADE3D5-020A-5844-F6E8-7CC2EFD8B319}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonWebSocket.csproj">
-      <Project>{38A39429-2ECC-5D81-F636-DE1B56E704B9}</Project>
+      <Project>{EC137161-840D-CCEB-FFFD-96EC830FCB5C}</Project>
       <Name>PhotonWebSocket</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonRealtime.csproj">
-      <Project>{F4C972FB-5D7C-F8D8-2656-035A799D2C09}</Project>
+      <Project>{348AF322-1BD3-936A-CD6C-77CACC8C5A02}</Project>
       <Name>PhotonRealtime</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.csproj">
-      <Project>{B0647CCF-FCD9-489D-1EC6-313C749F706D}</Project>
+      <Project>{1291BBE4-AC9C-1FB9-36E7-020AB6E0DC1C}</Project>
       <Name>PhotonUnityNetworking</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonChat.csproj">
-      <Project>{A9B32F2C-1C09-061D-7AA7-6372CA7AF4B5}</Project>
+      <Project>{DE7FAE02-7267-5EDF-78AD-BF4816AFCFD3}</Project>
       <Name>PhotonChat</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
-      <Project>{49AD4EAB-999D-336B-7574-4210E1BEE3AA}</Project>
+      <Project>{4081FDC0-2365-68BC-18DD-3195D01EDD0C}</Project>
       <Name>PhotonUnityNetworking.Utilities.Culling.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Editor.csproj">
-      <Project>{6F595D4E-3373-B745-935A-847BCBC9A119}</Project>
+      <Project>{2EFD71AC-F205-89E7-D677-06833288B314}</Project>
       <Name>PhotonUnityNetworking.Editor</Name>
     </ProjectReference>
   </ItemGroup>

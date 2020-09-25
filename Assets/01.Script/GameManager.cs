@@ -8,7 +8,10 @@ using TMPro;
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public static int playernum = 0;
-    //싱글톤 접근용 프로퍼티
+
+    public static int chnum;
+
+    //싱글톤 접근용 프로퍼티 
     public static GameManager instance
     {
         get
@@ -29,7 +32,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public GameObject playerPrefab; //생성할 게임플레이어 (마스터)
     public GameObject player2Prefab; //생성할 게임플레이어 (마스터)
-
+    public GameObject player3Prefab; //생성할 게임플레이어
 
     public PhotonView PV;
     public TextMeshProUGUI ChatText;
@@ -59,26 +62,40 @@ public class GameManager : MonoBehaviourPunCallbacks
         localPos.y = 4.39109f;
         localPos.z = 450.567f;
 
+       
+        //if (PhotonNetwork.IsMasterClient)
+        //{
 
-        if (PhotonNetwork.IsMasterClient)
+        //    PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
+        //    playernum = 1;
+        //}
+        //else if (!PhotonNetwork.IsMasterClient)
+        //{
+
+        //    PhotonNetwork.Instantiate(player2Prefab.name, randomPos, Quaternion.identity);
+        //    playernum = 2;
+        //}
+
+        if (chnum == 1)
         {
 
             PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity);
-            playernum = 1;
-        }
-        else if (!PhotonNetwork.IsMasterClient)
+                playernum = 1;
+        }else if (chnum == 2)
         {
 
             PhotonNetwork.Instantiate(player2Prefab.name, randomPos, Quaternion.identity);
             playernum = 2;
+        }else if(chnum ==3)
+        {
+            PhotonNetwork.Instantiate(player3Prefab.name, randomPos, Quaternion.identity);
+            playernum = 3;
         }
-
-
 
     }
 
 
- 
+
 
     public void Chat()
     {
@@ -87,7 +104,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         string msg = string.Format("[{0}] {1}", "<color=yellow>" + PhotonNetwork.LocalPlayer.NickName + "</color>", ChatInput.text);
       
         photonView.RPC("Send", RpcTarget.All, msg);
-     
+        //  ChatText.text = "";
+        ChatInput.text = "";
     }
 
 
@@ -99,6 +117,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             ChatText.text += "\n" + msg;
         if (!photonView.IsMine) //내것이 아니여도
             ChatText.text += "\n" + msg;
+
     }
 
 

@@ -89,7 +89,7 @@ public class videoHadler : MonoBehaviourPun
         actioncontroller = GameObject.Find("ItemCollider").GetComponent<ActionControler>();
         actioncontroller.updateScore();
         //HP
-        player = GameObject.Find("player22(Clone)").GetComponent<Health>();
+        player = GameObject.FindWithTag("Player").GetComponent<Health>();
         player.UpdateUI();
         //총알
         magazine = GameObject.Find("Magazine").GetComponent<Magazine>();

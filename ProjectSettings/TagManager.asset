@@ -4,44 +4,25 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - wall
-  - rope
-  - box
-  - desk
-  - door
-  - friend
   - grabPoint
-  - UIImage
-  - test
-  - Ground
-  - floor
-  - ropeCollision
-  - Item
-  - Ladder
-  - Ladder_bottom
-  - Ladder_Top
-  - Ladder_Air
-  - bullet
-  - CanOpen
   - Ham
-  - trap
-  - Friend
-  - Guts
   - FxTemporaire
-  - pushObject
-  - frog
+  - Ground
+  - Friend
+  - CanOpen
+  - Item
   - Left
   - BackOrLeft
   - Right
   - BackOrRight
   - Back
+  - chat
   - MaleSuit
   - MaleHead
   - Female_TrouserSuit
   - Female_SkinForSkirt
   - Female_SkirtSuit
   - Female_SkinForTrousers
-  - chat
   layers:
   - Default
   - TransparentFX
@@ -51,10 +32,10 @@ TagManager:
   - UI
   - 
   - 
-  - Door
   - Player
-  - Item
-  - PostProcessing
+  - 
+  - 
+  - 
   - 
   - 
   - 

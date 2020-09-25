@@ -44,7 +44,6 @@ public class Gun : MonoBehaviourPun, IPunObservable
     // ㄴ 외부에서는 읽을수 있지만 변경은 불가능하다.
 
     public Transform fireTransform; // 총알이 발사될 위치
-    public ParticleSystem shellEjectEffect; // 탄피 배출 효과
     public ParticleSystem muzzleFlashEffect; // 총구 화염 효과
                                             
    
@@ -233,7 +232,6 @@ public class Gun : MonoBehaviourPun, IPunObservable
     // 발사 이펙트와 총알 궤적을 그린다    //코루틴사용
     private IEnumerator ShotEffect(Vector3 hitPosition)
     {
-        shellEjectEffect.Play(); //탄피 배출 효과 재생
         muzzleFlashEffect.Play();
         //explosionEffect.Play();
         // shootedEffect.Play();
